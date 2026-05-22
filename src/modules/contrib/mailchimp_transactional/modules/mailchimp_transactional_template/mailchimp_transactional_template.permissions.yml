@@ -1,0 +1,4 @@
+administer mailchimp transactional templates:
+  title: Administer Mailchimp Transactional Templates
+  description: Administer Templates to use for messages sending through Mailchimp Transactional.
+  restrict access: true

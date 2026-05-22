@@ -1,0 +1,171 @@
+<?php
+
+use Drupal\views\ViewExecutable;
+use Drupal\views\Views;
+
+
+/**
+ * Implements hook_form_alter().
+ */
+function searcher_modal_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+
+  if ($form_id == 'views_exposed_form') {
+   
+    if ($form['#id'] == 'views-exposed-form-search-everything-block-1') {
+      \Drupal::state()->set('searcher_modal_form_alter', $form);
+      /** @var \Drupal\Core\Render\RendererInterface $renderer */
+      $renderer = \Drupal::service('renderer');
+      $label = [
+        '#type' => 'html_tag',
+        '#tag' => 'h1',
+        '#value' => t('Resultados Encontrados') . ':',
+      ];
+      $form['#info']['filter-search_api_fulltext']['label'] = $renderer->renderRoot($label);
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function searcher_modal_preprocess_views_view_fields__search_everything__block_1(&$variables) {
+
+}
+
+/**
+ * Implements hook_views_pre_render()
+ */
+function searcher_modal_views_pre_render(ViewExecutable $view) {
+  if ($view->id() == 'search_everything') {
+    $results_by_type = [];
+    $area_practica_tids = [];
+    $industria_tids = [];
+    $palabra = $view->getExposedInput();
+
+    foreach ($view->result as $result_row) {
+      $entity = $result_row->_object->getValue();
+      $type = $entity->getEntityTypeId();
+      if($type == 'node') {
+        $entity_type = $entity->getType();
+
+        // We grouped the results by entity type, later we will separate the news
+        // ('noticia' content type) from the other types
+        $results_by_type[$entity_type][] = $result_row;
+      }else{
+        $results_by_type[$type][] = $result_row;
+      }
+
+    }
+
+    $view->result = [];
+    $i = 0;
+    if(isset($results_by_type['noticia'])) {
+      foreach ($results_by_type['noticia'] as $news_result) {
+        $news_result->index = $i;
+        $view->result[] = $news_result;
+        $i++;
+      }
+      unset($results_by_type['noticia']);
+    }
+    foreach ($results_by_type as $non_news_results) {
+      foreach ($non_news_results as $other_result) {
+        $other_result->index = $i;
+        $view->result[] = $other_result;
+        $i++;
+      }
+    }
+
+    // Attach the Lawyers view
+    $id_block = "block_1";
+    $args = [];
+    $args[] = empty($palabra['search_api_fulltext']) ? '' : $palabra['search_api_fulltext'];
+    $lawyers_view = Views::getView('buscador_abogados_lateral');
+    //$lawyers_view->setArguments($args);
+    $lawyers_view->setExposedInput(array(
+      'search_api_fulltext' => $palabra['search_api_fulltext']
+    ));
+    $lawyers_view->setDisplay($id_block);
+    $lawyers_view->preExecute();
+    $lawyers_view->execute();
+    $lawyers_view_result = $lawyers_view->buildRenderable($id_block);
+
+    $view->attachment_after = $lawyers_view_result;
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function searcher_modal_preprocess_views_view_unformatted__search_everything__block_1(&$variables) {
+  $processed_types = [];
+  // As the result rows are "grouped" by entity type
+  // @see searcher_modal_views_pre_render
+  // here we add a label for each group
+  $i = 0;
+  $otros = FALSE;
+  $noticias = FALSE;
+  foreach ($variables['rows'] as &$row) {
+    $result_row = $row['content']['#row'];
+    $entity = $result_row->_object->getValue();
+    $type = $entity->getEntityTypeId();
+    if($type == 'node') {
+      $entity_type = $entity->getType();
+      if (!isset($processed_types[$entity_type])) {
+        if ($entity_type == 'noticia' && $noticias == FALSE) {
+          $row['title'] = t('NOTICIAS');
+          $noticias = TRUE;
+          $i++;
+        }else{
+          if($otros === FALSE) {
+            $row['title'] = t('RESULTADOS EN EL SITIO');
+            $otros = TRUE;
+            $i++;
+          }
+        }
+      }
+    }else{
+      if($otros === FALSE) {
+        $row['title'] = t('RESULTADOS EN EL SITIO');
+        $otros = TRUE;
+        $i++;
+      }
+    }
+    if($i == 2){
+      break;
+    }
+    $processed_types[$entity_type] = TRUE;
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function searcher_modal_preprocess_views_view_unformatted__lawyers__block_1(&$variables) {
+  foreach ($variables['rows'] as &$row) {
+    $row['content']['#lawyer_image_style'] = 'img_180x180';
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function searcher_modal_preprocess_block__search(&$variables) {
+  // Originally the block search form (Drupal\search\Plugin\Block\SearchBlock)
+  // is intended to show the form 'Drupal\search\Form\SearchBlockForm'.
+  // Front End developers working previously had already applied styles to that,
+  // based on the elements and classes of that form.
+  // But the behavior of the form should not be the one that comes with the
+  // SearchBlockForm, but it should behave as the form
+  // 'Drupal\searcher_modal\Form\SearcherModalForm'
+  // So, for the sake of the front end work already done, we create kind of a
+  // mix of both forms, so that the styles can be preserved but the behavior is
+  // as needed.
+  $search_block_form = \Drupal::formBuilder()->getForm('Drupal\search\Form\SearchBlockForm');
+  $bu_search_form = \Drupal::formBuilder()->getForm('Drupal\searcher_modal\Form\SearcherModalForm');
+  // "keys" element is the one that ensures that old styles are reusable.
+  $bu_search_form['keys'] = $search_block_form['keys'];
+  // We need to apply some js tricks to achieve the expected behavior (form
+  // submit triggering the search modal)
+  $bu_search_form['#attached']['library'][] = 'searcher_modal/search_block_form';
+  $variables['content'] = $bu_search_form;
+}

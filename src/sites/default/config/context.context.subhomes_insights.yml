@@ -1,0 +1,47 @@
+uuid: 7c4b172f-3719-4539-8058-4f58a8c05c0b
+langcode: es
+status: true
+dependencies:
+  config:
+    - views.view.newsletter_internal
+  module:
+    - system
+    - views
+label: 'Subhomes insights'
+name: subhomes_insights
+group: Insights
+description: ''
+requireAllConditions: false
+disabled: false
+conditions:
+  request_path:
+    id: request_path
+    negate: false
+    uuid: ca05d9f6-a243-48d6-a3a8-381c124fe812
+    context_mapping: {  }
+    pages: "/insights/podcast\r\n/insights/boletines\r\n/insights/herramientas\r\n/insights/informes\r\n/insights/noticias"
+reactions:
+  blocks:
+    id: blocks
+    uuid: e846b286-c0ac-407f-b88d-6161acd6fa72
+    blocks:
+      a255a5db-22cf-4466-baef-a6228feb2e84:
+        uuid: a255a5db-22cf-4466-baef-a6228feb2e84
+        id: 'views_block:newsletter_internal-block_4'
+        label: BOLETINES
+        provider: views
+        label_display: visible
+        region: sidebar_right
+        weight: '0'
+        custom_id: views_block_newsletter_internal_block_4
+        theme: brigard
+        css_class: others-news-sidebar
+        unique: 0
+        context_id: subhomes_insights
+        context_mapping: {  }
+        views_label: BOLETINES
+        items_per_page: none
+        override: {  }
+    include_default_blocks: 0
+    saved: false
+weight: 0

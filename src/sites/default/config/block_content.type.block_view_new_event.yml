@@ -1,0 +1,8 @@
+uuid: f6396304-57d4-4132-9517-1f8c5f1ee924
+langcode: es
+status: true
+dependencies: {  }
+id: block_view_new_event
+label: 'block view new event'
+revision: 0
+description: ''

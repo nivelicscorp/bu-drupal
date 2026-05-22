@@ -1,0 +1,14 @@
+name: 'Mandrill Activity'
+description: 'View activity for an email address associated with any entity.'
+package: Mandrill
+core: 8.x
+core_version_requirement: ^8 || ^9
+dependencies:
+  - mandrill:mandrill
+type: module
+configure: mandrill_activity.admin
+
+# Information added by Drupal.org packaging script on 2022-03-31
+version: '8.x-1.3'
+project: 'mandrill'
+datestamp: 1648771135

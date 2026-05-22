@@ -1,0 +1,8 @@
+uuid: 0e58a248-0d81-4ca1-993d-797b860aa7bf
+langcode: es
+status: true
+dependencies: {  }
+id: icono_item_menu
+label: 'Icono item menu'
+revision: 0
+description: 'Logo principal '

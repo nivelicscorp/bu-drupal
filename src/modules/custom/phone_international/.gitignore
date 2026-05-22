@@ -1,0 +1,10 @@
+.ddev
+.DS_Store
+.editorconfig
+.gitattributes
+.idea
+vendor
+web
+.prettierignore
+.prettierrc.json
+phpcs.xml.dist

@@ -1,0 +1,12 @@
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#natural" data-toggle="tab">{{ 'Persona Individual'|trans }}</a></li>
+  <li><a href="#juridica" data-toggle="tab">{{ 'Persona Empresarial'|trans }}</a></li>
+</ul>
+<div class="tab-content clearfix">
+  <div class="tab-pane active" id="natural">
+    {{ drupal_entity('webform', 'inscripcion_evento_pago_natural') }}
+  </div>
+  <div class="tab-pane"  id="juridica">
+    {{ drupal_entity('webform', 'inscripcion_evento_pago_juridica') }}
+  </div>
+</div>

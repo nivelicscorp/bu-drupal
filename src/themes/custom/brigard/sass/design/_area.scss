@@ -1,0 +1,140 @@
+.taxonomy-term-page-areas, .taxonomy-term-page-indrustrias, .taxonomy-term-page-nuevos-servicios{
+    .field--name-field-accordion + .title-block{
+        font-weight: bold;
+        margin-top: 89px;
+        &::after{
+            display: none;
+        }
+    }
+    .field--name-description{
+        .field--label{
+            font-family: $secondFont;
+        }
+    }
+    .views-field-field-sector-noticia{
+        &:before{
+            display:none;
+        }
+    }
+    a{
+
+    }
+    .col-sm-8{
+        .view-noticias{
+            .row{
+                margin-bottom:40px;
+                padding-bottom: 31px;
+                position:relative;
+                &::before{
+                    content: "\e907" !important;
+                    color:$secondColor;
+                    border:1px solid transparent;
+                    border-radius:100%;
+                    display:block;
+                    font-size:18px;
+                    left: 0px;
+                    line-height: 22px;
+                    padding: 0px;
+                    position: absolute;
+                    text-indent: 0;
+                    bottom:0px;
+                    @include prefix(transition, border 0.5s, webkit moz o ms);
+                    @extend %icons;					
+                }
+                .views-field-title{
+                    a{
+                        color:$blackTxt;
+                        font-family:$secondFont;
+                        font-size:22px;
+                        font-weight:500;
+                        line-height:25px;
+                        margin-bottom:12px;
+                    }
+                }
+            }
+        }
+    }
+    .view-id-lawyers{      
+        margin-bottom: 76px;
+        margin-top: 40px;   
+        .slick-dots{
+            display:none !important;
+        }
+        .slick-prev{
+            left: -27px;
+            top: 28%;
+        }
+        .slick-next{
+            right: -27px;
+            top: 28%;
+        }
+        .view-content{  
+            .field--name-field-image {
+                margin-bottom:0;
+                margin-top: 0px;
+            }
+            figure{
+                img{
+                    border-radius:100%;
+					display:block;
+                    height: 120px;
+                    margin: 0 auto;
+                    width: 120px;
+                }
+            }          
+            .txt{
+                .name{
+                    a{
+                        color:$mainColor;
+                        span{
+                            color:$mainColor;
+                            display: block;
+                            font-family:$secondFont;
+                            font-weight:400;
+                            font-size: 16px;
+                            margin-bottom: 37px;
+                            margin-left: 15px;
+                            margin-top: 22px;
+                            position:relative;
+                            &::before{
+                                background: $secondColor;
+                                bottom: -24px;
+                                content: "";
+                                display: block;
+                                height: 4px;
+                                left:0;
+                                margin-top: 21px;
+                                position:absolute;
+                                width: 28px;
+                            }
+                        }
+                    }
+                }
+                .field--name-field-membership {
+                    color:$blackTxt;
+                    font-family:$mainFont;
+                    font-size: 16px;
+                    margin-left: 15px;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 960px){
+    .taxonomy-term-page-areas, .taxonomy-term-page-indrustrias, .taxonomy-term-page-nuevos-servicios{
+        .view-id-lawyers{
+            .slick-prev{
+                left: -8px;
+            }
+            .slick-next{
+                right: -8px;
+            }
+            .view-content{
+                .content{
+                    margin:0 auto;
+                    width:50%;
+                } 
+            }
+        } 
+    }
+}

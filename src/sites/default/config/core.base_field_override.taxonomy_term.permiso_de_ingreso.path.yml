@@ -1,0 +1,20 @@
+uuid: 3a3ddba2-c30a-4d47-8b77-39364f630dc1
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.permiso_de_ingreso
+  module:
+    - path
+id: taxonomy_term.permiso_de_ingreso.path
+field_name: path
+entity_type: taxonomy_term
+bundle: permiso_de_ingreso
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

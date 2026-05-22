@@ -1,0 +1,23 @@
+uuid: 023d727f-9a28-4e18-ae9f-1c638f05dd7b
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_pertenece_a_boletin
+    - node.type.noticia
+id: node.noticia.field_pertenece_a_boletin
+field_name: field_pertenece_a_boletin
+entity_type: node
+bundle: noticia
+label: 'Pertenece a boletín'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

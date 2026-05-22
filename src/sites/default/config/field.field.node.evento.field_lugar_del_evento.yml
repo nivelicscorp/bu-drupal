@@ -1,0 +1,19 @@
+uuid: 50d01037-07d7-4ede-9803-2392d0358e25
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_lugar_del_evento
+    - node.type.evento
+id: node.evento.field_lugar_del_evento
+field_name: field_lugar_del_evento
+entity_type: node
+bundle: evento
+label: 'Lugar del evento'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

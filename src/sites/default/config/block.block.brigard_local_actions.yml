@@ -1,0 +1,20 @@
+uuid: ecf6ca0a-fb61-4dee-8b6f-61623d29d443
+langcode: es
+status: true
+dependencies:
+  theme:
+    - brigard
+_core:
+  default_config_hash: 13GQpeITIJsp1kyPniXtWZfyFH87vb1xxJCHifL4UeE
+id: brigard_local_actions
+theme: brigard
+region: content
+weight: -16
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Acciones primarias de administración'
+  label_display: '0'
+  provider: core
+visibility: {  }

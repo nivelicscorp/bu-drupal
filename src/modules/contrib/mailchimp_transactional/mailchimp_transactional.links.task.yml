@@ -1,0 +1,9 @@
+mailchimp_transactional.admin:
+  route_name: mailchimp_transactional.admin
+  base_route: mailchimp_transactional.admin
+  title: 'Settings'
+
+mailchimp_transactional.test:
+  title: 'Send Test Email'
+  route_name: mailchimp_transactional.test
+  base_route: mailchimp_transactional.admin

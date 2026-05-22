@@ -1,0 +1,16 @@
+uuid: 9eefb301-8d2e-48d8-a8da-d31bda9c8159
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.informe
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: node.informe
+target_entity_type_id: node
+target_bundle: informe
+default_langcode: site_default
+language_alterable: true

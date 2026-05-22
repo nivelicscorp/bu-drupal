@@ -1,0 +1,8 @@
+uuid: 21d33e40-60fe-4469-ab4f-f21602ef49eb
+langcode: es
+status: true
+dependencies: {  }
+id: eventos
+label: eventos
+locked: false
+pattern: 'd \d\e F \d\e Y'

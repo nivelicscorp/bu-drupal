@@ -1,0 +1,40 @@
+uuid: 5c645efc-bad1-4d73-869f-549c51340dc6
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_conferencistas
+    - node.type.evento
+    - paragraphs.paragraphs_type.conferencistas
+  module:
+    - entity_reference_revisions
+id: node.evento.field_conferencistas
+field_name: field_conferencistas
+entity_type: node
+bundle: evento
+label: Conferencistas
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      conferencistas: conferencistas
+    negate: 0
+    target_bundles_drag_drop:
+      agenda_del_evento:
+        weight: 5
+        enabled: false
+      conferencistas:
+        weight: 4
+        enabled: true
+      main_banner:
+        weight: 5
+        enabled: false
+      text_box:
+        weight: 6
+        enabled: false
+field_type: entity_reference_revisions

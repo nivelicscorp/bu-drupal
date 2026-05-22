@@ -1,0 +1,33 @@
+uuid: f32ce851-0893-4a92-9fef-869e3fb5fdba
+langcode: es
+status: false
+dependencies:
+  module:
+    - language
+    - node
+id: pasantias_esp
+label: 'Pasantias esp'
+type: 'canonical_entities:node'
+pattern: '/vinculese-bu/pasantias-de-verano/[node:title]'
+selection_criteria:
+  59dc0495-a2ba-4111-bd83-4cff08b31d9a:
+    id: node_type
+    negate: false
+    uuid: 59dc0495-a2ba-4111-bd83-4cff08b31d9a
+    context_mapping:
+      node: node
+    bundles:
+      page: page
+  06b79ce0-6108-412d-a2f0-db1f3d16616a:
+    id: language
+    negate: false
+    uuid: 06b79ce0-6108-412d-a2f0-db1f3d16616a
+    context_mapping:
+      language: 'node:langcode:language'
+    langcodes:
+      es: es
+selection_logic: and
+weight: -1
+relationships:
+  'node:langcode:language':
+    label: Language

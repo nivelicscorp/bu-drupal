@@ -1,0 +1,308 @@
+{% set container = theme.settings.fluid_container ? 'container-fluid' : 'container' %}
+<header class="header-site">
+  {# Navbar #}
+  {% if page.navigation or page.navigation_collapsible %}
+    {% block navbar %}
+      {%
+      set navbar_classes = [
+        'navbar',
+        theme.settings.navbar_inverse ? 'navbar-inverse' : 'navbar-default',
+        theme.settings.navbar_position ? 'navbar-' ~ theme.settings.navbar_position|clean_class : container,
+      ]
+      %}
+
+      {# top_header #}
+      {% if page.top_header %}
+        {% block top_header %}
+          <div class="top_header-content" role="heading">
+            {{ page.top_header }}
+          </div>
+        {% endblock %}
+      {% endif %}
+
+      <div{{ navbar_attributes.addClass(navbar_classes) }} id="navbar" role="banner">
+        {% if not navbar_attributes.hasClass(container) %}
+          <div class="{{ container }}">
+          {% endif %}
+          <div class="navbar-header">
+
+            {# .btn-navbar is used as the toggle for collapsed navbar content #}
+            {% if page.navigation_collapsible %}
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                <span class="sr-only">{{ 'Toggle navigation'|t }}</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            {% endif %}
+          </div>
+
+          {# Navigation (collapsible) #}
+          {% if page.navigation_collapsible %}
+            <div id="navbar-collapse" class="navbar-collapse collapse">
+              {{ page.navigation_collapsible }}
+            </div>
+          {% endif %}
+          {% if not navbar_attributes.hasClass(container) %}
+          </div>
+        {% endif %}
+      </div>
+    {% endblock %}
+  {% endif %}
+</header>
+ <header class="header-mobile header-mobile-es">
+        <div class="top-header">
+            <a class="toggle-menu">x</a>
+            <a href="/es" class="logo-menu">
+                <img src="/sites/default/files/2018-04/logo-white.svg" alt="brigar&Urrutia logo" width="65" height="auto" />
+            </a>
+            <a class="lupa-mobile">lupa</a>
+        </div>
+        <div class="content-menu-toggle">
+            <div class="idioma">
+                <section id="block-dropdownlanguageselector" class="block block-dropdown-language clearfix">
+                    <div class="form-item js-form-item form-wrapper js-form-wrapper panel panel-default" id="bootstrap-panel--3">
+                        <div class="panel-heading">
+                            <div class="panel-title">Idioma</div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="dropdown-language-item btn-group dropdown">
+                                <button class="language-link active-language button js-form-submit form-submit btn-default btn" hreflang="es" formnovalidate="formnovalidate" data-dropdown-target="#dropdown-item" type="submit" name="op" value="ES">ES</button>
+                                <button class="btn-default btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li hreflang="es">
+                                        <a href="/es" class="language-link active-language hidden" hreflang="es" formnovalidate="formnovalidate" id="dropdown-item">ES</a>
+                                    </li>
+                                    <li hreflang="en">
+                                        <a href="/en" class="language-link" hreflang="en" formnovalidate="formnovalidate" id="ajax-link">EN</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <nav class="menu-mob">
+                <ul>
+                    <li class="item-desplegable item-menu">
+                        <a href="/es/que-hacemos" class="link-principal">Qué hacemos</a>
+                        <span class="arrow">x</span>
+                        <ul>
+                            <li>
+                                <a href="/es/que-hacemos#industrias">Industrias</a>
+                            </li>
+                            <li>
+                                <a href="/es/que-hacemos#views-exposed-form-what-we-doing-page-1">Áreas de práctica</a>
+                            </li>
+                            <li>
+                                <a href="/es/que-hacemos/experiencia">Experiencia</a>
+                            </li>
+                            <li>
+                                <a href="/es/que-hacemos#servicios">Nuevos servicios</a>
+                            </li>
+                            <li>
+                                <a href="/es/que-hacemos">Conozca más</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="item-menu">
+                        <a href="/es/abogados" class="link-principal">Nuestra gente</a>
+                    </li>
+                    <li class="item-desplegable item-menu">
+                        <a href="/es/insights" class="link-principal">Insights</a>
+                        <span class="arrow">x</span>
+                        <ul>
+                            <li>
+                                <a href="/es/insights/noticias">Noticias</a>
+                            </li>
+                            <li>
+                                <a href="/es/insights/boletines">Boletines</a>
+                            </li>
+                            <li>
+                                <a href="/es/eventos">Eventos</a>
+                            </li>
+                            <li>
+                                <a href="/es/insights/herramientas">Herramientas</a>
+                            </li>
+                            <li>
+                                <a href="/es/insights/podcast">Podcast</a>
+                            </li>
+                            <li>
+                                <a href="/es/insights/informes">Informes</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="item-menu">
+                        <a class="link-principal" href="/es/valor-compartido">Valor Compartido</a>
+                    </li>
+                    <li class="item-desplegable item-menu">
+                        <a class="link-principal">Ver más</a>
+                        <span class="arrow">x</span>
+                        <ul>
+                            {# <li>
+                                <a href="/es/noticias">Noticias</a>
+                            </li> #}
+                            <li>
+                                <a href="/es/quienes-somos" class="link-principal" >Quiénes Somos</a>
+                                {# <span class="arrow">x</span>
+                                <ul>
+                                    <li>
+                                        <a href="/es/quienes-somos/historia">Historia</a>
+                                    </li>
+                                    <li>
+                                        <a href="/es/quienes-somos/reconocimientos">Reconocimientos</a>
+                                    </li>
+                                    <li>
+                                        <a href="/es/quienes-somos/alianzas-y-membresias">Alianzas y Membresias</a>
+                                    </li>
+                                    <li>
+                                        <a href="/es/quienes-somos/gobierno-corporativo">Gobierno Corporativo</a>
+                                    </li>
+                                    <li>
+                                        <a href="/es/quienes-somos">Conozca más</a>
+                                    </li>
+                                </ul> #}
+                            </li>
+                            <li>
+                                <a href="/es/form/contacto">Contáctenos</a>
+                            </li>
+                            <li>
+                                <a href="#">Ir a Brigard Castro</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+<header class="header-mobile header-mobile-en">
+        <div class="top-header">
+            <a class="toggle-menu">x</a>
+            <a href="/en" class="logo-menu">
+                <img src="/sites/default/files/2018-04/logo-white.svg" alt="brigar&Urrutia logo" width="65" height="auto" />
+            </a>
+            <a class="lupa-mobile">lupa</a>
+        </div>
+        <div class="content-menu-toggle">
+            <div class="idioma">
+                <section id="block-dropdownlanguageselector" class="block block-dropdown-language clearfix">
+                    <div class="form-item js-form-item form-wrapper js-form-wrapper panel panel-default" id="bootstrap-panel--3">
+                        <div class="panel-heading">
+                            <div class="panel-title">Idioma</div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="dropdown-language-item btn-group dropdown">
+                                <button class="language-link active-language button js-form-submit form-submit btn-default btn" hreflang="es" formnovalidate="formnovalidate" data-dropdown-target="#dropdown-item" type="submit" name="op" value="ES">ES</button>
+                                <button class="btn-default btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li hreflang="es">
+                                        <a href="/es" class="language-link " hreflang="es" formnovalidate="formnovalidate" id="dropdown-item">ES</a>
+                                    </li>
+                                    <li hreflang="en">
+                                        <a href="/en" class="language-link active-language hidden" hreflang="en" formnovalidate="formnovalidate" id="ajax-link">EN</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <nav class="menu-mob">
+                <ul>
+                    <li class="item-desplegable item-menu">
+                        <a href="/en/what-we-do" class="link-principal">What We Do</a>
+                        <span class="arrow">x</span>
+                        <ul>
+                            <li>
+                                <a href="/en/what-we-do#industrias">Industries</a>
+                            </li>
+                            <li>
+                                <a href="/en/what-we-do#views-exposed-form-what-we-doing-page-1">Practice Areas</a>
+                            </li>
+                            <li>
+                                <a href="/en/what-we-do/experience">Experience</a>
+                            </li>
+                            <li>
+                                <a href="/en/what-we-do#servicios">New services</a>
+                            </li>
+                            <li>
+                                <a href="/en/what-we-do">Learn more</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="item-menu">
+                        <a href="/en/abogados" class="link-principal">Our People</a>
+                    </li>
+                    <li class="item-desplegable item-menu">
+                        <a href="/es/insights" class="link-principal">Insights</a>
+                        <span class="arrow">x</span>
+                        <ul>
+                            <li>
+                                <a href="/en/insights/noticias">News</a>
+                            </li>
+                            <li>
+                                <a href="/en/insights/boletines">Newsletters</a>
+                            </li>
+                            <li>
+                                <a href="/en/events">Events</a>
+                            </li>
+                            <li>
+                                <a href="/en/insights/herramientas">Resources</a>
+                            </li>
+                            <li>
+                                <a href="/en/insights/podcast">Podcast</a>
+                            </li>
+                            <li>
+                                <a href="/en/insights/informes">Reports</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="item-menu">
+                        <a href="/en/shared-value" class="link-principal" >Shared Value</a>
+                        {# <span class="arrow">x</span>
+                        <ul>
+                            <li>
+                                <a href="/en/who-we-are/history">History</a>
+                            </li>
+                            <li>
+                                <a href="/en/who-we-are/awards">Awards</a>
+                            </li>
+                            <li>
+                                <a href="/en/who-we-are/alliances-and-memberships">Alliances and Memberships</a>
+                            </li>
+                            <li>
+                                <a href="/en/who-we-are/corporate-governance">Corporate Governance</a>
+                            </li>
+                            <li>
+                                <a href="en/who-we-are">Learn more</a>
+                            </li>
+                        </ul> #}
+                    </li>
+                    <li class="item-desplegable item-menu">
+                        <a class="link-principal">More</a>
+                        <span class="arrow">x</span>
+                        <ul>
+                            {# <li>
+                                <a href="/en/noticias">News</a>
+                            </li> #}
+                            <li>
+                                <a href="/en/form/contacto">Contact Us</a>
+                            </li>
+                            <li>
+                                <a href="/en/who-we-are">Who We Are</a>
+                            </li>
+                            <li>
+                                <a href="#">Go to Brigard Castro</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>

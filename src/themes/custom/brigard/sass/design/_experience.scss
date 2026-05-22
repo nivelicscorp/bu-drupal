@@ -1,0 +1,403 @@
+.fp-viewing-experience{
+	#menu-years{
+		opacity: 0;
+		@include prefix(transition, opacity .5s, webkit moz o ms);
+	}
+}
+#timelineiframemobile{
+	width: 100%;
+}
+.linea-tiempo{
+	.region-content{
+		padding: 0;
+	}
+}
+#menu-years{
+	bottom: 27px;
+	left: 0;
+    margin: 0;
+    opacity: 1;
+    padding: 0;
+	position: fixed;
+	text-align: center;
+	width: 100%;
+	z-index: 999;	
+	@include prefix(transition, opacity .5s, webkit moz o ms);	
+	li{
+		display: inline-block;
+		list-style: none;
+		&:first-child{
+			display: none;
+		}
+		&.active{
+			a{
+				font-family: $secondFont;
+			}
+		}
+	}	
+	a{
+		color: $lightColor;
+		display: inline-block;
+		height: auto;
+		font-family: $mainFont;
+		font-size: 22px;
+		font-weight: lighter;
+		letter-spacing: 2px;
+		margin: 0 6px;
+		vertical-align: middle;			
+		&.cbp-fbcurrent{
+			font-family: $secondFont;
+			text-decoration: none;
+		}
+		&:after {
+			content: '';
+			background: $lightColor;
+			border-radius: 50%;
+			display: block;
+			height: 5px;
+			margin: 5px auto 0;
+			width: 5px;
+		}
+		&:hover,
+		&:focus{
+			text-decoration: none;
+		}
+	}
+	.line{
+		background: hex-to-rgba($lightColor, 0.2);
+	    bottom: 28px;
+		display: block;
+		height: 3px;
+	    left: 0;
+		mix-blend-mode: overlay;
+		position: fixed;
+		width: 100%;
+		z-index: 1;
+	}
+}
+#experience-mobile{
+	text-align: center;
+	.center{
+		left: 0;
+		padding: 0 24px;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 100%;
+	}
+	
+	.title{
+		color: $lightColor;
+		font-family: $secondFont;
+		font-size: 38px;
+		font-weight: normal;
+	    letter-spacing: -1px;
+		line-height: 35px;
+	    margin: 0;
+	    //margin-top: 165px;
+		&:after{
+			content: "";
+			background: $secondColor;
+			display: block;
+			height: 3px;
+			margin: 15px auto;
+			width: 21px;
+		}
+	}
+	.arrow-down{
+		display: block;
+		margin-bottom: 10px;
+		@include prefix(animation, moveArrowLine 1s linear infinite, webkit moz o ms);		
+		&:after{
+			content: "\e908";
+			color: $lightColor;
+			font-family: $iconFont;
+			font-size: 30px;
+		}
+	}
+	p{
+		color: $lightColor;
+		font-family: $mainFont;
+		font-size: 16px;
+		font-weight: bold;
+	}
+	.item-fbscroller{
+		.wrapper{
+			padding-top: 177px;
+		}
+		&.yearFour{
+			.wrapper{
+				padding-top: 200px;
+			}
+			.year{
+				color: $secondColor;
+				&:after{
+					background: $secondColor;
+				}
+			}
+		}
+		.arrow-down{
+			margin-bottom: 2px;
+		}
+		&.active{
+			.slick-experience{
+				animation: fadeInUp 2s;
+				opacity: 1;
+			}
+		}
+		&:nth-child(odd){
+			.slick-experience{
+				.year{
+					color: $mainColor;
+					&:after{
+						background: $mainColor;
+					}
+				}
+			}
+		}
+	}
+	.slick-prev{
+		left: 14px;
+	}
+	.slick-next{
+		right: 14px;
+	}
+	.slick-prev,
+	.slick-next{
+		margin-top: 21px;
+		padding: 0;
+		z-index: 999;
+		&:before{
+			color: $lightColor;
+		}
+	}
+	.fp-viewing-yearFour{
+		overflow: auto !important;
+	}
+}
+.experience {
+	background-image: url(../img/linea1_desk.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+
+.yearFive{
+	background: url(../img/mobile-1980.jpg) no-repeat center 0 #dd215c;
+	background-size: contain;
+}
+
+.yearFour {
+	background: url(../img/mobile-1990.jpg) no-repeat center 0 #001d49;
+	background-size: contain;
+}
+
+.yearThree {
+	background: url(../img/mobile-2000.jpg) no-repeat center 0 #f4f4f4;
+	background-size: contain;
+}
+
+.yearTwo {
+	background: url(../img/mobile-2010.jpg) no-repeat center 0 #dd215c;
+	background-size: contain;
+}
+.yearOne {
+	background: url(../img/mobile-2020.jpg) no-repeat center 0 #001d49;
+	background-size: contain;
+}
+
+.slick-experience{
+	.year{
+		color: #000d3e;
+		font-family: $secondFont;
+		font-size: 24px;
+		font-weight: bold;
+		&:after{
+			content: "";
+			background: #000d3e;
+			display: block;
+			height: 3px;
+			margin: 0 auto 20px;
+			width: 20px;
+		}
+	}
+	.lead{
+		color: $lightColor;
+		font-family: $mainFont;
+		font-size: 24px;
+		font-weight: 100;
+		margin: 0;
+		padding: 0 54px;
+		&.small{
+			font-size: 20px;
+		}
+	}
+	.slick-slide{
+		&:focus{
+			outline: none;
+		}
+	}
+
+}
+
+.yearOne{
+	.slick-experience{
+		.one{
+			.lead{
+				padding: 0 62px;
+			}
+		}		
+		.two{
+			.lead{
+			    padding: 0 56px;
+			}
+		}
+	}
+}
+
+.yearTwo{
+	.slick-experience{	
+		.two{
+			.lead{
+			    padding: 0 56px;
+			}
+		}
+	}
+}
+
+.yearThree{
+	.slick-experience{	
+		.three{
+			.lead{
+			    padding: 0 60px;
+			}
+		}
+	}
+}
+ 
+.fp-viewing-yearThree{
+	#menu-years{
+		a{
+			color: $mainColor;
+			&:after{
+				background: $secondColor;
+			}
+		}
+		.line{
+			background: hex-to-rgba($mainColor, 0.2);
+		}
+	}
+	#experience-mobile{
+		.arrow-down{
+			&:after{
+				color: $mainColor;
+			}
+		}
+		.slick-prev:before, 
+		.slick-next:before{
+			color: $mainColor;
+		}
+	}
+	.slick-experience{
+		.year{
+			color: $secondColor;
+			&:after{
+				background: $secondColor;
+			}
+		}
+		.lead{
+			color: hex-to-rgba($blackTxt, 0.6);
+		}
+	}
+}
+
+.fp-viewing-yearFour, .fp-viewing-yearOne{
+	#experience-mobile{
+		.item-fbscroller{
+			.slick-experience{
+				.year{
+					color: $secondColor;
+					&:after{
+						background: $secondColor;
+					}
+				}
+			}
+		}
+	}
+}
+.mobile-iframe{
+	height: 100%;
+	width: 100%;
+	iframe{
+		border: 0;
+		height: 100%;
+		width: 100%;
+	}
+}
+
+@-webkit-keyframes fadeInUp {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+@media screen and (max-width: 960px){
+	.page-experiencia{
+		.breadcrumb{
+			display: block;
+		}
+	}
+}
+@media screen and (max-width: 767px){
+	iframe#timelineiframe{
+		min-height: inherit;
+	}
+}
+
+@media screen and (max-width: 330px){
+	.slick-experience{
+		.lead{
+			font-size: 18px;
+			&.small{
+				font-size: 18px;
+				padding: 0 30px;
+			}
+		}
+	}
+	.yearOne,
+	.yearTwo,
+	.yearThree{
+		background-position: center;
+	}
+	.yearFour{
+		background-position: center;
+	}
+	#experience-mobile{
+		.item-fbscroller.yearFour{
+			.wrapper{
+				padding-top: 126px;
+			}
+		}
+	}
+}

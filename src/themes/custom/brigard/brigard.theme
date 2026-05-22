@@ -1,0 +1,476 @@
+<?php
+
+/**
+ * @file
+ * Bootstrap sub-theme.
+ *
+ * Place your custom PHP code in this file.
+ */
+require_once DRUPAL_ROOT . '/vendor/mobiledetect/mobiledetectlib/src/MobileDetect.php';
+
+use \Drupal\paragraphs\Entity\Paragraph;
+use Drupal\we_megamenu\WeMegaMenuBuilder;
+use Drupal\searcher_modal\Controller\CustomQueryController;
+use Drupal\Component\Utility\Html;
+use Detection\MobileDetect;
+
+function brigard_preprocess_html(&$variables) {
+
+  $route_match = \Drupal::routeMatch();
+  $route_name = $route_match->getRouteName();
+
+  // Verifica que attributes esté inicializado.
+  if (!isset($variables['attributes'])) {
+    $variables['attributes'] = new Attribute();
+  }
+
+  // Agregar una clase CSS basada en el nombre de la ruta.
+  if ($route_name) {
+    $css_class = Html::cleanCssIdentifier($route_name, [
+      '.' => '-',
+      ' ' => '-',
+      '_' => '-',
+      '/' => '-',
+      '[' => '-',
+      ']' => '',
+    ]);
+    $variables['attributes']['class'][] = $css_class;
+  }
+  else {
+    \Drupal::logger('brigard')->warning('No se encontró un nombre de ruta para esta página.');
+  }
+
+  $current_path = \Drupal::service('path.current')->getPath();
+  $result = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
+  $rutas = explode('/', $result);
+  if(is_array($rutas)) {
+    foreach ($rutas as $ruta) {
+      if($ruta) {
+        $variables['attributes']['class'][] = 'page-' . $ruta;
+      }
+    }
+  }
+
+  if (\Drupal::routeMatch()->getRouteName() == 'entity.taxonomy_term.canonical') {
+    $variables['term_id'] = \Drupal::routeMatch()->getRawParameter('taxonomy_term');
+  }
+}
+
+function brigard_preprocess_node(&$variables) {
+  $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+  $variables['language_id'] = $language;
+  $type_node = $variables['node']->getType();
+  $detect = new MobileDetect();
+  $device = 'desktop';
+  // Any mobile device (phones or tablets).
+  if ($detect->isMobile()) {
+    $device = 'mobile';
+  }
+  // Any tablet device.
+  if ($detect->isTablet()) {
+    $device = 'mobile';
+  }
+  $variables['typedevice'] = $device;
+  if ($type_node == 'section') {
+    $node = $variables['node'];
+    $field_type_banner = isset($node->field_type_banner->getValue()[0]['value']) ? $node->field_type_banner->getValue()[0]['value'] : "none";
+    $field_add_text_box = isset($node->field_add_text_box->getValue()[0]['value']) ? $node->field_add_text_box->getValue()[0]['value'] : "Off";
+    $field_show_search = isset($node->field_show_search->getValue()[0]['value']) ? $node->field_show_search->getValue()[0]['value'] : "Off";
+    $field_content_information = isset($node->field_content_information->getValue()[0]['value']) ? $node->field_content_information->getValue()[0]['value'] : "Off";
+    $variables['type_banner'] = $field_type_banner;
+    $variables['show_text_box'] = $field_add_text_box;
+    $variables['field_show_search'] = $field_show_search;
+    $variables['field_content_information'] = $field_content_information;
+    if ($field_content_information) {
+      $request = \Drupal::request();
+      $current_path = $request->getPathInfo();
+      $url_object = \Drupal::service('path.validator')->getUrlIfValid($current_path);
+      $route_name = $url_object->getRouteName();
+      if ($route_name == 'entity.node.canonical') {
+        $route_parameters = $url_object->getrouteParameters();
+        if (isset($route_parameters['node'])) {
+          $statistics = new CustomQueryController;
+          $valueInfoContent = $statistics->getInfoContent($route_parameters['node'], $language);
+          $variables['title_view'] = $valueInfoContent['#title'];
+          $variables['type_caption'] = $valueInfoContent['#type'];
+          if ($valueInfoContent['#type'] == 'evento') {
+            $id_block = "block_1";
+            if ($language == "en") {
+              $id_block = "block_2";
+            }
+            $view = Drupal\views\Views::getView('get_title_content');
+            $view->setDisplay($id_block);
+            $view->setExposedInput(array('nid' => $route_parameters['node']));
+            $title = $view->getTitle();
+            $view_result = \Drupal::service('renderer')->render($view->render());
+            $variables['caption'] = $view_result;
+          }
+          else {
+            $variables['caption'] = $statistics->getSummaryContent($route_parameters['node'], $language);
+          }
+        }
+      }
+    }
+    $node_body_field = $variables['node']->get('body');
+    $node_teaser = null;
+    $node_body = null;
+
+    if (!empty($node_body_field->summary)) {
+        $node_teaser = $node_body_field->summary;
+    }
+
+    if (!empty($node_body_field->value)) {
+        $node_body = $node_body_field->value;
+    }
+
+    $variables['node_teaser'] = $node_teaser;
+    $variables['node_body'] = $node_body;
+    $form = \Drupal::formBuilder()->getForm('Drupal\searcher_modal\Form\SearcherModalForm');
+    $variables['form_search_modal'] = $form;
+  }
+  if ($type_node == 'indicators') {
+    $variables['#attached']['library'][] = 'searcher_modal/chart_bu';
+    $node = $variables['node'];
+    $field_statistical_graphs = $node->field_statistical_graphs->getValue();
+
+    foreach ($field_statistical_graphs as $key => $value_g) {
+      $data_chart = array();
+      $p_g_id = $value_g['target_id'];
+      $p_g = Paragraph::load($p_g_id);
+      $field_headers = $p_g->field_headers->getValue();
+      $field_graphs_type = $p_g->field_graphs_type->getValue();
+      $type_graphs = (count($field_graphs_type) > 0) ? $field_graphs_type[0]['value'] : 0;
+      $data_chart['type'] = $type_graphs;
+
+      $field_title = $p_g->field_title->getValue();
+      $data_chart['title'] = (count($field_title) > 0) ? $field_title[0]['value'] : "";
+
+      $field_title_x = $p_g->field_title_x->getValue();
+      $data_chart['title_x'] = (count($field_title_x) > 0) ? $field_title_x[0]['value'] : "";
+
+      $field_title_y = $p_g->field_title_y->getValue();
+      $data_chart['title_y'] = (count($field_title_y) > 0) ? $field_title_y[0]['value'] : "";
+
+      $header = array();
+      foreach ($field_headers as $value_headers) {
+        $header[] = $value_headers['value'];
+      }
+      $data_chart['item_data'] = array();
+      $data_chart['item_data'][] = $header;
+      $field_items_indicators = $p_g->field_items_indicators->getValue();
+      foreach ($field_items_indicators as $value) {
+        $items_data = array();
+        $p = Paragraph::load($value['target_id']);
+        $label = $p->field_label->getValue();
+        $percentage_data = $p->field_percentage->getValue();
+        $items_data[] = (count($label) > 0) ? $label[0]['value'] : "";
+        foreach ($percentage_data as $data_p) {
+          $items_data[] = $data_p['value'];
+        }
+        $data_chart['item_data'][] = $items_data;
+      }
+      $variables['#attached']['drupalSettings']['searcher_modal']['graphs'][$p_g_id] = json_encode($data_chart);
+    }
+  }
+}
+
+function brigard_preprocess_paragraph(&$variables) {
+  $paragraph = $variables['paragraph'];
+  $type = $paragraph->getType();
+  $detect = new MobileDetect();
+  $device = 'desktop';
+  // Any mobile device (phones or tablets).
+  if ($detect->isMobile()) {
+    $device = 'mobile';
+  }
+  // Any tablet device.
+  if ($detect->isTablet()) {
+    $device = 'mobile';
+  }
+  $variables['typedevice'] = $device;
+  if ($type == 'statistical_graphs') {
+    $graphs_id = $paragraph->get('id')->getValue();
+    $id_canvas = (count($graphs_id) > 0) ? $graphs_id[0]['value'] : 0;
+    $variables['id_canvas'] = $id_canvas;
+  }
+}
+
+function brigard_preprocess_field(&$vars, $hook) {
+  $detect = new MobileDetect();
+  $device = 'desktop';
+  // Any mobile device (phones or tablets).
+  if ($detect->isMobile()) {
+    $device = 'mobile';
+  }
+  // Any tablet device.
+  if ($detect->isTablet()) {
+    $device = 'mobile';
+  }
+  $vars['typedevice'] = $device;
+  if ($vars['field_name'] == 'field_desktop_image' || $vars['field_name'] == 'field_imagen_movil') {
+
+    $block_manager = \Drupal::service('plugin.manager.block');
+    $config = [];
+    $plugin_block = $block_manager->createInstance('system_breadcrumb_block', $config);
+    $access_result = $plugin_block->access(\Drupal::currentUser());
+    if (is_object($access_result) && $access_result->isForbidden() || is_bool($access_result) && !$access_result) {
+
+    }
+    $render = $plugin_block->build();
+    $vars['systembreadcrumbbanner'] = $render;
+  }
+}
+
+function brigard_preprocess_we_megamenu_li(&$vars) {
+  $detect = new MobileDetect();
+  $device = 'desktop';
+  // Any mobile device (phones or tablets).
+  if ($detect->isMobile()) {
+    $device = 'mobile';
+  }
+  // Any tablet device.
+  if ($detect->isTablet()) {
+    $device = 'mobile';
+  }
+  $menu_name = $vars['menu_name'];
+  $block_theme = $vars['block_theme'];
+  $data_config = WeMegaMenuBuilder::loadConfig($menu_name, $block_theme);
+  $menu_config = isset($data_config->menu_config) ? $data_config->menu_config : [];
+  if (isset($menu_config->{$vars['attributes']['data-id']})) {
+    $item_config = $menu_config->{$vars['attributes']['data-id']};
+    //$item_config->item_config->{'data-caption'
+    $data_item = $vars['attributes']->toArray();
+    $vars['attributes']['data-caption'] = !empty($data_item['description']) ? $data_item['description'] : '';
+    if ($item_config->item_config->class == "mobile" && $device == 'desktop') {
+      $vars = array();
+    }
+    else {
+      if ($vars['title'] == 'Header Menu Mobile') {
+        $vars['title'] = "";
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for block templates.
+ */
+function brigard_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  $block_id = isset($variables['elements']['#id']) ? $variables['elements']['#id'] : NULL;
+  /* Add classes based on the block id. */
+  switch ($block_id) {
+    /* Account Menu block */
+    case 'dropdownlanguageselector':
+      $suggestions[] = 'block__dropdownlanguageselector';
+      break;
+    case 'masde80anosayudandoaloscolombianos':
+      $suggestions[] = 'block__bannerfooter';
+      break;
+  }
+
+
+  foreach ($suggestions as $value) {
+    if (strpos($value, 'outstanding') !== false) {
+      $suggestions[] = 'block__outstanding';
+    }
+  }
+}
+
+/**
+ * Implements hook_theme_registry_alter
+ */
+function brigard_theme_registry_alter(&$theme_registry) {
+$theme_registry['webform_submission_html']['path'] = \Drupal::service('extension.list.theme')->getPath('brigard') . '/templates';
+  $theme_registry['webform_submission_html']['template'] = 'webform-submission';
+}
+
+/**
+ * Implements hook_theme_registry_alter
+ */
+function brigard_preprocess_webform_submission(array &$variables) {
+  $current_path = \Drupal::request()->getRequestUri();
+  $path_args = explode('/', $current_path);
+  if($path_args[count($path_args) - 2] == 'informacion-pago'){
+    $id = $path_args[count($path_args) - 1];
+    $variables['boton_pago'] = get_pay_button($id);
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for block templates.
+ */
+function brigard_theme_suggestions_page_alter(array &$suggestions, array &$variables) {
+  $route_match = \Drupal::routeMatch();
+  $current_path_parameters = $route_match->getParameters();
+  $path_matcher = \Drupal::service('path.matcher');
+  // Page template suggestion for the page not found.
+  if (!is_null(\Drupal::requestStack()->getCurrentRequest()->attributes->get('exception'))) {
+    $status_code = \Drupal::requestStack()->getCurrentRequest()->attributes->get('exception')->getStatusCode();
+    switch ($status_code) {
+      case 404: {
+        $suggestions[] = 'page__' . (string) $status_code;
+        break;
+      }
+      default:
+        break;
+    }
+  }
+  // Page template suggestion for the front page
+  if ($path_matcher->isFrontPage()) {
+    $suggestions[] = 'page__front';
+  }
+
+  // Filter for content type.
+  if (isset($current_path_parameters->all()['node']) && $node = $current_path_parameters->all()['node']) {
+    $content_type = ['noticia', 'bulletin', 'podcast', 'recursos', 'informe', 'memoria', 'evento'];
+
+    if (in_array($node->bundle(), $content_type)) {
+      $variables['nid'] = $node->id();
+      $variables['node_type'] = $node->getType();
+      if ($node->getType() == 'evento') {
+        $variables['show_form'] = $node->get('field_show_form')->value;
+      }
+      $suggestions[] = 'page__sidebar_insights';
+    }
+  }
+  // Valdiation taxonomy.
+  if (isset($current_path_parameters->all()['taxonomy_term']) && $term = $current_path_parameters->all()['taxonomy_term']) {
+    $vids = ['specialization', 'areas', 'indrustrias', 'nuevos_servicios'];
+    if (in_array($term->bundle(), $vids)) {
+      $suggestions[] = 'page__sidebar_two';
+    }
+    // Variable for header.
+    $variables['header_page']['title'] = $term->name->value;
+    $variables['header_page']['lead'] = $term->field_resumen->value;
+  }
+
+  if (isset($current_path_parameters->all()['view_id']) && $views = $current_path_parameters->all()['view_id']) {
+    $views_path = ['noticias', 'newsletter'];
+    $views_path_two = ['interna_insights', 'homes_insights'];
+    if (in_array($views, $views_path)) {
+      $suggestions[] = 'page__sidebar_two';
+    }
+    elseif (in_array($views, $views_path_two)) {
+      $current_path = \Drupal::service('path.current')->getPath();
+      $path_args = explode('/', $current_path);
+      $variables['home_type'] = $path_args[2];
+      $suggestions[] = 'page__sidebar_insights';
+    }
+    elseif ($views == 'calendario_de_eventos'){
+      $suggestions[] = 'page__sidebar_insights_events';
+    }
+  }
+}
+
+function brigard_preprocess_page(&$variables) {
+  $route_match = \Drupal::routeMatch();
+  $route_name = $route_match->getRouteName();
+
+  // Add a custom at the page level according to the route name, this will help
+  // to have a unique class on each page, for the sake of CSS selectors
+  if ($route_name) {
+    $css_class = Html::cleanCssIdentifier($route_name, [
+          '.' => '-',
+          ' ' => '-',
+          '_' => '-',
+          '/' => '-',
+          '[' => '-',
+          ']' => '',
+    ]);
+   // $variables['attributes']->addClass($css_class);
+    $variables['attributes']['class'][] = $css_class;
+  }
+
+  $language_id = \Drupal::service('language_manager')->getCurrentLanguage()->getId();
+  $variables['language_id'] = $language_id;
+  // Get Path.
+  $current_path = \Drupal::request()->getRequestUri();
+  $path_args = explode('/', $current_path);
+  $path = explode('?', $path_args[count($path_args) - 1]);
+  $no_text = false;
+  if($path_args[count($path_args) - 2] == 'memorias' || $path_args[count($path_args) - 2] == 'podcast' || $path_args[count($path_args) - 2] == 'noticias' || $path_args[count($path_args) - 2] == 'abogados' || $path_args[count($path_args) - 2] == 'boletines' || $path_args[count($path_args) - 2] == 'eventos'){
+    $path[0] = $path_args[count($path_args) - 2];
+    $no_text = true;
+  }
+  if($path_args[count($path_args) - 2] == 'informacion-pago'){
+    $header_content['title'] = t('Payment information');
+    $variables['header_page'] = $header_content;
+    $path[0] = 'eventos';
+  }
+  if($path[0] == 'resultado-transaccion'){
+    $header_content['title'] = t('Operation result');
+    $variables['header_page'] = $header_content;
+    $path[0] = 'eventos';
+  }
+
+
+  // Get the content of Header.
+  $header_content = \Drupal::service('bu_page_header.header')
+      ->getValues($path[0]);
+  if (is_array($header_content)) {
+    if(isset($header_content['image'][0])){
+      $file = \Drupal\file\Entity\File::load($header_content['image'][0]);
+      if(is_object($file)) {
+        $header_content['image'] = \Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
+      }
+    }
+    if(isset($variables['header_page']['title']) && empty($header_content['title'])){
+      $header_content['title'] = $variables['header_page']['title'];
+    }
+    if(isset($variables['header_page']['lead']) && empty($header_content['lead'])){
+      $header_content['lead'] = $variables['header_page']['lead'];
+    }
+    if($no_text){
+      $header_content['title'] = '';
+      $header_content['lead'] = '';
+    }
+    $variables['header_page'] = $header_content;
+  }
+
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for block templates.
+ */
+function brigard_theme_suggestions_views_view_alter(array &$suggestions, $vars) {
+  $block_id = $vars;
+
+  if (strpos($block_id['view']->current_display, 'outstanding') !== FALSE) {
+    $suggestions[] = 'views__view__outstanding';
+  }
+  if (strpos($block_id['view']->current_display, 'collapsibe') !== FALSE) {
+    $suggestions[] = 'views__view__collapsibe';
+  }
+
+  $suggestions[] = 'views__view__' . $block_id['view']->id() .'__'. $block_id['view']->current_display;
+
+}
+
+function brigard_preprocess_block(&$variables) {
+  $language_id = \Drupal::service('language_manager')->getCurrentLanguage()->getId();
+  $variables['language_id'] = $language_id;
+}
+
+function  brigard_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'views_exposed_form' && isset($form['field_sector_noticia_target_id'])) {
+    $form['field_sector_noticia_target_id']['#options']['All'] = t('Seleccionar una temática');
+  }
+  if ($form_id == 'views_exposed_form' && isset($form['field_area_target_id'])) {
+    $form['field_area_target_id']['#options']['All'] = t('Seleccione un Área de práctica');
+  }
+  if ($form_id == 'views_exposed_form' && isset($form['field_industrias_target_id'])) {
+    $form['field_industrias_target_id']['#options']['All'] = t('Seleccione una Industria');
+  }
+  if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-what-we-doing-page-1') {
+    $form['tid']['#options']['All'] = t('Áreas De Práctica');
+    $form['tid_1']['#options']['All'] = t('Sectores e industrias');
+    $form['tid_2']['#options']['All'] = t('Nuevos servicios');
+  }
+}
+
+function brigard_theme_suggestions_views_view_list_alter(array &$suggestions, $vars, $hook) {
+  $block_id = $vars;
+
+  $suggestions[] = $hook .'__'. $block_id['view']->id();
+}
+

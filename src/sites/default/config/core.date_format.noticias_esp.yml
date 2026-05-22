@@ -1,0 +1,8 @@
+uuid: 0faad3ed-ed55-4120-94a9-2d6795b48998
+langcode: es
+status: true
+dependencies: {  }
+id: noticias_esp
+label: 'Noticias esp'
+locked: false
+pattern: 'F d \d\e Y'

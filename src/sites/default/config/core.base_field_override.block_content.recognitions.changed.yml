@@ -1,0 +1,18 @@
+uuid: 0a4fbac3-54df-4628-b4e3-a177acfa537a
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.recognitions
+id: block_content.recognitions.changed
+field_name: changed
+entity_type: block_content
+bundle: recognitions
+label: Modificado
+description: 'La fecha en que el bloque personalizado fue editado por última vez.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

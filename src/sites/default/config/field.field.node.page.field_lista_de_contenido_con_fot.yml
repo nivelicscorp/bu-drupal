@@ -1,0 +1,64 @@
+uuid: 2d175433-a0b8-489f-91e4-00068c9419e4
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_lista_de_contenido_con_fot
+    - node.type.page
+    - paragraphs.paragraphs_type.contenidos_con_foto
+  module:
+    - entity_reference_revisions
+id: node.page.field_lista_de_contenido_con_fot
+field_name: field_lista_de_contenido_con_fot
+entity_type: node
+bundle: page
+label: 'Lista de contenido con fotou'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      contenidos_con_foto: contenidos_con_foto
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: 12
+        enabled: false
+      accordion_items:
+        weight: 13
+        enabled: false
+      agenda_del_evento:
+        weight: 14
+        enabled: false
+      conferencistas:
+        weight: 15
+        enabled: false
+      contenidos_con_foto:
+        weight: 11
+        enabled: true
+      indicators:
+        weight: 16
+        enabled: false
+      items_indicators:
+        weight: 17
+        enabled: false
+      main_banner:
+        weight: 18
+        enabled: false
+      recognition_items:
+        weight: 21
+        enabled: false
+      statistical_graphs:
+        weight: 19
+        enabled: false
+      testimonial_items:
+        weight: 23
+        enabled: false
+      text_box:
+        weight: 20
+        enabled: false
+field_type: entity_reference_revisions

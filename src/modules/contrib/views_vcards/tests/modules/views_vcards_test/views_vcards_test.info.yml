@@ -1,0 +1,11 @@
+name: 'Views vCards Test'
+type: module
+description: 'Provides default views for tests.'
+package: Testing
+dependencies:
+  - views_vcards:views_vcards
+
+# Information added by Drupal.org packaging script on 2024-08-13
+version: '3.1.0'
+project: 'views_vcards'
+datestamp: 1723559754

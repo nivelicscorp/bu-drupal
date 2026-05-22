@@ -1,0 +1,18 @@
+uuid: 38486caf-397c-48e1-a90d-2807e2f49cff
+langcode: es
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.agenda_del_evento
+id: paragraph.agenda_del_evento.created
+field_name: created
+entity_type: paragraph
+bundle: agenda_del_evento
+label: Fecha
+description: 'The time that the Paragraph was created.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

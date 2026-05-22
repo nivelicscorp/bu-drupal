@@ -1,0 +1,36 @@
+<?php
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_alter().
+ */
+function bu_media_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Hide the revision field on some forms
+  if (in_array($form_id, ['media_gallery_add_form', 'media_gallery_edit_form'])) {
+    // Hide the revision field
+    $form['revision_information']['#access'] = FALSE;
+    $form['revision_log_message']['#access'] = FALSE;
+  }
+  
+  if ($form_id == 'entity_embed_dialog') {
+    // When using the media_gallery embed button, hide some fields in the form
+    // where the user chooses formatter, align and caption.
+    if ($form['attributes']['data-embed-button']['#value'] == 'media_gallery') {
+      $form['attributes']['data-align']['#access'] = FALSE;
+      $form['attributes']['data-caption']['#access'] = FALSE;
+    }
+  }
+}
+
+/**
+ * Implements hook_inline_entity_form_entity_form_alter().
+ */
+function bu_media_inline_entity_form_entity_form_alter(&$entity_form, FormStateInterface &$form_state) {
+  $entity_type = $entity_form['#entity_type'];
+  $bundle = $entity_form['#bundle'];
+  // Inline Entity Form to create/edit a gallery
+  if ($entity_type == 'media' && $bundle == 'gallery') {
+    // Hide the revision field
+    $entity_form['revision_log_message']['#access'] = FALSE;
+  }
+}

@@ -1,0 +1,23 @@
+uuid: 61e3db76-d960-45e6-a26e-d67aec5a9aa5
+langcode: es
+status: true
+dependencies: {  }
+name: img_intercaladas
+label: img-intercaladas
+effects:
+  b69bec3f-f01c-4a05-b648-663589eec25a:
+    uuid: b69bec3f-f01c-4a05-b648-663589eec25a
+    id: image_scale
+    weight: 1
+    data:
+      width: 640
+      height: null
+      upscale: false
+  b81ba5e7-eff3-47b0-983b-803c1f5f0c07:
+    uuid: b81ba5e7-eff3-47b0-983b-803c1f5f0c07
+    id: image_crop
+    weight: 2
+    data:
+      width: 640
+      height: 402
+      anchor: center-center

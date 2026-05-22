@@ -1,0 +1,38 @@
+title: 'Free event registration'
+description: 'Free event registration'
+elements: |
+  evento:
+    '#title': Event
+  oblogatorios:
+    '#markup': 'Fields marked with * are required'
+  nombre:
+    '#title': Name
+    '#placeholder': 'Name *'
+  apellido:
+    '#title': 'Last name'
+    '#placeholder': 'Last name *'
+  identificacion:
+    '#title': Identification
+    '#placeholder': 'Identification *'
+  cargo:
+    '#title': Position
+    '#placeholder': 'Position *'
+  empresa:
+    '#title': Company
+    '#placeholder': 'Company *'
+  correo_electronico:
+    '#title': Email
+    '#placeholder': 'Email *'
+  celular:
+    '#title': 'Cell phone'
+    '#placeholder': 'Cell phone *'
+  acepto_los_terminos_y_condiciones:
+    '#title': 'I accept the terms and conditions'
+    '#description': 'I accept the <a href="/terminos-condiciones">terms and conditions</a>'
+  grande_contribuyentes:
+    '#markup': "Large Taxpayers, res. 8836 of Dec. 18, 1998. VAT and ICA withholding agents. <br />\nEconomic Activity 69 and rate 6.9 per thousand\n"
+  actions:
+    '#submit__label': REGISTER
+settings:
+  confirmation_title: 'Thank you'
+  confirmation_message: "Thank you for registering to our event.<br /><br />\r\nYou will receive a confirmation e-mail for your registration. Do no&#39;t forget to add the event to\r\nyour calendar."

@@ -1,0 +1,17 @@
+uuid: ce54000c-7fd8-48e2-a39e-44df6d751c3b
+langcode: en
+status: true
+dependencies: {  }
+id: seo_por_url
+label: 'SEO por URL'
+token: false
+context:
+  show_warning: true
+  group:
+    language: false
+  fallback:
+    language: ''
+menu:
+  path: /admin/config/url-seo
+  weight: 0
+  description: 'SEO por URL'

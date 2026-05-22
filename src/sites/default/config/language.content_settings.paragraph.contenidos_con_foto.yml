@@ -1,0 +1,18 @@
+uuid: ac3feb94-7837-4217-b5a5-33b74aab30a4
+langcode: es
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.contenidos_con_foto
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: paragraph.contenidos_con_foto
+target_entity_type_id: paragraph
+target_bundle: contenidos_con_foto
+default_langcode: site_default
+language_alterable: true

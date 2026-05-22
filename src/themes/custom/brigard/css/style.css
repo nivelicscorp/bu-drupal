@@ -1,0 +1,95 @@
+/**
+ * Place your custom styles here.
+ */
+.views-use-ajax,
+#views-exposed-form-news-internat-outstanding-block-2,
+#views-exposed-form-buscador-abogados-lateral-block-1,
+.id-boletin-padre{
+  display: none;
+}
+.field--name-field-desktop-image{
+  display: block;
+}
+.field--name-field-imagen-movil{
+  display: none;
+}
+.view-lawyers.view-id-lawyers.view-display-id-block_1 form.views-exposed-form{
+  display: none;
+}
+.collapsibe-block-container .collapsibe-block-items a.active {
+  color: #dd235c;
+  text-decoration: none;
+}
+.view-search-everything .content-results .title-section-search{
+  font-size: 25px !important;
+}
+.path-abogados .banner-internas{
+  margin-top: -20px;
+}
+
+.view-noticias .view-filters form .form-inline .form-group{
+  width: 49%;
+  float: left;
+  margin-right: 1%;
+}
+.form-item-field-industrias-target-id label{
+  visibility: hidden;
+}
+.evento-pago .tabs-formularios{
+  display: none;
+}
+.evento-gratuito .block-register-pay-event-block{
+  display: none;
+}
+@media screen and (max-width: 720px){
+  .field--name-field-desktop-image{
+    display: none;
+  }
+  .field--name-field-imagen-movil{
+    display: block;
+  }
+  .view-noticias .view-filters form .form-inline .form-group{
+    width: 100%;
+    float: none;
+    margin-right: 0px;
+  }
+}
+
+.path-informacion-pago #inscripcion_evento_pago_natural--acepto_los_terminos_y_condiciones,
+.path-informacion-pago #inscripcion_evento_pago_juridica--acepto_los_terminos_y_condiciones{
+  display: none;
+}
+
+.block-register-pay-event-block #juridica .form-actions .form-submit{
+  background: #dd235c !important;
+  border: 1px solid #dd235c !important;
+  border-radius: 50px !important;
+  color: #fff !important;
+  display: inline-block !important;
+  font-size: 16px !important;
+  font-weight: bold !important;
+  height: 60px !important;
+  letter-spacing: 0.8px !important;
+  line-height: 60px !important;
+  padding: 0 25px 0 34px !important;
+  outline: none !important;
+  position: relative !important;
+  text-transform: uppercase !important;
+  text-align: center !important;
+  -webkit-transition: background 0.5s !important;
+  -moz-transition: background 0.5s !important;
+  -o-transition: background 0.5s !important;
+  -ms-transition: background 0.5s !important;
+  transition: background 0.5s !important;
+}
+
+.path-frontpage .view-calendario-de-eventos .view-footer .next-event .subtitle,
+.path-frontpage .view-calendario-de-eventos .view-footer .next-event .description,
+.path-frontpage .view-calendario-de-eventos .view-footer .next-event .date
+{
+  display: none;
+}
+
+/*.path-frontpage .view-calendario-de-eventos .view-footer{
+  display: none;
+}*/

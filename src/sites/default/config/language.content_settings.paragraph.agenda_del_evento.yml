@@ -1,0 +1,18 @@
+uuid: b7c73b88-1d44-49ce-bf9a-f2c9482d4aae
+langcode: es
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.agenda_del_evento
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: paragraph.agenda_del_evento
+target_entity_type_id: paragraph
+target_bundle: agenda_del_evento
+default_langcode: site_default
+language_alterable: true

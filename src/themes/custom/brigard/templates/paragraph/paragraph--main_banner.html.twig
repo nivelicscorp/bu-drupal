@@ -1,0 +1,26 @@
+<div class="wrap_itma_main_banner">
+    {% if content.field_video|render|trim is not empty %}
+
+        {{ content.field_video }}
+
+    {% else %}
+
+        {{ content.field_imagen_movil }}
+        {{ content.field_desktop_image }}
+
+
+        <div class="wrap_caption">
+            <h2 class="title">{{ content.field_label }} </h2>
+
+            {% if content.field_caption|length > 5 %}
+                <p class="descripcion"> {{ content.field_caption }} </p>
+            {% endif %}    
+            
+            <div class="wrap-btn-red" >
+                {{ content.field_link }}
+            </div>
+            
+        </div>
+
+    {% endif %}    
+</div>

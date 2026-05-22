@@ -1,0 +1,18 @@
+uuid: 0adc6cee-6b13-4d45-97d5-6557a638d5a2
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.testimonial
+id: block_content.testimonial.metatag
+field_name: metatag
+entity_type: block_content
+bundle: testimonial
+label: 'Meta etiquetas'
+description: 'The meta tags for the entity.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: map

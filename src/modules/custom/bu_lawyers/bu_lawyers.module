@@ -1,0 +1,487 @@
+<?php
+
+/**
+ * hook_form_alter().
+ */
+function bu_lawyers_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  $language =  \Drupal::languageManager()->getCurrentLanguage()->getId();
+  if ($form_id == 'views_exposed_form') {
+    // Exposed form of the "Lawyers Search Page" View
+    if ($form['#id'] == 'views-exposed-form-lawyers-search-page') {
+      $form['actions']['submit']['#value'] = t('Buscar');
+      // Set placeholder property for title filter field
+      $form['title']['#placeholder'] = t('Nombre del abogado');
+      // Select elements does not admit placeholder property, so we have to
+      // change the label of the "All" option
+      $form['field_area_target_id']['#options']['All'] = t('Áreas de práctica');
+      $form['field_industrias_target_id']['#options']['All'] = t('Seleccione una Industria');
+      $form['field_ciudad_target_id']['#options']['All'] = t('Ciudad');
+      // Validates which membership filter the user will see
+      $language =  \Drupal::languageManager()->getCurrentLanguage()->getId();
+      $languagesWithGender = ['es'];
+      if (in_array($language, $languagesWithGender)) {
+        $form['field_membership_with_gender_target_id']['#options']['All'] = t('Cargo / Rol');
+        unset($form['field_membership_target_id']);
+      } else {
+        $form['field_membership_target_id']['#options']['All'] = t('Cargo / Rol');
+        unset($form['field_membership_with_gender_target_id']);
+      }
+      //$form['actions']['submit']['views_exposed_form_lawyers_search_page_submit_button'] = TRUE;
+    }
+  }
+}
+
+function bu_lawyers_theme($existing, $type, $theme, $path) {
+  return [
+    'resultado_transaccion' => [
+      'variables' => ['data' => NULL],
+    ],
+  ];
+}
+
+/**
+ * hook_preprocess_HOOK().
+ */
+function bu_lawyers_preprocess_field(&$variables) {
+  $entity_type = isset($variables['element']['#entity_type']) ? $variables['element']['#entity_type'] : NULL;
+  $bundle = isset($variables['element']['#bundle']) ? $variables['element']['#bundle'] : NULL;
+  $view_mode = isset($variables['element']['#view_mode']) ? $variables['element']['#view_mode'] : NULL;
+
+  // Lawyer's fields
+  if ($entity_type == 'node' && $bundle == 'lawyer') {
+    if ($view_mode == 'full') {
+      // Fields which label has to be a h2 tag
+      $fields_with_label_h2 = [
+        'field_experiencia',
+        'field_formacion_educativa'
+      ];
+      if (in_array($variables['element']['#field_name'], $fields_with_label_h2)) {
+        $label = $variables['label'];
+        $variables['label'] = [
+          '#type' => 'html_tag',
+          '#tag' => 'h2',
+          '#value' => $label,
+        ];
+      }
+    }
+  }
+}
+
+/**
+ * hook_preprocess_HOOK().
+ */
+function bu_lawyers_preprocess_input__button(&$variables) {
+  /*if (!empty($variables['element']['views_exposed_form_lawyers_search_page_submit_button'])) {
+    $variables['icon'] = [];
+  }*/
+}
+
+/**
+ * hook_preprocess_HOOK().
+ */
+function bu_lawyers_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'form_alter') {
+    $group = $implementations['bu_lawyers'];
+    unset($implementations['bu_lawyers']);
+    $implementations['bu_lawyers'] = $group;
+  }
+}
+
+/**
+ * hook_preprocess_HOOK().
+ */
+function bu_lawyers_preprocess_node(&$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  $node_type = $node->getType();
+  $view_mode = $variables['view_mode'];
+
+  // Customizations when a Lawyer node is being viewed
+  if ($node_type == 'lawyer') {
+    // Custom label for field_admitido_en
+    $variables['content']['field_admitido_en']['#title'] = t('Admitido al ejercicio del derecho en:');
+
+    // Customizations when the Lawyer is being viewed in Teaser view mode
+    if ($view_mode == 'teaser') {
+      // Break down the image field information so that we can use the twig filter
+      // image_style(). This allows to use different image styles for the lawyer
+      // in view mode teaser, depending of the context where it is displayed
+      $variables['lawyer_image_fid'] = NULL;
+      $variables['lawyer_image_alt'] = '';
+      $variables['lawyer_image_title'] = '';
+      $variables['lawyer_image_style'] = 'img_300x300';
+
+      if ($node->field_image && $lawyer_image = $node->field_image->first()) {
+        $variables['lawyer_image_fid'] = $lawyer_image->getValue()['target_id'];
+        $variables['lawyer_image_alt'] = $lawyer_image->getValue()['alt'];
+        $variables['lawyer_image_title'] = $lawyer_image->getValue()['title'];
+      }
+      // If a custom image style was set
+      if (!empty($variables['elements']['#lawyer_image_style'])) {
+        $variables['lawyer_image_style'] = $variables['elements']['#lawyer_image_style'];
+      }
+    }
+
+    // Set the membership data by language
+    $language =  \Drupal::languageManager()->getCurrentLanguage()->getId();
+    $languagesWithGender = ['es'];
+    if (in_array($language, $languagesWithGender)) {
+      if ($node->field_membership_with_gender && !$node->field_membership_with_gender->isEmpty()) {
+        $variables['content']['field_membership'] = $variables['content']['field_membership_with_gender'];
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bu_lawyers_preprocess_page(&$variables) {
+  $route_match = \Drupal::routeMatch();
+  $route_name = $route_match->getRouteName();
+  // When viewing the Lawyers home page
+  if ($route_name == 'view.lawyers.search_page') {
+    // Custom classes for Lawyers home page
+    $variables['attributes']['class'][] = 'profesionals';
+
+    // Custom header for Lawyers home page
+    $variables['page']['header'][] = [
+      '#type' => 'container',
+      '#attributes' => [
+        'class' => [
+          'title-section-content'
+        ],
+      ],
+      '#children' => [
+        [
+          '#type' => 'html_tag',
+          '#tag' => 'h2',
+          '#value' => t('Encuentre un abogado'),
+        ],
+        /*[
+          '#type' => 'html_tag',
+          '#tag' => 'p',
+          '#value' => t('Tenemos un equipo especializado en varias áreas del derecho de los negocios que trabaja con los más altos estándares de excelencia profesional y humana.'),
+        ],*/
+      ],
+    ];
+
+    // Custom header banner informatioin
+    $variables['header_banner_title'] = t('Buscar un profesional');
+    $variables['header_banner_description'] = t('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.');
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bu_lawyers_preprocess_views_view__lawyers__block_1(&$variables) {
+  $variables['header'] = t('abogados') . ':';
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bu_lawyers_preprocess_views_view__lawyers__search_page(&$variables) {
+  // Add a custom 'attachment_before'
+  $variables['attachment_before'][] = [
+    '#type' => 'html_tag',
+    '#tag' => 'p',
+    '#attributes' => [
+      'class' => [
+        'title-block',
+      ],
+    ],
+    '#value' => t('nuestros profesionales'),
+  ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bu_lawyers_preprocess_views_view_unformatted__lawyers__search_page(&$variables) {
+  foreach ($variables['rows'] as &$row) {
+    // Add classes to each view row
+    $row['attributes']->addClass('col-xs-6', 'col-md-4', 'item-prof');
+  }
+}
+
+function bu_lawyers_views_pre_build(\Drupal\views\ViewExecutable $view) {
+  if ($view->id() == 'news_internat') {
+    if ($view->getTitle() == 'Noticias interna') {
+      $node = null;
+      foreach (\Drupal::routeMatch()->getParameters() as $param) {
+        if ($param instanceof \Drupal\Core\Entity\EntityInterface) {
+          $node = $param;
+          $type = $node->getType();
+        }
+      }
+      if ($type !== null) {
+        $areas = $node->get('field_area')->getValue();
+        if (count($areas) > 0) {
+          foreach ($areas as $area) {
+            $areas_filter[] = $area['target_id'];
+          }
+          $view->setExposedInput([
+            'nid' => $node->id(),
+            'field_area_target_id' => $areas_filter,
+            //'field_industrias_target_id' => $industrias_filter
+          ]);
+        }
+        $industrias = $node->get('field_industrias')->getValue();
+        if (count($industrias) > 0) {
+          foreach ($industrias as $industria) {
+            $industrias_filter[] = $industria['target_id'];
+          }
+        }
+      }
+    }
+  }
+}
+
+function bu_lawyers_views_pre_render(\Drupal\views\ViewExecutable $view) {
+  if ($view->id() == 'duplicado_de_noticias_asociadas_boletines') {
+    if ($view->getTitle() == 'Paginador noticias boletines') {
+      if (isset($_GET['boletin'])) {
+        $node = NULL;
+        foreach (\Drupal::routeMatch()->getParameters() as $param) {
+          if ($param instanceof \Drupal\Core\Entity\EntityInterface) {
+            $node = $param;
+            $nid = $node->id();
+          }
+        }
+        $boletin = \Drupal\node\Entity\Node::load($_GET['boletin']);
+        $relacionadas = $boletin->get('field_noticias_asociadas')->getValue();
+        if (count($relacionadas) > 0) {
+          foreach ($relacionadas as $k => $noticia) {
+            if ($noticia['target_id'] == $nid) {
+              $paginador[0] = $relacionadas[$k - 1]['target_id'];
+              $paginador[1] = $relacionadas[$k + 1]['target_id'];
+            }
+          }
+        }
+      }
+      $i = 1;
+      foreach ($view->result as $r) {
+        if (in_array($r->_entity->id(), $paginador)) {
+          $r->index = $i;
+          $result[] = $r;
+          $i++;
+        }
+      }
+      $view->result = [];
+      $view->result = $result;
+    } elseif ($view->getTitle() == 'page interna boletines') {
+      $ids = array();
+      $i = 0;
+      foreach ($view->result as $item) {
+        if (!in_array($item->nid, $ids)) {
+          $item->index = $i;
+          $ids[] = $item->nid;
+          $result[] = $item;
+          $i++;
+        }
+      }
+      $view->result = [];
+      $view->result = $result;
+    }
+  }
+}
+
+function get_pay_button($id) {
+  $webform_submission = \Drupal\webform\Entity\WebformSubmission::load($id);
+  $node_storage = \Drupal::entityManager()->getStorage('node');
+  $nid = $webform_submission->getElementData('evento');
+  $evento = $node_storage->load($nid);
+  $valor_evento = $evento->get('field_v')->getValue();
+  $tipo_form = $webform_submission->get('webform_id')->getValue();
+  if ($tipo_form[0]['target_id'] == "inscripcion_evento_pago_juridica") {
+    $invitados = $webform_submission->getElementData('agregar_un_asistente');
+    $nombre = $webform_submission->getElementData('nombre_de_la_empresa');
+    $correo = $webform_submission->getElementData('correo_factura');
+    $valor_pagar = $valor_evento[0]['value'] * count($invitados);
+    $factura_previa = $webform_submission->getElementData('pago_con_factura');
+  } else {
+    $nombre = $webform_submission->getElementData('nombre') . ' ' . $webform_submission->getElementData('apellido');
+    $correo = $webform_submission->getElementData('correo_electronico');
+    $valor_pagar = $valor_evento[0]['value'];
+  }
+  if ($factura_previa == 1) {
+    return '';
+  }
+  $moneda = "COP";
+  $key = "13d93a0a460";
+  $merchant_id = "99242";
+  $reference = "Pago evento ($nombre) - " . time();
+  $iva = $valor_pagar * 0.19;
+  $valor_pagar = $valor_pagar + $iva;
+  $firma = get_signature($key, $merchant_id, $reference, $valor_pagar, $moneda);
+  $form = '
+  <form method="POST" action="https://checkout.payulatam.com/ppp-web-gateway-payu">
+      <input type="hidden" formControlName="merchantId" name="merchantId" value="' . $merchant_id . '" />
+      <input type="hidden" formControlName="ApiKey" name="ApiKey" value="' . $key . '" />
+      <input type="hidden" formControlName="referenceCode" name="referenceCode" value="' . $reference . '" />
+      <input type="hidden" formControlName="accountId" name="accountId" value="103283" />
+      <input type="hidden" formControlName="description" name="description" value="' . $reference . '" />
+      <input type="hidden" formControlName="amount" name="amount" value="' . $valor_pagar . '" />
+      <input type="hidden" formControlName="tax" name="tax" value="' . $iva . '" />
+      <input type="hidden" formControlName="taxReturnBase" name="taxReturnBase" value="0" />
+      <input type="hidden" formControlName="currency" name="currency" value="' . $moneda . '" />
+      <input type="hidden" formControlName="signature" name="signature" value="' . $firma . '" />
+      <input type="hidden" formControlName="test" name="test" value="0" />
+      <input type="hidden" formControlName="buyerEmail" name="buyerEmail" value="' . $correo . '" />
+      <input type="hidden" formControlName="payerFullName" name="payerFullName" value="' . $nombre . '" />
+      <input type="hidden" formControlName="responseUrl" name="responseUrl" value="https://bu.com.co/es/resultado-transaccion" />
+      <input type="submit" class="btn btn-primary" value="Pagar" />
+    </form>
+    ';
+  return $form;
+}
+
+function get_signature($api_key, $merchant_id, $reference, $valor, $moneda) {
+  return md5("$api_key~$merchant_id~$reference~$valor~$moneda");
+}
+
+
+/**
+ * Implements hook_mail().
+ */
+function bu_lawyers_mail($key, &$message, $params) {
+  $options = array(
+    'langcode' => $message['langcode'],
+  );
+
+  switch ($key) {
+    case 'transaccion':
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['subject'] = t('Resultado de su transacción');
+      $message['body'][] = $params['message'];
+      $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed; delsp=yes';
+      break;
+  }
+}
+
+function enviar_correo_bu() {
+
+  $mailManager = \Drupal::service('plugin.manager.mail');
+  $module = 'bu_lawyers';
+  $key = 'transaccion';
+  $langcode = \Drupal::currentUser()->getPreferredLangcode();
+
+  $to = $_GET['emailComprador'];
+
+  $params['subject'] = t('Confirmación de inscripción');
+  if ($_GET['codigo_respuesta_pol'] == 1) {
+    $msg1 = t('Gracias por inscribirse a nuestro evento');
+    $msg2 = t('Le confirmamos que su inscripción fue exitosa.');
+  } else {
+    $msg1 = t('Gracias por tu interés');
+    $msg2 = t('Tu inscripción no fue existosa.');
+  }
+  $fll = t('Síganos en:');
+  $msg = '<!doctype html>
+<html lang="es">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Open+Sans:400");
+        @font-face {
+            font-family: \'Palanquin\';
+            src: url(\'https://bu.com.co/themes/custom/brigard/fonts/palanquin/Palanquin-Regular.eot\');
+            src: url(\'https://bu.com.co/themes/custom/brigard/fonts/palanquin/Palanquin-Regular.eot?#iefix\') format(\'embedded-opentype\'),
+                 url(\'https://bu.com.co/themes/custom/brigard/fonts/palanquin/Palanquin-Regular.woff\') format(\'woff\'),
+                 url(\'https://bu.com.co/themes/custom/brigard/fonts/palanquin/Palanquin-Regular.ttf\') format(\'truetype\');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: \'Palanquin Dark\';
+            src: url(\'https://bu.com.co/themes/custom/brigard/fonts/palanquinDark/PalanquinDark-SemiBold.eot\');
+            src: url(\'https://bu.com.co/themes/custom/brigard/fonts/palanquinDark/PalanquinDark-SemiBold.eot?#iefix\') format(\'embedded-opentype\'),
+                url(\'https://bu.com.co/themes/custom/brigard/fonts/palanquinDark/PalanquinDark-SemiBold.woff\') format(\'woff\'),
+                url(\'https://bu.com.co/themes/custom/brigard/fonts/palanquinDark/PalanquinDark-SemiBold.ttf\') format(\'truetype\');
+            font-weight: 600;
+            font-style: normal;
+        }
+    </style>
+</head>
+<body>
+    <table width="100%">
+        <tr>
+            <td>
+                <table width="650" align="center">
+                    <tr>
+                        <td style="padding: 12px 0;">
+                            <a href="https://bu.com.co/es"><img src="https://bu.com.co/themes/custom/brigard/img/logo-color.png" alt="Brigard Urrutia" width="85" height="42" style="display: block; margin: 0 auto;"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="https://bu.com.co/themes/custom/brigard/img/email-calendar.jpg" alt="Foto de calendario">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table align="center" width="510" style="margin-top: 60px; margin-bottom: 80px;">
+                                    <tr>
+                                        <td>
+                                            <img src="https://bu.com.co/themes/custom/brigard/img/icon-calendar.png" alt="Icono calendario" height="126" width="114" style="margin-right: 20px;">
+                                        </td>
+                                        <td>
+                                            <p style="margin: 0; font-family: \'Palanquin Dark\'; color:#1a3172; font-size: 25px; line-height: 28px; margin-bottom: 14px;">' . $msg1 . '</p>
+                                            <span style="display: block; height: 4px; width: 57px; background: #dd235c;"></span>
+                                            <p style="margin: 0; font-family: \'Palanquin\'; font-size: 18px; color: #888; margin-top: 10px;">' . $msg2 . '</p>
+                                        </td>
+                                    </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table align="center" style="margin-bottom: 20px;">
+                                <tr>
+                                    <td style="text-align: center; color: #002c78;"><p style="text-align: center; font-family: \'Open Sans\', sans-serif; color: #002d73; font-size: 14px;">' . $fll . '</p></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table>
+                                            <tr>
+                                                <td><a href="https://www.facebook.com/BrigardUrrutia" target="_blank"><img src="https://bu.com.co/themes/custom/brigard/img/facebook.jpg" height="50" width="50" alt="Facebook"></a></td>
+                                                <td><a href="https://twitter.com/Brigard_Urrutia" target="_blank"><img src="https://bu.com.co/themes/custom/brigard/img/twitter.jpg" height="50" width="50" alt="Twitter"></a></td>
+                                                <td><a href="https://www.linkedin.com/company/brigard-urrutia" target="_blank"><img src="https://bu.com.co/themes/custom/brigard/img/linkedin.jpg" height="50" width="50" alt="Linkedin"></a></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table width="100%" style="background: #002c78; padding: 18px 25px;">
+                                <tr>
+                                    <td style="color: #fff; font-family: \'Open Sans\', sans-serif; font-size: 12px;">&copy; Brigard Urrutia 2018</td>
+                                    <td style="color: #fff;  text-align: right; font-family: \'Open Sans\', sans-serif; font-size: 12px;"><a href="https://bu.com.co/es/terminos-y-condiciones" target="_blank" style="color: #fff; margin-right: 10px;">Términos y condiciones </a> | <a href="https://bu.com.co/es/politica-tratamiento-informacion" target="_blank" style="margin-left:10px; color: #fff;">Políticas de tratamiento de la información</a></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>';
+  $params['message'] = $msg;
+  $send = true;
+
+  $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+  if ($result['result'] !== true) {
+    drupal_set_message(t('There was a problem sending your message and it was not sent.'), 'error');
+  } else {
+    //drupal_set_message(t('Your message has been sent.'));
+  }
+}

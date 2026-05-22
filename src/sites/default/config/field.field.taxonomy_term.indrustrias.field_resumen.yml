@@ -1,0 +1,19 @@
+uuid: 89f3098e-5ed8-42a9-9303-7f45be73b8d0
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_resumen
+    - taxonomy.vocabulary.indrustrias
+id: taxonomy_term.indrustrias.field_resumen
+field_name: field_resumen
+entity_type: taxonomy_term
+bundle: indrustrias
+label: Resúmen
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

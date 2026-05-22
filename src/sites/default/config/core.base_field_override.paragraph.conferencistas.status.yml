@@ -1,0 +1,22 @@
+uuid: 0a831e24-414d-4045-8979-846c64ea8407
+langcode: es
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.conferencistas
+id: paragraph.conferencistas.status
+field_name: status
+entity_type: paragraph
+bundle: conferencistas
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

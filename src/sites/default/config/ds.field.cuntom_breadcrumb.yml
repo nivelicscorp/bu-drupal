@@ -1,0 +1,17 @@
+id: cuntom_breadcrumb
+label: cuntom_breadcrumb
+ui_limit: ''
+type: block
+type_label: 'Block field'
+entities:
+  block_content: block_content
+  node: node
+  paragraph: paragraph
+properties:
+  block: system_breadcrumb_block
+  use_block_title: false
+  config:
+    id: system_breadcrumb_block
+    label: ''
+    label_display: visible
+    provider: system

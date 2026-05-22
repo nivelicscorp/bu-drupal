@@ -1,0 +1,28 @@
+uuid: f23d37d3-4c4e-472e-a0d7-f595ab70a0e2
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_boletin
+    - node.type.bulletin
+    - node.type.lawyer
+id: node.lawyer.field_boletin
+field_name: field_boletin
+entity_type: node
+bundle: lawyer
+label: Boletín
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      bulletin: bulletin
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

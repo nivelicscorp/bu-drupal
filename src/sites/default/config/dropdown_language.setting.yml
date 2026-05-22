@@ -1,0 +1,7 @@
+_core:
+  default_config_hash: xbqiqGnFfv7G00sewxA46T8PO-uo8uvWhDSIFyR1Fhk
+langcode: es
+wrapper: true
+display_language_id: 3
+filter_untranslated: 1
+always_show_block: 1

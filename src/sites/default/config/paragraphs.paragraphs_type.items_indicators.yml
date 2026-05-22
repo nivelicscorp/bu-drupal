@@ -1,0 +1,9 @@
+uuid: 48ebabd0-cd93-4226-986c-420943ec0b5e
+langcode: es
+status: true
+dependencies: {  }
+id: items_indicators
+label: 'Items indicators'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

@@ -1,0 +1,48 @@
+uuid: 5ca11a32-9838-4055-8651-b0568484e10a
+langcode: es
+status: true
+dependencies:
+  config:
+    - views.view.content_by_section
+  module:
+    - system
+    - views
+label: 'Quiénes Somos - Gobierno Corporativo'
+name: quienes_somos_gobierno_corporativo
+group: theme
+description: ''
+requireAllConditions: false
+disabled: false
+conditions:
+  request_path:
+    id: request_path
+    negate: false
+    uuid: ea5f0a66-d25b-4960-9c9a-04f9f7271d83
+    context_mapping: {  }
+    pages: /taxonomy/term/1133
+reactions:
+  blocks:
+    id: blocks
+    uuid: 68cfcf2e-8815-40c7-a946-7bf8aa0794fa
+    blocks:
+      ed988f4c-1b54-46e4-ae6e-0c3e9e2e8112:
+        uuid: ed988f4c-1b54-46e4-ae6e-0c3e9e2e8112
+        id: 'views_block:content_by_section-block_content_by_section'
+        label: ''
+        provider: views
+        label_display: '0'
+        region: content
+        weight: '0'
+        custom_id: views_block_content_by_section_block_content_by_section
+        theme: brigard
+        css_class: ''
+        unique: 0
+        context_id: quienes_somos_gobierno_corporativo
+        context_mapping:
+          field_section_target_id: '@custom_context_provider.taxonomy_term_context:taxonomy_term'
+        views_label: ''
+        items_per_page: none
+        override: {  }
+    include_default_blocks: 0
+    saved: false
+weight: 2

@@ -1,0 +1,17 @@
+mailchimp_transactional.admin:
+  path: 'admin/config/services/mailchimp_transactional'
+  defaults:
+    _form: '\Drupal\mailchimp_transactional\Form\AdminSettingsForm'
+    _title: 'Mailchimp Transactional Settings'
+  requirements:
+    _permission: 'administer mailchimp transactional'
+
+mailchimp_transactional.test:
+  path: 'admin/config/services/mailchimp_transactional/test'
+  defaults:
+    _form: '\Drupal\mailchimp_transactional\Form\AdminTestForm'
+    _title: 'Mailchimp Transactional Test Email'
+  requirements:
+    _permission: 'administer mailchimp transactional'
+    _mailchimp_transactional_configuration_access_check: 'TRUE'
+    _mailchimp_transactional_mailer_access_check: 'TRUE'

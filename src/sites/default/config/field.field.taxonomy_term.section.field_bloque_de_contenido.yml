@@ -1,0 +1,21 @@
+uuid: 872e1640-9a9f-4514-b37d-c7c5f0d96b9f
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_bloque_de_contenido
+    - taxonomy.vocabulary.section
+  module:
+    - text
+id: taxonomy_term.section.field_bloque_de_contenido
+field_name: field_bloque_de_contenido
+entity_type: taxonomy_term
+bundle: section
+label: 'Bloque de contenido'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

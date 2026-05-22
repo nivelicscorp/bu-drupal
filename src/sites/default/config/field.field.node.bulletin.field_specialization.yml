@@ -1,0 +1,29 @@
+uuid: d24fd1c6-18cf-403a-93c1-829619854a23
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_specialization
+    - node.type.bulletin
+    - taxonomy.vocabulary.specialization
+id: node.bulletin.field_specialization
+field_name: field_specialization
+entity_type: node
+bundle: bulletin
+label: 'Área especialización'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      specialization: specialization
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

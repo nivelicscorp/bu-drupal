@@ -1,0 +1,11 @@
+name: Video Embed Vine
+type: module
+# core: 8.x
+description: Embed Vine videos into your website using Video Embed Field.
+
+# Information added by Drupal.org packaging script on 2016-03-01
+version: '8.x-1.0'
+core: 8.x
+core_version_requirement: ^8 || ^9
+project: 'video_embed_vine'
+datestamp: 1456846561

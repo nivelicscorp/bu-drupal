@@ -1,0 +1,18 @@
+uuid: 6b6c0730-4366-4baa-a611-4947754ec7a0
+langcode: es
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.testimonial_items
+id: paragraph.testimonial_items.created
+field_name: created
+entity_type: paragraph
+bundle: testimonial_items
+label: Fecha
+description: 'The time that the Paragraph was created.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

@@ -1,0 +1,174 @@
+uuid: cfa86c72-e29d-4d63-bf13-2e4c6cda02bc
+langcode: es
+status: true
+dependencies:
+  config:
+    - views.view.calendario_de_eventos
+    - views.view.interna_insights
+    - views.view.noticias
+  module:
+    - system
+    - views
+label: 'Home Insights'
+name: home_insights
+group: Insights
+description: ''
+requireAllConditions: false
+disabled: false
+conditions:
+  request_path:
+    id: request_path
+    negate: false
+    uuid: 5687d981-4559-4d86-b645-36b0868afc89
+    context_mapping: {  }
+    pages: /insights
+reactions:
+  blocks:
+    id: blocks
+    uuid: 7159d15a-317f-45eb-8c24-f839a3f92d4f
+    blocks:
+      19d5a8f5-8dc4-4d1b-9b54-d486c7cd98ff:
+        uuid: 19d5a8f5-8dc4-4d1b-9b54-d486c7cd98ff
+        id: 'views_block:noticias-block_5'
+        label: ''
+        provider: views
+        label_display: '0'
+        region: content
+        weight: '-10'
+        custom_id: views_block_noticias_block_5
+        theme: brigard
+        css_class: container-news-home
+        unique: 0
+        context_id: home_insights
+        context_mapping: {  }
+        views_label: ''
+        items_per_page: none
+        override: {  }
+      93a9b302-9b05-410c-84b8-ef9d7356a712:
+        uuid: 93a9b302-9b05-410c-84b8-ef9d7356a712
+        id: 'views_block:noticias-block_4'
+        label: ''
+        provider: views
+        label_display: '0'
+        region: content
+        weight: '-9'
+        custom_id: views_block_noticias_block_4
+        theme: brigard
+        css_class: container-news-home
+        unique: 0
+        context_id: home_insights
+        context_mapping: {  }
+        views_label: ''
+        items_per_page: none
+        override: {  }
+      5b4d879a-ed27-47f0-9257-30343ece2e54:
+        uuid: 5b4d879a-ed27-47f0-9257-30343ece2e54
+        id: 'views_block:calendario_de_eventos-block_2'
+        label: ''
+        provider: views
+        label_display: '0'
+        region: sidebar_right
+        weight: '-3'
+        custom_id: views_block_calendario_de_eventos_block_2
+        theme: brigard
+        css_class: event-box
+        unique: 0
+        context_id: home_insights
+        context_mapping: {  }
+        views_label: ''
+        items_per_page: '1'
+        override: {  }
+        third_party_settings:
+          block_class:
+            classes: ''
+      4162f263-5fcd-4c7f-b642-1ca8d42ad91c:
+        uuid: 4162f263-5fcd-4c7f-b642-1ca8d42ad91c
+        id: 'views_block:interna_insights-block_1'
+        label: ''
+        provider: views
+        label_display: '0'
+        region: content
+        weight: '-8'
+        custom_id: views_block_interna_insights_block_1
+        theme: brigard
+        css_class: container-podcast
+        unique: 0
+        context_id: home_insights
+        context_mapping: {  }
+        views_label: ''
+        items_per_page: none
+        override: {  }
+      8b2921a6-31d0-417e-9b43-03f2f4990c97:
+        uuid: 8b2921a6-31d0-417e-9b43-03f2f4990c97
+        id: 'views_block:interna_insights-block_2'
+        label: ''
+        provider: views
+        label_display: '0'
+        region: content
+        weight: '-7'
+        custom_id: views_block_interna_insights_block_2
+        theme: brigard
+        css_class: container-recursos
+        unique: 0
+        context_id: home_insights
+        context_mapping: {  }
+        views_label: ''
+        items_per_page: none
+        override: {  }
+      7f88f3eb-ae24-413d-8d9c-5e9fa784b97a:
+        uuid: 7f88f3eb-ae24-413d-8d9c-5e9fa784b97a
+        id: 'views_block:interna_insights-block_3'
+        label: ''
+        provider: views
+        label_display: '0'
+        region: content
+        weight: '-6'
+        custom_id: views_block_interna_insights_block_3
+        theme: brigard
+        css_class: container-informes
+        unique: 0
+        context_id: home_insights
+        context_mapping: {  }
+        views_label: ''
+        items_per_page: none
+        override: {  }
+      42c01c1e-7330-43d2-93f1-e340d81cf911:
+        uuid: 42c01c1e-7330-43d2-93f1-e340d81cf911
+        id: 'views_block:interna_insights-block_4'
+        label: ''
+        provider: views
+        label_display: '0'
+        region: sidebar_right
+        weight: '-1'
+        custom_id: views_block_interna_insights_block_4
+        theme: brigard
+        css_class: event-content
+        unique: 0
+        context_id: home_insights
+        context_mapping: {  }
+        views_label: ''
+        items_per_page: none
+        override: {  }
+      42deac46-01b0-441a-8196-146a41f0b215:
+        uuid: 42deac46-01b0-441a-8196-146a41f0b215
+        id: 'views_block:interna_insights-block_5'
+        label: ''
+        provider: views
+        label_display: '0'
+        region: sidebar_right
+        weight: '-2'
+        custom_id: views_block_interna_insights_block_5
+        theme: brigard
+        css_class: container-memorias
+        unique: 0
+        context_id: home_insights
+        context_mapping: {  }
+        views_label: ''
+        items_per_page: none
+        third_party_settings:
+          block_class:
+            classes: ''
+        override: {  }
+    include_default_blocks: 0
+    saved: false
+weight: 0

@@ -1,0 +1,67 @@
+uuid: 7e4d7607-d534-4885-a52a-6486b3ad07db
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.recognitions
+    - field.storage.block_content.field_block_recognition_recognit
+    - paragraphs.paragraphs_type.recognition_items
+  module:
+    - entity_reference_revisions
+id: block_content.recognitions.field_block_recognition_recognit
+field_name: field_block_recognition_recognit
+entity_type: block_content
+bundle: recognitions
+label: Reconocimientos
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      recognition_items: recognition_items
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: 13
+        enabled: false
+      accordion_items:
+        weight: 14
+        enabled: false
+      agenda_del_evento:
+        weight: 15
+        enabled: false
+      conferencistas:
+        weight: 16
+        enabled: false
+      contenidos_con_foto:
+        weight: 17
+        enabled: false
+      indicators:
+        weight: 18
+        enabled: false
+      items_indicators:
+        weight: 19
+        enabled: false
+      main_banner:
+        weight: 20
+        enabled: false
+      recognition_items:
+        weight: 21
+        enabled: true
+      seo_data:
+        weight: 23
+        enabled: false
+      statistical_graphs:
+        weight: 22
+        enabled: false
+      testimonial_items:
+        weight: 23
+        enabled: false
+      text_box:
+        weight: 24
+        enabled: false
+field_type: entity_reference_revisions

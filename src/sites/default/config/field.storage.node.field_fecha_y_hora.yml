@@ -1,0 +1,20 @@
+uuid: 0a29928b-6651-4f3b-b4cc-2b6edd934739
+langcode: es
+status: true
+dependencies:
+  module:
+    - datetime_range
+    - node
+id: node.field_fecha_y_hora
+field_name: field_fecha_y_hora
+entity_type: node
+type: daterange
+settings:
+  datetime_type: datetime
+module: datetime_range
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

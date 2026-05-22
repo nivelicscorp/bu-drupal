@@ -1,0 +1,4 @@
+administer mailchimp transactional:
+  title: Administer Mailchimp Transactional
+  description: Perform administration tasks for the Mailchimp Transactional email service.
+  restrict access: true

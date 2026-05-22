@@ -1,0 +1,16 @@
+<div class="field--item">  <div class="paragraph paragraph--type--recognition-items paragraph--view-mode--default">
+
+    <div class="field field--name-field-recognition-image field--type-image field--label-hidden field--item">
+      {% if content.field_link.0["#url"] %}
+          <a href="{{ content.field_link.0["#url"] }}">{{ content.field_recognition_image }}</a>
+      {% else %}
+        {{ content.field_recognition_image }}
+      {% endif %}
+    </div>
+
+    <div class="field field--name-field-recognition-title field--type-string field--label-hidden field--item">
+        {{ content.field_recognition_title }}
+    </div>
+
+  </div>
+</div>

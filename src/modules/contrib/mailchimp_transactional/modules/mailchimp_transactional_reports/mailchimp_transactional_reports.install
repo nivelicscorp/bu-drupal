@@ -1,0 +1,28 @@
+<?php
+
+/**
+ * @file
+ * Install, update, and uninstall routines.
+ */
+
+declare(strict_types=1);
+
+use Drupal\user\Entity\Role;
+
+/**
+ * Implements hook_install().
+ *
+ * Migrates role permissions from Mandrill reports module.
+ */
+function mailchimp_transactional_reports_install() {
+  if (\Drupal::moduleHandler()->moduleExists('mandrill_reports')) {
+    if ($roles = Role::loadMultiple()) {
+      foreach ($roles as $role) {
+        if ($role->hasPermission('view mandrill reports')) {
+          $role->grantPermission('view mailchimp transactional reports');
+          $role->save();
+        }
+      }
+    }
+  }
+}

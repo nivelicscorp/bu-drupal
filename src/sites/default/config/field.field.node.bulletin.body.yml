@@ -1,0 +1,23 @@
+uuid: f4037a3d-9812-4916-8f3b-17b4b22579c8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.bulletin
+  module:
+    - text
+id: node.bulletin.body
+field_name: body
+entity_type: node
+bundle: bulletin
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

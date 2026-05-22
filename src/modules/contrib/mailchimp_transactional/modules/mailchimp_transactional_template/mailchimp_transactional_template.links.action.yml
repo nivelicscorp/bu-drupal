@@ -1,0 +1,5 @@
+mailchimp_transactional_template.add:
+  route_name: 'mailchimp_transactional_template.add'
+  title: 'Add Template Map'
+  appears_on:
+    - mailchimp_transactional_template.admin

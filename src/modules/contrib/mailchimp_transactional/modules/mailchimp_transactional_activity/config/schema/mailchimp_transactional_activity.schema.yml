@@ -1,0 +1,25 @@
+mailchimp_transactional_activity.mailchimp_transactional_activity.*:
+  type: config_entity
+  label: 'Mailchimp Transactional Activity config'
+  mapping:
+    id:
+      type: string
+      label: 'Machine Name'
+    label:
+      type: string
+      label: 'Label'
+    entity_type:
+      type: string
+      label: 'Entity Type'
+    bundle:
+      type: string
+      label: 'Bundle'
+    entity_path:
+      type: string
+      label: 'Entity Path'
+    email_property:
+      type: string
+      label: 'Email Property'
+    enabled:
+      type: boolean
+      label: 'Enabled'

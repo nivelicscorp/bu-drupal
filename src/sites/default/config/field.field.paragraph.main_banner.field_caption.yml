@@ -1,0 +1,19 @@
+uuid: 11856bf9-39e6-406a-976b-47038529f147
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_caption
+    - paragraphs.paragraphs_type.main_banner
+id: paragraph.main_banner.field_caption
+field_name: field_caption
+entity_type: paragraph
+bundle: main_banner
+label: Descripción
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

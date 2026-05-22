@@ -1,0 +1,33 @@
+uuid: cf924c68-b24b-40c3-a2a6-46db51934b7f
+langcode: es
+status: true
+dependencies:
+  module:
+    - language
+    - node
+id: podcast_ingles
+label: 'Podcast Ingles'
+type: 'canonical_entities:node'
+pattern: '/podcast/[node:title]'
+selection_criteria:
+  a495e0b0-b991-4bcb-af0f-464ecc868c0d:
+    id: node_type
+    negate: false
+    uuid: a495e0b0-b991-4bcb-af0f-464ecc868c0d
+    context_mapping:
+      node: node
+    bundles:
+      podcast: podcast
+  0dfdf107-da4d-408d-a1a8-b17dfa36d63b:
+    id: language
+    negate: false
+    uuid: 0dfdf107-da4d-408d-a1a8-b17dfa36d63b
+    context_mapping:
+      language: 'node:langcode:language'
+    langcodes:
+      en: en
+selection_logic: and
+weight: 4
+relationships:
+  'node:langcode:language':
+    label: Language

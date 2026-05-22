@@ -1,0 +1,83 @@
+<div class="wrap-main-banner">
+{% if type_banner == 'slider_banner' %}
+<style>
+.wrap_itma_main_banner{position:relative;}
+</style>
+    {# <div class="container"> #}
+    <div class="item">
+        {% for item in node.field_main_banner %}
+            <div class="wrap_itma_main_banner">
+                <div class="container-img-mobile container-img">
+                    <img class="lazyload" src="{{ file_url( item.entity.field_imagen_movil[0].entity.uri.value | image_style("ba") )}}" alt="{{ item.entity.translation(language_id).field_imagen_movil.alt }}">
+                </div>
+                <div class="container-img-desktop container-img">
+                    <img class="lazyload" src="{{ file_url( item.entity.field_desktop_image[0].entity.uri.value | image_style("img_1280_x_390") )}}" alt="{{ item.entity.translation(language_id).field_desktop_image.alt }}">
+                </div>
+                <div class="wrap_caption">
+                    <h2 class="title">
+                        <div>{{ item.entity.translation(language_id).field_label.value }}</div>
+                    </h2>
+                    <p class="description">{{ item.entity.translation(language_id).field_caption.value }}</p>
+                    <div class="wrap-btn-red">
+                        <div class="btn-red">
+                            <a href="{{ item.entity.translation(language_id).field_link.0.url }}">{{ item.entity.translation(language_id).field_link.0.title }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+        {# </div> #}
+    {# <div class="wrap_banner_slider slider_principal"> #}
+        {# {{ content.field_main_banner }} #}
+    {# </div> #}
+{% elseif type_banner == 'image_banner' %}
+    <div class="wrap_banner_img slider_principal">
+        {% if typedevice == 'desktop' %}
+
+            {{ content.field_desktop_image }}
+
+        {% else %}
+
+            {{ content.field_mobil_image }}
+
+        {% endif %}
+        <div class="wrap_caption">
+            {% if field_content_information == 1 %}
+                {% if (title_view is defined) %}
+                    <h2 class="title"> {{ title_view|slice(0, 21) }} </h2>
+                {% endif %}
+                {% if (type_caption == 'evento') %}
+                    {{ caption }}
+                {% else %}
+                    {% if caption|length > 5 %}
+                        <div class="descripcion"> {{ caption }} </div>
+                    {% endif %}
+                {% endif %}
+            {% else %}
+                <h2 class="title">
+                    {{ content.field_label }}
+                </h2>
+                {% if content.field_caption_img|length > 5 %}
+                    <div class="descripcion"> {{ content.field_caption_img }} </div>
+                {% endif %}
+            {% endif %}
+        </div>
+        <a href="javascrip:" class="arrow-down">down</a>
+    </div>
+{% elseif type_banner == 'video_banner' %}
+
+    <div class="wrap_banner_video slider_principal">
+        {{ content.field_banner_video }}
+    </div>
+{% endif %}
+
+
+
+<!-- show box search -->
+{% if field_show_search == 1 %}
+    <div class="wrap-search-banner {{ classsearch }}">
+        {{ form_search_modal }}
+    </div>
+{% endif %}
+</div>

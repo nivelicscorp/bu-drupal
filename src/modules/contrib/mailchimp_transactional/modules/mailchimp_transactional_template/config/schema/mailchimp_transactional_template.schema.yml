@@ -1,0 +1,19 @@
+mailchimp_transactional_template.mailchimp_transactional_template.*:
+  type: config_entity
+  label: 'Mailchimp Transactional Template Map config'
+  mapping:
+    id:
+      type: string
+      label: 'Machine Name'
+    label:
+      type: string
+      label: 'Label'
+    template_name:
+      type: string
+      label: 'Template Name'
+    content_area:
+      type: string
+      label: 'Editable Content Area'
+    mailsystem_key:
+      type: string
+      label: 'Mail System Key'

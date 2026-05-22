@@ -1,0 +1,7 @@
+services:
+  bu_sections.bu_sections_manager:
+    class: Drupal\bu_sections\BuSectionsManager
+    arguments: ['@entity_type.manager']
+  bu_sections.EmBlue:
+    class: '\Drupal\bu_sections\Controller\EmBlueController'
+    arguments: ['@http_client_factory','@logger.factory']

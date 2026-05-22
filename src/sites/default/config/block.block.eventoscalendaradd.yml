@@ -1,0 +1,33 @@
+uuid: e85baa8e-1614-4c82-87c4-4ecd05392f93
+langcode: en
+status: false
+dependencies:
+  content:
+    - 'block_content:basic:d8ad78e8-09ea-481b-a679-74d95847a541'
+  module:
+    - block_content
+    - language
+  theme:
+    - brigard
+id: eventoscalendaradd
+theme: brigard
+region: footer
+weight: 0
+provider: null
+plugin: 'block_content:d8ad78e8-09ea-481b-a679-74d95847a541'
+settings:
+  id: 'block_content:d8ad78e8-09ea-481b-a679-74d95847a541'
+  label: eventos-calendar-add
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  language:
+    id: language
+    negate: false
+    context_mapping:
+      language: '@language.current_language_context:language_interface'
+    langcodes:
+      es: es

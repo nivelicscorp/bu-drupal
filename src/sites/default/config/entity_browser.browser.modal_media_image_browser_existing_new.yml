@@ -1,0 +1,41 @@
+uuid: 89a2e42c-020d-4022-aa4f-d024ce5a9c6b
+langcode: en
+status: true
+dependencies:
+  config:
+    - media.type.image
+  module:
+    - dropzonejs_eb_widget
+    - media
+name: modal_media_image_browser_existing_new
+label: 'Modal Media Image Browser Existing&New'
+display: modal
+display_configuration:
+  width: '1200'
+  height: '800'
+  link_text: 'Select images'
+  auto_open: false
+selection_display: no_display
+selection_display_configuration: {  }
+widget_selector: tabs
+widget_selector_configuration: {  }
+widgets:
+  8efd9762-9b2b-4913-9a27-ac531f10e2ef:
+    id: dropzonejs_media_entity
+    uuid: 8efd9762-9b2b-4913-9a27-ac531f10e2ef
+    label: 'Add images'
+    weight: 1
+    settings:
+      submit_text: 'Select images'
+      auto_select: false
+      upload_location: 'public://[date:custom:Y]-[date:custom:m]'
+      dropzone_description: 'Drop files here to upload them'
+      max_filesize: 64M
+      extensions: 'jpg jpeg gif png txt doc xls pdf ppt pps odt ods odp'
+      clientside_resize: false
+      resize_width: null
+      resize_height: null
+      resize_quality: !!float 1
+      resize_method: contain
+      thumbnail_method: contain
+      media_type: image

@@ -1,0 +1,311 @@
+uuid: 65a8e39f-9293-43bd-b8df-637c17e5411c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.lawyer.body
+    - field.field.node.lawyer.field_admitido_en
+    - field.field.node.lawyer.field_area
+    - field.field.node.lawyer.field_boletin
+    - field.field.node.lawyer.field_calificacion
+    - field.field.node.lawyer.field_ciudad
+    - field.field.node.lawyer.field_email
+    - field.field.node.lawyer.field_experiencia
+    - field.field.node.lawyer.field_formacion_educativa
+    - field.field.node.lawyer.field_image
+    - field.field.node.lawyer.field_industrias
+    - field.field.node.lawyer.field_informe
+    - field.field.node.lawyer.field_lawyer_score
+    - field.field.node.lawyer.field_lenguajes
+    - field.field.node.lawyer.field_membership
+    - field.field.node.lawyer.field_membership_with_gender
+    - field.field.node.lawyer.field_metatags
+    - field.field.node.lawyer.field_nuevos_servicios
+    - field.field.node.lawyer.field_podcast
+    - field.field.node.lawyer.field_publicaciones_del_profesio
+    - field.field.node.lawyer.field_reconocimientos
+    - field.field.node.lawyer.field_recurso
+    - field.field.node.lawyer.field_telephone
+    - image.style.abogado_detalle_410x410
+    - node.type.lawyer
+  module:
+    - bu_field_formatters
+    - ds
+    - image_class
+    - metatag
+    - svg_image
+    - telephone_formatter
+    - text
+    - user
+id: node.lawyer.default
+targetEntityType: node
+bundle: lawyer
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_admitido_en:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 14
+    region: content
+  field_area:
+    type: bu_taxonomy_term_reference_as_items_block_background
+    label: above
+    settings:
+      title: ''
+      background_color: red
+      is_floating: '1'
+      background_color_options:
+        red: Red
+        blue: Blue
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 6
+    region: content
+  field_boletin:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 22
+    region: content
+  field_calificacion:
+    type: number_decimal
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 16
+    region: content
+  field_ciudad:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 13
+    region: content
+  field_email:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  field_experiencia:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  field_formacion_educativa:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 12
+    region: content
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: abogado_detalle_410x410
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+      image_loading:
+        attribute: lazy
+    third_party_settings:
+      image_class:
+        class: ''
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 2
+    region: content
+  field_industrias:
+    type: bu_taxonomy_term_reference_as_items_block_background
+    label: above
+    settings:
+      title: Industrias
+      background_color: blue
+      is_floating: 0
+      background_color_options:
+        red: Red
+        blue: Blue
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 7
+    region: content
+  field_informe:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 20
+    region: content
+  field_lenguajes:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 15
+    region: content
+  field_membership:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 3
+    region: content
+  field_membership_with_gender:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 4
+    region: content
+  field_metatags:
+    type: metatag_empty_formatter
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  field_nuevos_servicios:
+    type: bu_taxonomy_term_reference_as_items_block_background
+    label: above
+    settings:
+      title: 'Nuevos servicios'
+      background_color: blue
+      is_floating: '1'
+      background_color_options:
+        red: Red
+        blue: Blue
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 8
+    region: content
+  field_podcast:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 19
+    region: content
+  field_publicaciones_del_profesio:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 18
+    region: content
+  field_reconocimientos:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 17
+    region: content
+  field_recurso:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 21
+    region: content
+  field_telephone:
+    type: telephone_formatter
+    label: hidden
+    settings:
+      format: 1
+      link: true
+      default_country: null
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_lawyer_score: true
+  langcode: true
+  search_api_excerpt: true
+  social_simple_buttons: true

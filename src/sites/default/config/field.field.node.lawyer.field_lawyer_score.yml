@@ -1,0 +1,23 @@
+uuid: 9b0f9375-36da-47c5-9a10-881f581a7e19
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_lawyer_score
+    - node.type.lawyer
+id: node.lawyer.field_lawyer_score
+field_name: field_lawyer_score
+entity_type: node
+bundle: lawyer
+label: Calificación
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

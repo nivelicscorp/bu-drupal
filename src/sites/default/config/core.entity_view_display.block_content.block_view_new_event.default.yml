@@ -1,0 +1,133 @@
+uuid: 1ebf811f-548d-407d-9912-4a2b898bccf4
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.block_view_new_event
+    - field.field.block_content.block_view_new_event.body
+    - field.field.block_content.block_view_new_event.field_view_1
+    - field.field.block_content.block_view_new_event.field_view_2
+  module:
+    - ds
+    - field_group
+    - viewsreference
+third_party_settings:
+  ds:
+    layout:
+      id: layout_onecol
+      library: layout_discovery/onecol
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      content:
+        - group_wrap_block
+        - field_view_1
+        - field_view_2
+  field_group:
+    group_wrap_block:
+      children:
+        - field_view_1
+        - field_view_2
+      label: wrap_block
+      parent_name: ''
+      region: content
+      weight: 0
+      format_type: html_element
+      format_settings:
+        classes: 'row content-bloques'
+        id: ''
+        element: div
+        show_label: false
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
+id: block_content.block_view_new_event.default
+targetEntityType: block_content
+bundle: block_view_new_event
+mode: default
+content:
+  field_view_1:
+    type: viewsreference_formatter
+    label: hidden
+    settings:
+      plugin_types:
+        block: block
+        default: 0
+        page: 0
+        feed: 0
+    third_party_settings:
+      ds:
+        ft:
+          id: expert
+          settings:
+            lb: ''
+            lbw: false
+            lbw-el: ''
+            lbw-cl: ''
+            lbw-at: ''
+            lb-col: false
+            ow: true
+            ow-el: div
+            ow-cl: 'col-xs-12 col-md-7 col-lg-8  container-news-home'
+            ow-at: ''
+            ow-def-at: false
+            ow-def-cl: false
+            fis: false
+            fis-el: ''
+            fis-cl: ''
+            fis-at: ''
+            fis-def-at: false
+            fi: false
+            fi-el: div
+            fi-cl: ''
+            fi-at: ''
+            fi-def-at: false
+            prefix: ''
+            suffix: ''
+    weight: 1
+    region: content
+  field_view_2:
+    type: viewsreference_formatter
+    label: hidden
+    settings:
+      plugin_types:
+        block: block
+        default: 0
+        page: 0
+        feed: 0
+    third_party_settings:
+      ds:
+        ft:
+          id: expert
+          settings:
+            lb: ''
+            lbw: false
+            lbw-el: ''
+            lbw-cl: ''
+            lbw-at: ''
+            lb-col: false
+            ow: true
+            ow-el: div
+            ow-cl: 'col-xs-12 col-md-5 col-lg-4 container-block-events'
+            ow-at: ''
+            ow-def-at: false
+            ow-def-cl: false
+            fis: false
+            fis-el: ''
+            fis-cl: ''
+            fis-at: ''
+            fis-def-at: false
+            fi: false
+            fi-el: ''
+            fi-cl: ''
+            fi-at: ''
+            fi-def-at: false
+            prefix: ''
+            suffix: ''
+    weight: 2
+    region: content
+hidden:
+  body: true
+  langcode: true

@@ -1,0 +1,34 @@
+uuid: b0795a33-e21b-4124-86f2-380a2f40bc9f
+langcode: es
+status: true
+dependencies:
+  module:
+    - language
+    - taxonomy
+id: areas_de_especializacion
+label: 'Areas de especialización'
+type: 'canonical_entities:taxonomy_term'
+pattern: '/boletines/[term:name]'
+selection_criteria:
+  fc99b308-d895-4523-ab33-8bd6d8be34c1:
+    id: 'entity_bundle:taxonomy_term'
+    negate: false
+    uuid: fc99b308-d895-4523-ab33-8bd6d8be34c1
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    bundles:
+      specialization: specialization
+  5831049d-95f3-437a-943b-a34b525b1f92:
+    id: language
+    negate: false
+    uuid: 5831049d-95f3-437a-943b-a34b525b1f92
+    context_mapping:
+      language: 'taxonomy_term:langcode:language'
+    langcodes:
+      es: es
+      en: en
+selection_logic: and
+weight: -9
+relationships:
+  'taxonomy_term:langcode:language':
+    label: Language

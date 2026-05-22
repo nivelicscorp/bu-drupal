@@ -1,0 +1,8 @@
+uuid: 2b7ff26c-9e67-481f-98e2-c15208a87574
+langcode: es
+status: true
+dependencies: {  }
+id: mes_dia_corto
+label: 'Mes día corto'
+locked: false
+pattern: 'M d'

@@ -1,0 +1,24 @@
+uuid: 643850a3-dac5-4fdc-8b1f-257ae02ab3db
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_footer
+    - node.type.informe
+  module:
+    - text
+id: node.informe.field_footer
+field_name: field_footer
+entity_type: node
+bundle: informe
+label: 'Footer Body'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: "<p>info@bu.com.co</p>\r\n"
+    format: basic_html
+default_value_callback: ''
+settings: {  }
+field_type: text_long

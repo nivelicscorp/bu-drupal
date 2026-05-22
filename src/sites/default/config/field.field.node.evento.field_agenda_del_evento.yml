@@ -1,0 +1,40 @@
+uuid: 07a9061a-c9d4-4c0d-9778-12f3eaeacfff
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_agenda_del_evento
+    - node.type.evento
+    - paragraphs.paragraphs_type.agenda_del_evento
+  module:
+    - entity_reference_revisions
+id: node.evento.field_agenda_del_evento
+field_name: field_agenda_del_evento
+entity_type: node
+bundle: evento
+label: 'Agenda del evento'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      agenda_del_evento: agenda_del_evento
+    negate: 0
+    target_bundles_drag_drop:
+      agenda_del_evento:
+        weight: 5
+        enabled: true
+      conferencistas:
+        weight: 6
+        enabled: false
+      main_banner:
+        weight: 7
+        enabled: false
+      text_box:
+        weight: 8
+        enabled: false
+field_type: entity_reference_revisions

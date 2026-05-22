@@ -1,0 +1,24 @@
+uuid: 27ffbf1d-c246-44df-987e-eaacd499ceea
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_footer
+    - node.type.recursos
+  module:
+    - text
+id: node.recursos.field_footer
+field_name: field_footer
+entity_type: node
+bundle: recursos
+label: 'Footer Body'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: "<p>info@bu.com.co</p>\r\n"
+    format: basic_html
+default_value_callback: ''
+settings: {  }
+field_type: text_long

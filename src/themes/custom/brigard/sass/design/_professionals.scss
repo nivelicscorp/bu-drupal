@@ -1,0 +1,411 @@
+.profesionals{
+	margin:0 auto;
+	max-width:1022px;
+	.title-block{
+		display:block;
+	    margin-bottom: 52px;
+    	margin-top: 53px;
+		text-align:center;
+		width:100%;
+		&:after{
+			content:none;
+		}
+	}
+	.items-list{
+		margin-top: 36px;
+		padding:0;
+		.item-prof{
+			display:inline-block;
+			float:none;
+			margin-bottom:55px;
+			margin-right:57px;
+			max-width:285px;
+			vertical-align: top;
+			padding:0;
+			&:nth-child(3n){
+				margin-right:0;
+			}
+			&:nth-child(2n+2){
+				.txt{
+					margin-top: 24px;
+				}
+			}
+			.image{
+				figure{
+					margin:0;
+					max-width:300px;
+					//max-height:300px;
+					overflow:hidden;
+					a{
+						display:block;
+					}
+					img{
+						border-radius: 50%;
+						height:auto;
+						width:100%;
+					}
+				}
+			}
+			.txt{
+				margin-top:22px;
+				.name{
+					font-family:$secondFont;
+					font-size:18px;
+					margin-bottom:6px;
+					text-transform:inherit;
+					@extend %title-blocks;
+					&:hover,
+					&:focus{
+						opacity:0.8;
+						text-decoration:none;
+					}
+					&:after{
+					    margin-top: 9px;
+					}
+					a{
+						color:$mainColor;
+						font-family:$secondFont;
+						font-size:18px;
+						&:hover,
+						&:focus{
+							opacity:0.8;
+							text-decoration:none;
+						}
+					}
+				}
+				.cargo,
+				.field--name-field-membership{
+					font-size:13px;
+					color:$blackTxt;
+					margin:0;
+				    margin-top: 5px;
+				}
+			}
+		}
+	}
+	.button{
+		margin:2px auto 10px;
+		text-align:center;
+		width:100%;
+	}
+}
+.view-lawyers{
+	.container{
+		padding:0;
+		width:100%;
+	}
+	.view-filters{
+	    margin-top: 12px;
+		form{
+			.form-item{
+				display:inline-block;
+				margin-right:17px;
+				margin-top:20px;
+				width:235px;
+				&.form-item-title{
+	    			display: block;
+	    			margin:0;
+				    width: 100%;
+				}
+				&.form-item-field-ciudad-target-id{
+					margin-right:0;
+				}
+				input, select ,.select-wrapper{
+					display:block;
+					width:100%;
+				}
+				&.form-type-select {
+					.select-wrapper{
+						&:after{
+							background:$bk;
+							padding-left: 6px;
+						}
+						.form-select{
+							display:none;
+						}
+					}
+					.select-items{
+						div{
+							margin: 0 18px;
+						}
+					}
+				}
+			}
+			.form-actions{
+				margin-top:25px;
+				text-align:center;
+				width:100%;
+				.form-submit{
+					width:auto;
+				}
+			}
+		}
+	}
+	.view-content{
+		.item-prof{
+
+		}
+	}
+
+}
+.path-abogados{
+	.banner-internas{
+		height:531px;
+		margin-bottom:66px;
+		.content-caption{
+			h1{
+			    margin-top: 0;
+   				margin-bottom: 14px;
+   				&:after{
+				    margin-top: 18px;
+   				}
+			}
+		}
+		.down-arrow{
+		    bottom: 38px;
+		}
+	}
+	.view-lawyers{
+		.pager{
+			text-align:center;
+			.pager__item{
+				.button{
+				    width: 211px;
+					&:after{
+						display:none;
+					}
+				}
+			}
+		}
+	}
+	footer {
+		.block-newsletter {
+    		margin-top: 74px;
+    	}
+    }
+}
+.page-abogados{
+	.lawyer-card-container {
+		.lawyer-card-picture{
+			img{
+				border-radius: 50%;
+				-moz-border-radius: 50%;
+				-webkit-border-radius: 50%;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1100px){
+	.profesionals {
+		.items-list {
+			.item-prof{
+				margin-right:15px;
+			}
+		}
+	}
+	.view-lawyers {
+		.view-filters {
+			form {
+				.form-item {
+				    margin-right: 10px;
+				    width: 230px;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 960px){
+	.profesionals {
+		.items-list {
+			.item-prof{
+				margin-right:15px;
+				max-width:31%;
+			}
+		}
+	}
+	.view-lawyers {
+		.view-filters {
+			form {
+				.form-item {
+				    margin-right: 10px;
+				    width: 48%;
+				    &:nth-child(3n){
+				    	margin-right:0;
+				    }
+				}
+			}
+		}
+	}
+}
+@media screen and (min-width:960px) and (max-width:1100px){
+	.lawyer-card-container {
+		.lawyer-card-picture{
+			.field--name-field-image{
+				width:350px;
+			}
+		}
+	}
+}
+@media screen and (min-width:768px) and (max-width: 960px){
+	.lawyer-card-container {
+		.lawyer-card-picture{
+			.field--name-field-image{
+				width:265px;
+			}
+		}
+	}
+}
+@media screen and (max-width: 767px){
+	.path-abogados {
+		.banner-internas{
+			margin-bottom:27px;
+		}
+	}
+	.view-lawyers{
+		.title-block{
+			margin-bottom: 0px;
+			margin-top: 93px;
+		}
+		.lawyer{
+			.image{
+				.field--type-image{
+					margin-bottom: 0px !important;
+					margin-top: 0px;
+				}
+			}
+		}
+		.form-group{
+			text-align: center;
+		}
+	}
+	.profesionals {
+		padding: 0 20px;
+		.title-block{
+			margin-bottom: 48px;
+		}
+		.items-list {
+			margin-top:29px;
+			.item-prof{
+				margin-bottom:10px;
+				margin-right:19px;
+				max-width:138px;
+				text-align: left;
+				vertical-align:top;
+				&:nth-child(2n){
+					margin-right:0;
+				}
+				&:nth-child(3n){
+					margin-right:20px;
+				}
+				&:nth-child(4n),
+				&:nth-child(6n){
+					margin-right:0px;
+				}
+				.image{
+					figure{
+						max-width:140px;
+						//max-height:140px;
+					}
+				}
+				.txt{
+					margin-top:17px;
+					.name{
+						font-size:14px;
+						line-height:18px;
+						margin-top:0;
+						a{
+							font-size:14px;
+							line-height:18px;
+						}
+					}
+					.cargo,
+					.field--name-field-membership{
+						font-size:13px;
+					}
+				}
+			}
+		}
+	}
+	.view-lawyers {
+		.view-filters {
+			form {
+				.form-item {
+					margin-bottom:0;
+				    margin-right: 0px;
+					margin-top:13px;
+				    width: 100%;
+				}
+				.form-actions {
+					.form-submit{
+					    font-size: 14px;
+					    line-height: 14px;
+						margin: 30px auto 0;
+						padding: 0 20px;
+					    text-align: center;
+						width: auto;
+						&:after{
+					    	padding-left: 12px;
+						}
+					}
+				}
+			}
+		}
+	}
+	.path-abogados{
+		.view-lawyers{
+			.pager{
+				.pager__item{
+					.button{
+						font-size: 13px;
+						height:45px;
+						line-height:45px;
+						margin-top: 9px;
+					    width: 177px;
+						&:after{
+							content: "\e907";
+							display:inline-block;
+						}
+					}
+				}
+			}
+		}
+		footer {
+			.block-newsletter {
+		    	margin-top: 35px;
+		    }
+		}
+	}
+}
+@media screen and (max-width: 767px) and (orientation:landscape){
+	.profesionals {
+		padding:0 15px;
+		.items-list {
+			.item-prof{
+				margin-right:20px;
+			    max-width: 30%;
+				&:nth-child(2n){
+					margin-right:20px;
+				}
+				&:nth-child(3n){
+					margin-right:0;
+				}
+				.image{
+					figure{
+					    max-width:100%;
+					}
+				}
+			}
+		}
+	}
+}
+@media screen and (max-width:320px){
+	.profesionals {
+		.items-list {
+			.item-prof{
+				max-width:45.3%;
+			}
+		}
+	}
+}

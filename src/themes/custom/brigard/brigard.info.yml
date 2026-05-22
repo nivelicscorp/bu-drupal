@@ -1,0 +1,30 @@
+
+type: theme
+base theme: false
+core_version_requirement: ^9.5 || ^10
+
+name: 'brigard'
+description: 'sub tema brigard.'
+package: 'Bootstrap'
+
+regions:
+  navigation: 'Navigation'
+  navigation_collapsible: 'Navigation (Collapsible)'
+  top_header: 'Top Header'
+  header: 'Top Bar'
+  banner: 'Banner Content'
+  page_top: 'Content Top'
+  content: 'Content'
+  sidebar_second: 'Secondary'
+  sidebar_right: 'Sidebar right'
+  page_bottom: 'Page Bottom'
+  footer_slider: 'Footer Slider'
+  footer_top: 'Page Footer Top'
+  footer: 'Footer'
+
+libraries:
+  - 'brigard/global-styling'
+
+libraries-extend:
+  bootstrap/drupal.dialog.ajax:
+    - brigard/drupal.dialog.ajax

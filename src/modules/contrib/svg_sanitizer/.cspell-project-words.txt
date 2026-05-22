@@ -1,0 +1,2 @@
+allowedattrs
+allowedtags

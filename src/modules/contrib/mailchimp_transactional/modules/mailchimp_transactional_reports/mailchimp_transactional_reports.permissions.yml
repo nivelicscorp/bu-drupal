@@ -1,0 +1,4 @@
+view mailchimp transactional reports:
+  title: View Mailchimp Transactional reports
+  description: View all Mailchimp Transactional reports.
+  restrict access: true

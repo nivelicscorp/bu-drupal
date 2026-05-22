@@ -1,0 +1,25 @@
+uuid: 6cacbcaa-55d8-4276-8667-b3f8b5aa46f4
+langcode: en
+status: true
+dependencies:
+  config:
+    - config_pages.type.seo_por_url
+    - field.field.config_pages.seo_por_url.field_urls
+  module:
+    - entity_reference_revisions
+id: config_pages.seo_por_url.default
+targetEntityType: config_pages
+bundle: seo_por_url
+mode: default
+content:
+  field_urls:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

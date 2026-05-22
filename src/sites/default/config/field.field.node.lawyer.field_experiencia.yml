@@ -1,0 +1,21 @@
+uuid: adf60b48-162e-4a95-984f-49926e531f52
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_experiencia
+    - node.type.lawyer
+  module:
+    - text
+id: node.lawyer.field_experiencia
+field_name: field_experiencia
+entity_type: node
+bundle: lawyer
+label: Experiencia
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="wrapper-t">
+    <div class="confirm-t">
+      <p class="result">Resultado de la operación: <span>{{ data.mensaje|trans }}</span> </p>
+      <div class="icon-result">{{ data.mensaje|trans }}</div>
+      <div class="content-confirm">
+        <p><span class="label">{{ "Número de aprobación"|trans }}:</span> <span class="info">{{ data.ref_pol }}</span></p>
+        <p><span class="label">{{ "Nombre comercio"|trans }}:</span> <span class="info">Brigar Urrutia Abogados </span></p>
+        <p><span class="label">{{ "Fecha"|trans }}:</span> <span class="info">{{ data.processingDate }} </span></p>
+        <p><span class="label">{{ "Estado"|trans }}:</span> <span class="color">{{ data.mensaje|trans }}</span></p>
+        <p><span class="label">{{ "Código de respuesta"|trans }}:</span> <span class="color">{{ data.mensaje|trans }}</span></p>
+        <p><span class="label">{{ "Referencia"|trans }}:</span> <span class="info">{{ data.ref_venta }}</span></p>
+        <p><span class="label">{{ "Referencia transacción"|trans }}:</span> <span class="info">{{ data.ref_pol }} </span></p>
+        <p><span class="label">{{ "Entidad"|trans }}:</span> <span class="info">{{ data.banco_pse }} </span></p>
+        <p><span class="label">{{ "Valor"|trans }}:</span> <span class="info">${{ data.valor }} </span></p>
+        <p><span class="label">{{ "Moneda"|trans }}:</span> <span class="info">{{ data.moneda }} </span></p>
+        <p><span class="label">{{ "Descripción"|trans }}:</span> <span class="info">{{ data.descripcion }} </span></p>
+
+        <div class="text-center">
+          <div class="wrap-text_box_link">
+            <a href="javascript:window.print();">Imprimir</a>
+          </div>
+
+          <a href="/" class="link">Finalizar transacción</a>
+        </div>
+      </div>
+    </div>
+    <p class="info">Si desea conocer el estado de una transacción por favor haga <a href="https://www.payulatam.com/co/compradores/" target="_blank">Click aquí</a> </p>
+  </div>
+</div>

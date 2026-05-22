@@ -1,0 +1,103 @@
+uuid: 7c67297f-f95d-4f36-80ef-9d4e6505f226
+langcode: es
+status: true
+dependencies:
+  config:
+    - views.view.newsletter_internal
+  content:
+    - 'block_content:sider_bar:bcbb3fb9-71f3-4699-ad1c-47e1722ecdde'
+  module:
+    - block_content
+    - ctools
+    - views
+label: 'Home Boletines categoria'
+name: news_subhome
+group: theme
+description: ''
+requireAllConditions: true
+disabled: false
+conditions:
+  'entity_bundle:taxonomy_term':
+    id: 'entity_bundle:taxonomy_term'
+    negate: false
+    uuid: 83c5e7d5-92b1-4ba8-ae5a-5eeadb44d0e7
+    context_mapping:
+      taxonomy_term: '@custom_context_provider.taxonomy_term_context:taxonomy_term'
+    bundles:
+      specialization: specialization
+reactions:
+  blocks:
+    id: blocks
+    uuid: 81bfaf85-c80d-4417-a674-b3cb52336c2f
+    blocks:
+      8417667d-735a-4024-99be-1426455c4d30:
+        uuid: 8417667d-735a-4024-99be-1426455c4d30
+        id: 'views_block:newsletter_internal-block_2'
+        label: ''
+        provider: views
+        label_display: '0'
+        region: content
+        weight: '0'
+        custom_id: views_block_newsletter_internal_block_2
+        theme: brigard
+        css_class: ''
+        unique: 0
+        context_id: news_subhome
+        context_mapping: {  }
+        views_label: ''
+        items_per_page: none
+        override: {  }
+      2ac47c73-bb16-469a-962b-690dac29c024:
+        uuid: 2ac47c73-bb16-469a-962b-690dac29c024
+        id: 'views_block:newsletter_internal-block_3'
+        label: ''
+        provider: views
+        label_display: '0'
+        region: content
+        weight: '0'
+        custom_id: views_block_newsletter_internal_block_3
+        theme: brigard
+        css_class: ''
+        unique: 0
+        context_id: news_subhome
+        context_mapping: {  }
+        views_label: ''
+        items_per_page: none
+        override: {  }
+      153b05d4-99b1-4e7e-9a78-d7c4bdb7b22c:
+        uuid: 153b05d4-99b1-4e7e-9a78-d7c4bdb7b22c
+        id: 'views_block:newsletter_internal-block_1'
+        label: 'BOLETINES LEGALES'
+        provider: views
+        label_display: visible
+        region: sidebar_right
+        weight: '-1'
+        custom_id: views_block_newsletter_internal_block_1
+        theme: brigard
+        css_class: sidebar-boletin
+        unique: 0
+        context_id: news_subhome
+        context_mapping: {  }
+        views_label: 'BOLETINES LEGALES'
+        items_per_page: none
+        override: {  }
+      7306db8d-794c-438a-b7b9-d5b8231dc802:
+        uuid: 7306db8d-794c-438a-b7b9-d5b8231dc802
+        id: 'block_content:bcbb3fb9-71f3-4699-ad1c-47e1722ecdde'
+        label: Contactenos
+        provider: block_content
+        label_display: '0'
+        region: sidebar_right
+        weight: '0'
+        custom_id: block_content_bcbb3fb9_71f3_4699_ad1c_47e1722ecdde
+        theme: brigard
+        css_class: 'block-contact-sidebar block-contact-sidebar-color--blue'
+        unique: 0
+        context_id: news_subhome
+        context_mapping: {  }
+        status: true
+        info: ''
+        view_mode: full
+    include_default_blocks: 0
+    saved: false
+weight: -2

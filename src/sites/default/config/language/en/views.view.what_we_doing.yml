@@ -1,0 +1,79 @@
+label: 'What We Do'
+display:
+  default:
+    display_options:
+      title: 'What We Do'
+      header:
+        area:
+          content:
+            value: "<h2 class=\"title\">Select an option</h2>\r\n\r\n<div class=\"text\"><span style=\"font-size:11pt\"><span style=\"line-height:107%\"><span style=\"font-family:Calibri,sans-serif\"><span lang=\"EN-US\" style=\"font-family:&quot;Arial&quot;,sans-serif\">Our team has experience in different industries and practice areas, this allows us to understand your needs and offer solutions specifically designed for you.</span></span></span></span></div>\r\n"
+            format: full_html
+      footer:
+        area:
+          content:
+            value: "<h2 class=\"label\">Practice Areas</h2>\r\n"
+            format: full_html
+  attachment_1:
+    display_options:
+      header:
+        area:
+          content:
+            value: "<hr id=\"industrias\" style=\"margin-bottom: 120px !important; display: block; height: 1px;background: #efefef;\" />\r\n<h2 class=\"label\">Sectors and industries</h2>\r\n\r\n<div class=\"text\">Our lawyers handle matters in various industries, approaching challenges from different areas of law in order to provide comprehensive advice.</div>\r\n"
+            format: full_html
+  collapsibe_block_1:
+    display_title: 'Practice areas'
+    display_options:
+      header:
+        area:
+          content:
+            value: "<h2>PRACTICE AREAS</h2>\r\n"
+            format: basic_html
+      title: 'Practice areas'
+  collapsibe_block_2:
+    display_title: Industries
+    display_options:
+      header:
+        area:
+          content:
+            value: "<h2>INDUSTRIES</h2>\r\n"
+            format: full_html
+      title: Industries
+  page_1:
+    display_options:
+      header:
+        area:
+          content:
+            value: "<h2 class=\"title\">Select an Option</h2>\r\n\r\n<div class=\"text\">Here you will find the firm's practice areas, industries and new services.</div>\r\n"
+            format: full_html
+      filters:
+        tid:
+          expose:
+            label: 'practice areas'
+        tid_1:
+          expose:
+            label: 'Sectors and industries'
+        tid_2:
+          expose:
+            label: 'New services'
+      footer:
+        area:
+          content:
+            value: "<p class=\"text-center\">Our team has experience in different industries and practice areas, which allows us to understand your needs and offer you tailored solutions.</p>\r\n\r\n<h2 class=\"label\">Practice areas</h2>\r\n\r\n<p class=\"text\">We have experts in more than 20 practice areas, solely dedicated to addressing business law issues.</p>\r\n"
+            format: full_html
+  attachment_2:
+    display_options:
+      header:
+        area:
+          content:
+            value: "<hr id=\"servicios\" style=\"margin-bottom: 120px !important; display: block; height: 1px;background: #efefef;\" />\r\n<h2 class=\"label\">New services</h2>\r\n\r\n<div class=\"text\">We evolve according to the needs of our clients, considering innovation as a fundamental pillar of our firm.</div>\r\n"
+            format: full_html
+  collapsibe_block_3:
+    display_title: 'New services'
+    display_options:
+      header:
+        area:
+          content:
+            value: "<h2 class=\"title\">NEW SERVICES</h2>\r\n"
+            format: full_html
+      title: 'New services'
+      block_description: 'New services'

@@ -1,0 +1,84 @@
+uuid: aa2a8b51-4443-4207-a171-9b7f8fe3e00f
+langcode: es
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.noticia.body
+    - field.field.node.noticia.field_area
+    - field.field.node.noticia.field_es_privado
+    - field.field.node.noticia.field_footer
+    - field.field.node.noticia.field_image
+    - field.field.node.noticia.field_industrias
+    - field.field.node.noticia.field_label
+    - field.field.node.noticia.field_metatags
+    - field.field.node.noticia.field_nuevos_servicios
+    - field.field.node.noticia.field_pertenece_a_boletin
+    - field.field.node.noticia.field_resumen
+    - field.field.node.noticia.field_sector_noticia
+    - field.field.node.noticia.field_tags
+    - node.type.noticia
+  module:
+    - svg_image
+    - user
+id: node.noticia.teaser
+targetEntityType: node
+bundle: noticia
+mode: teaser
+content:
+  field_area:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: ''
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_industrias:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_label:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+hidden:
+  body: true
+  field_es_privado: true
+  field_footer: true
+  field_metatags: true
+  field_nuevos_servicios: true
+  field_pertenece_a_boletin: true
+  field_resumen: true
+  field_sector_noticia: true
+  field_tags: true
+  langcode: true
+  search_api_excerpt: true
+  social_simple_buttons: true

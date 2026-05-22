@@ -1,0 +1,8 @@
+uuid: cd13f5a4-9b16-445b-b0d0-9d362e312fea
+langcode: es
+status: true
+dependencies: {  }
+id: valor-compartido
+label: Insights
+description: ''
+locked: false

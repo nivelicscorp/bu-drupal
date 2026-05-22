@@ -1,0 +1,10 @@
+uuid: 15571e08-aabc-435e-b3bb-22b226d87a98
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+id: node.insights
+label: Insights
+targetEntityType: node
+cache: true

@@ -1,0 +1,94 @@
+uuid: 133eea50-1f76-4ed8-b3ff-ce74ed5a9f60
+langcode: es
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.highlighted_in_section
+    - field.field.node.page.body
+    - field.field.node.page.field_image
+    - field.field.node.page.field_link_text_box
+    - field.field.node.page.field_lista_de_contenido_con_fot
+    - field.field.node.page.field_metatags
+    - field.field.node.page.field_peso
+    - field.field.node.page.field_section
+    - image.style.img_300x300
+    - node.type.page
+  module:
+    - ds
+    - image_class
+    - link
+    - svg_image
+    - text
+    - user
+_core:
+  default_config_hash: g1S3_GLaxq4l3I9RIca5Mlz02MxI2KmOquZpHw59akM
+id: node.page.highlighted_in_section
+targetEntityType: node
+bundle: page
+mode: highlighted_in_section
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 1
+    region: content
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: img_300x300
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+      image_loading:
+        attribute: lazy
+    third_party_settings:
+      image_class:
+        class: ''
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 0
+    region: content
+  field_link_text_box:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: _blank
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 2
+    region: content
+hidden:
+  field_lista_de_contenido_con_fot: true
+  field_metatags: true
+  field_peso: true
+  field_section: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

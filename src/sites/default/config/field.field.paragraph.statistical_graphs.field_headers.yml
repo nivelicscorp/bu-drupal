@@ -1,0 +1,19 @@
+uuid: 4cb0c4da-5953-4e54-8829-bb1b7d9eb8cd
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_headers
+    - paragraphs.paragraphs_type.statistical_graphs
+id: paragraph.statistical_graphs.field_headers
+field_name: field_headers
+entity_type: paragraph
+bundle: statistical_graphs
+label: Headers
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

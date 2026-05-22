@@ -1,0 +1,12 @@
+display:
+  default:
+    display_options:
+      fields:
+        nothing:
+          alter:
+            text: "<div class=\"txt\">\r\n      <h2 class=\"name\">{{ title }}</h2>\r\n      <p class=\"cargo\">\r\n            </p><div class=\"field field--name-field-membership field--type-entity-reference field--label-hidden field--item\">{{ field_membership }}</div>\r\n      <p></p>\r\n    </div>"
+      header:
+        area:
+          content:
+            value: "<p>lawyers:</p>\r\n"
+            format: basic_html

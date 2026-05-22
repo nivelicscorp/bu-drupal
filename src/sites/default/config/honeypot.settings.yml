@@ -1,0 +1,33 @@
+_core:
+  default_config_hash: 9bVDfWSa_In6VzTXmy04jJ_3ZQobihKjO9isuuUCPaw
+langcode: es
+protect_all_forms: true
+unprotected_forms:
+  - user_login_form
+  - search_form
+  - search_block_form
+  - views_exposed_form
+  - honeypot_settings_form
+log: false
+element_name: url
+time_limit: 0
+expire: 300
+form_settings:
+  user_register_form: false
+  user_pass: false
+  contact_message_feedback_form: false
+  contact_message_personal_form: false
+  node_bulletin_form: false
+  node_evento_form: false
+  node_indicators_form: false
+  node_informe_form: false
+  node_lawyer_form: false
+  node_memoria_form: false
+  node_noticia_form: false
+  node_page_form: false
+  node_podcast_form: false
+  node_recursos_form: false
+  node_section_form: false
+  node_speakers_form: false
+  node_webform_form: false
+  comment_comment_form: false

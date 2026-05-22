@@ -1,0 +1,10 @@
+uuid: a00ec61d-89af-4ab5-9445-c5b07487eaea
+langcode: en
+status: true
+dependencies: {  }
+id: seo_data
+label: 'SEO data'
+icon_uuid: null
+icon_default: null
+description: 'Campos de seo para config pages'
+behavior_plugins: {  }

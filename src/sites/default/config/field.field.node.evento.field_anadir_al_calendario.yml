@@ -1,0 +1,57 @@
+uuid: 6fed1257-bba2-4570-b41f-5f9a51dac591
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_anadir_al_calendario
+    - node.type.evento
+  module:
+    - addtocalendar
+id: node.evento.field_anadir_al_calendario
+field_name: field_anadir_al_calendario
+entity_type: node
+bundle: evento
+label: 'Añadir al calendario'
+description: ''
+required: true
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'Añadir al calendario'
+  off_label: 'Add to Calendar Disabled'
+  addtocalendar_show: 1
+  addtocalendar_settings:
+    style: glow_orange
+    atc_title:
+      field: title
+      tokenized: Title
+    atc_description:
+      field: title
+      tokenized: Description
+    atc_location:
+      field: field_lugar_del_evento
+      tokenized: Location
+    atc_organizer:
+      field: token
+      tokenized: 'Brigard Urrutia'
+    atc_organizer_email:
+      field: token
+      tokenized: info@bu.com.co
+    atc_date_start:
+      field: field_fecha_y_hora
+      tokenized: ''
+    atc_date_end:
+      field: field_fecha_y_hora
+      tokenized: ''
+    atc_privacy: public
+    data_secure: auto
+    data_calendars:
+      iCalendar: iCalendar
+      'Google Calendar': 'Google Calendar'
+      Outlook: Outlook
+      'Outlook Online': 'Outlook Online'
+      'Yahoo! Calendar': 'Yahoo! Calendar'
+field_type: add_to_calendar_field

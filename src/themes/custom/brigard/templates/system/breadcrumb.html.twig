@@ -1,0 +1,38 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a breadcrumb trail.
+ *
+ * Available variables:
+ * - breadcrumb: Breadcrumb trail items.
+ *
+ * @ingroup templates
+ */
+#}
+{% if breadcrumb %}
+  {% set items = [] %}
+  {% set printed = '' %}
+  {% for item in breadcrumb %}
+    {% set items = items|merge([item]) %}
+  {% endfor %}
+  <ol class="breadcrumb">
+    {% for item in items %}
+      {% if item.text is iterable %}
+        {% set text = item.text|join(' ') %}
+      {% else %}
+        {% set text = item.text %}
+      {% endif %}
+      {% if printed != text|trim|lower %}
+        <li {{ item.attributes }}>
+          {% if item.url %}
+            <a href="{{ item.url }}">{{ text }}</a>
+          {% else %}
+            {{ text|t }}
+          {% endif %}
+        </li>
+        {% set printed = text|trim|lower %}
+      {% endif %}
+    {% endfor %}
+  </ol>
+{% endif %}
+

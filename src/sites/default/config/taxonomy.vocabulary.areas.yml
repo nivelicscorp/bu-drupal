@@ -1,0 +1,8 @@
+uuid: abf93802-061a-4c0f-b311-27e98cc167bc
+langcode: es
+status: true
+dependencies: {  }
+name: 'Áreas de práctica'
+vid: areas
+description: ''
+weight: 0

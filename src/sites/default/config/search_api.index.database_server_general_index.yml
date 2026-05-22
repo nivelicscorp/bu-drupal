@@ -1,0 +1,591 @@
+uuid: 88bd9aaf-1e3b-46da-9acb-3577828d8f3c
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - field.storage.node.field_area
+    - field.storage.node.field_resumen
+    - field.storage.node.field_industrias
+    - field.storage.paragraph.field_descripcion
+    - field.storage.taxonomy_term.field_accordion
+    - field.storage.paragraph.field_testimonial_subtitle
+    - field.storage.paragraph.field_caption
+    - field.storage.taxonomy_term.field_resumen
+    - field.storage.paragraph.field_label
+    - field.storage.paragraph.field_items
+    - field.storage.paragraph.field_title
+    - field.storage.paragraph.field_recognition_title
+    - field.storage.paragraph.field_description
+    - search_api.server.database_server_general
+  module:
+    - node
+    - taxonomy
+    - paragraphs
+    - search_api
+id: database_server_general_index
+name: 'Database server general index'
+description: ''
+read_only: false
+field_settings:
+  body:
+    label: Body
+    datasource_id: 'entity:node'
+    property_path: body
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.body
+  created:
+    label: Fecha
+    datasource_id: 'entity:node'
+    property_path: created
+    type: date
+    dependencies:
+      module:
+        - node
+  description:
+    label: Descripción
+    datasource_id: 'entity:taxonomy_term'
+    property_path: description
+    type: text
+    dependencies:
+      module:
+        - taxonomy
+  field_area:
+    label: Area
+    datasource_id: 'entity:node'
+    property_path: field_area
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_area
+  field_caption:
+    label: 'Industrias » Taxonomy term » Acordeón » Párrafo » Descripción'
+    datasource_id: 'entity:node'
+    property_path: 'field_industrias:entity:field_accordion:entity:field_caption'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_industrias
+        - field.storage.paragraph.field_caption
+        - field.storage.taxonomy_term.field_accordion
+      module:
+        - paragraphs
+        - taxonomy
+  field_caption_1:
+    label: 'Areas de práctica » Taxonomy term » Acordeón » Párrafo » Descripción'
+    datasource_id: 'entity:node'
+    property_path: 'field_area:entity:field_accordion:entity:field_caption'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_area
+        - field.storage.paragraph.field_caption
+        - field.storage.taxonomy_term.field_accordion
+      module:
+        - paragraphs
+        - taxonomy
+  field_caption_2:
+    label: 'Acordeón » Párrafo » Items » Párrafo » Descripción'
+    datasource_id: 'entity:taxonomy_term'
+    property_path: 'field_accordion:entity:field_items:entity:field_caption'
+    type: text
+    dependencies:
+      config:
+        - field.storage.paragraph.field_caption
+        - field.storage.paragraph.field_items
+        - field.storage.taxonomy_term.field_accordion
+      module:
+        - paragraphs
+  field_caption_3:
+    label: 'Acordeón » Párrafo » Items » Párrafo » Descripción'
+    datasource_id: 'entity:taxonomy_term'
+    property_path: 'field_accordion:entity:field_items:entity:field_caption'
+    type: text
+    dependencies:
+      config:
+        - field.storage.paragraph.field_caption
+        - field.storage.paragraph.field_items
+        - field.storage.taxonomy_term.field_accordion
+      module:
+        - paragraphs
+  field_caption_4:
+    label: 'Acordeón » Párrafo » Items » Párrafo » Items » Párrafo » Descripción'
+    datasource_id: 'entity:taxonomy_term'
+    property_path: 'field_accordion:entity:field_items:entity:field_items:entity:field_caption'
+    type: text
+    dependencies:
+      config:
+        - field.storage.paragraph.field_caption
+        - field.storage.paragraph.field_items
+        - field.storage.taxonomy_term.field_accordion
+      module:
+        - paragraphs
+  field_descripcion:
+    label: 'Acordeón » Párrafo » Descripción'
+    datasource_id: 'entity:taxonomy_term'
+    property_path: 'field_accordion:entity:field_descripcion'
+    type: text
+    dependencies:
+      config:
+        - field.storage.paragraph.field_descripcion
+        - field.storage.taxonomy_term.field_accordion
+      module:
+        - paragraphs
+  field_descripcion_1:
+    label: 'Industrias » Taxonomy term » Acordeón » Párrafo » Descripción'
+    datasource_id: 'entity:node'
+    property_path: 'field_industrias:entity:field_accordion:entity:field_descripcion'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_industrias
+        - field.storage.paragraph.field_descripcion
+        - field.storage.taxonomy_term.field_accordion
+      module:
+        - paragraphs
+        - taxonomy
+  field_descripcion_2:
+    label: 'Areas de práctica » Taxonomy term » Acordeón » Párrafo » Descripción'
+    datasource_id: 'entity:node'
+    property_path: 'field_area:entity:field_accordion:entity:field_descripcion'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_area
+        - field.storage.paragraph.field_descripcion
+        - field.storage.taxonomy_term.field_accordion
+      module:
+        - paragraphs
+        - taxonomy
+  field_descripcion_3:
+    label: 'Acordeón » Párrafo » Items » Párrafo » Descripción'
+    datasource_id: 'entity:taxonomy_term'
+    property_path: 'field_accordion:entity:field_items:entity:field_descripcion'
+    type: text
+    dependencies:
+      config:
+        - field.storage.paragraph.field_descripcion
+        - field.storage.paragraph.field_items
+        - field.storage.taxonomy_term.field_accordion
+      module:
+        - paragraphs
+  field_descripcion_4:
+    label: 'Acordeón » Párrafo » Items » Párrafo » Descripción'
+    datasource_id: 'entity:taxonomy_term'
+    property_path: 'field_accordion:entity:field_items:entity:field_descripcion'
+    type: text
+    dependencies:
+      config:
+        - field.storage.paragraph.field_descripcion
+        - field.storage.paragraph.field_items
+        - field.storage.taxonomy_term.field_accordion
+      module:
+        - paragraphs
+  field_descripcion_5:
+    label: 'Acordeón » Párrafo » Items » Párrafo » Items » Párrafo » Descripción'
+    datasource_id: 'entity:taxonomy_term'
+    property_path: 'field_accordion:entity:field_items:entity:field_items:entity:field_descripcion'
+    type: text
+    dependencies:
+      config:
+        - field.storage.paragraph.field_descripcion
+        - field.storage.paragraph.field_items
+        - field.storage.taxonomy_term.field_accordion
+      module:
+        - paragraphs
+  field_description:
+    label: 'Acordeón » Párrafo » Items » Párrafo » Descripción'
+    datasource_id: 'entity:taxonomy_term'
+    property_path: 'field_accordion:entity:field_items:entity:field_description'
+    type: text
+    dependencies:
+      config:
+        - field.storage.paragraph.field_description
+        - field.storage.paragraph.field_items
+        - field.storage.taxonomy_term.field_accordion
+      module:
+        - paragraphs
+  field_description_1:
+    label: 'Acordeón » Párrafo » Items » Párrafo » Items » Párrafo » Descripción'
+    datasource_id: 'entity:taxonomy_term'
+    property_path: 'field_accordion:entity:field_items:entity:field_items:entity:field_description'
+    type: text
+    dependencies:
+      config:
+        - field.storage.paragraph.field_description
+        - field.storage.paragraph.field_items
+        - field.storage.taxonomy_term.field_accordion
+      module:
+        - paragraphs
+  field_label:
+    label: 'Areas de práctica » Taxonomy term » Acordeón » Párrafo » Label'
+    datasource_id: 'entity:node'
+    property_path: 'field_area:entity:field_accordion:entity:field_label'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_area
+        - field.storage.paragraph.field_label
+        - field.storage.taxonomy_term.field_accordion
+      module:
+        - paragraphs
+        - taxonomy
+  field_label_1:
+    label: 'Acordeón » Párrafo » Items » Párrafo » Label'
+    datasource_id: 'entity:taxonomy_term'
+    property_path: 'field_accordion:entity:field_items:entity:field_label'
+    type: text
+    dependencies:
+      config:
+        - field.storage.paragraph.field_items
+        - field.storage.paragraph.field_label
+        - field.storage.taxonomy_term.field_accordion
+      module:
+        - paragraphs
+  field_recognition_title:
+    label: 'Acordeón » Párrafo » Items » Párrafo » Title'
+    datasource_id: 'entity:taxonomy_term'
+    property_path: 'field_accordion:entity:field_items:entity:field_recognition_title'
+    type: text
+    dependencies:
+      config:
+        - field.storage.paragraph.field_items
+        - field.storage.paragraph.field_recognition_title
+        - field.storage.taxonomy_term.field_accordion
+      module:
+        - paragraphs
+  field_resumen:
+    label: Resúmen
+    datasource_id: 'entity:taxonomy_term'
+    property_path: field_resumen
+    type: text
+    dependencies:
+      config:
+        - field.storage.taxonomy_term.field_resumen
+  field_resumen_1:
+    label: Resumen
+    datasource_id: 'entity:node'
+    property_path: field_resumen
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_resumen
+  field_resumen_2:
+    label: 'Industrias » Taxonomy term » Resúmen'
+    datasource_id: 'entity:node'
+    property_path: 'field_industrias:entity:field_resumen'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_industrias
+        - field.storage.taxonomy_term.field_resumen
+      module:
+        - taxonomy
+  field_resumen_3:
+    label: 'Areas de práctica » Taxonomy term » Resúmen'
+    datasource_id: 'entity:node'
+    property_path: 'field_area:entity:field_resumen'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_area
+        - field.storage.taxonomy_term.field_resumen
+      module:
+        - taxonomy
+  field_testimonial_subtitle:
+    label: 'Industrias » Taxonomy term » Acordeón » Párrafo » Subtítulo'
+    datasource_id: 'entity:node'
+    property_path: 'field_industrias:entity:field_accordion:entity:field_testimonial_subtitle'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_industrias
+        - field.storage.paragraph.field_testimonial_subtitle
+        - field.storage.taxonomy_term.field_accordion
+      module:
+        - paragraphs
+        - taxonomy
+  field_testimonial_subtitle_1:
+    label: 'Areas de práctica » Taxonomy term » Acordeón » Párrafo » Subtítulo'
+    datasource_id: 'entity:node'
+    property_path: 'field_area:entity:field_accordion:entity:field_testimonial_subtitle'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_area
+        - field.storage.paragraph.field_testimonial_subtitle
+        - field.storage.taxonomy_term.field_accordion
+      module:
+        - paragraphs
+        - taxonomy
+  field_title:
+    label: 'Acordeón » Párrafo » Items » Párrafo » Titulo'
+    datasource_id: 'entity:taxonomy_term'
+    property_path: 'field_accordion:entity:field_items:entity:field_title'
+    type: text
+    dependencies:
+      config:
+        - field.storage.paragraph.field_items
+        - field.storage.paragraph.field_title
+        - field.storage.taxonomy_term.field_accordion
+      module:
+        - paragraphs
+  langcode:
+    label: Language
+    datasource_id: 'entity:node'
+    property_path: langcode
+    type: string
+    dependencies:
+      module:
+        - node
+  name:
+    label: 'Area » Taxonomy term » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_area:entity:name'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_area
+      module:
+        - taxonomy
+  name_1:
+    label: Name
+    datasource_id: 'entity:taxonomy_term'
+    property_path: name
+    type: text
+    dependencies:
+      module:
+        - taxonomy
+  name_2:
+    label: 'Industrias » Taxonomy term » Nombre'
+    datasource_id: 'entity:node'
+    property_path: 'field_industrias:entity:name'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_industrias
+      module:
+        - taxonomy
+  nid:
+    label: ID
+    datasource_id: 'entity:node'
+    property_path: nid
+    type: integer
+    dependencies:
+      module:
+        - node
+  node_grants:
+    label: 'Node access information'
+    property_path: search_api_node_grants
+    type: string
+    indexed_locked: true
+    type_locked: true
+    hidden: true
+  status:
+    label: status
+    datasource_id: 'entity:node'
+    property_path: status
+    type: boolean
+    indexed_locked: true
+    type_locked: true
+    dependencies:
+      module:
+        - node
+  status_1:
+    label: Published
+    datasource_id: 'entity:node'
+    property_path: status
+    type: boolean
+    dependencies:
+      module:
+        - node
+  status_2:
+    label: Published
+    datasource_id: 'entity:node'
+    property_path: status
+    type: boolean
+    dependencies:
+      module:
+        - node
+  summary:
+    label: 'Body » Summary'
+    datasource_id: 'entity:node'
+    property_path: 'body:summary'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.body
+  title:
+    label: Título
+    datasource_id: 'entity:node'
+    property_path: title
+    type: text
+    dependencies:
+      module:
+        - node
+  type:
+    label: 'Content type'
+    datasource_id: 'entity:node'
+    property_path: type
+    type: string
+    dependencies:
+      module:
+        - node
+  uid:
+    label: uid
+    datasource_id: 'entity:node'
+    property_path: uid
+    type: integer
+    indexed_locked: true
+    type_locked: true
+    dependencies:
+      module:
+        - node
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: false
+      selected:
+        - bulletin
+        - evento
+        - noticia
+        - page
+    languages:
+      default: false
+      selected:
+        - en
+        - es
+  'entity:taxonomy_term':
+    bundles:
+      default: false
+      selected:
+        - areas
+        - indrustrias
+        - section
+    languages:
+      default: false
+      selected:
+        - en
+        - es
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  content_access:
+    weights:
+      preprocess_query: -30
+  entity_status: {  }
+  html_filter:
+    weights:
+      preprocess_index: -15
+      preprocess_query: -15
+    all_fields: true
+    fields:
+      - body
+      - description
+      - field_area
+      - field_caption
+      - field_caption_1
+      - field_caption_2
+      - field_caption_3
+      - field_caption_4
+      - field_descripcion
+      - field_descripcion_1
+      - field_descripcion_2
+      - field_descripcion_3
+      - field_descripcion_4
+      - field_descripcion_5
+      - field_description
+      - field_description_1
+      - field_label
+      - field_label_1
+      - field_recognition_title
+      - field_resumen
+      - field_resumen_1
+      - field_resumen_2
+      - field_resumen_3
+      - field_testimonial_subtitle
+      - field_testimonial_subtitle_1
+      - field_title
+      - langcode
+      - name
+      - name_1
+      - name_2
+      - summary
+      - title
+      - type
+    title: true
+    alt: true
+    tags:
+      b: 2
+      h1: 5
+      h2: 3
+      h3: 2
+      strong: 2
+  ignorecase:
+    weights:
+      preprocess_index: -20
+      preprocess_query: -20
+    all_fields: true
+    fields:
+      - body
+      - description
+      - field_area
+      - field_caption
+      - field_caption_1
+      - field_caption_2
+      - field_caption_3
+      - field_caption_4
+      - field_descripcion
+      - field_descripcion_1
+      - field_descripcion_2
+      - field_descripcion_3
+      - field_descripcion_4
+      - field_descripcion_5
+      - field_description
+      - field_description_1
+      - field_label
+      - field_label_1
+      - field_recognition_title
+      - field_resumen
+      - field_resumen_1
+      - field_resumen_2
+      - field_resumen_3
+      - field_testimonial_subtitle
+      - field_testimonial_subtitle_1
+      - field_title
+      - langcode
+      - name
+      - name_1
+      - name_2
+      - summary
+      - title
+      - type
+  language_with_fallback: {  }
+  rendered_item: {  }
+  type_boost:
+    weights:
+      preprocess_index: 0
+    boosts:
+      'entity:node':
+        datasource_boost: !!float 1
+        bundle_boosts:
+          bulletin: !!float 0
+          evento: !!float 0
+          noticia: !!float 0
+          page: !!float 0
+      'entity:taxonomy_term':
+        datasource_boost: !!float 1
+        bundle_boosts:
+          areas: !!float 0
+          indrustrias: !!float 0
+          section: !!float 0
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  cron_limit: 50
+  index_directly: true
+  track_changes_in_references: true
+server: database_server_general

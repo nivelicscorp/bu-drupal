@@ -1,0 +1,33 @@
+uuid: 7fcef85f-8f57-4ec0-a576-ea91bc2734be
+langcode: es
+status: true
+dependencies:
+  module:
+    - language
+    - node
+id: indicators_en
+label: 'indicators en'
+type: 'canonical_entities:node'
+pattern: '/indicators/[node:title]'
+selection_criteria:
+  a0cb2fd5-3b5b-4bad-bc67-4348ca333ccf:
+    id: node_type
+    negate: false
+    uuid: a0cb2fd5-3b5b-4bad-bc67-4348ca333ccf
+    context_mapping:
+      node: node
+    bundles:
+      indicators: indicators
+  258f9565-6218-4d68-a7a4-a8bbe6cbdc21:
+    id: language
+    negate: false
+    uuid: 258f9565-6218-4d68-a7a4-a8bbe6cbdc21
+    context_mapping:
+      language: 'node:langcode:language'
+    langcodes:
+      en: en
+selection_logic: and
+weight: -5
+relationships:
+  'node:langcode:language':
+    label: Language

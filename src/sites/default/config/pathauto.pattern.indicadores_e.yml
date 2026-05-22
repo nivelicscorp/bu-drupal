@@ -1,0 +1,33 @@
+uuid: 52af3dcd-0577-445f-a646-8771093579c5
+langcode: es
+status: true
+dependencies:
+  module:
+    - language
+    - node
+id: indicadores_e
+label: 'indicadores e'
+type: 'canonical_entities:node'
+pattern: '/indicadores/[node:title]'
+selection_criteria:
+  e7e57e9a-65ea-4686-8eb6-42399e8212e8:
+    id: node_type
+    negate: false
+    uuid: e7e57e9a-65ea-4686-8eb6-42399e8212e8
+    context_mapping:
+      node: node
+    bundles:
+      indicators: indicators
+  c830aa15-1695-4fdc-a365-91f6945f72fb:
+    id: language
+    negate: false
+    uuid: c830aa15-1695-4fdc-a365-91f6945f72fb
+    context_mapping:
+      language: 'node:langcode:language'
+    langcodes:
+      es: es
+selection_logic: and
+weight: -6
+relationships:
+  'node:langcode:language':
+    label: Language

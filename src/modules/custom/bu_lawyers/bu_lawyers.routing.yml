@@ -1,0 +1,18 @@
+bu_lawyers.vcard_generate:
+  path: '/vcard-generate/{node}'
+  defaults:
+    _controller: '\Drupal\bu_lawyers\Controller\BuLawyersController::vCardGenerate'
+    _title: 'Generate a VCard'
+  requirements:
+    _access: 'TRUE'
+  options:
+    parameters:
+      node:
+        type: 'entity:node'
+bu_lawyers.resultado_transaccion:
+  path: '/resultado-transaccion'
+  defaults:
+    _controller: '\Drupal\bu_lawyers\Controller\BuLawyersController::resultadoTransaccion'
+    _title: 'Resultado de la operación'
+  requirements:
+    _access: 'TRUE'

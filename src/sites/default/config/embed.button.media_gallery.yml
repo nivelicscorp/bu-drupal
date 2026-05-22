@@ -1,0 +1,22 @@
+uuid: 93a8cda3-040a-41bd-8809-2ba305cff958
+langcode: en
+status: true
+dependencies:
+  config:
+    - media.type.gallery
+  module:
+    - entity_embed
+    - media
+label: 'Media Gallery'
+id: media_gallery
+type_id: entity
+type_settings:
+  entity_type: media
+  bundles:
+    - gallery
+  display_plugins:
+    - 'view_mode:media.full'
+  entity_browser: media_gallery
+  entity_browser_settings:
+    display_review: false
+icon_uuid: null

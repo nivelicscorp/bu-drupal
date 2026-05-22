@@ -1,0 +1,22 @@
+uuid: 5dc75273-d849-483b-84a1-cc46c61b1569
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.icono_item_menu
+id: block_content.icono_item_menu.status
+field_name: status
+entity_type: block_content
+bundle: icono_item_menu
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

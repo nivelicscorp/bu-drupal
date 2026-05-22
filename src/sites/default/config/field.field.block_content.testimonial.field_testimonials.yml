@@ -1,0 +1,64 @@
+uuid: 628c55f7-689c-4fee-84fd-31ec154dbb56
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.testimonial
+    - field.storage.block_content.field_testimonials
+    - paragraphs.paragraphs_type.testimonial_items
+  module:
+    - entity_reference_revisions
+id: block_content.testimonial.field_testimonials
+field_name: field_testimonials
+entity_type: block_content
+bundle: testimonial
+label: Testimoniales
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      testimonial_items: testimonial_items
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: 12
+        enabled: false
+      accordion_items:
+        weight: 13
+        enabled: false
+      agenda_del_evento:
+        weight: 14
+        enabled: false
+      conferencistas:
+        weight: 15
+        enabled: false
+      contenidos_con_foto:
+        weight: 16
+        enabled: false
+      indicators:
+        weight: 17
+        enabled: false
+      items_indicators:
+        weight: 18
+        enabled: false
+      main_banner:
+        weight: 19
+        enabled: false
+      recognition_items:
+        weight: 21
+        enabled: false
+      statistical_graphs:
+        weight: 20
+        enabled: false
+      testimonial_items:
+        weight: 21
+        enabled: true
+      text_box:
+        weight: 22
+        enabled: false
+field_type: entity_reference_revisions

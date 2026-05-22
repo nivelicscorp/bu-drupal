@@ -1,0 +1,22 @@
+uuid: e289f5d4-003a-472e-a61a-3ee0aa77d4e9
+langcode: es
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - brigard
+_core:
+  default_config_hash: KHQIJ7Vfl25lTjzIc7qIvnuistt-Mw2O0kG4jCofmkI
+id: brigard_messages
+theme: brigard
+region: navigation
+weight: -13
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Mensajes de estado'
+  label_display: '0'
+  provider: system
+visibility: {  }

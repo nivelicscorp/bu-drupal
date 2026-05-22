@@ -1,0 +1,325 @@
+<?php
+
+use Drupal\config_pages\Entity\ConfigPages;
+use Drupal\Component\Utility\Html;
+
+define('BU_COMPANY_ADDRESS', 'calle 70 bis no. 4 - 41');
+define('BU_COMPANY_NAME', 'Brigard Urrutia');
+define('BU_COMPANY_COUNTRY', 'Colombia');
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function bu_general_features_form_views_exposed_form_alter(&$form, $form_state, $form_id) {
+  if(isset($form['#info'])) {
+    foreach ($form['#info'] as $key => $filter) {
+      $form['#info'][$key]['label'] = t($filter['label']);
+    }
+  }
+
+  if(isset($form['actions']['submit']['#value'])  && is_string($form['actions']['submit']['#value'])) {
+    $form['actions']['submit']['#value'] = t($form['actions']['submit']['#value']);
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function bu_general_features_form_alter(&$form, $form_state, $form_id) {
+
+  $forms_with_body_full_html = [
+    'node_noticia_form',
+    'node_noticia_event_form',
+  ];
+
+  if (in_array($form_id, $forms_with_body_full_html)) {
+    $form['body']['widget'][0]['#format'] = 'full_html';
+  }
+
+  if (substr($form_id, 0, 19) == 'webform_submission_') {
+    if(is_array(isset($form['elements']) ? $form['elements'] : null)){
+      foreach ($form['elements'] as $field_name => &$data) {
+        if (empty($data['#placeholder']) && empty($data['#attributes']['placeholder']) && !empty($data['#title'])) {
+          $data['#attributes']['placeholder'] = t($data['#title']);
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Convert string to meaningful file name
+ * @param string $string
+ */
+function _bu_convert_string_to_meaningful_file_name($string) {
+  //remove non alpha numeric characters
+  $string = preg_replace("/[^A-Za-z0-9 ]/", '', $string);
+
+  //capitalize first character of every word
+  $string = ucwords(strtolower($string));
+
+  //replace more than one space to underscore
+  $string = preg_replace('/([\s])\1+/', '_', $string);
+
+  //convert any single spaces to underscrore
+  $string = str_replace(" ", "_", $string);
+
+  //convert to lowercase
+  $string = strtolower($string);
+
+  return $string;
+}
+
+function _taxonomy_term_is_children($tid) {
+  $entity_type_manager = \Drupal::entityTypeManager();
+  if ($parents = $entity_type_manager->getStorage('taxonomy_term')->loadAllParents($tid)) {
+    // The first element returned by loadAllParents is always the term itself,
+    // the term for which we are searching the parents, so we want to remove it
+    // from the array. Note: we do not use array_shift here since it removes
+    // the numeric keys of the array
+    reset($parents);
+    unset($parents[key($parents)]);
+    return $parents;
+  }
+  return FALSE;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bu_general_features_preprocess_html(&$variables) {
+  $route_match = \Drupal::routeMatch();
+  $route_name = $route_match->getRouteName();
+  // When seeing a taxonomy term page
+  if ($route_name == 'entity.taxonomy_term.canonical') {
+    $taxonomy_term = $route_match->getParameter('taxonomy_term');
+    $vid = $taxonomy_term->bundle();
+    $vid = str_replace('_', '-', $vid);
+    // Add a class to the body identifying the taxonomy vocabulary
+    $variables['attributes']['class'][] = 'taxonomy-term-page-' . $vid;
+  }
+}
+
+/**
+ * Implements hook_field_group_build_pre_render_alter().
+ */
+function bu_general_features_field_group_build_pre_render_alter(array &$element) {
+  foreach ($element as $key => $value) {
+    $pos = strpos($key, 'group_');
+    if ($pos !== false  &&  isset($element[$key]['#title'])) {
+      if (isset($element[$key]['#title']) && $element[$key]['#title'] instanceof \Drupal\Core\Render\Markup) {
+        $element[$key]['#title'] = t((string) $element[$key]['#title']);
+      } elseif (isset($element[$key]['#title']) && is_string($element[$key]['#title'])) {
+        $element[$key]['#title'] = t($element[$key]['#title']);
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bu_general_features_preprocess_field__field_link(&$variables) {
+  // Remove class btn-red from the field_link items
+  foreach ($variables['items'] as &$item) {
+    if (!empty($item['content']['#options']['attributes']['class'])) {
+      if (is_array($item['content']['#options']['attributes']['class'])) {
+        $key = array_search('btn-red', $item['content']['#options']['attributes']['class']);
+        if (is_numeric($key)) {
+          unset($item['content']['#options']['attributes']['class'][$key]);
+        }
+      }
+      elseif (is_string($item['content']['#options']['attributes']['class']) && $item['content']['#options']['attributes']['class'] == 'btn-red') {
+        $item['content']['#options']['attributes']['class'] = '';
+      }
+    }
+  }
+}
+
+/**
+ * Implementa hook_system_breadcrumb_alter().
+ *
+ * @param \Drupal\Core\Breadcrumb\Breadcrumb $breadcrumb
+ *   Objeto de breadcrumb.
+ * @param \Drupal\Core\Routing\RouteMatchInterface $route_match
+ *   Información de la ruta actual.
+ * @param array $context
+ *   Contexto adicional.
+ */
+function bu_general_features_system_breadcrumb_alter(\Drupal\Core\Breadcrumb\Breadcrumb &$breadcrumb, \Drupal\Core\Routing\RouteMatchInterface $route_match, array $context) {
+  $route_name = $route_match->getRouteName();
+
+  // Dividir el nombre de la ruta en partes.
+  $route_name_parts = explode('.', $route_name);
+  $route_name_parts = array_filter($route_name_parts);
+
+  // Identificar si la ruta corresponde a una página de entidad.
+  if (count($route_name_parts) == 3 && reset($route_name_parts) == 'entity' && end($route_name_parts) == 'canonical') {
+    $entity_type = $route_name_parts[1];
+    $entity = \Drupal::routeMatch()->getParameter($entity_type);
+    $router_provider = \Drupal::service('router.route_provider');
+    $entity_manager = \Drupal::service('entity.repository');
+
+    // Para nodos (ejemplo: tipo de contenido 'lawyer').
+    if ($entity instanceof \Drupal\node\Entity\Node) {
+      if ($entity->getType() == 'lawyer') {
+        $links = $breadcrumb->getLinks();
+        if (!empty($links[1])) {
+          $breadcrumb = new \Drupal\Core\Breadcrumb\Breadcrumb();
+          $route_name_lawyer_search_page = 'view.lawyers.search_page';
+          $route_object_lawyer_search_page = $router_provider->getRouteByName($route_name_lawyer_search_page);
+          $route_defaults = $route_object_lawyer_search_page->getDefaults();
+
+          if (!empty($route_defaults['_title'])) {
+            $link_text = t($route_defaults['_title']);
+          } else {
+            $link_text = t('Abogados');
+          }
+
+          $links[1]->setUrl(\Drupal\Core\Url::fromRoute($route_name_lawyer_search_page));
+          $links[1]->setText($link_text);
+
+          // Agregar contexto y etiquetas de caché.
+          $breadcrumb->addCacheContexts(['route']);
+          $breadcrumb->addCacheTags(['node:' . $entity->id()]);
+
+          $breadcrumb->setLinks($links);
+        }
+      }
+    }
+
+    // Para formularios web (ejemplo: 'contacto', 'alumni_inscription').
+    if ($entity instanceof \Drupal\webform\Entity\Webform) {
+      $webform_id = $entity->id();
+      $links = $breadcrumb->getLinks();
+      $section_terms_uuids = \Drupal::state()->get('bu_section_terms_uuids', []);
+      $route_name_taxonomy_term_canonical = 'entity.taxonomy_term.canonical';
+
+      if ($webform_id == 'contacto') {
+        unset($links[1]);
+        $breadcrumb = new \Drupal\Core\Breadcrumb\Breadcrumb();
+      } elseif ($webform_id == 'alumni_inscription' && !empty($section_terms_uuids['vinculese_a_bu'])) {
+        $vinculese_a_bu_term = $entity_manager->loadEntityByUuid('taxonomy_term', $section_terms_uuids['vinculese_a_bu']);
+        $breadcrumb = new \Drupal\Core\Breadcrumb\Breadcrumb();
+        $link_text = t($vinculese_a_bu_term->label());
+        $links[1]->setUrl(\Drupal\Core\Url::fromRoute($route_name_taxonomy_term_canonical, ['taxonomy_term' => $vinculese_a_bu_term->id()]));
+        $links[1]->setText($link_text);
+      }
+
+      // Agregar contexto y etiquetas de caché.
+      $breadcrumb->addCacheContexts(['route']);
+      $breadcrumb->addCacheTags(['webform:' . $webform_id]);
+
+      $breadcrumb->setLinks($links);
+    }
+  }
+}
+
+
+/**
+ * Implements hook_metatags_alter().
+ */
+function bu_general_features_metatags_alter(array &$metatags, array $context) {
+  $tag_names = &drupal_static('metatag_urls_tag_names');
+  if (!isset($tag_names)) {
+    $tag_names = array_keys($metatags);
+  }
+}
+
+/**
+* Implements hook_page_attachments_alter().
+*/
+
+function bu_general_features_page_attachments_alter(array &$attachments) {
+
+  $tag_names = &drupal_static('metatag_urls_tag_names');
+  // Map (lowercase) Metatag commands to Url static function names.
+  $commands = [
+    'urlfromuri' => 'fromUri',
+    'urlfromroute' => 'fromRoute',
+  ];
+  $pcre_pattern = '~^\s*(' . implode('|', array_keys($commands)) . ')\((.*)\)\s*$~i';
+  if (isset($tag_names)) {
+    if (!empty($attachments['#attached']['html_head'])) {
+      $head_tags = &$attachments['#attached']['html_head'];
+      foreach ($head_tags as &$tag) {
+        // Other modules may have added attachments; check if this looks like
+        // a valid Metatag addition (the tagname is in the 2nd unkeyed value).
+        if (!is_array($tag) || empty($tag[0]) || empty($tag[1])) {
+          continue;
+        }
+        $tag_content = &$tag[0];
+        $tag_name = &$tag[1];
+        // If Metatag added this:
+        // - The first item is an array with '#attributes' key, and
+        // - The second item is a string.
+        $valid_content = is_array($tag_content) && !empty($tag_content['#attributes']);
+        if (!$valid_content || !is_string($tag_name)) {
+          continue;
+        }
+        // Ensure this is a tag name that Metatag responded to (or had the
+        // option of adding, at least).
+        if (!in_array($tag_name, $tag_names)) {
+          continue;
+        }
+        // Looks like a valid Metatag-added value. Iterate over all values
+        // looking for one that matches our PCRE pattern.
+        foreach ($tag_content['#attributes'] as $key => &$attribute) {
+          if (preg_match($pcre_pattern, $attribute, $matches)) {
+            list($full_value, $command, $value) = $matches;
+            $command = strtolower(trim($command));
+            if (isset($commands[$command])) {
+              $command = $commands[$command];
+              try {
+                $attribute = Url::$command($value)->toString();
+              }
+              catch (Exception $exception) {
+                \Drupal::logger('metatag_urls')->error('Error invoking Url::@command for Metatag "@tag"="@full_value" (value passed to Url was "@value"). Exception: %exception',
+                  [
+                    '@command' => $command,
+                    '@tag' => $tag_name,
+                    '@full_value' => $full_value,
+                    '@value' => $value,
+                    '%exception' => $exception->getMessage(),
+                  ]
+                );
+                $attribute = '';
+              }
+            }
+          }
+        }
+      }
+
+      $entity = config_pages_config('seo_por_url');
+      $current_path = \Drupal::request()->getRequestUri();
+      foreach ($entity->get('field_urls') as $url) {
+        $override = false;
+        if ($current_path == $url->entity->get('field_url')->value) {
+          foreach ($head_tags as &$tag) {
+            $tag_content = &$tag[0];
+            if (isset($tag_content['#attributes']['name']) && $tag_content['#attributes']['name'] == 'description') {
+              $tag_content['#attributes']['content'] = $url->entity->get('field_seo_description')->value;
+              $override = true;
+            }
+            if (isset($tag_content['#attributes']['name']) && $tag_content['#attributes']['name'] == 'abstract') {
+              $tag_content['#attributes']['content'] = $url->entity->get('field_seo_description')->value;
+              $override = true;
+            }
+          }
+          if (!$override) {
+            $head_tags[] = [
+              [
+                '#tag' => 'meta',
+                '#attributes' => [
+                  'name' => 'description',
+                  'content' => $url->entity->get('field_seo_description')->value
+                ]
+              ]
+            ];
+          }
+          break;
+        }
+      }
+    }
+  }
+}

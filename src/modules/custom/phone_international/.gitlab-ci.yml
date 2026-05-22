@@ -1,0 +1,40 @@
+include:
+  - project: $_GITLAB_TEMPLATES_REPO
+    ref: $_GITLAB_TEMPLATES_REF
+    file:
+      - '/includes/include.drupalci.main.yml'
+      - '/includes/include.drupalci.variables.yml'
+      - '/includes/include.drupalci.workflows.yml'
+
+variables:
+  _SHOW_ENVIRONMENT_VARIABLES: 1
+  _TARGET_PHP: "$CORE_PHP_MAX"
+  _TARGET_DB_VERSION: "$CORE_MYSQL_MAX"
+  CI_DEBUG_SERVICES: "true"
+  FF_NETWORK_PER_BUILD: "true"
+
+.composer-base:
+  after_script:
+    - mkdir $_WEB_ROOT/libraries
+    - cd $_WEB_ROOT/libraries
+    - curl -L -o intl-tel-input.zip --silent
+      https://github.com/jackocnr/intl-tel-input/archive/refs/tags/v22.0.2.zip
+    - unzip intl-tel-input.zip
+    - mv intl-tel-input-22.0.2 intl-tel-input
+
+phpunit:
+  extends: .phpunit-base
+  services:
+    - !reference [.with-database]
+
+phpcs:
+  allow_failure: false
+
+phpstan:
+  allow_failure: true
+
+cspell:
+  allow_failure: true
+
+eslint:
+  allow_failure: true

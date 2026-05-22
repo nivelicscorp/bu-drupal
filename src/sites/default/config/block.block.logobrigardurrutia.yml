@@ -1,0 +1,29 @@
+uuid: caab5e72-5ee5-4cfe-8752-55246310180a
+langcode: es
+status: true
+dependencies:
+  content:
+    - 'block_content:icono_item_menu:205bc1f2-746e-4750-af96-2b8349323bf0'
+  module:
+    - block_class
+    - block_content
+  theme:
+    - brigard
+third_party_settings:
+  block_class:
+    classes: h-card
+id: logobrigardurrutia
+theme: brigard
+region: navigation_collapsible
+weight: -16
+provider: null
+plugin: 'block_content:205bc1f2-746e-4750-af96-2b8349323bf0'
+settings:
+  id: 'block_content:205bc1f2-746e-4750-af96-2b8349323bf0'
+  label: 'Logo Brigard Urrutia'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

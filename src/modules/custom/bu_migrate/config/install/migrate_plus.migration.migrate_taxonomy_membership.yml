@@ -1,0 +1,28 @@
+langcode: en
+status: true
+id: migrate_taxonomy_membership
+label: Taxonomy Migration - Membership
+migration_group: default
+source:
+  plugin: csv
+  path: modules/custom/bu_migrate/artifacts/membership.csv
+  header_row_count: 1
+  keys:
+    - tid
+  column_names:
+    0:
+      tid: TID
+    1:
+      uuid: UUID
+    2:
+      name: TERM_NAME
+      
+destination:
+  plugin: entity:taxonomy_term
+process:
+  vid:
+    plugin: default_value
+    default_value: membership
+  name: name
+  uuid: uuid
+ 

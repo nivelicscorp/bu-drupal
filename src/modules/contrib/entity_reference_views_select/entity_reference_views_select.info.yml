@@ -1,0 +1,13 @@
+name: 'Entity Reference Views Select'
+type: module
+description: 'Entity Reference Views displayed as a select list, checkboxes or radio buttons in forms'
+core_version_requirement: ^8 || ^9 || ^10
+
+dependencies:
+  - drupal:field
+  - drupal:views
+
+# Information added by Drupal.org packaging script on 2023-05-31
+version: '8.x-1.5'
+project: 'entity_reference_views_select'
+datestamp: 1685529271

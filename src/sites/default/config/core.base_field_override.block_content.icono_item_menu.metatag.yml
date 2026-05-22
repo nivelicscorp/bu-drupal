@@ -1,0 +1,18 @@
+uuid: adf7cd4e-5812-4dc3-bbce-3bb711151093
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.icono_item_menu
+id: block_content.icono_item_menu.metatag
+field_name: metatag
+entity_type: block_content
+bundle: icono_item_menu
+label: Metatags
+description: 'The meta tags for the entity.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: map

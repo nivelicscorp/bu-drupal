@@ -1,0 +1,6 @@
+name: brigardurrutia-2018
+recipe: pantheon
+config:
+  framework: drupal8
+  site: brigardurrutia-2018
+  id: 6e4f913a-4923-405e-b111-39f660043c66

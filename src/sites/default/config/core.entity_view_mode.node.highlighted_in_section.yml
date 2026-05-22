@@ -1,0 +1,10 @@
+uuid: a5bee6c3-c924-44af-bb03-ce42c5396d98
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.highlighted_in_section
+label: 'Contenido destacado en sección'
+targetEntityType: node
+cache: true

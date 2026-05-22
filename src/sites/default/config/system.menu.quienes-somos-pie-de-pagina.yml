@@ -1,0 +1,8 @@
+uuid: fecfe15a-77af-4e3e-ab88-5432f8fd5f8c
+langcode: es
+status: true
+dependencies: {  }
+id: quienes-somos-pie-de-pagina
+label: 'Quienes somos '
+description: 'pertenece al pie de pagina'
+locked: false

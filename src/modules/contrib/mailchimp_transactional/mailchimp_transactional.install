@@ -1,0 +1,134 @@
+<?php
+
+/**
+ * @file
+ * Install, update, and uninstall routines.
+ */
+
+declare(strict_types=1);
+
+use Drupal\user\Entity\Role;
+use Drupal\mailchimp_transactional\MailchimpTransactionalInterface;
+
+/**
+ * Implements hook_install().
+ *
+ * Migrates config and role permissions from Mandrill.
+ */
+function mailchimp_transactional_install() {
+  $config = \Drupal::configFactory()->getEditable('mailchimp_transactional.settings');
+
+  if (\Drupal::moduleHandler()->moduleExists('mandrill')) {
+    // Migrate settings from Mandrill.
+    $mandrill_config = \Drupal::configFactory()->get('mandrill.settings')->get();
+
+    foreach ($mandrill_config as $key => $value) {
+      $new_key = str_replace('mandrill', 'mailchimp_transactional', $key);
+      if ($new_key !== 'mailchimp_transactional_api_classname') {
+        $config->set($new_key, $value);
+      }
+    }
+
+    $config->save();
+
+    // Migrate role permissions from Mandrill.
+    if ($roles = Role::loadMultiple()) {
+      foreach ($roles as $role) {
+        if ($role->hasPermission('administer mandrill')) {
+          $role->grantPermission('administer mailchimp transactional');
+          $role->save();
+        }
+      }
+    }
+
+    // Update any Mailsystem settings using Mandrill.
+    $mailsystem_config = \Drupal::configFactory()->getEditable('mailsystem.settings');
+    $default_sender = $mailsystem_config->get('defaults.sender');
+    $default_formatter = $mailsystem_config->get('defaults.formatter');
+    $changed = FALSE;
+
+    if ($default_sender == 'mandrill_mail') {
+      $mailsystem_config->set('defaults.sender', 'mailchimp_transactional_mail');
+      $changed = TRUE;
+    }
+    elseif ($default_sender == 'mandrill_test_mail') {
+      $mailsystem_config->set('defaults.sender', 'mailchimp_transactional_test_mail');
+      $changed = TRUE;
+    }
+
+    if ($default_formatter == 'mandrill_mail') {
+      $mailsystem_config->set('defaults.formatter', 'mailchimp_transactional_mail');
+      $changed = TRUE;
+    }
+    elseif ($default_formatter == 'mandrill_test_mail') {
+      $mailsystem_config->set('defaults.formatter', 'mailchimp_transactional_test_mail',);
+      $changed = TRUE;
+    }
+    foreach ($mailsystem_config->get('modules') ?? [] as $module => $keys) {
+      foreach ($keys as $key => $plugins) {
+        $sender_key = 'modules.' . $module . '.' . $key . '.sender';
+        $sender = $mailsystem_config->get($sender_key);
+        if ($sender == 'mandrill_mail') {
+          $mailsystem_config->set($sender_key, 'mailchimp_transactional_mail');
+          $changed = TRUE;
+        }
+        elseif ($sender == 'mandrill_test_mail') {
+          $mailsystem_config->set($sender_key, 'mailchimp_transactional_test_mail');
+          $changed = TRUE;
+        }
+
+        $formatter_key = 'modules.' . $module . '.' . $key . '.formatter';
+        $formatter = $mailsystem_config->get($formatter_key);
+        if ($formatter == 'mandrill_mail') {
+          $mailsystem_config->set($formatter_key, 'mailchimp_transactional_mail');
+          $changed = TRUE;
+        }
+        elseif ($formatter == 'mandrill_test_mail') {
+          $mailsystem_config->set($formatter_key, 'mailchimp_transactional_test_mail');
+          $changed = TRUE;
+        }
+      }
+    }
+
+    if ($changed) {
+      $mailsystem_config->save();
+    }
+  }
+  else {
+    // Set default values for config which require dynamic values.
+    $config->set('mailchimp_transactional_from_email', \Drupal::config('system.site')->get('mail'))
+      ->set('mailchimp_transactional_from_name', \Drupal::config('system.site')->get('site_name'))
+      ->save();
+  }
+
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function mailchimp_transactional_uninstall() {
+  $queue = \Drupal::queue(MailchimpTransactionalInterface::MAILCHIMP_TRANSACTIONAL_QUEUE);
+  $queue->deleteQueue();
+}
+
+/**
+ * Implements hook_requirements().
+ */
+function mailchimp_transactional_requirements($phase): array {
+  $requirements = [];
+  if ($phase === 'runtime') {
+
+    // Check for Mailchimp Transactional library.
+    $requirements['mailchimp_transactional']['title'] = t('Mailchimp Transactional');
+    if (class_exists('MailchimpTransactional\ApiClient')) {
+      $requirements['mailchimp_transactional']['description'] = t('The Mailchimp Transactional library is installed correctly.');
+      $requirements['mailchimp_transactional']['severity'] = REQUIREMENT_OK;
+    }
+    else {
+      $requirements['mailchimp_transactional']['description'] = t('The Mailchimp Transactional library has not been installed correctly.');
+      $requirements['mailchimp_transactional']['severity'] = REQUIREMENT_ERROR;
+    }
+  }
+
+  return $requirements;
+}

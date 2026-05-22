@@ -1,0 +1,110 @@
+<?php
+
+/**
+ * @file
+ * Contains shared Mailchimp Transactional resources.
+ *
+ * Includes shared constants, help text, helper functions.
+ */
+
+declare(strict_types=1);
+
+use Drupal\mailchimp_transactional\MailchimpTransactionalInterface;
+
+/**
+ * Implements hook_help().
+ */
+function mailchimp_transactional_help($path, $arg) {
+  switch ($path) {
+    case 'help.page.mailchimp_transactional':
+      return '<p>' . t('Allow for site emails to be sent through the Mailchimp Transactional API.') . '</p>';
+  }
+}
+
+/**
+ * Display the names of the modules that are using Mailsystem.
+ *
+ * This is consistent with with Mailsystem's display. In the future, if
+ * Mailsystem were to provide an API for their labeling, that should be used.
+ *
+ * @return array
+ *   Array of all module names indexing to their "display" names and key,
+ *   plus a "--none--" option and a "Site-wide default" option.
+ */
+function mailchimp_transactional_get_module_key_names() {
+  $name_array = [
+    '' => '--none--',
+    'default-system' => 'Site-wide default',
+  ];
+  $descriptions = [];
+  foreach (\Drupal::service('extension.list.module')->getList() as $item) {
+    if ($item->status && !empty($item->info['name'])) {
+      $descriptions[strtolower($item->getName())] = (empty($item->info['package']) ? '' : $item->info['package']) . ' » ' . t(':module module', [':module' => $item->info['name']]);
+    }
+  }
+  asort($descriptions);
+
+  $mailsystem_config = \Drupal::service('config.factory')->get('mailsystem.settings');
+  $modules = $mailsystem_config->get('modules');
+
+  if (!empty($modules)) {
+    foreach (array_keys($modules) as $module_name) {
+      foreach ($modules[$module_name] as $key => $options) {
+        $id = $module_name . '_' . $key;
+
+        $title = preg_replace('/^.* » /', '', $descriptions[$module_name]);
+        $title .= " ($key key)";
+
+        $name_array[$id] = $title;
+      }
+    }
+  }
+
+  return $name_array;
+}
+
+/**
+ * Helper to generate an array of recipients.
+ *
+ * @param mixed $to
+ *   A comma delimited list of email addresses in 1 of 2 forms:
+ *   user@domain.com
+ *   any number of names <user@domain.com>.
+ *
+ * @return array
+ *   Array of email addresses
+ */
+function mailchimp_transactional_get_to($to) {
+  $recipients = [];
+  $to_array = explode(',', $to);
+  foreach ($to_array as $email) {
+    if (preg_match(MailchimpTransactionalInterface::MAILCHIMP_TRANSACTIONAL_EMAIL_REGEX, $email, $matches)) {
+      $recipients[] = [
+        'email' => $matches[2],
+        'name' => $matches[1],
+      ];
+    }
+    else {
+      $recipients[] = ['email' => $email];
+    }
+  }
+  return $recipients;
+}
+
+/**
+ * Implements hook_queue_info_alter().
+ */
+function mailchimp_transactional_queue_info_alter(&$queues) {
+  $config = \Drupal::config('mailchimp_transactional.settings');
+  $async = $config->get('mailchimp_transactional_process_async');
+
+  if (empty($async) || !isset($queues['mailchimp_transactional_queue'])) {
+    return;
+  }
+
+  $timeout = $config->get('mailchimp_transactional_queue_worker_timeout');
+
+  if (isset($timeout) && $timeout > 0) {
+    $queues['mailchimp_transactional_queue']['cron']['time'] = $timeout;
+  }
+}

@@ -1,0 +1,14 @@
+{% set titulo = content['#block_content'].field_title.value %}
+{% set link = content['#block_content'].field_link %}
+<div class="content-banner-footer">
+{% block content %}
+    {{ content.field_background_image_desk }}
+
+    <div class="content-banner-f">
+        <h2>{{ titulo }}</h2>
+        <p>{{ content['#block_content'].body.0.value|raw }}</p>
+        <div class="btn-red" style="width: 60px;"><a target="_blank" href="{{ link.0.url.toString() }}">{{ link.title }}</a></div>
+    </div>
+
+{% endblock %}
+</div>

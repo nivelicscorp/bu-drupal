@@ -1,0 +1,8 @@
+uuid: 6593394f-378a-455d-bf7b-5c057215d17f
+langcode: es
+status: true
+dependencies: {  }
+id: main-menu-bu
+label: 'Main Menu B&U es'
+description: 'Main Menu B&U'
+locked: false

@@ -1,0 +1,32 @@
+mailchimp_transactional_template.admin:
+  path: '/admin/config/services/mailchimp_transactional/templates'
+  defaults:
+    _entity_list: 'mailchimp_transactional_template'
+    _title: 'Mailchimp Transactional Template Maps'
+  requirements:
+    _permission: 'administer mailchimp transactional templates'
+    _mailchimp_transactional_configuration_access_check: 'TRUE'
+
+mailchimp_transactional_template.add:
+  path: '/admin/config/services/mailchimp_transactional/templates/add'
+  defaults:
+    _entity_form: 'mailchimp_transactional_template.add'
+    _title: 'Add Template Map'
+  requirements:
+    _permission: 'administer mailchimp transactional templates'
+
+entity.mailchimp_transactional_template.edit_form:
+  path: '/admin/config/services/mailchimp_transactional/templates/{mailchimp_transactional_template}'
+  defaults:
+    _entity_form: 'mailchimp_transactional_template.edit'
+    _title: 'Edit Template Map'
+  requirements:
+    _permission: 'administer mailchimp transactional templates'
+
+entity.mailchimp_transactional_template.delete_form:
+  path: '/admin/config/services/mailchimp_transactional/templates/{mailchimp_transactional_template}/delete'
+  defaults:
+    _entity_form: 'mailchimp_transactional_template.delete'
+    _title: 'Delete Template Map'
+  requirements:
+    _permission: 'administer mailchimp transactional templates'

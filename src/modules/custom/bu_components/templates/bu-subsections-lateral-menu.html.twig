@@ -1,0 +1,18 @@
+{% set container_classes = [
+  'subsections-lateral-menu-container',
+  is_floating ? 'is-floating',
+  ]
+%}
+<div {{ attributes.addClass(container_classes) }}>
+
+  <ul>
+    {% for item in items %}
+      {% set item_classes = [
+          item.active ? 'active',
+        ]
+      %}
+      <li class="{{ item_classes|join(' ') }}"><h3><a href="{{ item.url }}">{{ item.text }}</a></h3></li>
+          {% endfor %} 
+  </ul>
+
+</div>

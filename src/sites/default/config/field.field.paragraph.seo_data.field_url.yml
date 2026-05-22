@@ -1,0 +1,19 @@
+uuid: d10190f2-3b88-48ce-989f-a02def43f7f6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_url
+    - paragraphs.paragraphs_type.seo_data
+id: paragraph.seo_data.field_url
+field_name: field_url
+entity_type: paragraph
+bundle: seo_data
+label: URL
+description: 'URL relativa a la cual se le van a aplicar los campos de SEO, debe iniciar con /'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

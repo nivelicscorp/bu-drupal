@@ -1,0 +1,13 @@
+name: Images Optimizer
+description: 'Provide a simple way to optimize uploaded images.'
+package: Performance
+type: module
+# core: 8.x
+dependencies:
+  - drupal:file
+
+# Information added by Drupal.org packaging script on 2018-09-17
+version: '8.x-1.0-alpha2'
+core: '8.x'
+project: 'images_optimizer'
+datestamp: 1537182784

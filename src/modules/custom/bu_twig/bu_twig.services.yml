@@ -1,0 +1,6 @@
+services:
+  twig_food.twig_extension:
+    class: Drupal\bu_twig\TwigExtension\Util
+    arguments: ['@entity_type.manager', '@renderer', '@url_generator', '@theme.manager', '@date.formatter', '@file_url_generator']
+    tags:
+      - { name: twig.extension }

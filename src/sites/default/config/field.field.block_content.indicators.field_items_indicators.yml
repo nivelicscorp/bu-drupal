@@ -1,0 +1,46 @@
+uuid: 44113a3e-45b6-4315-85c7-5d04e38dae99
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.indicators
+    - field.storage.block_content.field_items_indicators
+    - paragraphs.paragraphs_type.indicators
+  module:
+    - entity_reference_revisions
+id: block_content.indicators.field_items_indicators
+field_name: field_items_indicators
+entity_type: block_content
+bundle: indicators
+label: 'Items indicators'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      indicators: indicators
+    negate: 0
+    target_bundles_drag_drop:
+      agenda_del_evento:
+        weight: 7
+        enabled: false
+      conferencistas:
+        weight: 8
+        enabled: false
+      datos_evento:
+        weight: 9
+        enabled: false
+      indicators:
+        weight: 10
+        enabled: true
+      main_banner:
+        weight: 11
+        enabled: false
+      text_box:
+        weight: 12
+        enabled: false
+field_type: entity_reference_revisions

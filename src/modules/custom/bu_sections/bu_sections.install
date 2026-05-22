@@ -1,0 +1,91 @@
+<?php
+
+/**
+ * Set default value for block ids used in Section pages
+ */
+function bu_sections_update_8001() {
+  $block_ids = [
+    'contactenos' => 7,
+    'testimoniales_por_seccion' => 8,
+    'reconocimientos' => 9,
+    'buzon_sugerencias' => 10,
+  ];
+
+  \Drupal::state()->set('bu_common_content_block_ids', $block_ids);
+}
+
+/**
+ * Set a state with the uuid of the section term pasantías de verano
+ */
+function bu_sections_update_8002() {
+  $section_uuids = [
+    'pasantias_verano' => 'ad0fd027-3bb3-4779-97fb-c0908e90a515',
+  ];
+
+  \Drupal::state()->set('bu_section_terms_uuids', $section_uuids);
+}
+
+/**
+ * For all existing section terms set the automatic generation of URL alias 
+ */
+function bu_sections_update_8003() {
+  $query = \Drupal::entityQuery('taxonomy_term');
+  $query->condition('vid', 'section');
+  $entity_ids = $query->execute();
+
+  $entity_manager = \Drupal::entityTypeManager();
+  $terms = $entity_manager->getStorage('taxonomy_term')->loadMultiple($entity_ids);
+
+  foreach ($terms as $term) {
+    $term->set("path", ["pathauto" => TRUE]); //this line is not doing anything
+    $term->save();
+  }
+}
+
+/**
+ * For all existing areas and indrustrias terms set the automatic generation of URL alias 
+ */
+function bu_sections_update_8004() {
+  $query = \Drupal::entityQuery('taxonomy_term');
+  $query->condition('vid', ['areas', 'indrustrias'], 'IN');
+  $entity_ids = $query->execute();
+
+  $entity_manager = \Drupal::entityTypeManager();
+  $terms = $entity_manager->getStorage('taxonomy_term')->loadMultiple($entity_ids);
+
+  foreach ($terms as $term) {
+    $term->set("path", ["pathauto" => TRUE]); //this line is not doing anything
+    $term->save();
+  }
+}
+/**
+ * For all existing nodes bulletin, lawyer and noticia set the automatic generation of URL alias 
+ */
+function bu_sections_update_8005() {
+  $query = \Drupal::entityQuery('node');
+  $query->condition('type', ['bulletin', 'lawyer ', 'noticia'], 'IN');
+  $entity_ids = $query->execute();
+
+  $entity_manager = \Drupal::entityTypeManager();
+  $nodes = $entity_manager->getStorage('node')->loadMultiple($entity_ids);
+
+  foreach ($nodes as $term) {
+    $term->set("path", ["pathauto" => TRUE]); //this line is not doing anything
+    $term->save();
+  }
+}
+
+/**
+ * Set a state with the uuid of the section terms alumni & trabaje con nosotros
+ */
+function bu_sections_update_8006() {
+  $new_section_uuids = [
+    'alumni' => '5849644b-6cc4-4e57-b181-f63b40094037',
+    'trabaje_con_nosotros' => '5f1f5f67-7e09-4f58-b17b-f793366fe030',
+    'vinculese_a_bu' => 'cfbaeb51-5470-49ad-8d63-34f4cc365efc',
+  ];
+
+  $section_terms_uuids = \Drupal::state()->get('bu_section_terms_uuids', []);
+  $section_terms_uuids = array_merge($section_terms_uuids, $new_section_uuids);
+  \Drupal::state()->set('bu_section_terms_uuids', $section_terms_uuids);
+}

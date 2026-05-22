@@ -1,0 +1,54 @@
+<?php
+
+/**
+ * @file
+ * Install, update, and uninstall routines.
+ */
+
+declare(strict_types=1);
+
+use Drupal\user\Entity\Role;
+
+/**
+ * Implements hook_install().
+ *
+ * Migrates template entities and role permissions from Mandrill templates
+ * module.
+ *
+ * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+ * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+ * @throws \Drupal\Core\Entity\EntityStorageException
+ */
+function mailchimp_transactional_template_install() {
+  if (\Drupal::moduleHandler()->moduleExists('mandrill_template')) {
+    $field_map = [
+      'id' => 'id',
+      'label' => 'label',
+      'template_id' => 'template_name',
+      'main_section' => 'content_area',
+      'mailsystem_key' => 'mailsystem_key',
+    ];
+
+    $mandrill_entities = \Drupal::entityTypeManager()->getStorage('mandrill_template_map')->loadMultiple();
+
+    foreach ($mandrill_entities as $mandrill_entity) {
+      $new_fields = [];
+      foreach ($field_map as $old_field => $new_field) {
+        $new_fields[$new_field] = $mandrill_entity->{$old_field};
+      }
+
+      \Drupal::entityTypeManager()
+        ->getStorage('mailchimp_transactional_template')
+        ->create($new_fields)
+        ->save();
+    }
+    if ($roles = Role::loadMultiple()) {
+      foreach ($roles as $role) {
+        if ($role->hasPermission('configure mandrill templates')) {
+          $role->grantPermission('administer mailchimp transactional templates');
+          $role->save();
+        }
+      }
+    }
+  }
+}

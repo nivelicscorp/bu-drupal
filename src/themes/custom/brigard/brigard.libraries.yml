@@ -1,0 +1,25 @@
+global-styling:
+  css:
+    theme:
+      css/default.css: {}
+      css/jquery.jscrollpane.css: {}
+      css/slick.css: {}
+      css/style.css: {}
+      css/styles-brigard.css: {}
+  js:
+    js/custom_selec.js: {weight: -20 } 
+    js/charts_google.js: {}
+    js/slick.js: {}
+    js/jquery.uniform.js: {}
+    js/select.js: {}
+    js/isotope.js: {}
+    js/masonry.js: {}
+    js/jquery.mousewheel.js: {}
+    js/jquery.jscrollpane.js: {}
+    js/jquery-scrolltofixed-min.js: {}
+    js/custom.js: {}
+    
+
+drupal.dialog.ajax:
+  js:
+    js/misc/dialog.ajax.js: {}

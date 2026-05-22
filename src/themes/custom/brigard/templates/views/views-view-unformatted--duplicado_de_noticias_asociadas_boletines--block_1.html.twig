@@ -1,0 +1,37 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a view of unformatted rows.
+ *
+ * Available variables:
+ * - title: The title of this group of rows. May be empty.
+ * - rows: A list of the view's row items.
+ *   - attributes: The row's HTML attributes.
+ *   - content: The row's content.
+ * - view: The view object.
+ * - default_row_class: A flag indicating whether default classes should be
+ *   used on rows.
+ *
+ * @see template_preprocess_views_view_unformatted()
+ *
+ * @ingroup themeable
+ */
+#}
+{% for row in rows %}
+  {%
+    set row_classes = [
+      default_row_class ? 'views-row',
+    ]
+  %}
+  
+  {% if row.title %}
+    <p class="title-section-search">{{ row.title }}</p>
+  {% endif %}
+  {% if loop.index == 1 %}
+  <div{{ row.attributes.addClass(row_classes) }}>
+    <a href="{{ row.content }}" class="anterior-link">Anterior</a>
+  </div>
+  {% else %}
+    <a href="{{ row.content }}" class="siguiente-link">Siguiente</a>
+  {% endif %}
+{% endfor %}

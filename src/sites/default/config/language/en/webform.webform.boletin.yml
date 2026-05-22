@@ -1,0 +1,36 @@
+elements: |
+  processed_text:
+    '#text': "<figure><img alt=\"Brigard Urrutia\" height=\"55\" src=\"/themes/custom/brigard/img/newsletter.png\" width=\"55\" /></figure><h2 class=\"text-align-center\">Subscribe to our newsletter</h2><p class=\"text-align-center\">Receive the latest news from Brigard Urrutia in your email.<br />Subscribe here and stay informed.</p>\n"
+  titulo:
+    '#text': "<p class=\"despliegue-formulario text-align-center\">subscribe</p>\n"
+  formulario_de_suscripcion:
+    '#title': 'Subscription form'
+  nombre_completo:
+    '#title': 'Full name'
+    '#placeholder': 'Full name'
+    '#required_error': 'Required field'
+  apellidos:
+    '#title': 'Last name'
+    '#placeholder': 'Last name'
+  correo_electronico_:
+    '#title': Email
+    '#required_error': 'Required field'
+    '#placeholder': Email
+  empresa:
+    '#title': Company
+    '#required_error': 'Required field'
+    '#placeholder': Company
+  area_de_practica:
+    '#title': 'Practice area'
+    '#more_title': 'Practice area'
+    '#default_value':
+      - 'Practice area'
+  actions:
+    '#submit__label': SUBSCRIBE
+title: Bulletin
+settings:
+  confirmation_message: 'Your information was received correctly.'
+handlers:
+  correo_electronico:
+    settings:
+      body: "<p>Enviado el&nbsp;[webform_submission:created]</p>\r\n\r\n<p>Enviado por: [webform_submission:user]</p>\r\n\r\n<p>Informaci&oacute;n enviada:</p>\r\n<strong>Nombre</strong>: [webform_submission:values:nombre_completo]<br />\r\n<strong>Correo electr&oacute;nico</strong>: [webform_submission:values:correo_electronico_]<br />\r\n<strong>Empresa</strong>: [webform_submission:values:empresa]<br />\r\n<strong>&Aacute;rea de pr&aacute;ctica:&nbsp;</strong>[webform_submission:values:area_de_practica]"

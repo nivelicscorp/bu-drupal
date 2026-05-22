@@ -1,0 +1,4 @@
+mailchimp_transactional_template.admin:
+  route_name: mailchimp_transactional_template.admin
+  title: 'Templates'
+  base_route: mailchimp_transactional.admin

@@ -1,0 +1,18 @@
+uuid: dc7043fe-e88d-4625-820c-7ead69a2d412
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.permiso_de_ingreso
+id: taxonomy_term.permiso_de_ingreso.metatag
+field_name: metatag
+entity_type: taxonomy_term
+bundle: permiso_de_ingreso
+label: Metatags
+description: 'The meta tags for the entity.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: map

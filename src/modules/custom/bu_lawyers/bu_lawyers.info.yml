@@ -1,0 +1,7 @@
+name: BU Lawyers
+type: module
+description: Extends functionality regarding Lawyers
+core_version_requirement: ^8.8 || ^9 || ^10
+package: Custom
+dependencies:
+  - bu_general_features

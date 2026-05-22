@@ -1,0 +1,26 @@
+diff --git a/core/modules/views/js/ajax_view.js b/core/modules/views/js/ajax_view.js
+index a10eb83..37c898f 100644
+--- a/core/modules/views/js/ajax_view.js
++++ b/core/modules/views/js/ajax_view.js
+@@ -23,6 +23,10 @@
+   Drupal.views.ajaxView = function (settings) {
+     var selector = '.js-view-dom-id-' + settings.view_dom_id;
+     this.$view = $(selector);
++    
++    if (this.$view.length === 0) {
++      return;
++    }
+ 
+     var ajaxPath = drupalSettings.views.ajax_path;
+ 
+@@ -59,7 +63,9 @@
+       base: this.selector,
+       element: this.$view.get(0)
+     });
+-    this.refreshViewAjax = Drupal.ajax(selfSettings);
++    this.$view.once('ajax-refresh').each(function () {
++      this.refreshViewAjax = Drupal.ajax(selfSettings);
++    });
+   };
+ 
+   Drupal.views.ajaxView.prototype.attachExposedFormAjax = function () {

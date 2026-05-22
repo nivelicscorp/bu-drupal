@@ -1,0 +1,22 @@
+uuid: f2bb7701-6b0d-4f6d-bf91-ca626b762439
+langcode: es
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.recognition_items
+id: paragraph.recognition_items.status
+field_name: status
+entity_type: paragraph
+bundle: recognition_items
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

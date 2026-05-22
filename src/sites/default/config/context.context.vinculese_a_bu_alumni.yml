@@ -1,0 +1,48 @@
+uuid: 3acbd69f-e5e7-48c0-b4a3-2e63f0a18af9
+langcode: es
+status: true
+dependencies:
+  config:
+    - views.view.content_by_section
+  module:
+    - system
+    - views
+label: 'Vincúlese a BU - Alumni'
+name: vinculese_a_bu_alumni
+group: theme
+description: ''
+requireAllConditions: false
+disabled: true
+conditions:
+  request_path:
+    id: request_path
+    negate: false
+    uuid: 528b890c-9025-4005-be4b-9c39a198cf7b
+    context_mapping: {  }
+    pages: /taxonomy/term/1146
+reactions:
+  blocks:
+    id: blocks
+    uuid: 7b21c1d0-71e8-49d5-af86-1117923a7048
+    blocks:
+      fb1e1498-2341-4950-8e55-459def167e2d:
+        uuid: fb1e1498-2341-4950-8e55-459def167e2d
+        id: 'views_block:content_by_section-block_content_by_section'
+        label: ''
+        provider: views
+        label_display: '0'
+        region: content
+        weight: '0'
+        custom_id: views_block_content_by_section_block_content_by_section
+        theme: brigard
+        css_class: ''
+        unique: 0
+        context_id: vinculese_a_bu_alumni
+        context_mapping:
+          field_section_target_id: '@custom_context_provider.taxonomy_term_context:taxonomy_term'
+        views_label: ''
+        items_per_page: none
+        override: {  }
+    include_default_blocks: 0
+    saved: false
+weight: 0

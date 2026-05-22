@@ -1,0 +1,13 @@
+_core:
+  default_config_hash: ZKQ03ePk4sH2zESRw4tdZYw__nG2YN4Ru5roPL23g3A
+langcode: es
+site_key: 6LcELzciAAAAAH-VCsPRdTvpqp0z0i-JTjOAYhQu
+secret_key: 6LcELzciAAAAAKF7mEBrjRU7i8doQZxYhooOSQ92
+verify_hostname: false
+use_globally: true
+widget:
+  theme: light
+  type: image
+  size: ''
+  tabindex: 0
+  noscript: true

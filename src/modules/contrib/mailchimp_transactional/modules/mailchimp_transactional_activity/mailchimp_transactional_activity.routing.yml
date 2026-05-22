@@ -1,0 +1,35 @@
+mailchimp_transactional_activity.admin:
+  path: '/admin/config/services/mailchimp_transactional/activity'
+  defaults:
+    _entity_list: 'mailchimp_transactional_activity'
+    _title: 'Mailchimp Transactional Activity Entities'
+  requirements:
+    _permission: 'administer mailchimp transactional activity'
+    _mailchimp_transactional_configuration_access_check: 'TRUE'
+
+mailchimp_transactional_activity.add:
+  path: '/admin/config/services/mailchimp_transactional/activity/add'
+  defaults:
+    _entity_form: 'mailchimp_transactional_activity.add'
+    _title: 'New Mailchimp Transactional Activity Entity'
+  requirements:
+    _permission: 'administer mailchimp transactional activity'
+
+entity.mailchimp_transactional_activity.edit_form:
+  path: '/admin/config/services/mailchimp_transactional/activity/{mailchimp_transactional_activity}'
+  defaults:
+    _entity_form: 'mailchimp_transactional_activity.edit'
+    _title: 'Edit Mailchimp Transactional Activity Entity'
+  requirements:
+    _permission: 'administer mailchimp transactional activity'
+
+entity.mailchimp_transactional_activity.delete_form:
+  path: '/admin/config/services/mailchimp_transactional/activity/{mailchimp_transactional_activity}/delete'
+  defaults:
+    _entity_form: 'mailchimp_transactional_activity.delete'
+    _title: 'Delete Mailchimp Transactional Activity'
+  requirements:
+    _permission: 'administer mailchimp transactional activity'
+
+route_callbacks:
+  - '\Drupal\mailchimp_transactional_activity\Routing\ActivityRoutes::routes'

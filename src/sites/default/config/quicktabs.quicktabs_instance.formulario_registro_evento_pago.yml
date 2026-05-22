@@ -1,0 +1,40 @@
+uuid: 2071acd4-bfb5-411b-9d87-41f921c4c31a
+langcode: es
+status: true
+dependencies: {  }
+id: formulario_registro_evento_pago
+label: 'Formulario registro evento pago'
+renderer: quick_tabs
+hide_empty_tabs: false
+default_tab: 0
+options:
+  accordion_tabs:
+    jquery_ui:
+      collapsible: false
+      heightStyle: auto
+  quick_tabs:
+    ajax: true
+configuration_data:
+  -
+    title: 'Persona Natural'
+    weight: 0
+    type: block_content
+    content:
+      node_content:
+        options:
+          nid: ''
+          view_mode: full
+          hide_title: true
+      block_content:
+        options:
+          bid: register_free_event_block
+          block_title: ''
+          display_title: true
+      view_content:
+        options:
+          vid: accordion_
+          display: default
+          args: ''
+      qtabs_content:
+        options:
+          machine_name: ''

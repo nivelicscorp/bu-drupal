@@ -1,0 +1,14 @@
+name: 'Select Translation'
+type: module
+description: 'Provides a Views filter to select which translation of a node should be displayed.'
+package: Multilingual
+core_version_requirement: ^9 || ^10 || ^11
+
+dependencies:
+  - drupal:language
+  - drupal:views
+
+# Information added by Drupal.org packaging script on 2024-08-27
+version: '2.0.0-alpha5'
+project: 'select_translation'
+datestamp: 1724782286

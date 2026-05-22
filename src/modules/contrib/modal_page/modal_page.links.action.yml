@@ -1,0 +1,9 @@
+modal_page.settings_action:
+  route_name: modal_page.settings
+  title: 'Modal Page Settings'
+modal_page.add_modal:
+  route_name: modal_page.add_modal
+  title: 'Add Modal'
+  appears_on:
+    - modal_page.default
+    - entity.modal_page_modal.canonical

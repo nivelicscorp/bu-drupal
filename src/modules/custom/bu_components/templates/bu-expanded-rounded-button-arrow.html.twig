@@ -1,0 +1,9 @@
+{% set link_classes = [
+  'btn-arrow',
+  plus_sign ? 'btn-plus',
+  ]
+%}
+
+<div class="button">
+  <a href="{{ link_url }}" {{ attributes.addClass(link_classes) }}>{{ link_text }}</a>
+</div>

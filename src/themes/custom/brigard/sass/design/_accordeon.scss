@@ -1,0 +1,118 @@
+.paragraph--type--accordion{
+	.field--name-field-label{
+		border-bottom: 1px solid hex-to-rgba($mainColor, 0.2);
+		color: $mainColor;
+		font-family: $secondFont;
+		font-size: 20px;
+		font-weight: bold;
+		margin-right: 40px;
+		padding: 63px 0 33px;
+		text-transform: uppercase;
+	}
+	.views-row{
+		.views-row{
+			border-bottom: 1px solid hex-to-rgba($mainColor, 0.2);
+			margin-right: 40px;
+		}
+	}
+	.container{
+		padding: 0;
+		width: 100%;
+	}
+	.ui-state-active{
+		background: none;
+		border: 0;
+		border-radius: 0;
+		.ui-accordion-header-icon{
+			&:after{
+				content: "\e904";
+				font-family: $iconFont;
+			}
+		}
+	}
+	.views-field-field-title{
+		padding: 20px 0 28px;
+		position: relative;
+		&:focus{
+			outline: none;
+		}
+	}
+	.ui-accordion-header-icon{
+		background: none;
+		position: absolute;
+		right: 16px;
+		top: 25px;
+		text-indent: inherit;
+		&:after{
+			content: "\e903";
+			color: $secondColor;
+			font-family: $iconFont;
+
+		}
+	}
+	.ui-accordion-header{
+		background: none;
+		border: 0;
+		border-radius: 0;
+		color: $blackTxt;
+		font-family: $secondFont;
+		font-size: 18px;
+		font-weight:500;
+		padding-right: 50px;
+		&.ui-accordion-header-collapsed{
+			.ui-accordion-header-icon{
+				&::after{
+					content: "\e903";
+				}
+			}
+		}
+	}
+	.ui-accordion-content{
+		border: 0;
+		color: $gray;
+		font-family: $mainFont;
+		font-size: 18px;
+		margin-top: 6px;
+		padding: 0 0 20px;
+		ul{
+			padding: 0;
+			li{
+				color:$gray;
+				font-size:16px;
+				line-height:22px;
+				font-weight:500;
+				list-style: none;
+				margin-bottom: 18px;
+				padding-left: 20px;
+				position:relative;
+				&:before{
+					content: "";
+					background: $mainColor;
+					border-radius: 100%;
+					display: inline-block;
+					height: 8px;
+					left:0;
+					margin-right: 20px;
+					position:absolute;
+					top:7px;
+					width: 8px;
+
+				}
+			}
+		}
+	}
+}
+
+
+@media screen and (max-width: 960px){
+	.paragraph--type--accordion{
+		.field--name-field-label{
+			margin-right: 0;
+		}
+		.views-row{
+			.views-row{
+				margin-right: 0;
+			}
+		}
+	}
+}

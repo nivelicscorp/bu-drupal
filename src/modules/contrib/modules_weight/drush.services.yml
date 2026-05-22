@@ -1,0 +1,11 @@
+services:
+  modules_weight.commands:
+    class: Drupal\modules_weight\Commands\ModulesWeightCommands
+    arguments:
+        - '@config.factory'
+        - '@module_handler'
+        - '@info_parser'
+        - '@extension.list.module'
+        - '@modules_weight'
+    tags:
+      -  { name: drush.command }

@@ -1,0 +1,135 @@
+social_media.item.*:
+  type: mapping
+  label: 'Item'
+  mapping:
+    enable:
+      type: integer
+      label: 'Enable'
+    text:
+      type: label
+      label: 'Text'
+    api_url:
+      type: label
+      label: 'API url'
+    api_event:
+      type: label
+      label: 'API event'
+    default_img:
+      type: integer
+      label: 'Default image'
+    weight:
+      type: integer
+      label: 'Weight'
+    attributes:
+      type: label
+      label: 'Attributes'
+    drupalSettings:
+      type: label
+      label: 'Drupal settings'
+    library:
+      type: label
+      label: 'Library'
+    img:
+      type: label
+      label: 'Image'
+
+social_media.item.email:
+  type: mapping
+  label: 'Item'
+  mapping:
+    enable:
+      type: integer
+      label: 'Enable'
+    text:
+      type: label
+      label: 'Text'
+    api_url:
+      type: label
+      label: 'API url'
+    api_event:
+      type: label
+      label: 'API event'
+    default_img:
+      type: integer
+      label: 'Default image'
+    weight:
+      type: integer
+      label: 'Weight'
+    attributes:
+      type: label
+      label: 'Attributes'
+    drupalSettings:
+      type: label
+      label: 'Drupal settings'
+    library:
+      type: label
+      label: 'Library'
+    img:
+      type: label
+      label: 'Image'
+    enable_forward:
+      type: integer
+      label: 'Enable forward'
+    show_forward:
+      type: integer
+      label: 'Show forward'
+
+social_media.settings:
+  type: config_object
+  label: 'Social media settings'
+  mapping:
+    social_media:
+      type: mapping
+      label: 'social media'
+      mapping:
+        facebook_share:
+          type: social_media.item.facebook_share
+          label: 'Facebook share'
+        facebook_msg:
+          type: social_media.item.facebook_msg
+          label: 'Facebook messenger'
+        linkedin:
+          type: social_media.item.linkedin
+          label: 'Linkedin'
+        twitter:
+          type: social_media.item.twitter
+          label: 'Twitter'
+        pinterest:
+          type: social_media.item.pinterest
+          label: 'Pinterest'
+        whatsapp:
+          type: social_media.item.whatsapp
+          label: 'whatsapp'
+        email:
+          type: social_media.item.email
+          label: 'email'
+        print:
+          type: social_media.item.print
+          label: 'Print'
+
+field.widget.settings.social_media_default:
+  type: mapping
+  label: 'Boolean checkbox display format settings'
+  mapping:
+    display_label:
+      type: boolean
+      label: 'Display label'
+
+field.field_settings.social_media:
+  label: 'Boolean settings'
+  type: mapping
+  mapping:
+    on_label:
+      type: label
+      label: 'On label'
+    off_label:
+      type: label
+      label: 'Off label'
+
+field.value.social_media:
+  type: mapping
+  label: 'Default value'
+  mapping:
+    value:
+      type: boolean
+      label: 'Value'

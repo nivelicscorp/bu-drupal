@@ -1,0 +1,15 @@
+{% set conBody %}
+     {{ content.body }}
+{% endset %}
+<div class="content-banner-footer">
+{% block content %}
+    {{ content.field_background_image_desk }}
+
+    <div class="content-banner-f">
+        <h2>{{ content.field_title }}</h2>
+        <p>{{ conBody|striptags }}</p>
+        {{ content.field_link }}
+    </div>
+
+{% endblock %}
+</div>

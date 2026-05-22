@@ -1,0 +1,57 @@
+uuid: 1d65baef-17f2-45ea-83eb-29d0178b42cd
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.node.speakers.body
+    - field.field.node.speakers.field_area
+    - field.field.node.speakers.field_industrias
+    - field.field.node.speakers.field_metatags
+    - node.type.speakers
+  module:
+    - metatag
+    - text
+    - user
+id: node.speakers.default
+targetEntityType: node
+bundle: speakers
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_area:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_industrias:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_metatags:
+    type: metatag_empty_formatter
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true
+  social_simple_buttons: true

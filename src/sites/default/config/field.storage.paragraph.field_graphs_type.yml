@@ -1,0 +1,39 @@
+uuid: 134fc110-0011-431e-a050-4fdde152f481
+langcode: es
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_graphs_type
+field_name: field_graphs_type
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: pie
+      label: Pie
+    -
+      value: bar
+      label: Bar
+    -
+      value: columna
+      label: Columna
+    -
+      value: line
+      label: Line
+    -
+      value: area
+      label: Área
+    -
+      value: piechart
+      label: Piechart
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

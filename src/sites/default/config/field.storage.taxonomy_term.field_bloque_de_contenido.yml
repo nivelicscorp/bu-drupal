@@ -1,0 +1,19 @@
+uuid: 6b241de8-cdb3-4786-a169-49965b192b0f
+langcode: es
+status: true
+dependencies:
+  module:
+    - taxonomy
+    - text
+id: taxonomy_term.field_bloque_de_contenido
+field_name: field_bloque_de_contenido
+entity_type: taxonomy_term
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

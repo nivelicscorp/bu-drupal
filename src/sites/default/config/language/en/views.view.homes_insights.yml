@@ -1,0 +1,15 @@
+display:
+  page_4:
+    display_options:
+      filters:
+        field_area_target_id:
+          expose:
+            label: 'Practice areas'
+          group_info:
+            label: 'Practice areas (field_area)'
+        field_industrias_target_id:
+          expose:
+            label: Industries
+      exposed_form:
+        options:
+          submit_button: Filter

@@ -1,0 +1,31 @@
+uuid: dab69e94-af58-451c-bc6e-2f85fe5716d3
+langcode: es
+status: true
+dependencies: {  }
+name: img_300_x_192
+label: 'img 300 x 192'
+effects:
+  b21a13a3-e2b0-41a4-8476-4505e26eeeb0:
+    uuid: b21a13a3-e2b0-41a4-8476-4505e26eeeb0
+    id: image_scale
+    weight: -8
+    data:
+      width: 300
+      height: 192
+      upscale: false
+  f882d273-9c2c-4c25-adeb-efde9de4c64f:
+    uuid: f882d273-9c2c-4c25-adeb-efde9de4c64f
+    id: image_crop
+    weight: -9
+    data:
+      width: 300
+      height: 192
+      anchor: center-center
+  567c2d55-0982-4d72-98bc-cccd8f63115c:
+    uuid: 567c2d55-0982-4d72-98bc-cccd8f63115c
+    id: image_scale
+    weight: -10
+    data:
+      width: 300
+      height: null
+      upscale: false

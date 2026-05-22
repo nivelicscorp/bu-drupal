@@ -1,0 +1,27 @@
+uuid: c5e90f31-f722-4498-84f5-29a6fb496555
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+    - social_simple
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+  social_simple:
+    share: 1
+    title: ''
+    networks:
+      twitter: twitter
+      facebook: facebook
+      googleplus: googleplus
+      linkedin: linkedin
+    hashtags: '0'
+name: Lawyer
+type: lawyer
+description: ''
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: false

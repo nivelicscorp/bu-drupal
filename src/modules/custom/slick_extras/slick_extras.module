@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * @file
+ * Provides Slick extra utilities.
+ */
+
+/**
+ * Returns the path.
+ *
+ * @todo remove for Bazy:2.6+ when min D9.3.
+ */
+function slick_extras_get_path($type, $name, $absolute = FALSE) {
+  $function = 'drupal_get_path';
+  if (\Drupal::hasService('extension.path.resolver')) {
+    $path = \Drupal::service('extension.path.resolver')->getPath($type, $name);
+  }
+  else {
+    //$path = is_callable($function) ? $function($type, $name) : '';
+    switch ($type) {
+      case 'module':
+        $path = \Drupal::service('extension.list.module')->getPath($name);
+        break;
+      case 'theme':
+        $path = \Drupal::service('extension.list.theme')->getPath($name);
+        break;
+      case 'profile':
+        $path = \Drupal::service('extension.list.profile')->getPath($name);
+        break;
+        $path = false; 
+    }
+  }
+  return $absolute ? base_path() . $path : $path;
+}

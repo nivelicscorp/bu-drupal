@@ -1,0 +1,21 @@
+uuid: 3b51f75a-1c0f-4416-b946-c14868084a2e
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_descripcion
+    - paragraphs.paragraphs_type.statistical_graphs
+  module:
+    - text
+id: paragraph.statistical_graphs.field_descripcion
+field_name: field_descripcion
+entity_type: paragraph
+bundle: statistical_graphs
+label: Descripción
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

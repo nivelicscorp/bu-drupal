@@ -1,0 +1,19 @@
+uuid: 74aa3db1-6343-4295-a152-0f81935c7821
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_label
+    - paragraphs.paragraphs_type.agenda_del_evento
+id: paragraph.agenda_del_evento.field_label
+field_name: field_label
+entity_type: paragraph
+bundle: agenda_del_evento
+label: Hora
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

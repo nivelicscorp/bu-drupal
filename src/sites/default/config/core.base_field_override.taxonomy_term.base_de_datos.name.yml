@@ -1,0 +1,18 @@
+uuid: 67adfda5-c608-4036-8e66-8d62f436a60f
+langcode: es
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.base_de_datos
+id: taxonomy_term.base_de_datos.name
+field_name: name
+entity_type: taxonomy_term
+bundle: base_de_datos
+label: Nombre
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

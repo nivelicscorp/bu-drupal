@@ -1,0 +1,49 @@
+uuid: f723ed22-de19-4061-b027-88370397ad84
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_statistical_graphs
+    - node.type.indicators
+    - paragraphs.paragraphs_type.statistical_graphs
+  module:
+    - entity_reference_revisions
+id: node.indicators.field_statistical_graphs
+field_name: field_statistical_graphs
+entity_type: node
+bundle: indicators
+label: 'Statistical graphs'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      statistical_graphs: statistical_graphs
+    negate: 0
+    target_bundles_drag_drop:
+      agenda_del_evento:
+        weight: 10
+        enabled: false
+      conferencistas:
+        weight: 11
+        enabled: false
+      indicators:
+        weight: 13
+        enabled: false
+      items_indicators:
+        weight: 14
+        enabled: false
+      main_banner:
+        weight: 15
+        enabled: false
+      statistical_graphs:
+        weight: 9
+        enabled: true
+      text_box:
+        weight: -15
+        enabled: false
+field_type: entity_reference_revisions

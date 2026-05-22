@@ -1,0 +1,155 @@
+.ic-linkedin{
+	&:after{
+		content: "\e902";
+		@extend %icons;
+	}
+}
+.ic-twitter{
+	&:after{
+		content: "\e900";
+		@extend %icons;
+	}
+}
+.ic-facebook{
+	&:after{
+		content: "\e901";
+		@extend %icons;
+	}
+}
+.ic-letter{
+	&:after{
+		content: "\e901";
+		@extend %icons;
+	}
+}
+.icon-letter{
+	&:after{
+		content: "\e91d";
+		@extend %icons;
+	}
+}
+.icon-whatsapp{
+	&:after{
+		content: "\e91e";
+		@extend %icons;
+	}
+}
+.icon-ticket{
+	&:before {
+		content: "\e91f";
+	}
+}
+.icon-icons-01:before {
+  content: "\e900";
+}
+.icon-icons-02:before {
+  content: "\e901";
+}
+.icon-icons-03:before {
+  content: "\e902";
+}
+.icon-icons-04:before {
+  content: "\e903";
+}
+.icon-icons-052:before {
+  content: "\e904";
+}
+.icon-icons-062:before {
+  content: "\e905";
+}
+.icon-icons-072:before {
+  content: "\e906";
+}
+.icon-icons-082:before {
+  content: "\e907";
+}
+.icon-icons-092:before {
+  content: "\e908";
+}
+.icon-icons-102:before {
+  content: "\e909";
+}
+.icon-icons-112:before {
+  content: "\e90a";
+}
+.icon-icons-122:before {
+  content: "\e90b";
+}
+.icon-icons-05:before {
+  content: "\e90c";
+}
+.icon-close:before {
+  content: "\e90d";
+}
+.icon-icons-06:before {
+  content: "\e90e";
+}
+.icon-icons-07:before {
+  content: "\e90f";
+}
+.icon-icons-08:before {
+  content: "\e910";
+}
+.icon-icons-09:before {
+  content: "\e911";
+}
+.icon-icons-10:before {
+  content: "\e912";
+}
+.icon-close2:before {
+  content: "\e913";
+}
+.icon-icons-11:before {
+  content: "\e914";
+}
+.icon-check:before {
+  content: "\e915";
+}
+.icon-icons-12:before {
+  content: "\e916";
+}
+.icon-icons-13:before {
+  content: "\e917";
+}
+.icon-icons-14:before {
+  content: "\e918";
+}
+.icon-icons-21:before {
+  content: "\e919";
+}
+.icon-buscador:before {
+  content: "\e91a";
+}
+.icon-pesos:before {
+  content: "\e91b";
+}
+.icon-Vector-Smart-Object2:before {
+  content: "\e91c";
+}
+.icon-letter:before {
+  content: "\e91d";
+}
+.icon-whatsapp:before {
+  content: "\e91e";
+}
+.icon-ticket:before {
+  content: "\e91f";
+}
+.icon-info:before {
+  content: "\e926";
+}
+.icon-location-events:before {
+  content: "\e920";
+}
+.icon-hour-events:before {
+  content: "\e921";
+}
+.icon-cam-events:before {
+  content: "\e922";
+}
+.icon-calendar-events:before {
+  content: "\e923";
+}
+.icon-virtual-events:before {
+  content: "\e924";
+}

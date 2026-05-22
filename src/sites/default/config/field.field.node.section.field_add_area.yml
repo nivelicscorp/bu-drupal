@@ -1,0 +1,23 @@
+uuid: bc9a93aa-5af4-4419-a285-915ac137dfd1
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_add_area
+    - node.type.section
+id: node.section.field_add_area
+field_name: field_add_area
+entity_type: node
+bundle: section
+label: 'Agregar areas de práctica o industria'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

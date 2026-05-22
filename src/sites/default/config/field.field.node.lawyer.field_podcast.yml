@@ -1,0 +1,28 @@
+uuid: 524cc926-db35-4fa7-98e0-a0cbe88918e0
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_podcast
+    - node.type.lawyer
+    - node.type.podcast
+id: node.lawyer.field_podcast
+field_name: field_podcast
+entity_type: node
+bundle: lawyer
+label: Podcast
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      podcast: podcast
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

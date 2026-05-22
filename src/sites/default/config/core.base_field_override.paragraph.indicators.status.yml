@@ -1,0 +1,22 @@
+uuid: e6ea1fdf-57d5-4557-bb78-1ab6dd20b67f
+langcode: es
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.indicators
+id: paragraph.indicators.status
+field_name: status
+entity_type: paragraph
+bundle: indicators
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

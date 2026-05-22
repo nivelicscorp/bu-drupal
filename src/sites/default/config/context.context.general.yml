@@ -1,0 +1,335 @@
+uuid: 8124ef29-f4ac-424c-a270-3cdd9f877448
+langcode: es
+status: true
+dependencies:
+  config:
+    - system.menu.menu-top
+    - system.menu.noticias-y-eventos
+    - system.menu.quienes-somos
+    - system.menu.quienes-somos-pie-de-pagina
+    - system.menu.valor-compartido
+    - system.menu.vinculese-a-bu
+    - webform.webform.boletin
+  content:
+    - 'block_content:footer_:99328e9f-101d-4a42-bf1c-2a2a62eb1d60'
+    - 'block_content:icono_item_menu:205bc1f2-746e-4750-af96-2b8349323bf0'
+  module:
+    - block_content
+    - dropdown_language
+    - menu_block
+    - search
+    - system
+    - we_megamenu
+    - webform
+label: General
+name: general
+group: theme
+description: ''
+requireAllConditions: true
+disabled: false
+conditions:
+  current_theme:
+    id: current_theme
+    theme: brigard
+    negate: 0
+    uuid: bb2deb66-0cf4-4fda-8f1d-ce63eb4909e8
+    context_mapping: {  }
+  request_path_exclusion:
+    id: request_path_exclusion
+    negate: null
+    uuid: 8ecd8e97-a531-4e86-90f1-596cde22ee96
+    context_mapping: {  }
+    pages: '<front>'
+reactions:
+  blocks:
+    id: blocks
+    uuid: b1e3ed72-2ceb-4dbb-9870-788cf1b11849
+    blocks:
+      14cbb5d4-9d0a-4a72-9278-5620a38d99a5:
+        uuid: 14cbb5d4-9d0a-4a72-9278-5620a38d99a5
+        id: 'block_content:99328e9f-101d-4a42-bf1c-2a2a62eb1d60'
+        label: footer
+        provider: block_content
+        label_display: '0'
+        region: footer
+        weight: '-9'
+        custom_id: block_content_99328e9f_101d_4a42_bf1c_2a2a62eb1d60
+        theme: brigard
+        css_class: ''
+        unique: 0
+        context_id: general
+        context_mapping: {  }
+        status: true
+        info: ''
+        view_mode: full
+      1cd977bc-3c67-4b5b-ab3f-31ce3d967421:
+        uuid: 1cd977bc-3c67-4b5b-ab3f-31ce3d967421
+        id: 'block_content:205bc1f2-746e-4750-af96-2b8349323bf0'
+        label: 'Logo Brigard Urrutia'
+        provider: block_content
+        label_display: '0'
+        region: navigation_collapsible
+        weight: '-7'
+        custom_id: block_content_205bc1f2_746e_4750_af96_2b8349323bf0
+        theme: brigard
+        css_class: 'logo-theme h-card'
+        unique: 0
+        context_id: general
+        context_mapping: {  }
+        status: true
+        info: ''
+        view_mode: full
+      e4e804ef-652a-42e7-80db-974ca6ad48bb:
+        uuid: e4e804ef-652a-42e7-80db-974ca6ad48bb
+        id: 'we_megamenu_block:main-menu-bu'
+        label: 'Main Menu B&U es'
+        provider: we_megamenu
+        label_display: '0'
+        region: navigation_collapsible
+        weight: '-6'
+        custom_id: we_megamenu_block_main_menu_bu
+        theme: brigard
+        css_class: ''
+        unique: 0
+        context_id: general
+        context_mapping: {  }
+      09b15e77-b88c-46c8-bf4e-9a761c02fb6f:
+        uuid: 09b15e77-b88c-46c8-bf4e-9a761c02fb6f
+        id: 'menu_block:quienes-somos'
+        label: 'Quienes somos header'
+        provider: menu_block
+        label_display: '0'
+        region: navigation
+        weight: '-10'
+        custom_id: menu_block_quienes_somos
+        theme: brigard
+        css_class: ''
+        unique: 0
+        context_id: general
+        context_mapping: {  }
+        follow: 0
+        follow_parent: child
+        level: '1'
+        depth: '0'
+        expand_all_items: false
+        parent: 'quienes-somos:'
+        suggestion: quienes_somos
+        label_type: block
+        label_link: false
+        expand: 0
+      f7f269d6-66bc-4527-858a-542503f3b4ab:
+        uuid: f7f269d6-66bc-4527-858a-542503f3b4ab
+        id: 'menu_block:valor-compartido'
+        label: Insights
+        provider: menu_block
+        label_display: '0'
+        region: footer_top
+        weight: '-3'
+        custom_id: menu_block_valor_compartido
+        theme: brigard
+        css_class: ''
+        unique: 0
+        context_id: general
+        context_mapping: {  }
+        follow: 0
+        follow_parent: child
+        level: '1'
+        depth: '0'
+        expand_all_items: false
+        parent: 'valor-compartido:'
+        suggestion: valor_compartido
+        label_type: block
+        label_link: false
+        expand: 0
+      cca7cf26-7ea4-497a-9c79-9d16f0af26b2:
+        uuid: cca7cf26-7ea4-497a-9c79-9d16f0af26b2
+        id: 'menu_block:vinculese-a-bu'
+        label: 'Vincúlese a BU'
+        provider: menu_block
+        label_display: '0'
+        region: footer_top
+        weight: '-2'
+        custom_id: menu_block_vinculese_a_bu
+        theme: brigard
+        css_class: ''
+        unique: 0
+        context_id: general
+        context_mapping: {  }
+        follow: 0
+        follow_parent: child
+        level: '1'
+        depth: '0'
+        expand_all_items: false
+        parent: 'vinculese-a-bu:'
+        suggestion: vinculese_a_bu
+        label_type: block
+        label_link: false
+        expand: 0
+      adc77b7f-ccd7-4944-9da4-1afba1cd8734:
+        uuid: adc77b7f-ccd7-4944-9da4-1afba1cd8734
+        id: 'menu_block:noticias-y-eventos'
+        label: 'Noticias y eventos'
+        provider: menu_block
+        label_display: '0'
+        region: footer_top
+        weight: '-1'
+        custom_id: menu_block_noticias_y_eventos
+        theme: brigard
+        css_class: ''
+        unique: 0
+        context_id: general
+        context_mapping: {  }
+        follow: 0
+        follow_parent: child
+        level: '1'
+        depth: '0'
+        expand_all_items: false
+        parent: 'noticias-y-eventos:'
+        suggestion: noticias_y_eventos
+        label_type: block
+        label_link: false
+        expand: 0
+      8f90849d-a8ba-4727-a173-aaa665817fb3:
+        uuid: 8f90849d-a8ba-4727-a173-aaa665817fb3
+        id: 'menu_block:menu-top'
+        label: 'menu top'
+        provider: menu_block
+        label_display: '0'
+        region: top_header
+        weight: '-4'
+        custom_id: menu_block_menu_top
+        theme: brigard
+        css_class: menu-top-header
+        unique: 0
+        context_id: general
+        context_mapping: {  }
+        follow: 0
+        follow_parent: child
+        level: '1'
+        depth: '0'
+        expand_all_items: false
+        parent: 'menu-top:'
+        suggestion: menu_top
+        label_type: block
+        label_link: false
+        expand: 0
+      f3bb2824-b50d-4ab6-b0f2-9bd08f78edde:
+        uuid: f3bb2824-b50d-4ab6-b0f2-9bd08f78edde
+        id: 'menu_block:quienes-somos-pie-de-pagina'
+        label: 'Quiénes somos'
+        provider: menu_block
+        label_display: '0'
+        region: footer_top
+        weight: '-4'
+        custom_id: menu_block_quienes_somos_pie_de_pagina
+        theme: brigard
+        css_class: ''
+        unique: 0
+        context_id: general
+        context_mapping: {  }
+        follow: 0
+        follow_parent: child
+        level: '1'
+        depth: '0'
+        expand_all_items: false
+        parent: 'quienes-somos-pie-de-pagina:'
+        suggestion: quienes_somos_pie_de_pagina
+        label_type: block
+        label_link: false
+        expand: 0
+      bc3a8912-3a81-4827-a6ac-ad81bf06b163:
+        uuid: bc3a8912-3a81-4827-a6ac-ad81bf06b163
+        id: search_form_block
+        label: 'Formulario de búsqueda'
+        provider: search
+        label_display: visible
+        region: navigation_collapsible
+        weight: '-5'
+        custom_id: search_form_block
+        theme: brigard
+        css_class: ''
+        unique: 0
+        context_id: general
+        context_mapping: {  }
+        page_id: ''
+      c4043065-4351-4be7-a437-9a8f7667f93f:
+        uuid: c4043065-4351-4be7-a437-9a8f7667f93f
+        id: webform_block
+        label: 'Formulario web'
+        provider: webform
+        label_display: '0'
+        region: footer_slider
+        weight: '0'
+        custom_id: webform_block
+        theme: brigard
+        css_class: block-newsletter
+        unique: 0
+        context_id: general
+        context_mapping: {  }
+        webform_id: boletin
+        default_data: ''
+        redirect: false
+      63d837ba-bd45-4300-8e26-3ce026789a1b:
+        uuid: 63d837ba-bd45-4300-8e26-3ce026789a1b
+        id: local_tasks_block
+        label: Tabs
+        provider: core
+        label_display: '0'
+        region: header
+        weight: '0'
+        custom_id: local_tasks_block
+        theme: brigard
+        css_class: ''
+        unique: 0
+        context_id: general
+        context_mapping: {  }
+        primary: 1
+        secondary: 1
+      73ca56e3-153d-4d3a-9007-78949c155bdd:
+        uuid: 73ca56e3-153d-4d3a-9007-78949c155bdd
+        id: system_messages_block
+        label: Mensajes
+        provider: system
+        label_display: visible
+        region: content
+        weight: '-10'
+        custom_id: system_messages_block
+        theme: brigard
+        css_class: ''
+        unique: 0
+        context_id: general
+        context_mapping: {  }
+      756005d5-cf12-4357-9f95-99d767711b9a:
+        uuid: 756005d5-cf12-4357-9f95-99d767711b9a
+        id: system_breadcrumb_block
+        label: Breadcrumbs
+        provider: system
+        label_display: '0'
+        region: navigation_collapsible
+        weight: '-4'
+        custom_id: system_breadcrumb_block
+        theme: brigard
+        css_class: ''
+        unique: 0
+        context_id: general
+        context_mapping: {  }
+      37fe4da7-9a22-4e5b-8244-1c32e1bdbbbf:
+        uuid: 37fe4da7-9a22-4e5b-8244-1c32e1bdbbbf
+        id: 'dropdown_language:language_interface'
+        label: 'Dropdown Language'
+        provider: dropdown_language
+        label_display: '0'
+        region: top_header
+        weight: '0'
+        custom_id: dropdown_language_language_interface
+        theme: brigard
+        css_class: ''
+        unique: 0
+        context_id: general
+        context_mapping: {  }
+        labels:
+          es: ES
+          en: EN
+    include_default_blocks: 0
+    saved: false
+weight: -6

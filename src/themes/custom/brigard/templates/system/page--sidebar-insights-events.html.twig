@@ -1,0 +1,184 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a single page.
+ *
+ * The doctype, html, head and body tags are not in this template. Instead they
+ * can be found in the html.html.twig template in this directory.
+ *
+ * Available variables:
+ *
+ * General utility variables:
+ * - base_path: The base URL path of the Drupal installation. Will usually be
+ *   "/" unless you have installed Drupal in a sub-directory.
+ * - is_front: A flag indicating if the current page is the front page.
+ * - logged_in: A flag indicating if the user is registered and signed in.
+ * - is_admin: A flag indicating if the user has permission to access
+ *   administration pages.
+ *
+ * Site identity:
+ * - front_page: The URL of the front page. Use this instead of base_path when
+ *   linking to the front page. This includes the language domain or prefix.
+ *
+ * Page content (in order of occurrence in the default page.html.twig):
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title: The page title, for use in the actual content.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ * - messages: Status and error messages. Should be displayed prominently.
+ * - tabs: Tabs linking to any sub-pages beneath the current page (e.g., the
+ *   view and edit tabs when displaying a node).
+ * - node: Fully loaded node, if there is an automatically-loaded node
+ *   associated with the page and the node ID is the second argument in the
+ *   page's path (e.g. node/12345 and node/12345/revisions, but not
+ *   comment/reply/12345).
+ *
+ * Regions:
+ * - page.header: Items for the header region.
+ * - page.navigation: Items for the navigation region.
+ * - page.navigation_collapsible: Items for the navigation (collapsible) region.
+ * - page.highlighted: Items for the highlighted content region.
+ * - page.help: Dynamic help text, mostly for admin pages.
+ * - page.content: The main content of the current page.
+ * - page.sidebar_first: Items for the first sidebar.
+ * - page.sidebar_second: Items for the second sidebar.
+ * - page.footer: Items for the footer region.
+ *
+ * @ingroup templates
+ *
+ * @see template_preprocess_page()
+ * @see html.html.twig
+ */
+#}
+{% include directory ~ '/templates/system/navigation-header.html.twig' %}
+{% set category = '' %}
+{% set node_types = {'noticia':'Noticias','recurso':'Herramientas','podcast':'Podcasts','informe':'Informes','memoria':'Memorias','bulletin':'Boletines'} %}
+
+{% if node.field_area[0].entity.name.value %}
+  {% set category = node.field_area[0].entity.name.value %}
+{% endif %}
+{% if node.field_specialization[0].entity.name.value %}
+  {% set category = node.field_specialization[0].entity.name.value %}
+{% endif %}
+{% if node.getType() == 'noticia' %}
+  {% set desc = node.getCreatedTime|format_date('dia_y_mes_completo') %}
+{% else %}
+  {% if node.field_resumen.value %}
+    {% set desc = node.field_resumen.value %}
+  {% else %}
+    {% set desc = header_page.lead %}
+  {% endif %}
+{% endif %}
+
+{# banner #}
+  <div class="banner-content col-sm-12" role="contentinfo">
+    {% include directory ~ '/templates/commons/header.html.twig' with {
+        'title': node.title.value ? node.title.value : header_page.title,
+        'description': desc,
+        'category': node_types[node.getType]  ? node_types[node.getType] : header_page.subtitle,
+        'image': header_page.image  ? header_page.image : '/themes/custom/brigard/img/banner_footer.jpg',
+        'node_type': node.getType() ? node.getType() : '',
+        'fecha_evento': node.field_fecha_del_evento.value ? node.field_fecha_del_evento.value|date('U')|format_date("eventos") : '',
+        'hora_evento': node.field_hora_del_vento.value ? node.field_hora_del_vento.value : '',
+        'lugar_evento': node.field_lugar_del_evento.value ? node.field_lugar_del_evento.value : '',
+        'valor_evento': node.field_v.value ? node.field_v.value : '',
+        'tipo_evento': node.field_tipo_de_evento.value ? node.field_tipo_de_evento.value : ''
+        }
+    %}
+  </div>
+
+{# Main #}
+{% block main %}
+  <div role="main" class="main-container container-fluid js-quickedit-main-content">
+    <div class="row container-content">
+      {# Header #}
+      {% if page.header %}
+        {% block header %}
+          <div class="col-sm-12" role="heading">
+            {{ page.header }}
+          </div>
+        {% endblock %}
+      {% endif %}
+      {# Content #}
+      <div class="col-sm-8 content-page-full">
+        <section>
+
+          {# page_top #}
+          {% if page.page_top %}
+            {% block   page_top %}
+              <div class="  page_top">{{ page.page_top }}</div>
+            {% endblock %}
+          {% endif %}
+
+          {# Content #}
+          {% block content %}
+            <a id="main-content"></a>
+            {{ page.content }}
+          {% endblock %}
+        </section>
+      </div>
+      {% if page.sidebar_first %}
+        <div class="col-sm-4">
+          {{ page.sidebar_first }}
+        </div>
+      {% endif %}
+
+      {# Sidebar Second #}
+      {# {% if page.sidebar_right %} #}
+        {% block sidebar_right %}
+          <aside class="sidebar-news col-xs-12 col-md-4 sidebar" >
+            <div class="sidebar-info">
+              {% if node_type %}
+                {{ drupal_view('bloques_laterales', 'block_1', node_type, nid) }}
+              {% endif %}
+              {{ page.sidebar_right }}
+              <div id="memorias-eventos">
+              {{ drupal_view('bloques_laterales', 'block_1', 'memoria') }}
+              </div>
+              {{ drupal_view('bloques_laterales', 'block_2') }}
+
+              {# {{ drupal_view('bloques_laterales', 'block_4') }} #}
+              {% if node_type != 'podcast' %}
+                {{ drupal_view('bloques_laterales', 'block_3', 'podcast', nid) }}
+              {% endif %}
+              {% if node_type != 'recursos' %}
+                {{ drupal_view('bloques_laterales', 'block_3', 'recursos', nid) }}
+              {% endif %}
+              {% if node_type != 'informe' %}
+                {{ drupal_view('bloques_laterales', 'block_3', 'informe', nid) }}
+              {% endif %}
+              <div class="block-contact-sidebar">
+                {{ drupal_block('block_content:bcbb3fb9-71f3-4699-ad1c-47e1722ecdde') }}
+              </div>
+            </div>
+          </aside>
+        {% endblock %}
+      {# {% endif %} #}
+    </div>
+  </div>
+{% endblock %}
+
+{% if page.footer %}
+  {% block footer %}
+    <footer class="footer col-sm-12" role="contentinfo">
+      {# footer_slide #}
+      {% if page.footer_slider %}
+        {% block footer_slider %}
+          {{ page.footer_slider }}
+        {% endblock %}
+      {% endif %}
+      {# page_bottom #}
+      {% if page.footer_top %}
+        {% block footer_top %}
+          <div class="page-bottom">
+            <div class="region region-page-bottom" role="contentinfo">
+              {{ page.footer_top }}
+            </div>
+          </div>
+        {% endblock %}
+      {% endif %}
+      {{ page.footer }}
+    </footer>
+  {% endblock %}
+{% endif %}

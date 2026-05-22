@@ -1,0 +1,23 @@
+display:
+  default:
+    display_options:
+      header:
+        area:
+          content:
+            value: "<p>ABOGADOS:</p>\r\n"
+            format: basic_html
+  search_page:
+    display_options:
+      title: 'Our People'
+      empty:
+        area:
+          content:
+            value: "<p>No results found for the search.</p>\r\n"
+            format: basic_html
+      pager:
+        options:
+          views_infinite_scroll:
+            button_text: 'Load more'
+  block_1:
+    display_options:
+      title: 'Search for a professional'

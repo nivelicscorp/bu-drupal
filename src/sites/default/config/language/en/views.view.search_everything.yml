@@ -1,0 +1,8 @@
+display:
+  block_1:
+    display_options:
+      empty:
+        area:
+          content:
+            value: "<h4>We did not find results for your search</h4>\r\n"
+            format: full_html

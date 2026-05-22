@@ -1,0 +1,38 @@
+uuid: 122ed53f-926e-4c79-ad28-232727b77f61
+langcode: es
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.speakers.body
+    - field.field.node.speakers.field_area
+    - field.field.node.speakers.field_industrias
+    - field.field.node.speakers.field_metatags
+    - node.type.speakers
+  module:
+    - text
+    - user
+id: node.speakers.teaser
+targetEntityType: node
+bundle: speakers
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_area: true
+  field_industrias: true
+  field_metatags: true
+  langcode: true
+  social_simple_buttons: true

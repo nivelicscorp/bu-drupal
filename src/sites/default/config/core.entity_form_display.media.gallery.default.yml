@@ -1,0 +1,47 @@
+uuid: b0f5942c-c166-4cd6-a897-bb9fdb760e8d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.gallery.field_media_slideshow
+    - media.type.gallery
+  module:
+    - entity_browser_entity_form
+    - inline_entity_form
+id: media.gallery.default
+targetEntityType: media
+bundle: gallery
+mode: default
+content:
+  field_media_slideshow:
+    type: inline_entity_form_complex
+    weight: 1
+    region: content
+    settings:
+      form_mode: default
+      override_labels: false
+      label_singular: ''
+      label_plural: ''
+      allow_new: false
+      allow_existing: true
+      match_operator: CONTAINS
+      allow_duplicate: false
+      collapsible: false
+      collapsed: false
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: modal_media_image_browser_existing_new
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  langcode: true
+  path: true
+  status: true
+  uid: true

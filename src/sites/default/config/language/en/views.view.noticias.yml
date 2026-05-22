@@ -1,0 +1,70 @@
+display:
+  default:
+    display_options:
+      header:
+        area:
+          content:
+            value: "<p class=\"title-block\">últimas noticias</p>\r\n"
+            format: full_html
+  block_4:
+    display_options:
+      fields:
+        nothing:
+          alter:
+            text: "<div class=\"col-xs-12 col-md-5 col-lg-5 img-new\">\r\n    <figure>\r\n        {{ field_image }}\r\n    </figure>\r\n</div>\r\n<div class=\"col-xs-12 col-md-7 col-lg-7 content-new\">\r\n    <h3 class=\"title-new\">{{ field_sector_noticia }}</h3>\r\n    <h2>{{ title }}</h2>\r\n               <div class=\"date\">{{ created }} </div>\r\n<a href=\"{{ path('entity.node.canonical', {'node': nid }) }}\" class=\"btn-red-arrow\"> btn</a>\r\n</div> "
+      footer:
+        area_text_custom:
+          content: "<div class=\"links\">\r\n                    <a href=\"/en/insights/noticias\" class=\"link-red\">SEE MORE NEWS</a>\r\n                </div>"
+  outstanding_block_4:
+    display_options:
+      footer:
+        area:
+          content:
+            value: "<p><a class=\"outstanding-items-bottom-text link-red\" href=\"/noticias\">See all the news</a></p>\r\n"
+            format: full_html
+  page_1:
+    display_options:
+      pager:
+        options:
+          views_infinite_scroll:
+            button_text: 'Load more news'
+      filters:
+        field_sector_noticia_target_id:
+          expose:
+            label: 'Filter by Theme'
+  block_1:
+    display_options:
+      fields:
+        nothing:
+          alter:
+            text: "<div class=\"content-new\">\r\n    <h3 class=\"title-new\">{{ field_sector_noticia }}</h3>\r\n    <h2>{{ title }}</h2>\r\n   \r\n<a href=\"{{ path('entity.node.canonical', {'node': nid }) }}\" class=\"btn-red-arrow\"> btn</a>\r\n</div> "
+  block_6:
+    display_options:
+      header:
+        area:
+          content:
+            value: "<p class=\"title-block\">NEWS OF INTEREST</p>\r\n"
+            format: full_html
+  block_7:
+    display_options:
+      header:
+        area:
+          content:
+            value: "<p class=\"title-block\">NEWS OF INTEREST</p>\r\n"
+            format: full_html
+  block_8:
+    display_options:
+      header:
+        area:
+          content:
+            value: "<p class=\"title-block\">NEWS OF INTEREST</p>\r\n"
+            format: full_html
+  block_5:
+    display_options:
+      fields:
+        nothing:
+          alter:
+            text: "<div class=\"principal-news\">\r\n                    <picture>\r\n                        <source media=\"(min-width:960px)\" srcset=\"{{field_image}}\">\r\n                        <img src=\"{{field_image}}\" alt=\"home\" height=\"299\" width=\"629\">\r\n                    </picture>\r\n                    <div class=\"content-new\">\r\n            <h3 class=\"title-new\">News</h3>\r\n            <h2>{{ title }}</h2>\r\n            <div class=\"date\">{{ created }} </div>\r\n            <a href=\"{{ path('entity.node.canonical', {'node': nid }) }}\" class=\"btn-red-arrow\"> btn</a>\r\n                    </div> \r\n                </div>\r\n\r\n"
+      header:
+        area_text_custom:
+          content: '<p class="title-block">NEWS</p>'

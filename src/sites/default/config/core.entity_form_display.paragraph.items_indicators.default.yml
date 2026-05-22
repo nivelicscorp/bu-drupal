@@ -1,0 +1,37 @@
+uuid: 86a70711-6e7a-4c2c-9e57-b064c7722299
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.items_indicators.field_label
+    - field.field.paragraph.items_indicators.field_percentage
+    - paragraphs.paragraphs_type.items_indicators
+id: paragraph.items_indicators.default
+targetEntityType: paragraph
+bundle: items_indicators
+mode: default
+content:
+  field_label:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_percentage:
+    type: number
+    weight: 1
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  translation:
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

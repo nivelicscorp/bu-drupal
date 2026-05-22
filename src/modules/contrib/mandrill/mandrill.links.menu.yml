@@ -1,0 +1,5 @@
+mandrill.admin:
+  route_name: mandrill.admin
+  title: 'Mandrill'
+  description: 'Use the Mailchimp Transactional service to send site emails, use templates, and track activity by entity.'
+  parent: system.admin_config_services

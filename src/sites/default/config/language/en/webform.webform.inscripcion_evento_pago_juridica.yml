@@ -1,0 +1,47 @@
+title: 'Registration event payment legal person'
+description: 'Registration event payment legal person'
+elements: |
+  oblogatorios:
+    '#markup': 'Fields marked with * are required'
+  nombre_de_la_empresa:
+    '#title': 'Company name'
+    '#placeholder': 'Company name *'
+  direccion:
+    '#title': Address
+    '#placeholder': 'Address *'
+  telefono_celular:
+    '#title': 'Phone/Cell phone'
+    '#placeholder': 'Phone/Cell phone *'
+  correo_factura:
+    '#title': 'Mail - Invoice'
+    '#placeholder': 'Mail - Invoice *'
+  agregar_un_asistente:
+    '#title': 'Add an assistant'
+    '#element':
+      nombre:
+        '#title': Name
+        '#placeholder': 'Name *'
+      apellido:
+        '#title': 'Last name'
+        '#placeholder': 'Last name *'
+      cargo:
+        '#title': Position
+        '#placeholder': 'Position *'
+      identificacion:
+        '#title': Identification
+        '#placeholder': 'Identification *'
+      telefono_celular:
+        '#title': 'Phone/Cell phone'
+        '#placeholder': 'Phone/Cell phone'
+  acepto_los_terminos_y_condiciones:
+    '#title': 'I accept the terms and conditions'
+    '#description': 'I accept the <a href="/terminos-condiciones">terms and conditions</a>'
+  grande_contribuyentes:
+    '#markup': "Large Taxpayers, res. 8836 of Dec. 18, 1998. VAT and ICA withholding agents. <br />\nEconomic Activity 69 and rate 6.9 per thousand\n"
+  enlace_pol:
+    '#markup': '<a href="http://www.payulatam.com">ONLINE PAY</a>'
+  actions:
+    '#submit__label': 'PAYMENT WITH INVOICE'
+settings:
+  confirmation_title: 'Thank you'
+  confirmation_message: "We have received your pre-registration. <br />\r\nOnce the payment is made, it will remain. register."

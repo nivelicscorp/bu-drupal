@@ -1,0 +1,4 @@
+name: 'Custom context provider'
+description: 'Fixes missing vocabulary context, see https://www.drupal.org/project/ctools/issues/2712679'
+type: module
+core_version_requirement: ^8.8 || ^9 || ^10

@@ -1,0 +1,18 @@
+uuid: 00c4b109-828f-4ec7-b983-c816971cfe1a
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_calificacion
+field_name: field_calificacion
+entity_type: node
+type: float
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

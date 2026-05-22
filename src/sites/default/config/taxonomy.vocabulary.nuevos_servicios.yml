@@ -1,0 +1,8 @@
+uuid: 5b1cca3d-5379-4994-a0b8-07331a5fbda8
+langcode: es
+status: true
+dependencies: {  }
+name: 'Nuevos servicios'
+vid: nuevos_servicios
+description: ''
+weight: 0

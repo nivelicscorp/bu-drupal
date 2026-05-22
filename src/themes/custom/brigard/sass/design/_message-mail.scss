@@ -1,0 +1,65 @@
+.webform-confirmation__message{
+    .container{
+        padding: 0;
+        width: auto;
+
+        .form-actions .form-submit {
+            padding: 0 65px 0 34px;
+        }
+    }
+}
+.message-mail{
+    background: $bk;
+    margin: 0;
+    max-width: 615px;
+    padding: 25px 5px;
+    position: relative;
+    text-align: left;
+    &.hide-message-mail{
+        display: none;
+    }
+    .close{
+        background: none;
+        color:$secondColor;
+        font-size:22px;
+        opacity: 1;
+        position: absolute;
+        right: 18px;
+        top: 6px;
+    }
+    p{
+        color:$mainColor;
+        font-family:$secondFont;
+        font-size:28px;
+        font-weight:500;
+        line-height:30px;
+        margin: 0 27px 0 0;
+    }
+    .info{
+        align-items: center;
+        display: flex;
+        margin: 0px 50px 0 47px;
+        figure{
+            margin-right: 20px;
+            min-width: 70px;
+        }
+    }
+}
+@media screen and (max-width: 960px){
+    .message-mail{
+        margin: 0 auto;
+        max-width: 90%;
+        p{
+            margin: 0;
+            font-size: 22px;
+        }
+        .info{
+            flex-direction: column;
+            margin: 0px 20px 0 20px;
+            text-align: center;
+            figure{
+                margin: 0 auto 20px;
+            }
+        }
+    }
+}

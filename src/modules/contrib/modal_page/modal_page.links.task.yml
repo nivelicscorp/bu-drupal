@@ -1,0 +1,22 @@
+# Define the 'local' links for the module
+
+modal.settings_tab:
+  route_name: modal_page.default
+  title: Settings
+  base_route: modal_page.default
+
+modal.view:
+  route_name: entity.modal_page_modal.canonical
+  base_route: entity.modal_page_modal.canonical
+  title: View
+
+modal.page_edit:
+  route_name: entity.modal_page_modal.edit_form
+  base_route: entity.modal_page_modal.canonical
+  title: Edit
+
+modal.delete_confirm:
+  route_name:  entity.modal_page_modal.delete_form
+  base_route:  entity.modal_page_modal.canonical
+  title: Delete
+  weight: 10

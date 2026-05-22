@@ -1,0 +1,10 @@
+<div class="collapsibe-block-container">
+  <div class="collapsibe-block-title">
+    <h2 class="title">{{ title|trans }}</h2>
+  </div>
+  <div class="collapsibe-block-items">
+    {% for item in items %}
+      <a href="#">{{ item }}</a>
+    {% endfor %}
+  </div>
+</div>

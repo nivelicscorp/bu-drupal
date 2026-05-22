@@ -1,0 +1,18 @@
+uuid: 5f6045e6-0188-4d39-8a01-8a69351a5501
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.banner_intermedio_home
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: block_content.banner_intermedio_home
+target_entity_type_id: block_content
+target_bundle: banner_intermedio_home
+default_langcode: site_default
+language_alterable: false

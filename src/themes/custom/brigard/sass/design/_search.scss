@@ -1,0 +1,563 @@
+.modal-dialog {
+	height: 100%;
+	margin: 0;
+	width: 100%;
+}
+
+.popup-search {
+	background: $lightColor;
+	box-shadow: none;
+	border-radius: 0;
+	height: 100% !important;
+	max-height: 100% !important;
+	overflow-x: hidden;
+	overflow-y: auto;
+	z-index: 999;
+
+	.ui-dialog-content {
+		height: 100% !important;
+		max-height: 100% !important;
+		margin: 0 auto;
+		max-width: 1100px;
+		padding: 50px 20px;
+		overflow: auto;
+	}
+
+	.ui-helper-clearfix {
+		position: fixed;
+		right: 35px;
+		top: 40px;
+		background: none;
+		border: none;
+
+		.ui-dialog-titlebar-close {
+			border: none;
+			background: none;
+
+			&::before {
+				content: "";
+				background: url(../img/close-btn.png) no-repeat 0 0;
+				background-size: contain;
+				color: #1a447e;
+				display: block;
+				height: 22px;
+				width: 22px;
+			}
+		}
+
+	}
+
+	.ui-button {
+		font-size: 0;
+
+		.ui-icon {
+			opacity: 0;
+		}
+	}
+
+	form {
+		.form-text {
+			background: transparent;
+			color: $mainColor;
+			font-family: "Palanquin";
+			font-size: 24px;
+			font-weight: 100;
+			margin: 0;
+
+			&:focus,
+			&:focus-visible {
+				border: none;
+				outline: none;
+			}
+		}
+
+		.form-actions {
+			position: relative;
+
+			&::before {
+				content: "\e91a";
+				color: #dd235c;
+				font-family: "iconFont";
+				font-size: 25px;
+				padding: 0;
+				padding-left: 5px;
+				padding-top: 2px;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		}
+	}
+}
+
+.modal {
+	z-index: 9999;
+}
+
+.modal-header {
+	border: 0;
+	margin: 0 auto;
+	max-width: 1022px;
+	padding: 0;
+
+	.close {
+		margin: 0;
+		opacity: 1;
+		position: fixed;
+		right: 35px;
+		top: 40px;
+
+		&:hover,
+		&:focus {
+			background: none;
+			outline: none;
+		}
+
+		&:before {
+			content: "";
+			background: url(../img/close-btn.png) no-repeat 0 0;
+			background-size: contain;
+			color: #1a447e;
+			display: block;
+			height: 22px;
+			width: 22px;
+		}
+
+		span {
+			display: none;
+		}
+	}
+}
+
+.modal-open {
+	.modal {
+		padding: 0 !important;
+	}
+}
+
+.modal-body {
+	background: $lightColor;
+	padding: 25px 0;
+
+	.views-element-container {
+		margin: 0 auto;
+		max-width: 1044px;
+		padding: 0;
+		padding-left: 20px;
+	}
+}
+
+.view-search-everything {
+	.views-exposed-form {
+		border-bottom: 2px solid hex-to-rgba($mainColor, 0.2);
+		padding-bottom: 5px;
+
+		h1,
+		.control-label,
+		.form-control {
+			color: $mainColor;
+			font-family: $mainFont;
+			font-size: 24px;
+			font-weight: bold;
+			margin: 0;
+		}
+
+		.control-label,
+		.form-control {
+			display: inline-block;
+		}
+
+		.form-item-search-api-fulltext {
+			width: 92%;
+		}
+
+		.form-control {
+			background: none;
+			font-weight: 100;
+			padding-left: 10px;
+			width: 70%;
+
+			&:focus {
+				border: 0;
+				box-shadow: none;
+				outline: none;
+			}
+		}
+
+		.form-actions {
+			float: right;
+			height: 40px;
+			width: 40px;
+		}
+
+		.form-submit {
+			background: none;
+			border: 0;
+			font-size: 0;
+			height: 40px !important;
+			margin: 0;
+			padding: 0;
+			width: 40px !important;
+			z-index: 2;
+
+			&:after {
+				content: "\e91a";
+				color: $secondColor;
+				font-family: $iconFont;
+				font-size: 25px;
+				padding: 0;
+				padding-left: 5px;
+				padding-top: 2px;
+			}
+
+			&:hover,
+			&:focus {
+				background: none;
+				box-shadow: none;
+
+				&:after {
+					@include prefix(animation, none, webkit moz o ms);
+				}
+			}
+		}
+	}
+
+	.content-results {
+		display: inline-block;
+		vertical-align: top;
+		width: 61%;
+
+		.title-section-search {
+			color: $mainColor;
+			font-family: $mainFont;
+			font-size: 18px;
+			font-weight: bold;
+			margin: 25px 0 0;
+			text-transform: uppercase;
+		}
+
+		.views-row {
+			max-width: 485px;
+		}
+	}
+
+	.attachment-after {
+		display: inline-block;
+		padding-left: 4px;
+		vertical-align: top;
+		width: 38.5%;
+	}
+}
+
+.search-result-item {
+	border-bottom: 1px solid hex-to-rgba($gray, 0.2);
+	padding: 20px 0 24px;
+
+	.search-result-item-created-date {
+		color: $gray;
+		font-family: $mainFont;
+		font-size: 11px;
+		margin-bottom: 8px;
+
+		&:after {
+			content: "";
+			background: $secondColor;
+			display: block;
+			height: 4px;
+			margin-top: 9px;
+			width: 28px;
+		}
+	}
+
+	.search-result-item-area-practica {
+		color: $secondColor;
+		font-family: $mainFont;
+		font-size: 14px;
+		margin-bottom: 4px;
+	}
+
+	.search-result-item-title {
+		color: $blackTxt;
+		font-family: $secondFont;
+		font-size: 22px;
+		font-weight: 600;
+		margin: 0 0 20px;
+
+		a {
+			color: $blackTxt;
+
+			&:hover {
+				color: $blackTxt;
+				text-decoration: none;
+			}
+		}
+	}
+
+	.btn-red-arrow {
+		margin-left: 3px;
+	}
+}
+
+.attachment-after {
+	.views-element-container {
+		padding: 0;
+	}
+
+	.view-header {
+		color: $mainColor;
+		font-family: $mainFont;
+		font-size: 18px;
+		font-weight: bold;
+		margin: 25px 0 31px;
+		text-transform: uppercase;
+	}
+
+	.view-content {
+		.views-row {
+			display: inline-block;
+			margin-bottom: 47px;
+			margin-right: 27px;
+			vertical-align: top;
+			width: 46%;
+
+			&:nth-child(2n) {
+				margin-right: 0;
+			}
+		}
+
+		.name {
+			font-size: 16px;
+			line-height: 20px;
+			margin: 0;
+
+			&:after {
+				content: "";
+				background: $secondColor;
+				display: block;
+				height: 3px;
+				margin-top: 5px;
+				width: 24px;
+			}
+
+			a {
+				color: $mainColor;
+				font-family: $secondFont;
+				font-size: 16px;
+				font-weight: 600;
+			}
+		}
+	}
+}
+
+.general-search {
+	.view-search-everything {
+		.views-exposed-form {
+			.control-label {
+				font-size: 89px;
+				font-weight: 100;
+				line-height: 89px;
+			}
+
+			.control-label,
+			.form-control {
+				vertical-align: bottom;
+			}
+
+			.form-actions {
+				margin-top: 45px;
+			}
+		}
+	}
+}
+
+@media screen and (min-width: 1500px) {
+	.modal-header {
+		.close {
+			right: 347px;
+		}
+	}
+}
+
+@media screen and (max-width: 960px) {
+	.general-search {
+		.view-search-everything {
+			.views-exposed-form {
+				.form-control {
+					width: 60%;
+				}
+			}
+		}
+	}
+}
+
+
+@media screen and (max-width: 767px) {
+	.modal-header {
+		.close {
+			right: 25px;
+			top: 22px;
+
+			&:before {
+				height: 15px;
+				width: 15px;
+			}
+		}
+	}
+
+	.modal-body {
+		padding: 45px 0;
+
+		.views-element-container {
+			padding: 0 29px;
+		}
+	}
+
+	.general-search {
+		.view-search-everything {
+			.views-exposed-form {
+				left: 0;
+				margin-bottom: 0 !important;
+				transform: translateY(-50%);
+				top: 50%;
+				padding-top: 0 !important;
+				position: absolute;
+
+				.form-item {
+					width: 86%;
+				}
+
+				.control-label {
+					font-size: 40px;
+					line-height: 40px;
+				}
+
+				.form-actions {
+					margin-top: 0px;
+				}
+
+				.form-control {
+					width: 57%;
+				}
+			}
+		}
+
+		.modal-body {
+			position: relative;
+			height: 100%;
+			margin-left: 5%;
+			width: 90%;
+		}
+	}
+
+	.view-search-everything {
+		.views-exposed-form {
+			.form-actions {
+				margin-top: 10px;
+			}
+
+			.form-item {
+				display: inline-block;
+				margin-bottom: 0;
+				width: 80%;
+			}
+
+			.control-label,
+			.form-control {
+				font-size: 18px;
+				margin: 0;
+			}
+
+			.form-control {
+				height: 26px;
+				padding: 0;
+			}
+		}
+
+		.content-results,
+		.attachment-after {
+			width: 100%;
+		}
+
+		.attachment-after {
+			.views-element-container {
+				padding: 0;
+			}
+		}
+
+		.content-results {
+			.title-section-search {
+				margin: 9px 0 0;
+			}
+		}
+	}
+
+	.search-result-item {
+		padding: 20px 0 14px;
+
+		.search-result-item-created-date {
+			font-size: 14px;
+
+			&:after {
+				margin-top: 3px;
+			}
+		}
+
+		.search-result-item-area-practica {
+			font-size: 15px;
+		}
+
+		.search-result-item-title {
+			font-size: 18px;
+			line-height: 22px;
+			margin: 0 0 17px;
+		}
+	}
+
+	.attachment-after {
+		.view-content {
+			.views-row {
+				margin-right: 18px;
+			}
+		}
+	}
+
+	.popup-search {
+		.ui-dialog-content {
+			position: relative;
+			margin-left: 5%;
+			width: 93% !important;
+			overflow: auto;
+			padding: 0;
+		}
+
+		.ui-helper-clearfix {
+			z-index: 999;
+
+			.ui-dialog-titlebar-close {
+				left: 25px;
+				top: -10px;
+
+				&::before {
+					height: 15px;
+					width: 15px;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 320px) {
+	.general-search {
+		.view-search-everything {
+			.views-exposed-form {
+				.form-item {
+					width: 84%;
+				}
+
+				.form-control {
+					width: 46%;
+				}
+			}
+		}
+	}
+}

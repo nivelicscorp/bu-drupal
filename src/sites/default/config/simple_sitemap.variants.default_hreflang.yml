@@ -1,0 +1,5 @@
+langcode: es
+variants:
+  default:
+    label: Default
+    weight: 0

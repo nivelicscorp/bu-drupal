@@ -1,0 +1,90 @@
+display:
+  default:
+    display_options:
+      header:
+        area:
+          content:
+            value: "<p class=\"title-block\">latest news</p>\r\n"
+            format: full_html
+  block_1:
+    display_options:
+      header:
+        area:
+          content:
+            value: "<p class=\"title-block\">PODCAST</p>\r\n"
+            format: full_html
+      footer:
+        area:
+          content:
+            value: "<div class=\"links\"><a class=\"link-red\" href=\"/es/insights/podcast\">LISTEN MORE PODCAST</a></div>\r\n"
+            format: full_html
+  block_2:
+    display_options:
+      header:
+        area:
+          content:
+            value: "<p class=\"title-block\">TOOLS</p>\r\n"
+            format: full_html
+      footer:
+        area:
+          content:
+            value: "<div class=\"links\"><a class=\"link-red\" href=\"/en/insights/herramientas\">SEE MORE TOOLS</a></div>\r\n"
+            format: full_html
+      fields:
+        nothing:
+          alter:
+            text: "<div class=\"col-xs-4 col-md-4 col-lg-4 img-new\">\r\n                        <figure>\r\n                            <img src=\"{{ field_image }} \" alt=\"Infraestructura y servicios públicos\" class=\"img-responsive\" height=\"97\" width=\"97\">\r\n                        </figure>\r\n                    </div>\r\n                    <div class=\"col-xs-8 col-md-8 col-lg-8 content-new\">\r\n                        <h3 class=\"title-new\">Tools</h3>\r\n                        <h2><a href=\"{{ view_node }}\">{{ title }}</a></h2>\r\n                        <a href=\"{{ view_node }}\" class=\"btn-red-arrow\">btn</a>\r\n                    </div>"
+  block_3:
+    display_options:
+      header:
+        area:
+          content:
+            value: "<p class=\"title-block\">REPORTS</p>\r\n"
+            format: full_html
+      footer:
+        area:
+          content:
+            value: "<div class=\"links\"><a class=\"link-red\" href=\"/es/insights/informes\">SEE MORE REPORTS</a></div>\r\n"
+            format: full_html
+      fields:
+        nothing:
+          alter:
+            text: "                    <div class=\"col-xs-8 col-md-8 col-lg-8 content-new\">\r\n                        <h3 class=\"title-new\">Reports</h3>\r\n                        <h2><a href=\"{{ view_node }}\">{{ title }}</a></h2>\r\n                        <div class=\"date\">{{ created }}</div>\r\n                        <a href=\"{{ view_node }}\" class=\"btn-red-arrow\">btn</a>\r\n                    </div>"
+  block_4:
+    display_options:
+      header:
+        area:
+          content:
+            value: "<p class=\"title-block\">BULLETIN</p>\r\n"
+            format: full_html
+      footer:
+        area:
+          content:
+            value: "<div class=\"links\"><a class=\"link-red\" href=\"/en/insights/boletines\">SEE MORE BULLETIN</a></div>\r\n"
+            format: full_html
+      fields:
+        nothing:
+          alter:
+            text: "<div class=\"content-new\">\r\n  <h3 class=\"title-new\">Bulletin</h3>\r\n  <h2><a href=\"{{ view_node }}\">{{ title }}</a></h2>\r\n  <div class=\"date\">{{ created }}</div>\r\n</div>\r\n"
+  page_1:
+    display_options:
+      pager:
+        options:
+          views_infinite_scroll:
+            button_text: 'Load more news'
+  block_5:
+    display_options:
+      fields:
+        nothing:
+          alter:
+            text: "                    <div class=\"col-xs-8 col-md-8 col-lg-8 content-new\">\r\n                        <h3 class=\"title-new\">Memories</h3>\r\n                        <h2><a href=\"{{ view_node }}\">{{ title }}</a></h2>\r\n                         <h3 class=\"title-new\">{{ field_area }} {{ field_industrias }}</h3>\r\n                        <div class=\"date\">{{ created }}</div>\r\n                        <a href=\"{{ view_node }}\" class=\"btn-red-arrow\">btn</a>\r\n                    </div>"
+      header:
+        area:
+          content:
+            value: "<p class=\"title-block\">MEMORIES OF OTHER EVENTS</p>\r\n"
+            format: full_html
+      footer:
+        area:
+          content:
+            value: "<div class=\"links\"><a class=\"link-red\" href=\"/en/insights/memorias\">VIEW MORE MEMORIES</a></div>\r\n"
+            format: full_html

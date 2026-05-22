@@ -1,0 +1,5 @@
+services:
+  select_translation.commands:
+    class: Drupal\select_translation\Commands\SelectTranslationCommands
+    tags:
+      - { name: drush.command }

@@ -1,0 +1,29 @@
+uuid: a0d401f8-5122-4778-8f8b-e653f25c3580
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_area
+    - node.type.speakers
+    - taxonomy.vocabulary.areas
+id: node.speakers.field_area
+field_name: field_area
+entity_type: node
+bundle: speakers
+label: 'Areas de práctica'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      areas: areas
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

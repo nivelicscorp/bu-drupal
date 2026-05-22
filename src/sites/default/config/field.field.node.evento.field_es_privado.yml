@@ -1,0 +1,23 @@
+uuid: b5ace46f-1c0f-4015-94b7-7a967df39775
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_es_privado
+    - node.type.evento
+id: node.evento.field_es_privado
+field_name: field_es_privado
+entity_type: node
+bundle: evento
+label: 'Es privado?'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

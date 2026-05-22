@@ -1,0 +1,35 @@
+  <div class="event-content">
+    <div class="other-news-home">
+      {% if items.noticias %}
+        <p class="title-block">{{ 'Other news'|trans }}</p>
+        {% for item in items.noticias %}
+          <div class="content-new">
+            {% set tid = item.area %}
+            {% if tid %}
+              <h3 class="title-new">{{ drupal_field('field_area', 'taxonomy_term', tid) }}</h3>
+            {% endif %}
+            <h2><a href="{{ path('entity.node.canonical', {'node': item.id}) }}" >{{ item.label }}</a></h2>
+            <a href="{{ path('entity.node.canonical', {'node': item.id}) }}" class="btn-red-arrow">btn</a>
+          </div>
+        {% endfor %}
+        <div class="links">
+          <a href="{{ '/en/news'|trans }}" class="link-red">{{ 'View more news'|trans }}</a>
+        </div>
+      {% endif %}
+
+      {% if items.eventos %}
+        <br>
+        <p class="title-block">{{ 'Next events'|trans }}</p>
+        {% for item in items.eventos %}
+          <div class="content-new">
+            <h3 class="title-new">{{ item.field_fecha_del_evento.value }}</h3>
+            <h2><a href="{{ path('entity.node.canonical', {'node': item.id}) }}" >{{ item.label }}</a></h2>
+            <a href="{{ path('entity.node.canonical', {'node': item.id}) }}" class="btn-red-arrow">btn</a>
+          </div>
+        {% endfor %}
+        <div class="links">
+          <a href="{{ '/en/events'|trans }}" class="link-red">{{ 'View all events'|trans }}</a>
+        </div>
+      {% endif %}
+    </div>
+  </div>

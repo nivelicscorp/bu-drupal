@@ -1,0 +1,29 @@
+uuid: efb1786b-a05a-493e-bca6-29964c7ef443
+langcode: en
+status: true
+dependencies:
+  module:
+    - entity_browser_entity_form
+name: media_gallery
+label: 'Media Gallery'
+display: iframe
+display_configuration:
+  width: 100%
+  height: '768'
+  link_text: 'Select entities'
+  auto_open: true
+selection_display: no_display
+selection_display_configuration: {  }
+widget_selector: tabs
+widget_selector_configuration: {  }
+widgets:
+  fd2702af-a877-4632-9ffd-4835ce805db9:
+    id: entity_form
+    uuid: fd2702af-a877-4632-9ffd-4835ce805db9
+    label: 'Crear nueva galería'
+    weight: 2
+    settings:
+      submit_text: 'Save entity'
+      entity_type: media
+      bundle: gallery
+      form_mode: default

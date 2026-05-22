@@ -1,0 +1,15 @@
+mailchimp_transactional_reports.dashboard:
+  path: 'admin/reports/mailchimp_transactional'
+  defaults:
+    _title: 'Mailchimp Transactional Reports Dashboard'
+    _controller: '\Drupal\mailchimp_transactional_reports\Controller\ReportsController::dashboard'
+  requirements:
+    _permission: 'view mailchimp_transactional reports'
+
+mailchimp_transactional_reports.summary:
+  path: 'admin/reports/mailchimp_transactional/summary'
+  defaults:
+    _title: 'Mailchimp Transactional Account Summary'
+    _controller: '\Drupal\mailchimp_transactional_reports\Controller\ReportsController::summary'
+  requirements:
+    _permission: 'view mailchimp_transactional reports'

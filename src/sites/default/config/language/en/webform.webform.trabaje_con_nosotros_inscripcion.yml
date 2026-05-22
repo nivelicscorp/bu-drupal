@@ -1,0 +1,78 @@
+title: 'Work with us Registration'
+elements: |
+  titulo:
+    '#text': "<p class=\"title-form\">Registration form</p>\n\n<p>Fields marked with an asterisk (*) are required</p>\n"
+  nombre:
+    '#placeholder': 'Name*'
+  apellido:
+    '#placeholder': 'Last name*'
+  fecha_de_nacimiento:
+    '#title': Birthdate
+  nacionalidad:
+    '#title': Nationality
+    '#placeholder': 'Nationality*'
+  telefono:
+    '#title': 'Phone or Cell'
+    '#placeholder': 'Phone or Cell*'
+  email:
+    '#title': Email
+    '#placeholder': 'Email*'
+  direccion:
+    '#title': Address
+    '#placeholder': 'Address*'
+  ciudad:
+    '#title': City
+    '#placeholder': 'City*'
+  pais:
+    '#title': Country
+    '#placeholder': 'Country*'
+  formacion_academica:
+    '#title': 'Academic training'
+    '#options':
+      primaria: Primary
+      secundaria: 'High school'
+      universitaria: University
+      posgrado: Postgraduate
+    '#empty_option': 'Academic training*'
+  profesion:
+    '#title': Profession
+    '#placeholder': Profession
+  universidad:
+    '#title': University
+    '#placeholder': University
+  fecha_de_grado:
+    '#title': 'Date of degree'
+  promedio_academico_:
+    '#title': 'Grade point average'
+    '#placeholder': 'Grade point average'
+  posgrado:
+    '#title': Postgraduate
+    '#placeholder': Postgraduate
+  universidad_posgrado:
+    '#title': 'Postgraduate University'
+    '#placeholder': University
+  fecha_de_grado_posgrado:
+    '#title': 'Date of graduate degree'
+  promedio_academico_posgrado:
+    '#title': 'Graduate academic average'
+    '#placeholder': 'Graduate academic average'
+  nivel_de_ingles_1_a_100_:
+    '#title': 'English level (1 to 100)'
+    '#placeholder': 'English level (1 to 100)*'
+  nivel_de_espanol_1_a_100_:
+    '#title': 'Spanish level (1 to 100)'
+    '#placeholder': 'Spanish level (1 to 100)*'
+  otros_idiomas:
+    '#title': 'Other languages'
+    '#placeholder': 'Other languages'
+  seleccione_sus_areas_de_interes:
+    '#title': 'Select your areas of interest'
+  perfil_profesional:
+    '#title': 'Professional profile'
+    '#placeholder': 'Professional profile'
+  adjuntar_hoja_de_vida:
+    '#title': 'Attach resume'
+  actions:
+    '#submit__label': Send
+settings:
+  confirmation_message: '<h3>Thank you! You have successfully sent your data</h3>'

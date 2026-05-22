@@ -1,0 +1,4 @@
+services:
+  bu_page_header.header:
+    class: Drupal\bu_page_header\ValuesHeaderPage
+    arguments: ['@config.factory']

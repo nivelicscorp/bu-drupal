@@ -1,0 +1,299 @@
+.block-views-blockcalendario-de-eventos-block-1{
+    border: 1px solid #e5e5e5;    
+    margin-bottom: 45px;
+    .fc-today-button, .fc-right{
+        display:none;
+    }
+    .fc-prev-button, .fc-next-button{
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        color: $secondColor;
+    }
+    .fc-next-button{
+        position: absolute;
+        right: 0;
+        top: 50%;
+        @include prefix(transform, translateY(-50%), webkit moz o ms);
+    }
+    .fc-header-toolbar{
+        background: #f4f4f4; 
+        margin-bottom:21px;
+        padding: 17px 8px; 
+        position: relative;     
+    }
+    .js-drupal-fullcalendar{       
+        min-height: 335px;
+    }
+    .fc-view-container{
+        padding: 0 35px;
+    }
+    .fc-center{
+        color:$secondColor;
+        font-size: $mainFont;
+        font-weight: bold; 
+        margin-left: -40px;  
+        margin-top: 6px;
+        h2{
+            font-size: 16px;
+            font-weight: bold;
+            text-transform:uppercase;
+        }
+    }
+    .fc-event-container{
+        font-size: 10px !important;
+        margin-top: -5px !important;
+        position: absolute !important;
+        width: 26px !important;
+    }
+    .fc-day-header{    
+        display: block;
+        letter-spacing: 4px;
+        overflow: hidden;
+        width: 12px;
+        &.fc-thu{
+            width: 5px;
+        }
+        span{
+            color:$mainColor;
+            font-family: $secondFont;
+            font-weight: bold;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+    }
+    .fc-widget-header{
+        margin-bottom: 6px;
+    }
+    .fc-widget-content{
+        .fc-scroller{
+            height: 175px!important;
+            overflow: hidden !important;
+        }
+    }
+    .fc-other-month{
+        span{
+            display: none;
+        }
+    }
+    .fc-week{
+        min-height: 37px !important;
+    }
+    table{
+        thead{
+            tr{
+                display: flex;
+                justify-content: space-around;
+                td{
+                    &.fc-sun{
+                        color:$secondColor;
+                        span{
+                            color:$secondColor;
+                        }
+                    }
+                    .fc-day-number{
+                        color:$blackTxt;
+                        font-size: $mainFont;
+                        font-weight: bold;
+                        font-size: 16px;
+                        text-align: center;   
+                        width: 100%;
+                    }
+                }
+            }
+        }
+        tbody{
+            tr{
+                display: contents;
+            }
+        }
+    }
+}
+.path-eventos{
+    .form-item-field-tipo-de-evento-value{
+        .select-selected{
+            line-height: 60px;
+            height:60px;
+            margin-bottom: 50px;
+        }
+    }
+    article{
+        .event-box{
+            display: flex;
+            align-items: inherit;
+            margin-bottom: 55px;
+            .subtitle{
+                font-family: $mainFont;
+                font-size:14px;
+                line-height:15px;
+                color:$secondColor;
+                margin-bottom: 15px;
+            }
+            .field--name-field-fecha-del-evento{
+                margin-bottom: 0;
+                time{
+                    color:$blackTxt;
+                    font-family: $secondFont;
+                    font-size: 48px;
+                }
+            }
+            .info-event{
+                margin-left: 40px;
+                .title{
+                    margin-top:0;
+                }
+            }
+            .date-event{
+                &:after{
+                    display:none;
+                }
+            }
+            h2{
+                a{
+                    span{
+                        font-size: 18px;
+                    }
+                }
+            }
+            .field--name-field-hora-del-vento{
+                font-size: 14px;
+                font-weight:400;
+                margin-bottom: 3px;
+            }
+            .place{
+                .field--name-field-lugar-del-evento{
+                    font-size: 14px;
+                    font-weight:400;
+                    margin-bottom: 3px;
+                }
+                .field--name-field-enlace-de-zoom{
+                    margin:0;
+                    a{
+                        color: $blackTxt;
+                        font-size: 14px;
+                        font-weight: 400;                       
+                        margin:0;
+                        text-transform: inherit;
+                        svg{
+                            display: none;
+                        }
+                    }
+                }
+            }
+            .type-event{
+                margin-bottom: 3px;
+            }
+            .field--type-add-to-calendar-field{
+                .field--item{
+                    span{
+                        .atcb-link{                
+                            display:block !important;
+                            color: $secondColor;
+                            font-family: $mainFont;
+                            font-size: 12px;
+                            font-weight: bold;
+                            position:relative;
+                            text-decoration:none;
+                            text-transform: uppercase;
+                            width: fit-content;
+                            &::after{
+                                content:'+';
+                                color: $secondColor;
+                                display: block;
+                                font-size: 12px;
+                                position:absolute;
+                                right:-12px;
+                                top:0;
+                            }
+                            &:hover{
+                                opacity:0.8;
+                            } 
+                        }   
+                    }         
+                }
+            }
+            .wrap-text_box_link{
+                margin: 18px 0 17px;
+            }
+        }
+    }
+    .sidebar-news{
+		.sidebar-info{
+			.content-other-news{
+				.content-new{
+					&:last-child{
+						margin-bottom: 0px;
+					}
+				}
+			} 
+            .others-news-sidebar{
+                .content-new{
+                    .title-new{
+                        margin-top: 0;
+                    }
+                } 
+            } 
+		} 
+	} 
+   
+}
+@media screen and (max-width: 960px){
+    .path-eventos{
+        .col-sm-8{
+            padding-right:0;
+            width: 100%;
+            .region-content{
+                padding:0;
+            }
+        }
+        aside{
+            padding-left: 0;
+            width: 100%;
+        }
+        article{
+            .event-box{
+                .field--name-field-fecha-del-evento{
+                    time{
+                        font-size: 36px;
+                    }
+                } 
+            } 
+        } 
+    }
+}
+@media screen and (max-width: 767px){
+    .block-views-blockcalendario-de-eventos-block-1{
+        margin-bottom: 67px;
+        .fc-view-container{
+            padding: 0 20px;
+        }
+        .fc-widget-header{
+            margin-bottom: 9px;
+        }
+    }
+    .path-eventos{
+        .col-sm-8{
+            padding:0 30px;
+        }
+        .form-item-field-tipo-de-evento-value{
+            .select-selected{
+                height: 50px;
+                line-height: 50px;
+                margin-bottom: 9px;
+            }
+        } 
+        aside{
+            padding: 0px 15px !important;
+        }
+        article{
+            .event-box{
+                flex-direction: column;
+                margin-bottom: 35px;
+            }
+            img{
+                max-height: 199px;
+                object-fit: cover;
+            }
+        } 
+    }  
+}

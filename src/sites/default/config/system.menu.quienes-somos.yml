@@ -1,0 +1,8 @@
+uuid: c0ba8af3-9b9c-4e4a-99e9-3ed6deabfe96
+langcode: es
+status: true
+dependencies: {  }
+id: quienes-somos
+label: 'Quienes somos header'
+description: 'Pertenece al menu principal '
+locked: false

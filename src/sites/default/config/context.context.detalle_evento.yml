@@ -1,0 +1,29 @@
+uuid: dada33f8-35b2-48d4-af95-bce7c2149cfe
+langcode: es
+status: true
+dependencies:
+  module:
+    - ctools
+label: 'Detalle evento'
+name: detalle_evento
+group: theme
+description: 'Detalle de los nodos de tipo evento eventos'
+requireAllConditions: false
+disabled: false
+conditions:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 6cbded2c-58e0-4d22-99b6-57e3468a41ba
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      evento: evento
+reactions:
+  blocks:
+    id: blocks
+    uuid: 95023dad-9434-4b17-b24e-a1cf617ef49f
+    blocks: {  }
+    include_default_blocks: 0
+    saved: false
+weight: 0

@@ -1,0 +1,18 @@
+uuid: 55a7093a-165b-4b7f-b5a5-45b49151c11c
+langcode: en
+status: true
+dependencies:
+  config:
+    - media.type.gallery
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: false
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: media.gallery
+target_entity_type_id: media
+target_bundle: gallery
+default_langcode: site_default
+language_alterable: false

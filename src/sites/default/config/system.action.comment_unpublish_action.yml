@@ -1,0 +1,13 @@
+uuid: 06863a8d-bb56-4d00-9183-915410c2afdf
+langcode: es
+status: true
+dependencies:
+  module:
+    - comment
+_core:
+  default_config_hash: MLin6S_PsJ7Oo480DxS46D46IM8tqFkkWOLyH7TGByI
+id: comment_unpublish_action
+label: 'Retirar contenido de la publicación'
+type: comment
+plugin: 'entity:unpublish_action:comment'
+configuration: {  }

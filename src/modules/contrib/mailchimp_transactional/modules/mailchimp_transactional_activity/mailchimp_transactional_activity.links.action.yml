@@ -1,0 +1,5 @@
+mailchimp_transactional_activity.add:
+  route_name: 'mailchimp_transactional_activity.add'
+  title: 'Add Activity Entity'
+  appears_on:
+    - mailchimp_transactional_activity.admin

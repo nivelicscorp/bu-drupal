@@ -1,0 +1,47 @@
+{#
+/**
+ * @file
+ * Default theme implementation of a Webform message container.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the containing element.
+ * - message: The rendered status_messages elements.
+ * - has_parent: A flag to indicate that the container has one or more parent
+ *    containers.
+ * - closed: A flag to indicate that the message has been been closed and should
+ *    not be displayed.
+ *
+ * @see template_preprocess_webform_message()
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+    has_parent ? 'js-form-wrapper',
+    has_parent ? 'form-wrapper',
+  ]
+%}
+{% if not closed %}
+<div{{ attributes.addClass(classes) }}>{{ message }}</div>
+{% endif %}
+<form method="post" action="https://gateway.payulatam.com/ppp-web-gateway/pb.zul" accept-charset="UTF-8">
+    <input type="image" border="0" alt="" src="http://www.payulatam.com/img-secure-2015/boton_pagar_pequeno.png" onClick="this.form.urlOrigen.value = window.location.href;"/>
+    <input name="buttonId" type="hidden" value="+rwK0Oz7If5yNT3zKjnoHzLrP1ostUy7XPFGZdQuN2SL77MfCbHBXw=="/>
+    <input name="merchantId" type="hidden" value="99242"/>
+    <input name="accountId" type="hidden" value="103283"/>
+    <input name="description" type="hidden" value="Evento 05"/>
+    <input name="referenceCode" type="hidden" value="evento05"/>
+    <input name="amount" type="hidden" value="10000"/>
+    <input name="tax" type="hidden" value="0"/>
+    <input name="taxReturnBase" type="hidden" value="0"/>
+    <input name="currency" type="hidden" value="COP"/>
+    <input name="lng" type="hidden" value="es"/>
+    <input name="approvedResponseUrl" type="hidden" value="https://bu.com.co/resumen-compra"/>
+    <input name="declinedResponseUrl" type="hidden" value="https://bu.com.co/resumen-compra"/>
+    <input name="pendingResponseUrl" type="hidden" value="https://bu.com.co/resumen-compra"/>
+    <input name="displayShippingInformation" type="hidden" value="NO"/>
+    <input name="sourceUrl" id="urlOrigen" value="" type="hidden"/>
+    <input name="buttonType" value="SIMPLE" type="hidden"/>
+    <input name="signature" value="e5d7b3a88886a62fa7a5c8cf853ad421954da7429cca14e050c82ffb1b4900b2" type="hidden"/>
+</form>

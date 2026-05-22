@@ -1,0 +1,10 @@
+mailchimp_transactional_reports.dashboard:
+  route_name: mailchimp_transactional_reports.dashboard
+  title: 'Dashboard'
+  weight: -10
+  base_route: mailchimp_transactional_reports.dashboard
+
+mailchimp_transactional_reports.summary_page:
+  route_name: mailchimp_transactional_reports.summary
+  title: 'Account summary'
+  base_route: mailchimp_transactional_reports.dashboard

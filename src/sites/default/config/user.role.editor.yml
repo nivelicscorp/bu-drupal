@@ -1,0 +1,113 @@
+uuid: 05330a54-7f1d-40a4-807e-cc50e21e7c5e
+langcode: es
+status: true
+dependencies:
+  config:
+    - filter.format.full_html
+    - media.type.audio
+    - media.type.file
+    - media.type.image
+    - media.type.video
+    - node.type.bulletin
+    - node.type.evento
+    - node.type.indicators
+    - node.type.lawyer
+    - node.type.noticia
+    - node.type.page
+    - node.type.section
+    - node.type.speakers
+    - node.type.webform
+    - taxonomy.vocabulary.areas
+    - taxonomy.vocabulary.ciudad
+    - taxonomy.vocabulary.indrustrias
+    - taxonomy.vocabulary.membership
+    - taxonomy.vocabulary.sector_noticia
+    - taxonomy.vocabulary.specialization
+    - taxonomy.vocabulary.tags
+  module:
+    - block
+    - block_content
+    - content_translation
+    - filter
+    - menu_link_content
+    - node
+    - paragraphs
+    - system
+    - taxonomy
+    - toolbar
+id: editor
+label: Editor
+weight: 3
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access content'
+  - 'access content overview'
+  - 'access taxonomy overview'
+  - 'access toolbar'
+  - 'administer blocks'
+  - 'administer menu'
+  - 'administer taxonomy'
+  - 'create bulletin content'
+  - 'create content translations'
+  - 'create indicators content'
+  - 'create lawyer content'
+  - 'create noticia content'
+  - 'create page content'
+  - 'create section content'
+  - 'create speakers content'
+  - 'create terms in areas'
+  - 'create terms in ciudad'
+  - 'create terms in indrustrias'
+  - 'create terms in membership'
+  - 'create terms in sector_noticia'
+  - 'create terms in specialization'
+  - 'create terms in tags'
+  - 'edit any bulletin content'
+  - 'edit any indicators content'
+  - 'edit any lawyer content'
+  - 'edit any noticia content'
+  - 'edit any page content'
+  - 'edit any section content'
+  - 'edit any speakers content'
+  - 'edit own bulletin content'
+  - 'edit own indicators content'
+  - 'edit own lawyer content'
+  - 'edit own noticia content'
+  - 'edit own page content'
+  - 'edit own section content'
+  - 'edit own speakers content'
+  - 'edit terms in areas'
+  - 'edit terms in ciudad'
+  - 'edit terms in indrustrias'
+  - 'edit terms in membership'
+  - 'edit terms in sector_noticia'
+  - 'edit terms in specialization'
+  - 'edit terms in tags'
+  - 'translate any entity'
+  - 'translate areas taxonomy_term'
+  - 'translate audio media'
+  - 'translate block_content'
+  - 'translate bulletin node'
+  - 'translate evento node'
+  - 'translate file media'
+  - 'translate image media'
+  - 'translate indicators node'
+  - 'translate indrustrias taxonomy_term'
+  - 'translate lawyer node'
+  - 'translate membership taxonomy_term'
+  - 'translate menu_link_content'
+  - 'translate noticia node'
+  - 'translate page node'
+  - 'translate paragraph'
+  - 'translate section node'
+  - 'translate sector_noticia taxonomy_term'
+  - 'translate speakers node'
+  - 'translate specialization taxonomy_term'
+  - 'translate tags taxonomy_term'
+  - 'translate video media'
+  - 'translate webform node'
+  - 'update content translations'
+  - 'use text format full_html'
+  - 'view own unpublished content'
+  - 'view the administration theme'

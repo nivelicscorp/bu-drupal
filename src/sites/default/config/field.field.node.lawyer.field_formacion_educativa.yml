@@ -1,0 +1,21 @@
+uuid: e98555ff-3e44-4d19-9011-7574d2aa8c25
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_formacion_educativa
+    - node.type.lawyer
+  module:
+    - text
+id: node.lawyer.field_formacion_educativa
+field_name: field_formacion_educativa
+entity_type: node
+bundle: lawyer
+label: 'Formación académica '
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

@@ -1,0 +1,19 @@
+uuid: 3a3c3807-b398-4e45-9b19-c6410e49f93f
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_seo_description
+field_name: field_seo_description
+entity_type: paragraph
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

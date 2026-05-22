@@ -1,0 +1,17 @@
+modal_page.admin:
+  title: 'Modal Page'
+  description: 'Settings of Modal Page'
+  parent: system.admin_config_ui
+  route_name: modal_page.settings
+
+modal_page.default:
+  title: 'Modal'
+  parent: system.admin_structure
+  description: 'Create and manage Modal.'
+  route_name: modal_page.default
+  
+modal_page.add_modal:
+  title: 'Add Modal'
+  route_name: modal_page.add_modal
+  description: 'Add Modal'
+  parent: modal_page.default

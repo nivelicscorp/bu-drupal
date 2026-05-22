@@ -1,0 +1,335 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\views\Views;
+use Drupal\views\ViewExecutable;
+use Drupal\views\Plugin\views\query\QueryPluginBase;
+
+/**
+ * Implements hook_form_alter().
+ */
+function bu_sections_form_alter(array &$form, FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'taxonomy_term_section_form') {
+    $form['description']['widget'][0]['#format'] = 'full_html';
+  } elseif (strpos($form_id, 'webform_submission_inscripcion_evento') !== FALSE){
+    if(isset($form['elements']['evento'])){
+      $route_match = \Drupal::routeMatch();
+      $current_path_parameters = $route_match->getParameters();
+      // Filter for content type.
+      if (isset($current_path_parameters->all()['node']) && $node = $current_path_parameters->all()['node']) {
+        $form['elements']['evento']['#default_value'] = $node->id();
+      }
+    }
+  } elseif (strpos($form_id, 'descarga_informe') !== FALSE) {
+    $route_match = \Drupal::routeMatch();
+    $current_path_parameters = $route_match->getParameters();
+    $node = $current_path_parameters->all()['node'];
+    if ($node && $node->hasField('field_archivo_des')) {
+      $uri = $node->get('field_archivo_des')->entity->getFileUri();
+      $url = \Drupal::service('file_url_generator')->generateAbsoluteString($uri);
+      $form['elements']['archivo']['#default_value'] = $url;
+    }
+
+  }
+  $webform_id = isset($form['#webform_id']) ? $form['#webform_id'] : null;
+  $formsWithEmblue = ['boletin'];
+  if (in_array($webform_id, $formsWithEmblue)) {
+    $form['#validate'][] = 'submission_newsletter_send_em_blue';
+  }
+}
+
+/**
+ * Submit dates for emBlue.
+ */
+function submission_newsletter_send_em_blue(array &$form, FormStateInterface $form_state) {
+    /**
+     * @var \Drupal\bu_sections\Controller\EmBlueControllerInterface $emBlueController
+     */
+    $emBlueController = \Drupal::service('bu_sections.EmBlue');
+    $emBlueController->sendNewsletterFormData($form_state->getValues());
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bu_sections_preprocess_taxonomy_term__section(&$variables) {
+  $section_term = $variables['term'];
+  $view_mode = $variables['view_mode'];
+
+  if ($view_mode == 'teaser') {
+    if (!empty($variables['elements']['#even_odd'])) {
+      $variables['attributes']['class'][] = $variables['elements']['#even_odd'];
+    }
+    $variables['read_more_link'] = [
+      '#theme' => 'bu_expanded_rounded_button_arrow',
+      '#link_url' =>  \Drupal\Core\Url::fromRoute('entity.taxonomy_term.canonical', ['taxonomy_term' => $section_term->id()]),
+      '#link_text' => t('LEER MÁS'),
+    ];
+  }
+
+  if ($view_mode == 'full') {
+    if ($parent_terms = _taxonomy_term_is_children($section_term->id())) {
+      $parent_term = reset($parent_terms);
+      $section_terms_uuids = \Drupal::state()->get('bu_section_terms_uuids', []);
+      if (!empty($section_terms_uuids['pasantias_verano'])) {
+        // If the term is a children of "Pasantías de Verano"
+        if ($section_terms_uuids['pasantias_verano'] == $parent_term->uuid()) {
+          // Get the view "section_children_terms"
+          $args = [$section_term->id()];
+          $display_id = "highlighted_in_internship";
+          $content_by_section_view = Views::getView('content_by_section');
+          $content_by_section_view->setArguments($args);
+          $content_by_section_view->setDisplay($display_id);
+          $content_by_section_view->preExecute();
+          $content_by_section_view->execute();
+          $variables['content_by_section_block'] = $content_by_section_view->buildRenderable($display_id);
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function bu_sections_preprocess_taxonomy_term__section_home(&$variables) {
+  $entity_type_manager = \Drupal::entityTypeManager();
+  $section_term = $variables['term'];
+  if (!$entity_type_manager->getStorage('taxonomy_term')->loadParents($section_term->id())) {
+    // Get the view "section_children_terms"
+    $args = [$section_term->id()];
+    $display_id = "interleaved_block";
+    $section_children_view = Views::getView('section_children');
+    $section_children_view->setArguments($args);
+    $section_children_view->setDisplay($display_id);
+    $section_children_view->preExecute();
+    $section_children_view->execute();
+    $variables['section_children_terms'] = $section_children_view->buildRenderable($display_id);
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function bu_sections_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  $route_match = \Drupal::routeMatch();
+  $route_name = $route_match->getRouteName();
+  if ($route_name == 'entity.taxonomy_term.canonical') {
+    $taxonomy_term = $route_match->getParameter('taxonomy_term');
+    if ($taxonomy_term->bundle() == 'section') {
+      if (_taxonomy_term_is_children($taxonomy_term->id())) {
+        $suggestions[] = 'page__sidebar_two';
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function bu_sections_theme_suggestions_taxonomy_term_alter(array &$suggestions, array $variables) {
+  $entity_type_manager = \Drupal::entityTypeManager();
+  $taxonomy_term = $variables['elements']['#taxonomy_term'];
+  $view_mode = $variables['elements']['#view_mode'];
+  $suggestions[] = 'taxonomy_term__' . $taxonomy_term->bundle() . '__' . $view_mode;
+
+  if ($taxonomy_term->bundle() == 'section') {
+    if (!$entity_type_manager->getStorage('taxonomy_term')->loadParents($taxonomy_term->id())) {
+      $suggestions[] = 'taxonomy_term__section_home';
+    }
+  }
+}
+
+/*
+ * Implements hook_preprocess_HOOK().
+ */
+
+function bu_sections_preprocess_views_view_unformatted__section_children__interleaved_block(&$variables) {
+  $even = TRUE;
+  foreach ($variables['rows'] as &$row) {
+    if ($even) {
+      $class = "even";
+    }
+    else {
+      $class = "odd";
+    }
+    $row['content']['#even_odd'] = $class;
+    $even = !$even;
+  }
+}
+
+/*
+ * Implements hook_preprocess_HOOK().
+ */
+
+function bu_sections_preprocess_views_view__content_by_section__block_content_by_section(&$variables) {
+  $variables['header'] = [
+    '#type' => 'html_tag',
+    '#tag' => 'h3',
+    '#value' => '',
+    '#attributes' => [
+      'class' => [
+        'title-block',
+      ]
+    ]
+  ];
+}
+
+/*
+ * Implements hook_preprocess_HOOK().
+ */
+
+function bu_sections_preprocess_views_view__section_children__minimum_view_mode_block(&$variables) {
+  $variables['header'] = [
+    'title' => [
+      '#type' => 'html_tag',
+      '#tag' => 'h3',
+      '#value' => t('últimas promociones'),
+      '#attributes' => [
+        'class' => [
+          'title-block',
+        ]
+      ]
+    ],
+    'text' => [
+      '#type' => 'html_tag',
+      '#tag' => 'p',
+      '#value' => t('Vive la experiencia de nuestros pasantes conociendo los testimonios de nuestras promociones.'),
+    ],
+  ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for block templates of
+ * '#entity_type' == block_content.
+ */
+function bu_sections_preprocess_block(&$variables) {
+  $entity_type = !empty($variables['content']['#entity_type']) ? $variables['content']['#entity_type'] : NULL;
+  if ($entity_type == 'block_content') {
+    $block_content_entity = $variables['content']['#block_content'];
+    // Add the classes entered in the field_block_additional_classes to the
+    // block attributes
+    if (!empty($block_content_entity->field_block_additional_classes) && $classes = $block_content_entity->field_block_additional_classes->getString()) {
+      $classes_array = explode(' ', $classes);
+      $classes_array = array_filter($classes_array);
+
+      if (!empty($variables['attributes']['class']) && is_array($variables['attributes']['class'])) {
+        $variables['attributes']['class'] = array_merge($variables['attributes']['class'], $classes_array);
+      }
+      else {
+        $variables['attributes']['class'] = $classes_array;
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_pathauto_alias_alter().
+ */
+function bu_sections_pathauto_alias_alter(&$alias, array &$context) {
+  // Taxonomy terms
+  if ($context['module'] == 'taxonomy' && !empty($context['data']['term'])) {
+    $term = $context['data']['term'];
+    $vid = $term->bundle();
+
+    // Section children terms
+    if ($vid == 'section' && $parents = _taxonomy_term_is_children($term->id())) {
+      $path_alias_manager = \Drupal::service('path.alias_manager');
+      $parent = reset($parents);
+      $language = !empty($context['language']) ? $context['language'] : NULL;
+      $parent_term_source_path = '/taxonomy/term/' . strval($parent->id());
+      $parent_alias = $path_alias_manager->getAliasByPath($parent_term_source_path, $language);
+      if ($parent_alias != $parent_term_source_path) {
+        $parent_alias = trim($parent_alias, '/');
+        $alias = trim($alias, '/');
+        $alias = '/' . $parent_alias . '/' . $alias;
+      }
+    }
+
+    // Áreas de práctica & Industrias
+    if (in_array($vid, ['areas', 'indrustrias'])) {
+      $router_provider = \Drupal::service('router.route_provider');
+      $route_name_what_we_doing_page = 'view.what_we_doing.page_1';
+      $route_object_what_we_doing_page = $router_provider->getRouteByName($route_name_what_we_doing_page);
+      $alias = trim($alias, '/');
+      $alias = $route_object_what_we_doing_page->getPath() . '/' . $alias;
+    }
+  }
+
+  // Nodes
+  if ($context['module'] == 'node' && !empty($context['data']['node'])) {
+    $node = $context['data']['node'];
+    $node_type = $node->getType();
+    $router_provider = \Drupal::service('router.route_provider');
+    // Newsletter nodes
+    if ($node_type == 'bulletin') {
+      $route_name_newsletter_page = 'view.newsletter.page_1';
+      $route_object_newsletter_page = $router_provider->getRouteByName($route_name_newsletter_page);
+      $alias = trim($alias, '/');
+      $alias = $route_object_newsletter_page->getPath() . '/' . $alias;
+    }
+    // Lawyers nodes
+    if ($node_type == 'lawyer') {
+      $route_name_lawyer_search_page = 'view.lawyers.search_page';
+      $route_object_lawyer_search_page = $router_provider->getRouteByName($route_name_lawyer_search_page);
+      $alias = trim($alias, '/');
+      $alias = $route_object_lawyer_search_page->getPath() . '/' . $alias;
+    }
+    // Noticias nodes (news)
+    if ($node_type == 'noticia') {
+      $route_name_noticias_page = 'view.interna_insights.page_1';
+      $route_object_noticias_page = $router_provider->getRouteByName($route_name_noticias_page);
+      $alias = trim($alias, '/');
+      $alias = $route_object_noticias_page->getPath() . '/' . $alias;
+    }
+  }
+}
+
+function bu_sections_theme($existing, $type, $theme, $path) {
+  return array(
+    'bu_register_free_event_block' => array(
+      'variables' => array(
+        'title' => '',
+        'items' => array(),
+      )
+    ),
+    'bu_register_pay_event_block' => array(
+      'variables' => array(
+        'title' => '',
+        'items' => array(),
+      )
+    ),
+  );
+}
+
+/**
+ * Implements hook_views_query_alter().
+ */
+function bu_sections_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
+  if ($view->id() == 'lawyers') {
+    $filters = array_keys($view->exposed_raw_input);
+    $mermeship_fields = [
+      "field_membership_with_gender_target_id",
+      //"field_membership_target_id"
+    ];
+    $mermeship_field_names = [
+      'Director',
+      //'Directora'
+    ];
+    foreach ($mermeship_fields as $mermeship_field_item) {
+      if (in_array($mermeship_field_item, $filters)) {
+        $mermeship_field = $mermeship_field_item;
+        break;
+      }
+    }
+    if (isset($mermeship_field) && $view->exposed_raw_input[$mermeship_field] !== 'All') {
+      /**
+       * @var \Drupal\taxonomy\Entity\Term $term
+       */
+      $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($view->exposed_raw_input[$mermeship_field]);
+      if (!empty($term) && in_array($term->getName(), $mermeship_field_names)) {
+        unset($query->orderby[0], $query->orderby[1]);
+      }
+    }
+  }
+}

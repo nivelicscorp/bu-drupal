@@ -1,0 +1,47 @@
+modal_page.settings:
+  path: '/admin/config/user-interface/modal-page/settings'
+  defaults:
+    _title: 'Modal Page Settings'
+    _form: 'Drupal\modal_page\Form\ModalPageSettingsForm'
+  requirements:
+    _permission: 'access content'
+
+entity.modal_page_modal.canonical:
+  path: '/admin/structure/modal/{modal_page_modal}'
+  defaults:
+    _entity_view: 'modal_page_modal'
+    _title: 'Modal'
+  requirements:
+    _entity_access: 'modal_page_modal.view'
+
+modal_page.default:
+  path: '/admin/structure/modal'
+  defaults:
+    _entity_list: 'modal_page_modal'
+    _title: 'Modal'
+  requirements:
+    _permission: 'view modal entity'
+
+modal_page.add_modal:
+  path: '/admin/structure/modal/add'
+  defaults:
+    _entity_form: modal_page_modal.add
+    _title: 'Add Modal'
+  requirements:
+    _entity_create_access: 'modal_page_modal'
+
+entity.modal_page_modal.edit_form:
+  path: '/admin/structure/modal/{modal_page_modal}/edit'
+  defaults:
+    _entity_form: modal_page_modal.edit
+    _title: 'Edit Modal'
+  requirements:
+    _entity_access: 'modal_page_modal.edit'
+
+entity.modal_page_modal.delete_form:
+  path: '/admin/structure/modal/{modal_page_modal}/delete'
+  defaults:
+    _entity_form: modal_page_modal.delete
+    _title: 'Delete Modal'
+  requirements:
+    _entity_access: 'modal_page_modal.delete'

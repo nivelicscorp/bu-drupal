@@ -1,0 +1,48 @@
+uuid: dd562bd6-5c2b-4371-b0c5-c7875c2caa6f
+langcode: es
+status: true
+dependencies:
+  config:
+    - views.view.content_by_section
+  module:
+    - system
+    - views
+label: 'Valor Compartido - Ambiental'
+name: valor_compartido_ambiental
+group: null
+description: ''
+requireAllConditions: false
+disabled: false
+conditions:
+  request_path:
+    id: request_path
+    negate: false
+    uuid: 57158990-7e33-4446-a64f-bda95642fde1
+    context_mapping: {  }
+    pages: /taxonomy/term/1138
+reactions:
+  blocks:
+    id: blocks
+    uuid: 697deb38-e34a-4ba9-ae07-a3b81b32029f
+    blocks:
+      7d6dc5b1-34d8-4535-8634-6bb206e72aba:
+        uuid: 7d6dc5b1-34d8-4535-8634-6bb206e72aba
+        id: 'views_block:content_by_section-block_content_by_section'
+        label: ''
+        provider: views
+        label_display: '0'
+        region: content
+        weight: '0'
+        custom_id: views_block_content_by_section_block_content_by_section
+        theme: brigard
+        css_class: ''
+        unique: 0
+        context_id: valor_compartido_ambiental
+        context_mapping:
+          field_section_target_id: '@custom_context_provider.taxonomy_term_context:taxonomy_term'
+        views_label: ''
+        items_per_page: none
+        override: {  }
+    include_default_blocks: 0
+    saved: false
+weight: 0

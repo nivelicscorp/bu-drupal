@@ -1,0 +1,38 @@
+_core:
+  default_config_hash: tFcyNjovmdPA1ZVm7j2Iymt809j-r2F5uSDJAOI_QV8
+langcode: es
+nid_list: {  }
+translation_sync: true
+search: false
+type: remove
+content_types:
+  article: none
+  bulletin: none
+  evento: none
+  experience: none
+  indicators: all
+  lawyer: none
+  noticia: none
+  page: none
+  recognition: none
+  section: all
+  speakers: none
+  webform: none
+  what_do_we_do: none
+content_type_modes:
+  article: {  }
+  bulletin: {  }
+  evento: {  }
+  experience: {  }
+  indicators:
+    - full
+  lawyer: {  }
+  noticia: {  }
+  page: {  }
+  recognition: {  }
+  section:
+    - full
+    - main_banner
+  speakers: {  }
+  webform: {  }
+  what_do_we_do: {  }

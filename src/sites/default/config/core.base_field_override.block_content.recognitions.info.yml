@@ -1,0 +1,18 @@
+uuid: f61833d4-3a17-4bac-bc72-2cfcf15f1c73
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.recognitions
+id: block_content.recognitions.info
+field_name: info
+entity_type: block_content
+bundle: recognitions
+label: 'Descripción del bloque'
+description: 'Una breve descripción de su bloque.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

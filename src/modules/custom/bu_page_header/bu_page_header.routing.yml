@@ -1,0 +1,11 @@
+
+bu_page_header.page_header_form:
+  path: '/admin/structure/admin-page-header'
+  defaults:
+    _form: '\Drupal\bu_page_header\Form\PageHeaderForm'
+    _title: 'Page Header Form'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE
+

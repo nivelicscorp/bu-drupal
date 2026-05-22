@@ -1,0 +1,18 @@
+uuid: c25e7a51-2fd4-474d-9d5a-1a57b658e913
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.sider_bar
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: block_content.sider_bar
+target_entity_type_id: block_content
+target_bundle: sider_bar
+default_langcode: site_default
+language_alterable: false

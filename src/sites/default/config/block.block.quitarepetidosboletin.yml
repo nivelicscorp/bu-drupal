@@ -1,0 +1,32 @@
+uuid: cac4e045-1872-4365-8f75-73ced15718d5
+langcode: es
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:024f4084-7ac9-4244-89f4-d0dcdc7024e9'
+  module:
+    - block_class
+    - block_content
+    - system
+  theme:
+    - brigard
+id: quitarepetidosboletin
+theme: brigard
+region: top_header
+weight: -14
+provider: null
+plugin: 'block_content:024f4084-7ac9-4244-89f4-d0dcdc7024e9'
+settings:
+  id: 'block_content:024f4084-7ac9-4244-89f4-d0dcdc7024e9'
+  label: quita-repetidos-boletin
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: /node/325

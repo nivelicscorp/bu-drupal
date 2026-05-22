@@ -1,0 +1,26 @@
+uuid: 4c9ac4e7-ed75-4f88-a8dd-5bbb5b5f2f47
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_fecha_y_hora
+    - node.type.evento
+  module:
+    - datetime_range
+id: node.evento.field_fecha_y_hora
+field_name: field_fecha_y_hora
+entity_type: node
+bundle: evento
+label: 'Fecha y hora'
+description: 'Fecha y hora agregados al calendario'
+required: true
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+    default_end_date_type: now
+    default_end_date: now
+default_value_callback: ''
+settings: {  }
+field_type: daterange

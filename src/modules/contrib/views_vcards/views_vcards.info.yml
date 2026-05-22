@@ -1,0 +1,13 @@
+name: 'Views vCards'
+description: 'Allows the creation of vCards by using fields provided by the Views module.'
+type: module
+core_version_requirement: ^9 || ^10 || ^11
+package: Views
+
+dependencies:
+  - drupal:views
+
+# Information added by Drupal.org packaging script on 2024-08-13
+version: '3.1.0'
+project: 'views_vcards'
+datestamp: 1723559754

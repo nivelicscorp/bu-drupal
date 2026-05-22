@@ -1,0 +1,29 @@
+uuid: 08eeaf44-6ec4-4d48-826c-96b75ab4a698
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ciudad
+    - node.type.lawyer
+    - taxonomy.vocabulary.ciudad
+id: node.lawyer.field_ciudad
+field_name: field_ciudad
+entity_type: node
+bundle: lawyer
+label: Ciudad
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      ciudad: ciudad
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

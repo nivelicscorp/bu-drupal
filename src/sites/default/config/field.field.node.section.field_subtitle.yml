@@ -1,0 +1,19 @@
+uuid: 2af04567-46b1-442f-bd17-041f149cb7be
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_subtitle
+    - node.type.section
+id: node.section.field_subtitle
+field_name: field_subtitle
+entity_type: node
+bundle: section
+label: Subtitle
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

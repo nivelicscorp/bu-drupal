@@ -1,0 +1,21 @@
+uuid: ce327b6b-8152-4136-a954-2c060d5bad76
+langcode: en
+status: true
+dependencies:
+  module:
+    - config_pages
+    - entity_reference_revisions
+    - paragraphs
+id: config_pages.field_urls
+field_name: field_urls
+entity_type: config_pages
+type: entity_reference_revisions
+settings:
+  target_type: paragraph
+module: entity_reference_revisions
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

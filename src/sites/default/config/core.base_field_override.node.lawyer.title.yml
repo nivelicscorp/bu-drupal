@@ -1,0 +1,18 @@
+uuid: 78445978-860e-45ed-9bc1-08248498b56f
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.lawyer
+id: node.lawyer.title
+field_name: title
+entity_type: node
+bundle: lawyer
+label: 'Full Name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

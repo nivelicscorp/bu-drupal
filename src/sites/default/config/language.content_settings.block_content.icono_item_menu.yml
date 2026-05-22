@@ -1,0 +1,18 @@
+uuid: 9a04bbea-d2d0-415b-a278-5a47ff3d28e7
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.icono_item_menu
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: false
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: block_content.icono_item_menu
+target_entity_type_id: block_content
+target_bundle: icono_item_menu
+default_langcode: site_default
+language_alterable: false

@@ -1,0 +1,11 @@
+name: vCard
+type: module
+description: 'Allows vcard export of user data.'
+# core: 8.x
+
+# Information added by Drupal.org packaging script on 2017-02-02
+version: '8.x-1.0'
+core: 8.x
+core_version_requirement: ^8 || ^9
+project: 'vcard'
+datestamp: 1486057085

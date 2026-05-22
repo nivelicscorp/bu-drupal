@@ -1,0 +1,21 @@
+uuid: da0d2fa4-6c71-4fba-bf13-8ce61d04b1a3
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_peso
+    - node.type.page
+  module:
+    - options
+id: node.page.field_peso
+field_name: field_peso
+entity_type: node
+bundle: page
+label: peso
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_integer

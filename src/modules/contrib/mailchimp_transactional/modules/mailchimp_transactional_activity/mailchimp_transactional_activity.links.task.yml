@@ -1,0 +1,8 @@
+mailchimp_transactional_activity.admin:
+  title: 'Activity Entities'
+  route_name: mailchimp_transactional_activity.admin
+  base_route: mailchimp_transactional.admin
+
+mailchimp_transactional_activity.local_tasks:
+  deriver: 'Drupal\mailchimp_transactional_activity\Plugin\Derivative\ActivityLocalTasks'
+  weight: 100

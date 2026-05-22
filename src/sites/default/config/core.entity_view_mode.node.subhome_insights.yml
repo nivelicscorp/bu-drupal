@@ -1,0 +1,10 @@
+uuid: 0d76af06-18f7-49ca-bb9e-284c689597ae
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+id: node.subhome_insights
+label: 'Subhome insights'
+targetEntityType: node
+cache: true

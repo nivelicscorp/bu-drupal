@@ -1,0 +1,123 @@
+<?php
+
+use Drupal\Core\Url;
+
+function bu_components_theme($existing, $type, $theme, $path) {
+  return array(
+    'bu_collapsible_block' => array(
+      'variables' => array(
+        'title' => '',
+        'items' => array(),
+      )
+    ),
+    'bu_news_and_events_block' => array(
+      'variables' => array(
+        'title' => '',
+        'items' => array(),
+      )
+    ),
+    'bu_other_contents_block' => array(
+      'variables' => array(
+        'title' => '',
+        'items' => array(),
+        'language' => array(),
+      )
+    ),
+    'bu_square_button_arrow' => array(
+      'variables' => array(
+        'link_url' => '',
+        'link_text' => '',
+        'text_above' => '',
+        'text_below' => '',
+        'color' => 'red',
+      ),
+    ),
+    'bu_expanded_rounded_button_arrow' => array(
+      'variables' => array(
+        'link_url' => '',
+        'link_text' => '',
+        'plus_sign' => FALSE,
+      ),
+    ),
+    'bu__items' => array(
+      'variables' => array(
+        'title' => '',
+        'items' => array(),
+        'bottom_link_url' => '',
+        'bottom_link_text' => '',
+        'title_color' => 'blue',
+        'is_floating' => FALSE,
+      ),
+    ),
+    'bu_simple_items_block_with_background' => array(
+      'variables' => array(
+        'title' => '',
+        'items' => array(),
+        'is_floating' => FALSE,
+        'background_color' => 'red'
+      ),
+    ),
+    'bu_subsections_lateral_menu' => array(
+      'variables' => array(
+        'items' => array(),
+        'is_floating' => FALSE,
+      ),
+    ),
+    'bu_insights_page' => array(
+      'variables' => array(
+        'title' => NULL,
+      ),
+    ),
+  );
+}
+
+function bu_components_page_attachments_alter(array &$attachments) {
+  $route_match = \Drupal::routeMatch();
+  $current_path_parameters = $route_match->getParameters();
+  if (isset($current_path_parameters->all()['node']) && $node = $current_path_parameters->all()['node']) {
+    // Conditionally remove an asset.
+    $titles = [
+      'noticia' => t('News'),
+      'podcast' => t('Podcast'),
+      'evento' => t('Eventos'),
+      'informe' => t('Informes'),
+      'memoria' => t('Memorias de otros eventos'),
+      'bulletin' => t('Boletines'),
+      'recursos' => t('Herramientas'),
+    ];
+    $more = [
+      'noticia' => t('/es/insights/noticias'),
+      'podcast' => t('/es/insights/podcast'),
+      'evento' => t('/es/eventos'),
+      'informe' => t('/es/insights/informes'),
+      'memoria' => t('/es/insights/memorias'),
+      'bulletin' => t('/es/insights/boletines'),
+      'recursos' => t('/es/insights/herramientas'),
+    ];
+    $attachments['#attached']['drupalSettings']['insights']['more_type'] = $node->bundle();
+    if(isset($titles[$node->bundle()])){
+      $attachments['#attached']['drupalSettings']['insights']['more_title'] = $titles[$node->bundle()];
+    }
+    if(isset($more[$node->bundle()])){
+      $attachments['#attached']['drupalSettings']['insights']['more_link'] = $more[$node->bundle()];
+    }
+  }
+  function bu_components_system_breadcrumb_alter(\Drupal\Core\Breadcrumb\Breadcrumb &$breadcrumb, \Drupal\Core\Routing\RouteMatchInterface $route_match, array $context) {
+
+    if (!empty($breadcrumb)) {
+      $links = $breadcrumb->getLinks();
+
+      if (!empty($links[1])) {
+        if ($links[1]->getText() == 'Noticias' || $links[1]->getText() == 'Newsflash' ) {
+
+          $links[1]->setUrl(Url::fromUri('internal:/insights/noticias'));
+
+          $breadcrumb = new \Drupal\Core\Breadcrumb\Breadcrumb;
+          $breadcrumb->addCacheContexts(['route']);
+          $breadcrumb->addCacheTags(['links:' . $links[1]->getText()]);
+          $breadcrumb->setLinks($links);
+        }
+      }
+    }
+  }
+}

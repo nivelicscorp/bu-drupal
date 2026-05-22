@@ -1,0 +1,66 @@
+uuid: 89dbc649-3d04-4158-8a3e-29c54c77e2bb
+langcode: es
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.section.body
+    - field.field.node.section.field_add_area
+    - field.field.node.section.field_add_text_box
+    - field.field.node.section.field_area
+    - field.field.node.section.field_banner_video
+    - field.field.node.section.field_caption_img
+    - field.field.node.section.field_content_information
+    - field.field.node.section.field_desktop_image
+    - field.field.node.section.field_industrias
+    - field.field.node.section.field_label
+    - field.field.node.section.field_link_text_box
+    - field.field.node.section.field_main_banner
+    - field.field.node.section.field_metatags
+    - field.field.node.section.field_mobil_image
+    - field.field.node.section.field_show_search
+    - field.field.node.section.field_subtitle
+    - field.field.node.section.field_text_box
+    - field.field.node.section.field_type_banner
+    - node.type.section
+  module:
+    - text
+    - user
+id: node.section.teaser
+targetEntityType: node
+bundle: section
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_add_area: true
+  field_add_text_box: true
+  field_area: true
+  field_banner_video: true
+  field_caption_img: true
+  field_content_information: true
+  field_desktop_image: true
+  field_industrias: true
+  field_label: true
+  field_link_text_box: true
+  field_main_banner: true
+  field_metatags: true
+  field_mobil_image: true
+  field_show_search: true
+  field_subtitle: true
+  field_text_box: true
+  field_type_banner: true
+  langcode: true
+  social_simple_buttons: true

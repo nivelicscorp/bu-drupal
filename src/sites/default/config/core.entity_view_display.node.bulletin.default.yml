@@ -1,0 +1,176 @@
+uuid: 6036b000-af99-41a9-aedb-d3974e40a87e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.bulletin.body
+    - field.field.node.bulletin.field_area
+    - field.field.node.bulletin.field_es_privado
+    - field.field.node.bulletin.field_footer
+    - field.field.node.bulletin.field_image
+    - field.field.node.bulletin.field_industrias
+    - field.field.node.bulletin.field_metatags
+    - field.field.node.bulletin.field_noticias_asociadas
+    - field.field.node.bulletin.field_nuevos_servicios
+    - field.field.node.bulletin.field_resumen
+    - field.field.node.bulletin.field_specialization
+    - field.field.node.bulletin.field_tags
+    - node.type.bulletin
+    - views.view.duplicado_de_noticias_asociadas_boletines
+  module:
+    - addtocalendar
+    - ds
+    - field_group
+    - svg_image
+    - text
+    - user
+    - views_field_formatter
+third_party_settings:
+  field_group:
+    group_shared:
+      children:
+        - social_simple_buttons
+      label: 'Compartir esta noticias'
+      parent_name: ''
+      region: content
+      weight: 4
+      format_type: fieldset
+      format_settings:
+        classes: news-share
+        id: ''
+        description: ''
+    group_info_more:
+      children:
+        - field_footer
+      label: 'Para mayor información contacte nuestro equipo'
+      parent_name: ''
+      region: content
+      weight: 2
+      format_type: fieldset
+      format_settings:
+        classes: contact-us
+        id: ''
+        description: ''
+id: node.bulletin.default
+targetEntityType: node
+bundle: bulletin
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_footer:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: ''
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_noticias_asociadas:
+    type: views_field_formatter
+    label: above
+    settings:
+      view: 'duplicado_de_noticias_asociadas_boletines::block_3'
+      arguments:
+        entity_id:
+          checked: '1'
+          weight: '0'
+        field_value:
+          weight: '0'
+          checked: 0
+        delta:
+          weight: '0'
+          checked: 0
+        entity_revision_id:
+          weight: '0'
+          checked: 0
+      hide_empty: '1'
+      implode_character: ''
+      multiple: 0
+    third_party_settings:
+      addtocalendar:
+        addtocalendar_settings:
+          style: '0'
+          display_text: 'Añadir al Calendario'
+          atc_title:
+            field: token
+            tokenized: Title
+          atc_description:
+            field: token
+            tokenized: Description
+          atc_location:
+            field: token
+            tokenized: Location
+          atc_organizer:
+            field: token
+            tokenized: 'Brigard Urrutia'
+          atc_organizer_email:
+            field: token
+            tokenized: info@bu.com.co
+          atc_date_end:
+            field: token
+            tokenized: ''
+          atc_privacy: public
+          data_secure: auto
+          multiple_value: '1'
+          delta: '0'
+          data_calendars:
+            iCalendar: 0
+            'Google Calendar': 0
+            Outlook: 0
+            'Outlook Online': 0
+            'Yahoo! Calendar': 0
+        addtocalendar_show: 0
+      ds:
+        ds_limit: ''
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 3
+    region: content
+  field_nuevos_servicios:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  social_simple_buttons:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  field_area: true
+  field_es_privado: true
+  field_industrias: true
+  field_metatags: true
+  field_resumen: true
+  field_specialization: true
+  field_tags: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

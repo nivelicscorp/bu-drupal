@@ -1,0 +1,37 @@
+uuid: f4291664-8252-4299-973b-5f27778c35f7
+langcode: es
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.taxonomy_term.minimum
+    - field.field.taxonomy_term.section.field_bloque_de_contenido
+    - field.field.taxonomy_term.section.field_image
+    - field.field.taxonomy_term.section.field_resumen
+    - taxonomy.vocabulary.section
+  module:
+    - ds
+id: taxonomy_term.section.minimum
+targetEntityType: taxonomy_term
+bundle: section
+mode: minimum
+content:
+  field_resumen:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 0
+    region: content
+hidden:
+  description: true
+  field_bloque_de_contenido: true
+  field_image: true
+  langcode: true
+  search_api_excerpt: true

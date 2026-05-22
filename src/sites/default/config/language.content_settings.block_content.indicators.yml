@@ -1,0 +1,18 @@
+uuid: a53587a6-c2cd-4d1e-a0ff-520e56b5e9cc
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.indicators
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: block_content.indicators
+target_entity_type_id: block_content
+target_bundle: indicators
+default_langcode: site_default
+language_alterable: false

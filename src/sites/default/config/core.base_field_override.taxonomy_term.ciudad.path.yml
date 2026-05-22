@@ -1,0 +1,20 @@
+uuid: a179d688-5cae-434a-aab8-018f267b4de2
+langcode: es
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.ciudad
+  module:
+    - path
+id: taxonomy_term.ciudad.path
+field_name: path
+entity_type: taxonomy_term
+bundle: ciudad
+label: 'Alias de URL'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

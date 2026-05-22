@@ -1,0 +1,35 @@
+uuid: 62c54057-478f-40ae-b54a-c9afac9b882c
+langcode: es
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: g_PlInu1ia6q7ZZoPzcyvgW2Xe_1TLfM7_cJ7vzTC1I
+id: migrate_taxonomy_membership
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags: null
+migration_group: default
+label: 'Taxonomy Migration - Membership'
+source:
+  plugin: csv
+  path: modules/custom/bu_migrate/artifacts/membership.csv
+  header_row_count: 1
+  keys:
+    - tid
+  column_names:
+    -
+      tid: TID
+    -
+      uuid: UUID
+    -
+      name: TERM_NAME
+process:
+  vid:
+    plugin: default_value
+    default_value: membership
+  name: name
+  uuid: uuid
+destination:
+  plugin: 'entity:taxonomy_term'
+migration_dependencies: null

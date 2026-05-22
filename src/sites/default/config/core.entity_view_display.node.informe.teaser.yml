@@ -1,0 +1,49 @@
+uuid: f7969ab7-b76b-4fef-841a-ed963edb9541
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.informe.body
+    - field.field.node.informe.field_archivo_des
+    - field.field.node.informe.field_area
+    - field.field.node.informe.field_footer
+    - field.field.node.informe.field_industrias
+    - field.field.node.informe.field_nuevos_servicios
+    - node.type.informe
+  module:
+    - user
+id: node.informe.teaser
+targetEntityType: node
+bundle: informe
+mode: teaser
+content:
+  field_area:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_industrias:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  body: true
+  field_archivo_des: true
+  field_footer: true
+  field_nuevos_servicios: true
+  langcode: true
+  search_api_excerpt: true
+  social_simple_buttons: true

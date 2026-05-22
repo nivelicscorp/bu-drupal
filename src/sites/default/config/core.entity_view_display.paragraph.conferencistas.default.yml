@@ -1,0 +1,81 @@
+uuid: 957898ec-7faf-445c-85d3-bdd7547ae164
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.conferencistas.field_caption
+    - field.field.paragraph.conferencistas.field_desktop_image
+    - field.field.paragraph.conferencistas.field_label
+    - image.style.img_200x200
+    - paragraphs.paragraphs_type.conferencistas
+  module:
+    - ds
+    - field_group
+    - image_class
+    - svg_image
+third_party_settings:
+  field_group:
+    group_wrapper_content_fields:
+      children:
+        - field_label
+        - field_caption
+      label: wrapper-content-fields
+      parent_name: ''
+      region: content
+      weight: 1
+      format_type: html_element
+      format_settings:
+        classes: wrapper-content-fields
+        id: ''
+        element: div
+        show_label: false
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
+id: paragraph.conferencistas.default
+targetEntityType: paragraph
+bundle: conferencistas
+mode: default
+content:
+  field_caption:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_desktop_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: img_200x200
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+      image_loading:
+        attribute: lazy
+    third_party_settings:
+      image_class:
+        class: ''
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 0
+    region: content
+  field_label:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  search_api_excerpt: true

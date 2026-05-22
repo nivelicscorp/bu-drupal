@@ -1,0 +1,10 @@
+'delete modal entity':
+  title: Delete entity content.
+'add modal entity':
+  title: Add entity content
+'view modal entity':
+  title: View entity content
+'edit modal entity':
+  title: Edit entity content
+'administer modal entity':
+  title: Administer settings

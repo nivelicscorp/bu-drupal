@@ -1,0 +1,13 @@
+name: 'Mailchimp Transactional Activity'
+description: 'View Mailchimp Transactional activity for any entity with an email address.'
+package: Mailchimp Transactional
+core_version_requirement: ^9 || ^10
+dependencies:
+  - mailchimp_transactional:mailchimp_transactional
+type: module
+configure: mailchimp_transactional_activity.admin
+
+# Information added by Drupal.org packaging script on 2023-11-13
+version: '1.1.2'
+project: 'mailchimp_transactional'
+datestamp: 1699888220

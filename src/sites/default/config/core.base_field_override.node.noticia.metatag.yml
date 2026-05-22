@@ -1,0 +1,18 @@
+uuid: 2d0fe649-163e-430e-b1b5-bde8179eb774
+langcode: es
+status: true
+dependencies:
+  config:
+    - node.type.noticia
+id: node.noticia.metatag
+field_name: metatag
+entity_type: node
+bundle: noticia
+label: 'Meta etiquetas'
+description: 'The meta tags for the entity.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: map

@@ -1,0 +1,30 @@
+uuid: 20062a3a-522d-4853-88a3-573595bbb419
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_type_banner
+field_name: field_type_banner
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: slider_banner
+      label: Slider
+    -
+      value: image_banner
+      label: Image
+    -
+      value: video_banner
+      label: Video
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

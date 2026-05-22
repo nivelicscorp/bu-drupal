@@ -1,0 +1,18 @@
+uuid: e8cad0f6-1b7c-4c40-a037-ae94d40307be
+langcode: es
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.statistical_graphs
+id: paragraph.statistical_graphs.created
+field_name: created
+entity_type: paragraph
+bundle: statistical_graphs
+label: Fecha
+description: 'The time that the Paragraph was created.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

@@ -1,0 +1,26 @@
+<div class="content-inter">
+    <div class="col-xs-12 col-md-6 content-txt-intercalado">
+        <div class="txt-intercalado">
+            <h2 class="title-block">{{ content.field_title}}</h2>
+            <div class="txt-description">
+                {{ content.field_descripcion }}
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-6 cont-imagen-intercalado">
+        <div class="imagen-intercalado">
+            <div class="{{ type_graphs }}">
+                {% if content.field_grafico_embebido %}
+                     {{ content.field_grafico_embebido }}
+                {% else %}
+                    <div id="chart_div-{{id_canvas}}" class="chart_item">
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

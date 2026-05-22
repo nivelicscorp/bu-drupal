@@ -1,0 +1,7 @@
+searcher_modal.modal:
+  path: 'modal-searcher/modal'
+  defaults:
+    _title: 'Modal'
+    _controller: '\Drupal\searcher_modal\Controller\SearcherModalController::modal'
+  requirements:
+    _permission: 'access content'

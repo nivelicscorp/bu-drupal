@@ -1,0 +1,35 @@
+services:
+  mailchimp_transactional:
+    class: Drupal\mailchimp_transactional\API
+    arguments: ['@config.factory', '@logger.factory','@http_client', '@messenger']
+
+  mailchimp_transactional.service:
+    class: Drupal\mailchimp_transactional\Service
+    arguments: ['@mailchimp_transactional', '@config.factory', '@logger.factory', '@module_handler']
+
+  mailchimp_transactional.test:
+    class: Drupal\mailchimp_transactional\TestAPI
+    arguments: ['@config.factory', '@logger.factory', '@http_client', '@messenger', '@email.validator']
+
+  mailchimp_transactional.test.service:
+    class: Drupal\mailchimp_transactional\TestService
+    arguments: ['@mailchimp_transactional.test', '@config.factory', '@logger.factory', '@module_handler', '@state']
+
+  cache.mailchimp_transactional:
+    class: Drupal\Core\Cache\CacheBackendInterface
+    tags:
+      - { name: cache.bin }
+    factory: cache_factory:get
+    arguments: ['mailchimp_transactional']
+
+  access_check.mailchimp_transactional.configuration:
+    class: Drupal\mailchimp_transactional\Access\ConfigurationAccessCheck
+    arguments: ['@config.factory']
+    tags:
+      - { name: access_check, applies_to: _mailchimp_transactional_configuration_access_check }
+
+  access_check.mailchimp_transactional.mailer:
+    class: Drupal\mailchimp_transactional\Access\MailerAccessCheck
+    arguments: [ '@config.factory' ]
+    tags:
+      - { name: access_check, applies_to: _mailchimp_transactional_mailer_access_check }

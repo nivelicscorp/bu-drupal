@@ -1,0 +1,19 @@
+uuid: 6aaa37bb-8aeb-4660-a41c-26fc1c13f512
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_label
+    - paragraphs.paragraphs_type.conferencistas
+id: paragraph.conferencistas.field_label
+field_name: field_label
+entity_type: paragraph
+bundle: conferencistas
+label: Nombre
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

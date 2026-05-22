@@ -1,0 +1,5 @@
+name: BU General Features
+description: Useful functions and features that are intended to be sitewide
+package: Custom
+type: module
+core_version_requirement: ^8.8 || ^9 || ^10

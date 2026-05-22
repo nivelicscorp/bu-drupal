@@ -1,0 +1,9 @@
+uuid: 6539f9fe-4446-45cc-9d5a-e660aa758391
+langcode: es
+status: true
+dependencies: {  }
+id: contenidos_con_foto
+label: 'Contenidos con foto'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

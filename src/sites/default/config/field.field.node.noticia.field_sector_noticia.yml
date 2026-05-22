@@ -1,0 +1,31 @@
+uuid: faa4e634-7cbe-472d-9a50-729931fde15a
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sector_noticia
+    - node.type.noticia
+    - taxonomy.vocabulary.areas
+    - taxonomy.vocabulary.indrustrias
+id: node.noticia.field_sector_noticia
+field_name: field_sector_noticia
+entity_type: node
+bundle: noticia
+label: 'Tematica noticia'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      areas: areas
+      indrustrias: indrustrias
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: areas
+field_type: entity_reference

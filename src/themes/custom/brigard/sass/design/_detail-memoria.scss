@@ -1,0 +1,48 @@
+.page-memorias{
+    .view-homes-insights{
+        .container{
+            width: 100%;
+        }
+        .row{
+            border-bottom: 1px solid #e7e7e7;
+            margin-bottom: 33px;
+            padding-bottom: 35px;
+            position: relative;
+        }
+        .title-p{
+            font-size:14px;
+            line-height: 15px;
+            margin-top: -2px;
+            color:$secondColor;
+            margin-bottom: 0px;
+        }
+        h2{
+            color:$blackTxt;
+            font-family:$secondFont;
+            font-size:22px;
+            font-weight:600;
+            line-height:25px;
+            margin-bottom: 7px;
+            margin-top: 0px;
+            padding-right: 15px;
+        }
+    }
+}
+.page-memorias, .page-informes {
+    .select-wrapper {
+      margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 960px){
+    .page-memorias{
+        .content-page-full{
+            padding: 0;
+        }
+        .view-homes-insights{
+            .container{
+                padding: 0;
+            }
+        }
+    }
+}

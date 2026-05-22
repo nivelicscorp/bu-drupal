@@ -1,0 +1,8 @@
+uuid: c4f55461-903b-402c-8637-ed3276c4bdde
+langcode: es
+status: true
+dependencies: {  }
+id: noticias-y-eventos
+label: 'Noticias y eventos'
+description: 'pertenece al pie de página'
+locked: false

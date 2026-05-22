@@ -1,0 +1,19 @@
+uuid: 23dd57e5-68ff-40e6-981d-20b73daa7154
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_label
+    - node.type.section
+id: node.section.field_label
+field_name: field_label
+entity_type: node
+bundle: section
+label: Label
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

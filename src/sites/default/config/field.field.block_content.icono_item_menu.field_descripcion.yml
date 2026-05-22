@@ -1,0 +1,19 @@
+uuid: b0ecd593-659f-42fb-b6b4-24008bab4c78
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.icono_item_menu
+    - field.storage.block_content.field_descripcion
+id: block_content.icono_item_menu.field_descripcion
+field_name: field_descripcion
+entity_type: block_content
+bundle: icono_item_menu
+label: Descripción
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

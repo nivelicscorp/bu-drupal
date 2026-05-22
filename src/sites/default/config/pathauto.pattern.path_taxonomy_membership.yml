@@ -1,0 +1,33 @@
+uuid: 5ca97445-7169-4c7e-ad4a-a1bf86733693
+langcode: en
+status: true
+dependencies:
+  module:
+    - language
+    - taxonomy
+id: path_taxonomy_membership
+label: 'Path taxonomy Membership'
+type: 'canonical_entities:taxonomy_term'
+pattern: '/lawyers/[term:name]'
+selection_criteria:
+  fc0dcc83-d10a-45ef-aaef-74fe32dc1d42:
+    id: 'entity_bundle:taxonomy_term'
+    negate: false
+    uuid: fc0dcc83-d10a-45ef-aaef-74fe32dc1d42
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    bundles:
+      membership: membership
+  5206288b-6734-4b12-b49a-b33071474081:
+    id: language
+    negate: false
+    uuid: 5206288b-6734-4b12-b49a-b33071474081
+    context_mapping:
+      language: 'taxonomy_term:langcode:language'
+    langcodes:
+      en: en
+selection_logic: and
+weight: 0
+relationships:
+  'taxonomy_term:langcode:language':
+    label: Language

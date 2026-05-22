@@ -1,0 +1,14 @@
+_core:
+  default_config_hash: yXadRE77Va-G6dxhd2kPYapAvbnSvTF6hO4oXiOEynI
+langcode: es
+uuid: b473a20e-226c-42af-9d02-d6f1623b3515
+name: 'Brigard Urrutia'
+mail: info@bu.com.co
+slogan: ''
+page:
+  403: ''
+  404: /node/410
+  front: /node/1
+admin_compact_mode: false
+weight_select_max: 100
+default_langcode: es

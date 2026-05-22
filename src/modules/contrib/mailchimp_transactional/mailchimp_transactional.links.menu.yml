@@ -1,0 +1,5 @@
+mailchimp_transactional.admin:
+  route_name: mailchimp_transactional.admin
+  title: 'Mailchimp Transactional'
+  description: 'Use the Mailchimp Transactional service to send site emails.'
+  parent: system.admin_config_services

@@ -1,0 +1,25 @@
+uuid: 4dcdfec5-b71d-4d8d-a9ca-3884c3c25091
+langcode: es
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - brigard
+_core:
+  default_config_hash: NDwadleLD3YVSbDUaakxyYZyINYtkFtOVGShfq4kWy8
+id: brigard_branding
+theme: brigard
+region: header
+weight: -15
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Marca del sitio'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: true
+visibility: {  }

@@ -1,0 +1,18 @@
+uuid: a40f21bd-166c-4f5b-85e7-a13c65f895f9
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.ciudad
+id: taxonomy_term.ciudad.metatag
+field_name: metatag
+entity_type: taxonomy_term
+bundle: ciudad
+label: Metatags
+description: 'The meta tags for the entity.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: map

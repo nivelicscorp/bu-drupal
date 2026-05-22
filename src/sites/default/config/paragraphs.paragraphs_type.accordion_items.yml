@@ -1,0 +1,9 @@
+uuid: f8820cf0-34db-4eaf-a12c-fd565f1b5d24
+langcode: es
+status: true
+dependencies: {  }
+id: accordion_items
+label: 'Items Acordeón'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

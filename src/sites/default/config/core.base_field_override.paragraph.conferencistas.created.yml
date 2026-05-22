@@ -1,0 +1,18 @@
+uuid: b07039b7-0039-4d5e-a658-35632978b4b0
+langcode: es
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.conferencistas
+id: paragraph.conferencistas.created
+field_name: created
+entity_type: paragraph
+bundle: conferencistas
+label: Fecha
+description: 'The time that the Paragraph was created.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

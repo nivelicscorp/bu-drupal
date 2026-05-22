@@ -1,0 +1,14 @@
+{% set classes = [
+  'block-contact-sidebar',
+  'block-contact-sidebar-color--' ~ color,
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  <div class="contact-div">
+    {% if text_above %}
+      <span>{{ text_above }}</span>
+    {% endif %}
+    <a href="{{ link_url }}">{{ link_text }}</a>
+    <span>{{ text_below }}</span>
+  </div>
+</div>

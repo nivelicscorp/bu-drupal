@@ -1,0 +1,19 @@
+uuid: fb51bb45-ecd6-4de4-ae4a-f9ee30fddd23
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_label
+    - paragraphs.paragraphs_type.indicators
+id: paragraph.indicators.field_label
+field_name: field_label
+entity_type: paragraph
+bundle: indicators
+label: Label
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

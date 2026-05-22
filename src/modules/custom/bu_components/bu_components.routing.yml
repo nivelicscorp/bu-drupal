@@ -1,0 +1,15 @@
+bu_componentes.test_page:
+  path: 'components-test'
+  defaults:
+    _title: 'Components Test'
+    _controller: '\Drupal\bu_components\Controller\Components::test_page'
+  requirements:
+    _permission: 'access content'
+
+bu_componentes.insights:
+  path: 'insights'
+  defaults:
+    _title: 'Insights'
+    _controller: '\Drupal\bu_components\Controller\Insights::insightsPage'
+  requirements:
+    _permission: 'access content'

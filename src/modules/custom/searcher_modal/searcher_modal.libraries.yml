@@ -1,0 +1,13 @@
+chart_bu: 
+  version: 1.1
+  js:
+    js/chart_bu.js: {}
+  dependencies: 
+    - core/jquery
+
+search_block_form: 
+  js:
+    js/search_block_form.js: {}
+  css:
+    theme:
+      css/search_block_form.css: {}

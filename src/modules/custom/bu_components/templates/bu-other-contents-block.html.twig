@@ -1,0 +1,20 @@
+{% set titles =[
+  'bulletin'
+] %}
+{% if items|length > 0 %}
+<div class="other-news-home">
+    <p class="title-block">{% trans %}OTHER RELATED CONTENTS{% endtrans %}</p>
+    <div class="content-other-news">
+      {% for item in items %}
+        <div class="content-new">
+            <h3 class="title-new">{% if item.type.entity.label == 'Boletín' %}{{ 'Boletines'|trans }}{% else %}{{ item.type.entity.label|trans }}{% endif %}</h3>
+            <h2><a href="{{ path('entity.node.canonical', {'node': item.id}) }}">{{ item.label }}</a></h2>
+            <div class="date">{{ item.getCreatedTime|format_date('dia_y_mes_completo') }}</div>
+        </div>
+      {% endfor %}
+        <div class="links">
+            <a href="{{ language }}/insights" class="link-red">{% trans %}SEE MORE INSIGHTS{% endtrans %}</a>
+        </div>
+    </div>
+</div>
+{% endif %}

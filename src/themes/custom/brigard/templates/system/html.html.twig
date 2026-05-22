@@ -1,0 +1,119 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display the basic html structure of a single
+ * Drupal page.
+ *
+ * Variables:
+ * - $css: An array of CSS files for the current page.
+ * - $language: (object) The language the site is being displayed in.
+ *   $language->language contains its textual representation.
+ *   $language->dir contains the language direction. It will either be 'ltr' or
+ *   'rtl'.
+ * - $rdf_namespaces: All the RDF namespace prefixes used in the HTML document.
+ * - $grddl_profile: A GRDDL profile allowing agents to extract the RDF data.
+ * - $head_title: A modified version of the page title, for use in the TITLE
+ *   tag.
+ * - $head_title_array: (array) An associative array containing the string parts
+ *   that were used to generate the $head_title variable, already prepared to be
+ *   output as TITLE tag. The key/value pairs may contain one or more of the
+ *   following, depending on conditions:
+ *   - title: The title of the current page, if any.
+ *   - name: The name of the site.
+ *   - slogan: The slogan of the site, if any, and if there is no title.
+ * - $head: Markup for the HEAD section (including meta tags, keyword tags, and
+ *   so on).
+ * - $styles: Style tags necessary to import all CSS files for the page.
+ * - $scripts: Script tags necessary to load the JavaScript files and settings
+ *   for the page.
+ * - $page_top: Initial markup from any modules that have altered the
+ *   page. This variable should always be output first, before all other dynamic
+ *   content.
+ * - $page: The rendered page content.
+ * - $page_bottom: Final closing markup from any modules that have altered the
+ *   page. This variable should always be output last, after all other dynamic
+ *   content.
+ * - $classes String of classes that can be used to style contextually through
+ *   CSS.
+ *
+ * @ingroup templates
+ *
+ * @see bootstrap_preprocess_html()
+ * @see template_preprocess()
+ * @see template_preprocess_html()
+ * @see template_process()
+ */
+#}
+{% set data_tid = term_id ? 'data-tid=' ~ term_id : '' %}
+{%
+  set body_classes = [
+    logged_in ? 'user-logged-in',
+    not root_path ? 'path-frontpage' : 'path-' ~ root_path|clean_class,
+    node_type ? 'page-node-type-' ~ node_type|clean_class,
+    db_offline ? 'db-offline',
+    theme.settings.navbar_position ? 'navbar-is-' ~ theme.settings.navbar_position,
+    theme.has_glyphicons ? 'has-glyphicons',
+    term_id ? 'termid-' ~ term_id,
+  ]
+%}
+<!DOCTYPE html>
+<html {{ html_attributes }}>
+  <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NCFDWZK');</script>
+    <!-- End Google Tag Manager -->
+    <!-- Widget emBlue -->
+    <script>
+    (function(d,t,u,s,c,f){f=function(m){m=new Date();return m.getFullYear()+''+(m.getMonth()+1)+''+m.getDate()+'T'+m.getHours()+''+m.getMinutes()+''+m.getSeconds()};
+    u='https://widgets-static.embluemail.com/accounts/6465F57E5822F8EC/scripts/sw_646.js?ts='+f();s=d.createElement(t);
+    s.async=1;s.src=u;c=d.getElementsByTagName(t)[0];c.parentNode.insertBefore(s,c); console.log('js emBlue')})(document,'script');
+    </script>
+    <!-- End Widget emBlue -->
+     <!-- ✅ Etiqueta de verificación de Google -->
+    <meta name="google-site-verification" content="MPcfh-GPduZf_ymd9pT_z-TI_r5od0nTVVLqxCplBIM">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-42368928-1"></script>
+    <!-- CRM script -->
+    <script type="text/javascript" async src="https://d335luupugsy2.cloudfront.net/js/loader-scripts/e1d1cffa-cb1a-4eaf-98f4-4b2eaed15efc-loader.js" ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-42368928-1');
+    </script>
+    <head-placeholder token="{{ placeholder_token|raw }}">
+    <title>{{ head_title|safe_join(' | ') }}</title>
+    <css-placeholder token="{{ placeholder_token|raw }}">
+    <js-placeholder token="{{ placeholder_token|raw }}">
+    <link rel="preload" as="font" href="/themes/custom/brigard/fonts/palanquin/Palanquin-Bold.woff" type="font/woff" crossorigin="anonymous">
+    <link rel="preload" as="font" href="/themes/custom/brigard/fonts/palanquin/Palanquin-Medium.woff" type="font/woff" crossorigin="anonymous">
+    <link rel="preload" as="font" href="/themes/custom/brigard/fonts/palanquin/Palanquin-Regular.woff" type="font/woff" crossorigin="anonymous">
+    <link rel="preload" as="font" href="/modules/contrib/we_megamenu/assets/includes/bootstrap/fonts/glyphicons-halflings-regular.woff2" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" as="font" href="/themes/custom/brigard/fonts/palanquinDark/PalanquinDark-Regular.woff" type="font/woff" crossorigin="anonymous">
+    <link rel="preload" as="font" href="/themes/custom/brigard/fonts/palanquinDark/PalanquinDark-Medium.woff" type="font/woff" crossorigin="anonymous">
+    <link rel="preload" as="font" href="/themes/custom/brigard/fonts/palanquinDark/PalanquinDark-SemiBold.woff" type="font/woff" crossorigin="anonymous">
+    <link rel="preload" as="font" href="/themes/custom/brigard/fonts/palanquin/Palanquin-SemiBold.woff" type="font/woff" crossorigin="anonymous">
+    <link rel="preload" as="font" href="/themes/custom/brigard/fonts/palanquin/Palanquin-ExtraLight.woff" type="font/woff" crossorigin="anonymous">
+    <link rel="preload" as="font" href="/themes/custom/brigard/fonts/iconFont/iconFont.ttf" type="font/ttf" crossorigin="anonymous">
+    <link rel="preload" href="/themes/custom/brigard/css/styles-brigard.css" as="style" crossorigin="anonymous"/>
+  </head>
+  <body{{ attributes.addClass(body_classes) }} {{ data_tid }}>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NCFDWZK"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <script>(function (w, d, t, r, u, o, s, f) {w[r] = w[r] || function () {(w._rq = w._rq || []).push(Array.prototype.slice.call(arguments))};s = d.createElement(t),f = d.getElementsByTagName(t)[0];s.async = 1;s.src = u;s.id = 'rtracker';s.setAttribute('data-api-key', o);f.parentNode.insertBefore(s, f)})(window, document, 'script', '_gb', 'https://track.embluemail.com/tracker/tracker.js', '79830bd9e7b4417494b3ada72de3b796');</script>
+    <a href="#main-content" class="visually-hidden focusable skip-link">
+      {{ 'Skip to main content'|t }}
+    </a>
+    {{ page_top }}
+    {{ page }}
+    {{ page_bottom }}
+    <js-bottom-placeholder token="{{ placeholder_token|raw }}">
+  </body>
+</html>

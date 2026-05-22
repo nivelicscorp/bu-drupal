@@ -1,0 +1,26 @@
+uuid: 543ad7f0-74eb-41f2-86e6-a42dd6a85aea
+langcode: es
+status: true
+dependencies:
+  content:
+    - 'block_content:footer_:99328e9f-101d-4a42-bf1c-2a2a62eb1d60'
+  module:
+    - block_class
+    - block_content
+  theme:
+    - brigard
+id: footer
+theme: brigard
+region: footer
+weight: -15
+provider: null
+plugin: 'block_content:99328e9f-101d-4a42-bf1c-2a2a62eb1d60'
+settings:
+  id: 'block_content:99328e9f-101d-4a42-bf1c-2a2a62eb1d60'
+  label: footer
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

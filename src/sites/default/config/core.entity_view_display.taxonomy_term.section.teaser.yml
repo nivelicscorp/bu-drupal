@@ -1,0 +1,57 @@
+uuid: e3e2ef9e-cead-4fbd-89c4-7c276cbca60a
+langcode: es
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.taxonomy_term.teaser
+    - field.field.taxonomy_term.section.field_bloque_de_contenido
+    - field.field.taxonomy_term.section.field_image
+    - field.field.taxonomy_term.section.field_resumen
+    - image.style.img_410x410
+    - taxonomy.vocabulary.section
+  module:
+    - ds
+    - image_class
+    - svg_image
+id: taxonomy_term.section.teaser
+targetEntityType: taxonomy_term
+bundle: section
+mode: teaser
+content:
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: img_410x410
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+      image_loading:
+        attribute: lazy
+    third_party_settings:
+      image_class:
+        class: ''
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 1
+    region: content
+  field_resumen:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  description: true
+  field_bloque_de_contenido: true
+  field_testimonials: true
+  langcode: true
+  search_api_excerpt: true

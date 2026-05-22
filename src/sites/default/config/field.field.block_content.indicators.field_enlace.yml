@@ -1,0 +1,23 @@
+uuid: 800d10b3-4873-41de-8fbb-b7a920cacb07
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.indicators
+    - field.storage.block_content.field_enlace
+  module:
+    - link
+id: block_content.indicators.field_enlace
+field_name: field_enlace
+entity_type: block_content
+bundle: indicators
+label: Enlace
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 1
+  link_type: 17
+field_type: link

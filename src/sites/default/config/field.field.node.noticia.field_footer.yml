@@ -1,0 +1,24 @@
+uuid: 27693fd7-de30-4169-a929-61eec0f8ce0d
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_footer
+    - node.type.noticia
+  module:
+    - text
+id: node.noticia.field_footer
+field_name: field_footer
+entity_type: node
+bundle: noticia
+label: 'Footer Body'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: "<p>info@bu.com.co</p>\r\n"
+    format: basic_html
+default_value_callback: ''
+settings: {  }
+field_type: text_long

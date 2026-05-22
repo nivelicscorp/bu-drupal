@@ -1,0 +1,5 @@
+name: Twig Customizations
+description: Useful functions, filters for twig
+package: Custom
+type: module
+core_version_requirement: ^8.8 || ^9 || ^10

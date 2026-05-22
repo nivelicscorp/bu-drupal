@@ -1,0 +1,27 @@
+uuid: c358f95e-9069-480a-ba3e-cd5b8584bdd4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_video
+    - paragraphs.paragraphs_type.main_banner
+  module:
+    - video_embed_field
+id: paragraph.main_banner.field_video
+field_name: field_video
+entity_type: paragraph
+bundle: main_banner
+label: Video
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_providers:
+    facebook: facebook
+    vimeo: vimeo
+    youtube: youtube
+    vine: vine
+    youtube_playlist: '0'
+field_type: video_embed_field

@@ -1,0 +1,350 @@
+#views-exposed-form-interna-insights-page-1, #views-exposed-form-homes-insights-page-4, #views-exposed-form-homes-insights-page-5{
+    .form--inline{
+        display: block;
+    }
+    .form-item{
+        display: inline-block;
+        width: 48%;
+        &.form-item-field-sector-noticia-target-id{
+            margin-right:10px;
+        }
+        .control-label{
+            color: #002d73;
+            display: block;
+            font-family: $secondFont;
+            font-size: 17px;
+            font-weight: bold;
+            line-height: 23px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+    }
+    .form-actions{
+        display: block;
+        text-align: left;
+        .form-submit{
+            margin-top: 0;
+            margin-bottom: 41px;
+        }
+    }
+}
+.page-informes{
+    .podcast-subhome{
+        .container-podcast{
+            div{
+                .row{
+                    padding-bottom: 35px;
+                    &:after{
+                        left:0;
+                    }
+                }
+            }
+        }
+    }
+}
+.page-herramientas {
+  #podcast {
+    h2 {
+      margin-bottom: 13px;
+    }
+  }
+}
+.page-memorias {
+  .podcast-subhome {
+    h2{
+      margin-bottom: 15px;
+    }
+  }
+}
+.podcast-subhome, .page-memorias, .page-informes {
+    .container-podcast, .form--inline{
+      padding: 0;
+        div{
+            display: grid;
+            .row{
+                display: flex;
+                margin-top: 48px;
+                padding-bottom: 50px;//ajustado
+                position: relative;
+                &::after{
+                    content:'';
+                    background: #e7e7e7;
+                    bottom:0;
+                    display: block;
+                    height: 1px;
+                    left: 0px;
+                    position:absolute;
+                    width: 100%;
+                }
+            }
+            &:first-child{
+                .row{
+                    margin-top: 0px;
+                }
+            }
+            &:last-child{
+                .row{
+                    &::after{
+                        content:'';
+                        display: none;
+                    }
+                }
+            }
+            &.select-hide{
+                display: none;
+            }
+        }
+    }
+
+    .container-podcast{
+        max-width: 100%;
+        width: 100%;
+    }
+    .img-new{
+        max-width: 25%;
+        padding-left: 25px;
+    }
+    .content-new{
+        max-width: 64%;
+        padding:0;
+    }
+    .title-p{
+        font-size:14px;
+        line-height: 15px;
+        margin-top: -2px;
+        color:$secondColor;
+        margin-bottom: 8px;
+    }
+    .title-new{
+      font-size: 14px;
+      line-height: 15px;
+      margin-bottom: 5px;
+      a {
+        color:$secondColor;
+        font-weight: 400;
+      }
+    }
+    h2{
+        color:$blackTxt;
+        font-family:$secondFont;
+        font-size:22px;
+        font-weight:600;
+        line-height:25px;
+        margin-bottom: 7px;
+        margin-top: 0px;
+        padding-right: 15px;
+    }
+    .date {
+      color: $gray;
+      font-size: 11px;
+      margin-bottom: 8px;
+    }
+    .pager__item{
+        margin-left: 17px;
+        margin-top: 12px;
+        .button{
+            height:60px;
+            line-height:60px;
+            padding:0;
+            text-align:center;
+            width: 221px;
+            @extend %btn-arrow;
+            &:after{
+                content: "\e90c";
+                font-size:16px;
+                margin-top: -6px;
+                padding-left:15px;
+            }
+            &:hover,
+            &:focus{
+                &:after{
+                    @include prefix(animation, none, webkit moz o ms);
+                }
+            }
+        }
+    }
+}
+.page-boletines{
+    .pager{
+        .pager__item{
+            margin-left: 35px;
+        }
+    }
+}
+.page-podcast{
+    .more-block{
+        .content-other-news{
+            .links{
+                .link-red{
+                    &::after{
+                        right: -30px;
+                    }
+                }
+            }
+        }
+    }
+}
+.podcast{
+    iframe{
+        height: auto;
+        margin: 35px 0 103px;
+        width: 85%;
+    }
+}
+
+@media screen and (max-width: 960px){
+    .page-insights{
+        .container-podcast{
+            padding: 0px !important;
+            .title-block{
+                text-align:left !important;
+            }
+            .img-new{
+                padding-left: 0;
+                width: 33%;
+            }
+            .content-new{
+                min-width:69%;
+            }
+        }
+        .container-recursos{
+            padding: 6px 15px 0 15px !important;
+            .title-block{
+                text-align:left !important;
+            }
+            .img-new{
+                width: 33% !important;
+            }
+            .content-new{
+                width:60%;
+            }
+        }
+        .container-informes{
+            padding:0 !important;
+            .title-block{
+                padding-left: 15px !important;
+                text-align:left !important;
+            }
+        }
+    }
+}
+@media screen and (max-width: 767px){
+    .podcast{
+        iframe{
+            width: 100%;
+        }
+    }
+    .page-insights{
+        .container-podcast{
+            .content-new{
+                min-width: 100%;
+                width: 100%;
+            }
+        }
+    }
+    #views-exposed-form-interna-insights-page-1, #views-exposed-form-homes-insights-page-4, #views-exposed-form-homes-insights-page-5{
+       .form-item{
+           width: 100%;
+           .control-label{
+               margin-bottom: 10px;
+                visibility: inherit;
+           }
+       }
+        .form--inline{
+            flex-direction: column;
+        }
+        .select-wrapper{
+            margin: 0;
+        }
+
+        .form-actions{
+            .form-submit{
+                margin-top: 20px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 360px){
+    #views-exposed-form-interna-insights-page-1, #views-exposed-form-homes-insights-page-4, #views-exposed-form-homes-insights-page-5{
+        .form--inline{
+            display: flex;
+            flex-direction: column;
+        }
+        .form-item{
+            display: inline-block;
+            margin-bottom:0;
+            width: 100%;
+            &.form-item-field-sector-noticia-target-id{
+                margin-right:10px;
+            }
+            .control-label{
+                display: block;
+                margin-bottom: 13px;
+                visibility: inherit;
+            }
+        }
+    }
+    .page-insights{
+        .container-podcast, .container-recursos{
+            .content-new{
+                width:60% !important;
+            }
+        }
+        &.page-newsflash{
+            .content-new{
+                max-width: 100%;
+                width: 100% !important;
+            }
+            .container-podcast{
+                padding: 0px 30px 0 30px !important;
+            }
+        }
+    }
+    .podcast-subhome{
+        .row{
+            padding-bottom: 0px;
+            &::after{
+                display: none;
+            }
+            &.last{
+                margin-bottom: 82px;
+            }
+        }
+        .img-new{
+            margin-right:15px;
+            max-width: 30%;
+            padding: 0;
+        }
+        .content-new{
+            max-width: 60%;
+        }
+        h2{
+            font-size: 16px;
+            line-height: 21px;
+        }
+        .pager__item{
+            margin-left: 0;
+            text-align: center;
+            .button{
+                font-size: 14px;
+                height: 52px;
+                line-height: 52px;
+                width: 189px;
+            }
+        }
+        .container-podcast{
+            div{
+                .row{
+                    margin-top: 21px;
+                    padding-bottom: 19px;
+                    &::after{
+                        left: 0px;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+

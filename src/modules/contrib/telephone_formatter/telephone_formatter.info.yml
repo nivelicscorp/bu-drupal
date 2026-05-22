@@ -1,0 +1,11 @@
+name: 'Telephone Formatter'
+description: "Formats telephone fields using google's libphonenumber library"
+core_version_requirement: ^8 || ^9 || ^10
+dependencies:
+  - drupal:telephone
+type: module
+
+# Information added by Drupal.org packaging script on 2023-04-17
+version: '8.x-1.2'
+project: 'telephone_formatter'
+datestamp: 1681763652

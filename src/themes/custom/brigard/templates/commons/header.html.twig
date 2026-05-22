@@ -1,0 +1,52 @@
+<div class="banner-internas" style="background-image: url('{{ image }}');" >
+  	<div class="content-caption">
+  			{% if category %}
+    			<p class="category">{{ category|trans }}</p>
+  			{% endif %}
+        {% if node_type == "lawyer" %}
+          <p>{{ title|slice(0, 70)|trans }}</p>
+        {% else %}
+		      <h1>{{ title|slice(0, 70)|trans }}</h1>
+        {% endif %}
+    		<div class="description">
+      			<p>{{ description|slice(0, 160)|trans }}</p>
+      	</div>
+        {% if node_type == "evento" %}
+
+          <div class="info-event">
+             {% if fecha_evento != "" %}
+               <div class="date">{{ fecha_evento }}</div>
+             {% endif %}
+             {% if hora_evento != "" %}
+                <div class="time">{{ hora_evento }}</div>
+             {% endif %}
+             {% if tipo_asistencia != "" %}
+                <div class="asistance">{{ tipo_asistencia }}</div>
+             {% endif %}
+             {% if lugar_evento != "" %}
+                <div class="place">{{ lugar_evento }}</div>
+             {% endif %}
+             {% if link_zoom != "" %}
+                <div class="call_link"><a href="{{ link_zoom }}" target="_blank" rel="nofollow">{{ link_zoom }}</a></div>
+             {% endif %}
+             {% if valor_evento != "" %}
+							 <div class="price">$ {{ valor_evento|number_format(0, ',', '.') }}<span class="type"> más IVA - {{ tipo_evento == "1" ? "Evento pago"|trans : "Evento gratuito"|trans }}</span> </div>
+						 {% else %}
+							 <div class="price">{{ tipo_evento == "1" ? "Evento pago"|trans : "Evento gratuito"|trans }}</span> </div>
+             {% endif %}
+          </div>
+
+        {% else %}
+          {% if node_type == "recursos" or node_type == "podcast" or node_type == "informe" or node_type == "memoria" %}
+            <div class="info-event">
+             {% if created != "" %}
+               <div>{{ created }}</div>
+             {% endif %}
+            </div>
+          {% endif %}
+        {% endif %}
+
+
+  	</div>
+  	<div class="down-arrow"></div>
+</div>

@@ -1,0 +1,11 @@
+uuid: f6639290-a392-4bdf-a95c-117494fc8b0c
+langcode: es
+status: true
+dependencies:
+  config:
+    - entityqueue.entity_queue.noticias
+id: entity_subqueue.noticias
+target_entity_type_id: entity_subqueue
+target_bundle: noticias
+default_langcode: site_default
+language_alterable: false

@@ -1,0 +1,64 @@
+uuid: a0ffad2a-56b2-4783-8b4d-3b21c5ecb63d
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:sider_bar:bcbb3fb9-71f3-4699-ad1c-47e1722ecdde'
+  module:
+    - block_content
+    - bu_sections
+    - ctools
+label: 'Sección Internas'
+name: seccion_internas
+group: theme
+description: ''
+requireAllConditions: false
+disabled: false
+conditions:
+  'entity_bundle:taxonomy_term':
+    id: 'entity_bundle:taxonomy_term'
+    negate: false
+    uuid: 271a4154-316e-4020-9df8-98e5d5fc5614
+    context_mapping:
+      taxonomy_term: '@custom_context_provider.taxonomy_term_context:taxonomy_term'
+    bundles:
+      section: section
+reactions:
+  blocks:
+    id: blocks
+    uuid: 1607db51-5319-49f5-a4ef-9e4c2d54e4d2
+    blocks:
+      3e46b60e-3cfc-4ca5-a8b8-c218ec6f148c:
+        uuid: 3e46b60e-3cfc-4ca5-a8b8-c218ec6f148c
+        id: subsections_lateral_menu_block
+        label: 'Subsections Lateral Menu Block'
+        provider: bu_sections
+        label_display: '0'
+        region: sidebar_right
+        weight: '0'
+        custom_id: subsections_lateral_menu_block
+        theme: brigard
+        css_class: ''
+        unique: 0
+        context_id: seccion_internas
+        context_mapping: {  }
+      422621fe-e5ef-4e0e-beef-fdce74305fe6:
+        uuid: 422621fe-e5ef-4e0e-beef-fdce74305fe6
+        id: 'block_content:bcbb3fb9-71f3-4699-ad1c-47e1722ecdde'
+        label: Contáctenos
+        provider: block_content
+        label_display: '0'
+        region: sidebar_right
+        weight: '1'
+        custom_id: block_content_bcbb3fb9_71f3_4699_ad1c_47e1722ecdde
+        theme: brigard
+        css_class: block-contact-sidebar
+        unique: 0
+        context_id: seccion_internas
+        context_mapping: {  }
+        status: true
+        info: ''
+        view_mode: full
+    include_default_blocks: 0
+    saved: false
+weight: -5

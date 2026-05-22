@@ -1,0 +1,14 @@
+name: 'Mandrill Template'
+description: 'Use Mandrill templates for messages sent through Mandrill.'
+core: 8.x
+core_version_requirement: ^8 || ^9
+package: Mandrill
+dependencies:
+  - mandrill:mandrill
+type: module
+configure: mandrill_template.admin
+
+# Information added by Drupal.org packaging script on 2022-03-31
+version: '8.x-1.3'
+project: 'mandrill'
+datestamp: 1648771135

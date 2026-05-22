@@ -1,0 +1,23 @@
+uuid: 43b8559b-47ec-443f-a566-9f8f766f7196
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_content_information
+    - node.type.section
+id: node.section.field_content_information
+field_name: field_content_information
+entity_type: node
+bundle: section
+label: 'Show content information'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

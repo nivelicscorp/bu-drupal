@@ -1,0 +1,8 @@
+view mailchimp transactional activity:
+  title: View Mailchimp Transactional Activity
+  description: View Mailchimp Transactional activity history on the entity view, you also need permission to view the entity itself.
+
+administer mailchimp transactional activity:
+  title: Administer Mailchimp Transactional activity entities
+  description: Add, Delete, and Configure Mailchimp Transactional Activity entity settings.
+  restrict access: true

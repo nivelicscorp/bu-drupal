@@ -1,0 +1,62 @@
+<?php
+
+/**
+ * @file
+ * Install, update, and uninstall routines.
+ */
+
+declare(strict_types=1);
+
+use Drupal\user\Entity\Role;
+
+/**
+ * Implements hook_install().
+ *
+ * Migrates configuration entities from mandrill activity module, as well as
+ * role permissions.
+ *
+ * @throws \Drupal\Core\Entity\EntityStorageException
+ * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+ * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+ */
+function mailchimp_transactional_activity_install() {
+  if (\Drupal::moduleHandler()->moduleExists('mandrill_activity')) {
+    $fields = [
+      'id',
+      'label',
+      'entity_type',
+      'bundle',
+      'entity_path',
+      'email_property',
+    ];
+
+    $mandrill_entities = \Drupal::entityTypeManager()->getStorage('mandrill_activity')->loadMultiple();
+
+    foreach ($mandrill_entities as $mandrill_entity) {
+      $new_fields = [];
+      foreach ($fields as $field) {
+        $new_fields[$field] = $mandrill_entity->{$field};
+      }
+      // 'enabled' is converted from string "1"/"0" into True/False boolean.
+      $new_fields['enabled'] = (bool) ($mandrill_entity->enabled);
+      \Drupal::entityTypeManager()
+        ->getStorage('mailchimp_transactional_activity')
+        ->create($new_fields)
+        ->save();
+    }
+
+    if ($roles = Role::loadMultiple()) {
+      foreach ($roles as $role) {
+        if ($role->hasPermission('access mandrill activity')) {
+          $role->grantPermission('view mailchimp transactional activity');
+          $role->save();
+        }
+
+        if ($role->hasPermission('administer mandrill activity')) {
+          $role->grantPermission('administer mailchimp transactional activity');
+          $role->save();
+        }
+      }
+    }
+  }
+}

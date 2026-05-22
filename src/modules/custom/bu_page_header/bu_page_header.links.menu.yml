@@ -1,0 +1,7 @@
+bu_page_header.page_header_form:
+  title: 'Page administrator Header'
+  route_name: bu_page_header.page_header_form
+  description: 'A description for the menu entry'
+  parent: system.admin_structure
+  weight: 99
+

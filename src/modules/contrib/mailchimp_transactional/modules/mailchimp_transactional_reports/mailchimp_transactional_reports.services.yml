@@ -1,0 +1,8 @@
+services:
+  mailchimp_transactional_reports.service:
+    class: Drupal\mailchimp_transactional_reports\ReportsService
+    arguments: ['@mailchimp_transactional', '@config.factory', '@cache.mailchimp_transactional']
+
+  mailchimp_transactional_reports.test.service:
+    class: Drupal\mailchimp_transactional_reports\ReportsService
+    arguments: ['@mailchimp_transactional.test', '@config.factory', '@cache.mailchimp_transactional']

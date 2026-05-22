@@ -1,0 +1,65 @@
+uuid: 2deb5591-97dd-4541-b034-595e70d9d3db
+langcode: es
+status: true
+dependencies:
+  config:
+    - views.view.calendario_de_eventos
+    - views.view.newsletter_internal
+  module:
+    - system
+    - views
+label: 'Home eventos'
+name: home_eventos
+group: theme
+description: ''
+requireAllConditions: false
+disabled: false
+conditions:
+  request_path:
+    id: request_path
+    negate: false
+    uuid: 4a9ff14c-bb70-4161-9f8a-c568014f4016
+    context_mapping: {  }
+    pages: "/eventos\r\n/events"
+reactions:
+  blocks:
+    id: blocks
+    uuid: 8ebca39e-2b2e-41d7-95de-8d90db1d7f24
+    blocks:
+      1319286a-df8d-49a5-a830-58f81cbedc95:
+        uuid: 1319286a-df8d-49a5-a830-58f81cbedc95
+        id: 'views_block:calendario_de_eventos-block_1'
+        label: ''
+        provider: views
+        label_display: '0'
+        region: sidebar_right
+        weight: '0'
+        custom_id: views_block_calendario_de_eventos_block_1
+        theme: brigard
+        css_class: ''
+        unique: 0
+        context_id: home_eventos
+        context_mapping: {  }
+        views_label: ''
+        items_per_page: none
+        override: {  }
+      13e58981-95a9-47a3-a323-47b124026f09:
+        uuid: 13e58981-95a9-47a3-a323-47b124026f09
+        id: 'views_block:newsletter_internal-block_4'
+        label: BOLETINES
+        provider: views
+        label_display: visible
+        region: sidebar_right
+        weight: '1'
+        custom_id: views_block_newsletter_internal_block_4
+        theme: brigard
+        css_class: others-news-sidebar
+        unique: 0
+        context_id: home_eventos
+        context_mapping: {  }
+        views_label: BOLETINES
+        items_per_page: none
+        override: {  }
+    include_default_blocks: 0
+    saved: false
+weight: 0

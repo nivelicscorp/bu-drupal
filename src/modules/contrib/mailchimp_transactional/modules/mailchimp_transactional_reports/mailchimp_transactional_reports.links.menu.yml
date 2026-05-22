@@ -1,0 +1,5 @@
+mailchimp_transactional_reports.dashboard:
+  route_name: mailchimp_transactional_reports.dashboard
+  title: 'Mailchimp Transactional'
+  description: 'View Mailchimp Transactional dashboard.'
+  parent: system.admin_reports

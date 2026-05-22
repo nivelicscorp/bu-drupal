@@ -1,0 +1,13 @@
+name: 'Mailchimp Transactional Templates'
+description: 'Use Mailchimp Transactional templates for messages sent with Mailchimp Transactional.'
+core_version_requirement: ^9 || ^10
+package: Mailchimp Transactional
+dependencies:
+  - mailchimp_transactional:mailchimp_transactional
+type: module
+configure: mailchimp_transactional_template.admin
+
+# Information added by Drupal.org packaging script on 2023-11-13
+version: '1.1.2'
+project: 'mailchimp_transactional'
+datestamp: 1699888220

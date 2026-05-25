@@ -2,7 +2,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.migrate_example_producer.body
     - field.field.node.migrate_example_producer.migrate_example_wine_region
     - node.type.migrate_example_producer
   module:
@@ -13,14 +12,6 @@ targetEntityType: node
 bundle: migrate_example_producer
 mode: default
 content:
-  body:
-    type: text_textarea_with_summary
-    weight: 31
-    settings:
-      rows: 9
-      summary_rows: 3
-      placeholder: ''
-    third_party_settings: {  }
   created:
     type: datetime_timestamp
     weight: 10

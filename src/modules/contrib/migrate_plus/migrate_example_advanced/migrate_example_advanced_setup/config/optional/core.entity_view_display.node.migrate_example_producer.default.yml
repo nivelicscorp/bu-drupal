@@ -2,26 +2,25 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.teaser
-    - field.field.node.migrate_example_producer.body
     - field.field.node.migrate_example_producer.migrate_example_wine_region
     - node.type.migrate_example_producer
   module:
     - text
     - user
-id: node.migrate_example_producer.teaser
+id: node.migrate_example_producer.default
 targetEntityType: node
 bundle: migrate_example_producer
-mode: teaser
+mode: default
 content:
-  body:
-    label: hidden
-    type: text_summary_or_trimmed
-    weight: 101
+  migrate_example_wine_region:
+    weight: 102
+    label: inline
     settings:
-      trim_length: 600
+      link: true
     third_party_settings: {  }
+    type: entity_reference_label
   links:
     weight: 100
-hidden:
-  migrate_example_wine_region: true
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

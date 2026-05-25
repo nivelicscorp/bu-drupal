@@ -2,7 +2,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.migrate_example_wine.body
     - field.field.node.migrate_example_wine.field_migrate_example_comments
     - field.field.node.migrate_example_wine.field_migrate_example_adv_image
     - field.field.node.migrate_example_wine.migrate_example_top_vintage
@@ -21,12 +20,6 @@ targetEntityType: node
 bundle: migrate_example_wine
 mode: default
 content:
-  body:
-    label: hidden
-    type: text_default
-    weight: 101
-    settings: {  }
-    third_party_settings: {  }
   field_migrate_example_comments:
     weight: 108
     label: hidden

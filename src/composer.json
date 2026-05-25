@@ -46,7 +46,7 @@
         "drupal/field_group_background_image": "^4.0",
         "drupal/field_token_value": "^3.0",
         "drupal/fullcalendar_view": "^5.1",
-        "drupal/honeypot": "^2.2",
+        "drupal/honeypot": "^2.1",
         "drupal/google_tag": "^2.0",
         "drupal/hreflang": "^1.14",
         "drupal/image_class": "^2.0",
@@ -182,9 +182,6 @@
         },
         "enable-patching": true,
         "patches": {
-            "drupal/context": {
-                "Undefined Index Errors": "https://www.drupal.org/files/issues/2022-01-25/3204399-undefined_index_errors-19.patch"
-            },
             "drupal/international_phone": {
                 "Drupal 9 compatibility": "https://www.drupal.org/files/issues/2022-01-05/international_phone-3144284-3.patch"
             },

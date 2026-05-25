@@ -6,6 +6,6 @@ description: 'Allows vcard export of user data.'
 # Information added by Drupal.org packaging script on 2017-02-02
 version: '8.x-1.0'
 core: 8.x
-core_version_requirement: ^8 || ^9 || ^10
+core_version_requirement: ^10 || ^11
 project: 'vcard'
 datestamp: 1486057085

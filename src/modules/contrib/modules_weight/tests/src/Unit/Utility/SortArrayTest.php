@@ -45,7 +45,7 @@ class SortArrayTest extends UnitTestCase {
    *
    * @see testSortByWeightAndName()
    */
-  public function providerSortByWeightAndName() {
+  public static function providerSortByWeightAndName() {
 
     $tests['same weight different name 1'] = [
       -1,

@@ -27,18 +27,16 @@ function template_preprocess_views_view_fullcalendar(array &$variables) {
       $field_types = $field_types + $definition['field_types'];
     }
   }
-  if ($field_types) {
-    $variables['fullcalendar_fieldtypes'] = $field_types;
+  $variables['fullcalendar_fieldtypes'] = $field_types;
 
-    $preprocess_service->process($variables);
-  
-    // Allow plugins to alter the view variables.
-    foreach ($plugin_definitions as $definition) {
-      $instance = $processor_plugins->createInstance($definition['id']);
-      if (method_exists($instance, 'process')) {
-        // Run the process function of the plugin instance.
-        $instance->process($variables);
-      }
+  $preprocess_service->process($variables);
+
+  // Allow plugins to alter the view variables.
+  foreach ($plugin_definitions as $definition) {
+    $instance = $processor_plugins->createInstance($definition['id']);
+    if (method_exists($instance, 'process')) {
+      // Run the process function of the plugin instance.
+      $instance->process($variables);
     }
   }
 

@@ -6,6 +6,7 @@ use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\file\Entity\File;
 use Drupal\file\FileInterface;
+use Drupal\image\Entity\ImageStyle;
 use Drupal\image\Plugin\Field\FieldWidget\ImageWidget;
 
 /**
@@ -59,7 +60,7 @@ class SvgImageWidget extends ImageWidget {
       // Override image preview if SVG file.
       $file = reset($element['#files']);
       if (svg_image_is_file_svg($file)) {
-        $element['preview'] = static::buildSvgPreview($file);
+        $element['preview'] = static::buildSvgPreview($file, $element['#preview_image_style']);
       }
     }
     elseif (!empty($element['#default_image'])) {
@@ -78,18 +79,25 @@ class SvgImageWidget extends ImageWidget {
    *
    * @param \Drupal\file\FileInterface $file
    *   The SVG file.
+   * @param ?string $style_name
+   *   The name of the image style to apply.
    *
    * @return array
    *   The render array.
    */
-  protected static function buildSvgPreview(FileInterface $file): array {
+  protected static function buildSvgPreview(FileInterface $file, ?string $style_name = NULL): array {
     $dimensions = svg_image_get_image_file_dimensions($file);
+    $file_uri = $file->getFileUri();
+    if ($style_name) {
+      $image_style = ImageStyle::load($style_name);
+      $image_style->transformDimensions($dimensions, $file_uri);
+    }
     return [
       '#weight' => -10,
       '#theme' => 'image',
       '#width' => $dimensions['width'],
       '#height' => $dimensions['height'],
-      '#uri' => $file->getFileUri(),
+      '#uri' => $file_uri,
     ];
   }
 

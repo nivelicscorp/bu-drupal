@@ -1,4 +1,0 @@
-services:
-  mandrill.service:
-    class: Drupal\mandrill_template\MandrillTemplateService
-    arguments: ['@mailchimp_transactional.api', '@config.factory', '@logger.factory']

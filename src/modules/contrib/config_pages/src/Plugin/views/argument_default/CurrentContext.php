@@ -6,6 +6,8 @@ use Drupal\config_pages\Entity\ConfigPagesType;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Cache\CacheableDependencyInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\views\Attribute\ViewsArgumentDefault;
 use Drupal\views\Plugin\views\argument_default\ArgumentDefaultPluginBase;
 
 /**
@@ -16,6 +18,10 @@ use Drupal\views\Plugin\views\argument_default\ArgumentDefaultPluginBase;
  *   title = @Translation("Current context for ConfigPages")
  * )
  */
+#[ViewsArgumentDefault(
+  id: "config_pages_current_context",
+  title: new TranslatableMarkup("Current context for ConfigPages"),
+)]
 class CurrentContext extends ArgumentDefaultPluginBase implements CacheableDependencyInterface {
 
   /**

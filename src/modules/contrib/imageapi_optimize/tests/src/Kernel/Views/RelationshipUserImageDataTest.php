@@ -14,7 +14,7 @@ class RelationshipUserImageDataTest extends OriginalRelationshipUserImageDataTes
  /**
   * {@inheritdoc}
   */
-  public static $modules = ['imageapi_optimize'];
+  protected static $modules = ['imageapi_optimize'];
 
     /**
      * Views used by this test.

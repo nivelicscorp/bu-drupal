@@ -5,15 +5,21 @@
  * Main file for the Modal Page.
  */
 
+use Drupal\Core\Cache\Cache;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
+use Symfony\Component\HttpFoundation\Cookie;
+use Symfony\Component\HttpFoundation\Response;
+use Drupal\Core\Url;
 
 /**
  * Implements hook_form_alter().
  */
 function modal_page_form_alter(&$form, FormStateInterface $form_state, $form_id) {
 
-  if ($form_id == 'modal_page_modal_add_form' || $form_id == 'modal_page_modal_edit_form') {
+  // Include Modal Page Admin Library only for Modal settings.
+  if ($form_id == 'modal_add_form' || $form_id == 'modal_edit_form') {
     $form['#attached']['library'][] = 'modal_page/modal-page-admin';
   }
 
@@ -25,17 +31,42 @@ function modal_page_form_alter(&$form, FormStateInterface $form_state, $form_id)
  */
 function modal_page_page_attachments(array &$attachments) {
 
-  $correct_version = modal_page_is_entity_version();
+  // Get Modals to show on current page.
+  $modals = \Drupal::service('modal_page.modals')->getModalsToShow();
 
-  if (empty($correct_version)) {
+  // If there are none, skip the rest of the function.
+  if (empty($modals)) {
     return FALSE;
   }
 
-  $modal_exists = \Drupal::entityQuery('modal_page_modal')->range(0, 1)->execute();
+  // Modal Settings.
+  $config = \Drupal::config('modal_page.settings');
 
-  if (!empty($modal_exists)) {
-    $attachments['#attached']['library'][] = 'modal_page/modal-page';
+  // Verify if needs to load Bootstrap CDN.
+  $loadBootstrap = $config->get('load_bootstrap');
+
+  // Load Modal Page Library.
+  $attachments['#attached']['library'][] = 'modal_page/modal-page';
+
+  // Load Bootstrap Library only if necessary.
+  if (empty($loadBootstrap)) {
+    return;
   }
+
+  $bootstrapVersion = $config->get('bootstrap_version');
+
+  // If is running on Drupal 11 or above, use BS5 instead of BS3.
+  if (\Drupal::VERSION >= '11.0.0') {
+    $bootstrapVersion = '5x';
+  }
+
+  if (!isset($bootstrapVersion) || $bootstrapVersion == '3x') {
+    $attachments['#attached']['library'][] = 'modal_page/modal-page-bootstrap-3';
+    return;
+  }
+
+  $attachments['#attached']['library'][] = 'modal_page/modal-page-bootstrap-5';
+
 }
 
 /**
@@ -46,12 +77,57 @@ function modal_page_theme() {
     'modal_page_modal' => [
       'variables' => [
         'do_not_show_again' => NULL,
+        'cookie_expiration_time' => NULL,
         'title' => NULL,
+        'display_title' => NULL,
         'text' => NULL,
+        'delay_display' => NULL,
+        'enable_show_on_height' => NULL,
+        'height_offset' => NULL,
+        'height_offset_touch' => NULL,
+        'modal_size' => NULL,
+        'modal_video_link' => NULL,
         'button' => NULL,
         'id' => NULL,
+        'close_modal_esc_key' => NULL,
+        'close_modal_clicking_outside' => NULL,
+        'modal_header_classes' => NULL,
+        'modal_footer_classes' => NULL,
+        'enable_modal_header' => NULL,
+        'enable_modal_footer' => NULL,
+        'display_button_x_close' => NULL,
+        'top_right_button_label' => NULL,
+        'top_right_button_class' => NULL,
+        'enable_maximize_button' => NULL,
+        'maximize_button_class' => NULL,
+        'open_modal_on_element_click' => NULL,
+        'auto_open' => NULL,
+        'prevent_default' => NULL,
+        'modal_class' => NULL,
+        'header_class' => NULL,
+        'footer_class' => NULL,
+        'enable_left_button' => NULL,
+        'left_label_button' => NULL,
+        'enable_right_button' => NULL,
+        'ok_button_class' => NULL,
+        'left_button_class' => NULL,
+        'modal_options' => NULL,
+        'id_label' => NULL,
+        'id_desc' => NULL,
+        'enable_redirect_link' => NULL,
+        'redirect_link' => NULL,
+        'modal_page_auto_hide' => NULL,
+        'modal_page_auto_hide_delay' => NULL,
+        'modal_page_show_once' => NULL,
+        'bootstrap_version' => NULL,
+        'publish_on' => NULL,
+        'unpublish_on' => NULL,
       ],
     ],
+    'modal_page_helper_admin' => [
+      'variables' => [],
+    ],
+
   ];
 }
 
@@ -60,72 +136,126 @@ function modal_page_theme() {
  */
 function modal_page_preprocess_html(&$variables) {
 
-  $correct_version = modal_page_is_entity_version();
+  if (isset($variables['page'])) {
+    if (!isset($variables['page']['#cache']['tags'])) {
+      $variables['page']['#cache']['tags'] = [];
+    }
+    // Adds the 'modal_page' cache tags.
+    $variables['page']['#cache']['tags'] = array_merge(
+      $variables['page']['#cache']['tags'],
+      \Drupal::service('modal_page.modals')->buildModalCacheTags()
+    );
+  }
 
-  if (empty($correct_version)) {
+  // Get Modals to show on the current page.
+  $modals = \Drupal::service('modal_page.modals')->getModalsToShow();
+  $bootstrapVersion = \Drupal::config('modal_page.settings')->get('bootstrap_version');
+
+  // If there are none, skip the rest of the function.
+  if (empty($modals)) {
     return FALSE;
   }
 
-  $modal_exists = \Drupal::entityQuery('modal_page_modal')->range(0, 1)->execute();
-
-  if (empty($modal_exists)) {
-    return FALSE;
-  }
-
-  $modal_to_show = \Drupal::service('modal_page.modals')->checkModalToShow();
-
-  if ($modal_to_show) {
-
-    $do_not_show_again = $modal_to_show['do_not_show_again'];
-    $title = $modal_to_show['title'];
-    $text = $modal_to_show['text'];
-    $button = $modal_to_show['button'];
-    $id = $modal_to_show['id'];
-
-    $variables['page_top']['slidedown_templates'] = [
-      '#theme' => 'modal_page_modal',
-      '#do_not_show_again' => $do_not_show_again,
-      '#title' => $title,
-      '#text' => $text,
-      '#button' => $button,
-      '#id' => $id,
-    ];
-
-    if (isset($modal_to_show['do_not_show_again']) && !empty($modal_to_show['do_not_show_again'])) {
-      $variables['page_top']['slidedown_templates']['#do_not_show_again'] = $modal_to_show['do_not_show_again'];
+  // Skip the rest of the function if the page is /update.php or the
+  // maintenance page.
+  if (isset($variables['attributes']['class']['0'])) {
+    $currentPageClass = $variables['attributes']['class']['0'];
+    if ($currentPageClass == 'maintenance-page') {
+      return FALSE;
     }
   }
-}
 
-/**
- * Check if Modal Page use Entity Version.
- */
-function modal_page_is_entity_version() {
+  $modalHelper = \Drupal::service('modal_page.helper');
 
-  $config = \Drupal::configFactory()->getEditable('modal_page.settings');
+  /** @var \Drupal\modal_page\Entity\Modal $modal */
+  foreach ($modals as $modal) {
 
-  $cache_clean = $config->get('cache_clear');
+    $modalOptions = $modalHelper->getModalOptions($modal);
+    $cookieExpiration = $modalHelper->getCookieExpirationTime($modal);
 
-  if (empty($cache_clean)) {
-    drupal_flush_all_caches();
-    $config->set('cache_clean', TRUE);
+    $dontShowAgain = $modal->getDontShowAgainLabel();
+
+    if ($modal->getShowModalOnlyOnce()) {
+      $dontShowAgain = FALSE;
+    }
+
+    $modalVideoLink = $modal->getModalVideoLink();
+
+    // Replace the video link to be recognized as a embed one by iframe.
+    if (str_contains($modalVideoLink, "watch?v=") || str_contains($modalVideoLink, ".be")) {
+      $modalVideoLink = str_replace(
+        ["watch?v=", ".be"],
+        ["embed/", "be.com/embed"],
+        $modalVideoLink
+      );
+    }
+
+    $variables['page_top']['slidedown_templates'][] = [
+      '#theme' => 'modal_page_modal',
+      '#do_not_show_again'            => $dontShowAgain,
+      '#cookie_expiration_time'       => $cookieExpiration,
+      '#title'                        => $modal->label(),
+      '#display_title'                => $modal->getDisplayTitle(),
+      '#text'                         => $modal->getBody(),
+      '#delay_display'                => $modal->getDelayDisplay(),
+      '#enable_show_on_height'        => $modal->getEnableShowOnHeight(),
+      '#height_offset'                => $modal->getHeightOffset(),
+      '#height_offset_touch'          => $modal->getHeightOffsetTouch(),
+      '#modal_size'                   => $modal->getModalSize(),
+      '#modal_video_link'             => $modalVideoLink,
+      '#button'                       => $modal->getOkLabelButton(),
+      '#id'                           => $modal->id(),
+      '#close_modal_esc_key'          => $modal->getCloseModalEscKey(),
+      '#close_modal_clicking_outside' => $modal->getCloseModalClickingOutside(),
+      '#modal_header_classes'         => $modal->getHeaderClass(),
+      '#modal_footer_classes'         => $modal->getFooterClass(),
+      '#enable_modal_header'          => $modal->getEnableModalHeader(),
+      '#enable_modal_footer'          => $modal->getEnableModalFooter(),
+      '#display_button_x_close'       => $modal->getDisplayButtonXclose(),
+      '#top_right_button_label'       => $modal->getTopRightButtonLabel(),
+      '#top_right_button_class'       => $modal->getTopRightButtonClass(),
+      '#enable_maximize_button'       => $modal->getEnableMaximizeButton(),
+      '#maximize_button_class'        => $modal->getMaximizeButtonClass(),
+      '#open_modal_on_element_click'  => $modal->getOpenModalOnElementClick(),
+      '#auto_open'                    => $modal->getAutoOpen(),
+      '#prevent_default'              => $modal->getPreventDefault(),
+      '#modal_class'                  => $modal->getModalClass(),
+      '#enable_left_button'           => $modal->getEnableLeftButton(),
+      '#left_label_button'            => $modal->getLeftLabelButton(),
+      '#enable_right_button'          => $modal->getEnableRightButton(),
+      '#ok_button_class'              => $modal->getOkButtonClass(),
+      '#left_button_class'            => $modal->getLeftButtonClass(),
+      '#modal_options'                => $modalOptions,
+      '#id_label'                     => $modal->id() . '_label',
+      '#id_desc'                      => $modal->id() . '_desc',
+      '#enable_redirect_link'         => $modal->getEnableRedirectLink(),
+      '#redirect_link'                => $modal->getRedirectLink(),
+      '#modal_page_auto_hide'         => $modal->getModalAutoHide(),
+      '#modal_page_auto_hide_delay'   => $modal->getModalAutoHideDelay(),
+      '#modal_page_show_once'         => $modal->getShowModalOnlyOnce(),
+      '#bootstrap_version'            => $bootstrapVersion,
+    ];
+
+    if (!empty($modal->getEnableDontShowAgainOption())) {
+      $variables['page_top']['slidedown_templates']['#do_not_show_again'] = $modal->getEnableDontShowAgainOption();
+    }
+
+    // Drupal Settings.
+    $verifyLoadBootstrapAutomatically = \Drupal::config('modal_page.settings')->get('verify_load_bootstrap_automatically');
+
+    $variables['#attached']['drupalSettings']['modal_page']['verify_load_bootstrap_automatically'] = $verifyLoadBootstrapAutomatically;
+    $variables['#attached']['drupalSettings']['modal_page']['bootstrap_version'] = $bootstrapVersion;
   }
-
-  $schema_version = drupal_get_installed_schema_version('modal_page');
-
-  if (!empty($schema_version) && $schema_version <= 8000) {
-    return FALSE;
-  }
-
-  return TRUE;
 }
 
 /**
  * Implements hook_help().
  */
 function modal_page_help($route_name, RouteMatchInterface $route_match) {
+
   switch ($route_name) {
     case 'help.page.modal_page':
+
       $output = '<h3>' . t('About') . '</h3>';
       $output .= '<p>' . t('Modal Page is the easiest and fastest way to put a modal on specific pages. For more information, see the online handbook entry for <a target="_blank" href="@modal_page">Modal Page</a>.', ['@modal_page' => 'https://www.drupal.org/project/modal_page']) . '</p>';
       $output .= '<h3>' . t('Usage') . '</h3>';
@@ -133,7 +263,97 @@ function modal_page_help($route_name, RouteMatchInterface $route_match) {
       $output .= '<dl>';
       $output .= '<h3>' . t('Displaying modals') . '</h3>';
       $output .= '<p>' . t('The configuration page of Modal Page can be accessed in <i>Structure</i>  » <i>Modal</i> screen. When followed the correct pattern, the modal can be displayed on screen very easily.') . '</p>';
-      $output .= '<p>' . t('<a target="_blank" href="@modal_page_configuration">Click here</a> to redirect to Modal Page configuration.', ['@modal_page_configuration' => base_path() . 'admin/structure/modal']) . '</p>';
+      $output .= '<p>' . t('<a href="@modal_page_configuration">Click here</a> to redirect to Modal Page configuration.', ['@modal_page_configuration' => \Drupal::urlGenerator()->generateFromRoute('modal_page.settings')]) . '</p>';
       return $output;
   }
+}
+
+/**
+ * Implements hook_entity_presave().
+ */
+function modal_page_entity_presave(EntityInterface $entity) {
+  \Drupal::service('modal_page.helper')->entityPresave($entity);
+}
+
+/**
+ * Implements hook_modal_submit().
+ */
+function modal_page_modal_submit($modal, $modal_state, $modal_id) {
+
+  // If isn't the Modal for welcome, skip.
+  if ($modal_id != 'thank_you_for_installing_modal_page') {
+    return FALSE;
+  }
+
+  // If wasn't clicked on don't show again, skip.
+  if (empty($modal_state['dont_show_again_option']) || $modal_state['dont_show_again_option'] == 'false') {
+    return FALSE;
+  }
+
+  // Delete the Modal used on welcome Message.
+  $modal->delete();
+
+  // Delete cookie for welcome Modal.
+  if (!empty(\Drupal::service('request_stack')->getCurrentRequest()->cookies->get('hide_modal_id_thank_you_for_installing_modal_page'))) {
+    $response = new Response();
+    $cookie = Cookie::create('hide_modal_id_thank_you_for_installing_modal_page', '', time() - 3600, '/', NULL, FALSE);
+    $response->headers->setCookie($cookie);
+    $response->send();
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ */
+function modal_page_theme_suggestions_modal_page_modal(array $variables) {
+  $suggestions = [];
+
+  $suggestions[] = 'modal_page_modal__' . $variables['id'];
+
+  return $suggestions;
+}
+
+/**
+ * Implements hook_cron().
+ */
+function modal_page_cron() {
+  /** @var \Drupal\modal_page\Service\ModalPageScheduler $scheduler */
+  $scheduler = \Drupal::service('modal_page.scheduler');
+  $scheduler->processScheduling();
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_delete().
+ */
+function modal_page_modal_delete(EntityInterface $entity) {
+  // Invalidates the 'modal_page' cache tags.
+  Cache::invalidateTags(['modal_page']);
+  Cache::invalidateTags(['modal_page:' . $entity->id()]);
+}
+
+/**
+ * Implements hook_modules_installed().
+ */
+function modal_page_modules_installed(array $modules, bool $is_syncing): void {
+
+  // If Modal isn't on array, skip that.
+  if (!in_array('modal_page', $modules)) {
+    return;
+  }
+
+  if (\Drupal::VERSION >= '11.0.0') {
+    $config = \Drupal::configFactory()->getEditable('modal_page.settings');
+
+    $config->set('bootstrap_version', '5x');
+
+    $config->save();
+  }
+
+  // Get the Messenger object.
+  $messenger = \Drupal::messenger();
+
+  // Set the Message.
+  $messenger->addStatus(t('Modal Page load bootstrap.min.js by default, if this library is already loaded in other place, you can verify a option <b>Don\'t load external JS Bootstrap</b> on <a href="@modal_page_settings">Modal Settings</a>', [
+    '@modal_page_settings' => Url::fromRoute('modal_page.settings')->toString(),
+  ]));
 }

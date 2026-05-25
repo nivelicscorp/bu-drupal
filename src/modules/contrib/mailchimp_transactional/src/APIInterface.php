@@ -1,12 +1,13 @@
 <?php
 
 declare(strict_types=1);
+
 namespace Drupal\mailchimp_transactional;
 
 /**
  * Interface for the Mailchimp Transactional API.
  */
-interface APIInterface {
+interface ApiInterface {
 
   /**
    * Checks if the Mailchimp Transactional PHP library is available.

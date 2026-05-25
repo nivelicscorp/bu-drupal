@@ -5,51 +5,15 @@
  * Contains chart_block_example.module.
  */
 
-use Drupal\block\Entity\Block;
+use Drupal\Core\Hook\Attribute\LegacyHook;
 use Drupal\Core\Routing\RouteMatchInterface;
-
 
 /**
  * Implements hook_help().
- */
-function charts_blocks_help($route_name, RouteMatchInterface $route_match) {
-  switch ($route_name) {
-    // Main module help for the charts_blocks module.
-    case 'help.page.charts_blocks':
-      $output = '';
-      $output .= '<h3>' . t('About') . '</h3>';
-      $output .= '<p>' . t('Create Charts blocks without the need for Views.') . '</p>';
-      return $output;
-
-    default:
-  }
-}
-
-/**
- * Implements hook_theme().
- */
-function charts_blocks_theme() {
-  return [
-    'charts_blocks' => [
-      'template' => 'charts-block',
-      'variables' => [
-        'library' => '',
-        'categories' => '',
-        'seriesData' => '',
-        'options' => '',
-        'id' => '',
-      ],
-    ],
-  ];
-}
-
-/**
- * Implements template_preprocess_page
  *
- * @param $variables
+ * @phpstan-ignore-next-line
  */
-function template_preprocess_charts_blocks(&$variables) {
-  $plugin_manager = \Drupal::service('plugin.manager.charts');
-  $plugin = $plugin_manager->createInstance($variables['library']);
-  $plugin->buildVariables($variables['options'], $variables['categories'], $variables['seriesData'], [], $variables, $variables['id']);
+#[LegacyHook]
+function charts_blocks_help($route_name, RouteMatchInterface $route_match) {
+  return \Drupal::service('charts_blocks.hooks')->help($route_name, $route_match);
 }

@@ -1,19 +1,105 @@
-<div class="modal fade" id="js-modal-page-show-modal" role="dialog" style="display: none;" data-modal-id="{{ id }}">
-    <div class="modal-page-dialog modal-dialog">
-      <div class="modal-page-content modal-content">
-        <div class="modal-page-content modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title modal-page-title">{{ title }}</h4>
-        </div>
-        <div class="modal-body modal-page-body">
-          <p>{{ text }}</p>
-        </div>
-        <div class="modal-footer modal-page-footer">
-          {% if do_not_show_again %}
-              <input type="checkbox" class="modal-page-please-do-not-show-again" value="{{ id }}"> {{ do_not_show_again }}
+{#
+/**
+ * @file
+ * Default theme implementation to display modal.
+ *
+ * @ingroup templates
+ * @see modal_page_preprocess_html()
+ */
+#}
+<div id="js-modal-page-show-modal" class="{{ modal_class }}" data-modal-options="{{ modal_options }}" {{ bootstrap_version == "5x" ? "data-bs-keyboard" : "data-keyboard" }}="{{ close_modal_esc_key }}" {{ bootstrap_version == "5x" ? "data-bs-backdrop" : "data-backdrop" }}="{{ close_modal_clicking_outside }}" aria-modal="true" {{ enable_modal_header and display_title ? 'aria-labelledby=' ~ id_label }} aria-describedby="{{ id_desc }}" role="dialog" tabindex="-1">
+  <div class="modal-page-dialog modal-dialog {{ modal_size }}" role="document">
+    <div class="modal-page-content modal-content">
+
+      {% set dismiss = bootstrap_version == "5x" ? "data-bs-dismiss" : "data-dismiss" %}
+
+      {# Verify if Modal Header is enabled. #}
+      {% if enable_modal_header %}
+
+        <div class="modal-page-content modal-header {{ modal_header_classes }}">
+
+          {# Verify if should Display Title. #}
+          {% if display_title %}
+            <h4 id="{{ id_label }}" class="modal-title modal-page-title">{{ title }}</h4>
           {% endif %}
-          <button type="button" class="btn btn-default js-modal-page-ok-buttom" data-dismiss="modal">{{ button }}</button>
+
+          <div class="modal-header-right">
+
+          {# Verify if should Display button X. #}
+          {% if display_button_x_close %}
+            <button type="button" class="close js-modal-page-ok-button {{ top_right_button_class }}" {{ dismiss }}="modal">
+              {% if top_right_button_label == "&times;" %}
+                &times;
+              {% else %}
+                {{ top_right_button_label }}
+              {% endif %}
+            </button>
+          {% endif %}
+
+          {# Verify if the maximize button should display. #}
+          {% if enable_maximize_button %}
+            <div class="maximize js-modal-page-maximize-button {{ maximize_button_class }}">
+              <svg id="modal-maximize" xmlns="http://www.w3.org/2000/svg" fill="#000" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
+              </svg>
+              <svg id="modal-minimize" style="display: none;" xmlns="http://www.w3.org/2000/svg" fill="#000" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 9V4.5M9 9H4.5M9 9L3.75 3.75M9 15v4.5M9 15H4.5M9 15l-5.25 5.25M15 9h4.5M15 9V4.5M15 9l5.25-5.25M15 15h4.5M15 15v4.5m0-4.5l5.25 5.25" />
+              </svg>
+            </div>
+          {% endif %}
+
+          </div>
         </div>
+
+      {% endif %}
+
+      {# Show Modal Body #}
+      <div id="{{ id_desc }}" class="modal-body modal-page-body">
+        {{ text|raw }}
+        {% if modal_video_link is not null and modal_video_link is not empty %}
+          <iframe src="{{ modal_video_link|raw }}" title="Youtube video player" frameborder="0" allow=" accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        {% endif %}
       </div>
+
+      {# Verify if Modal footer is enabled. #}
+      {% if enable_modal_footer %}
+
+        <div class="modal-footer modal-page-footer {{ modal_footer_classes }}">
+
+          {# Don't Show Again option #}
+          {% if do_not_show_again %}
+            <label class ="modal-dont-show-again-label"><input type="checkbox" class="modal-page-please-do-not-show-again" value="{{ id }}"> {{ do_not_show_again }}</label>
+            <input type="hidden" id="cookie_expiration" name="cookie_expiration" value="{{ cookie_expiration_time }}" />
+          {% endif %}
+
+          <div class="modal-buttons">
+
+            {# Left Button #}
+            {% if enable_left_button %}
+              <button type="button" class="btn btn-default js-modal-page-left-button {{ left_button_class }}" {{ dismiss }}="modal">{{ left_label_button }}</button>
+            {% endif %}
+
+            {# Right Button #}
+            {% if enable_right_button %}
+              <button type="button" class="btn btn-default js-modal-page-ok-button {{ ok_button_class }}" {{ dismiss }}="modal" {% if enable_redirect_link %} data-redirect="{{ redirect_link }}" {% endif %}>{{ button }}</button>
+            {% endif %}
+
+          </div>
+        </div>
+
+      {% endif %}
+      
+      <input type="hidden" id="modal_id" name="modal_id" value="{{ id }}">
+      {# Delay to Display #}
+      <input type="hidden" id="delay_display" name="delay_display" value="{{ delay_display|raw }}" />
+      <input type="hidden" id="show_once" name="show_once" value="{{ modal_page_show_once|raw }}" />
+      <input type="hidden" id="auto_hide" name="auto_hide" value="{{ modal_page_auto_hide|raw }}" />
+      <input type="hidden" id="auto_hide_delay" name="auto_hide_delay" value="{{ modal_page_auto_hide_delay|raw }}" />
+      {% if enable_show_on_height %}
+      {# Height to Display #}
+        <input type="hidden" id="height_offset" name="height_offset" value="{{ height_offset|raw }}" offset-type="{{ height_offset_touch|raw }}" />
+      {% endif %}
+
     </div>
   </div>
+</div>

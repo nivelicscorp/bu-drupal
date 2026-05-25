@@ -60,7 +60,7 @@ class PrintPage implements SocialNetworkInterface {
     $url = Url::fromUserInput(self::PRINTER, $options);
     $link = [
       'url' => $url,
-      'title' => ['#markup' => '<i class="fa fa-print"></i><span class="visually-hidden">' . $this->getLabel() . '</span>'],
+      'title' => ['#markup' => '<i class="fa-solid fa-print"></i><span class="visually-hidden">' . $this->getLabel() . '</span>'],
       'attributes' => $this->getLinkAttributes($this->getLabel()),
     ];
 

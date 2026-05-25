@@ -2,13 +2,19 @@
 
 namespace Drupal\config_pages\Entity;
 
+use Drupal\config_pages\ConfigPagesAccessControlHandler;
+use Drupal\config_pages\ConfigPagesForm;
+use Drupal\config_pages\ConfigPagesInterface;
+use Drupal\config_pages\ConfigPagesListBuilder;
+use Drupal\config_pages\ConfigPagesStorage;
+use Drupal\config_pages\ConfigPagesViewsData;
+use Drupal\Core\Entity\Attribute\ContentEntityType;
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityChangedTrait;
-use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\config_pages\ConfigPagesViewBuilder;
 use Drupal\Core\Field\BaseFieldDefinition;
-use Drupal\config_pages\ConfigPagesInterface;
-
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 
 /**
@@ -22,22 +28,16 @@ use Drupal\Core\Url;
  *     "storage" = "Drupal\config_pages\ConfigPagesStorage",
  *     "access" = "Drupal\config_pages\ConfigPagesAccessControlHandler",
  *     "list_builder" = "Drupal\config_pages\ConfigPagesListBuilder",
- *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
+ *     "view_builder" = "Drupal\config_pages\ConfigPagesViewBuilder",
  *     "views_data" = "Drupal\config_pages\ConfigPagesViewsData",
  *     "form" = {
  *       "add" = "Drupal\config_pages\ConfigPagesForm",
  *       "edit" = "Drupal\config_pages\ConfigPagesForm",
  *       "default" = "Drupal\config_pages\ConfigPagesForm"
- *     },
- *     "translation" = "Drupal\config_pages\ConfigPagesTranslationHandler"
+ *     }
  *   },
  *   admin_permission = "administer config_pages types",
  *   base_table = "config_pages",
- *   links = {
- *     "canonical" = "/config_pages/{config_pages}",
- *     "edit-form" = "/config_pages/{config_pages}",
- *     "collection" = "/admin/structure/config_pages/config-pages-content",
- *   },
  *   entity_keys = {
  *     "id" = "id",
  *     "bundle" = "type",
@@ -45,11 +45,50 @@ use Drupal\Core\Url;
  *     "context" = "context",
  *     "uuid" = "uuid"
  *   },
+ *   links = {
+ *     "canonical" = "/config_pages/{config_pages}",
+ *     "edit-form" = "/config_pages/{config_pages}",
+ *     "collection" = "/admin/structure/config_pages/config-pages-content",
+ *   },
  *   bundle_entity_type = "config_pages_type",
  *   field_ui_base_route = "entity.config_pages_type.edit_form",
  *   render_cache = TRUE,
  * )
  */
+#[ContentEntityType(
+  id: "config_pages",
+  label: new TranslatableMarkup("Config page"),
+  bundle_label: new TranslatableMarkup("Config page type"),
+  handlers: [
+    "storage" => ConfigPagesStorage::class,
+    "access" => ConfigPagesAccessControlHandler::class,
+    "list_builder" => ConfigPagesListBuilder::class,
+    "view_builder" => ConfigPagesViewBuilder::class,
+    "views_data" => ConfigPagesViewsData::class,
+    "form" => [
+      "add" => ConfigPagesForm::class,
+      "edit" => ConfigPagesForm::class,
+      "default" => ConfigPagesForm::class,
+    ],
+  ],
+  admin_permission: "administer config_pages types",
+  base_table: "config_pages",
+  entity_keys: [
+    "id" => "id",
+    "bundle" => "type",
+    "label" => "label",
+    "context" => "context",
+    "uuid" => "uuid",
+  ],
+  links: [
+    "canonical" => "/config_pages/{config_pages}",
+    "edit-form" => "/config_pages/{config_pages}",
+    "collection" => "/admin/structure/config_pages/config-pages-content",
+  ],
+  bundle_entity_type: "config_pages_type",
+  field_ui_base_route: "entity.config_pages_type.edit_form",
+  render_cache: TRUE,
+)]
 class ConfigPages extends ContentEntityBase implements ConfigPagesInterface {
 
   use EntityChangedTrait;
@@ -91,14 +130,6 @@ class ConfigPages extends ContentEntityBase implements ConfigPagesInterface {
    */
   public function getTheme() {
     return $this->theme;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function postSave(EntityStorageInterface $storage, $update = TRUE) {
-    parent::postSave($storage, $update);
-
   }
 
   /**
@@ -168,48 +199,111 @@ class ConfigPages extends ContentEntityBase implements ConfigPagesInterface {
   }
 
   /**
-   * Helper function.
+   * Static map of (type:context) -> entity_id to avoid repeated queries.
    *
-   * @param string $type
+   * @var array
+   */
+  protected static $idMap = [];
+
+  /**
+   * Loads a config page entity by type and optional context.
+   *
+   * Uses a static ID map to avoid repeated entity queries within a single
+   * request. The actual entity is always loaded via core's load() which
+   * uses its own memory cache with proper invalidation.
+   *
+   * @param string|null $type
    *   Config page type to load.
-   * @param string $context
+   * @param string|null $context
    *   Context which should be used to load entity.
    *
    * @return \Drupal\config_pages\Entity\ConfigPages|null
    *   Returns config page entity.
    */
-  public static function config($type, $context = NULL) {
-
-    // Build conditions.
-    if (!empty($type)) {
-      $conditions['type'] = $type;
-
-      // Get current context if NULL.
-      if ($context == NULL) {
-        $type = ConfigPagesType::load($type);
-        if (!is_object($type)) {
-          return NULL;
-        }
-        $conditions['context'] = $type->getContextData();
-      }
-      else {
-        $conditions['context'] = $context;
-      }
-
-      $list = \Drupal::entityTypeManager()
-        ->getStorage('config_pages')
-        ->loadByProperties($conditions);
+  public static function config($type = NULL, $context = NULL) {
+    if (empty($type)) {
+      return NULL;
     }
+
+    $conditions['type'] = $type;
+
+    // Get current context if NULL.
+    if ($context === NULL) {
+      $typeEntity = ConfigPagesType::load($type);
+      if (!is_object($typeEntity)) {
+        return NULL;
+      }
+      $conditions['context'] = $typeEntity->getContextData();
+    }
+    else {
+      $conditions['context'] = $context;
+    }
+
+    $cid = $conditions['type'] . ':' . $conditions['context'];
+
+    if (isset(static::$idMap[$cid])) {
+      return \Drupal::entityTypeManager()
+        ->getStorage('config_pages')
+        ->load(static::$idMap[$cid]);
+    }
+
+    $list = \Drupal::entityTypeManager()
+      ->getStorage('config_pages')
+      ->loadByProperties($conditions);
 
     // Try to get the fallback config page.
-    if (!$list && $context == NULL) {
-      $conditions['context'] = $type->getContextData(TRUE);
+    if (!$list && $context === NULL) {
+      $conditions['context'] = $typeEntity->getContextData(TRUE);
+      $cid = $conditions['type'] . ':' . $conditions['context'];
+
+      if (isset(static::$idMap[$cid])) {
+        return \Drupal::entityTypeManager()
+          ->getStorage('config_pages')
+          ->load(static::$idMap[$cid]);
+      }
+
       $list = \Drupal::entityTypeManager()
         ->getStorage('config_pages')
         ->loadByProperties($conditions);
     }
 
-    return $list ? current($list) : NULL;
+    // Try to load entity with empty context hash as a safety net.
+    // This handles the case where context was recently enabled but existing
+    // entities still have the old no-context hash.
+    if (!$list && $context == NULL) {
+      $emptyContextHash = serialize([]);
+      if ($conditions['context'] !== $emptyContextHash) {
+        $conditions['context'] = $emptyContextHash;
+        $cid = $conditions['type'] . ':' . $conditions['context'];
+
+        if (isset(static::$idMap[$cid])) {
+          return \Drupal::entityTypeManager()
+            ->getStorage('config_pages')
+            ->load(static::$idMap[$cid]);
+        }
+
+        $list = \Drupal::entityTypeManager()
+          ->getStorage('config_pages')
+          ->loadByProperties($conditions);
+      }
+    }
+
+    $entity = $list ? current($list) : NULL;
+    if ($entity) {
+      static::$idMap[$cid] = $entity->id();
+    }
+
+    return $entity;
+  }
+
+  /**
+   * Resets the static lookup cache used by config().
+   *
+   * Call this after creating or deleting config page entities in tests
+   * or long-running processes to ensure fresh lookups.
+   */
+  public static function resetConfigCache(): void {
+    static::$idMap = [];
   }
 
   /**

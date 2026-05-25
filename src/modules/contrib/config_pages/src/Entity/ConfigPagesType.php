@@ -2,9 +2,15 @@
 
 namespace Drupal\config_pages\Entity;
 
-use Drupal\Core\Config\Entity\ConfigEntityBundleBase;
-use Drupal\Core\Entity\EntityStorageInterface;
+use Drupal\config_pages\ConfigPagesAccessControlHandler;
+use Drupal\config_pages\ConfigPagesTypeForm;
 use Drupal\config_pages\ConfigPagesTypeInterface;
+use Drupal\config_pages\ConfigPagesTypeListBuilder;
+use Drupal\config_pages\Form\ConfigPagesTypeDeleteForm;
+use Drupal\Core\Config\Entity\ConfigEntityBundleBase;
+use Drupal\Core\Entity\Attribute\ConfigEntityType;
+use Drupal\Core\Entity\EntityStorageInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
  * Defines the config page type entity.
@@ -46,6 +52,42 @@ use Drupal\config_pages\ConfigPagesTypeInterface;
  *   }
  * )
  */
+#[ConfigEntityType(
+  id: "config_pages_type",
+  label: new TranslatableMarkup("Config page type"),
+  handlers: [
+    "form" => [
+      "default" => ConfigPagesTypeForm::class,
+      "add" => ConfigPagesTypeForm::class,
+      "edit" => ConfigPagesTypeForm::class,
+      "delete" => ConfigPagesTypeDeleteForm::class,
+    ],
+    "access" => ConfigPagesAccessControlHandler::class,
+    "list_builder" => ConfigPagesTypeListBuilder::class,
+  ],
+  admin_permission: "administer config_pages types",
+  config_prefix: "type",
+  bundle_of: "config_pages",
+  entity_keys: [
+    "id" => "id",
+    "label" => "label",
+    "context" => "context",
+    "menu" => "menu",
+    "token" => "token",
+  ],
+  links: [
+    "delete-form" => "/admin/structure/config_pages/config-pages-content/manage/{config_pages_type}/delete",
+    "edit-form" => "/admin/structure/config_pages/config-pages-content/manage/{config_pages_type}",
+    "collection" => "/admin/structure/config_pages/config-pages-content/types",
+  ],
+  config_export: [
+    "id",
+    "label",
+    "context",
+    "menu",
+    "token",
+  ],
+)]
 class ConfigPagesType extends ConfigEntityBundleBase implements ConfigPagesTypeInterface {
 
   /**

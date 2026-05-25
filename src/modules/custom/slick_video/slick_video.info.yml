@@ -11,6 +11,6 @@ dependencies:
 # Information added by Drupal.org packaging script on 2017-01-23
 version: '8.x-1.0-rc1'
 core: 8.x
-core_version_requirement: ^8 || ^9 || ^10
+core_version_requirement: ^10 || ^11
 project: 'slick_video'
 datestamp: 1485195196

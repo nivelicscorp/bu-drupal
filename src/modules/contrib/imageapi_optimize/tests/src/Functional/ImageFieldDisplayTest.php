@@ -14,6 +14,6 @@ class ImageFieldDisplayTest extends OriginalImageFieldDisplayTest {
  /**
   * {@inheritdoc}
   */
-  public static $modules = ['imageapi_optimize'];
+  protected static $modules = ['imageapi_optimize'];
 
 }

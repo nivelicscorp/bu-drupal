@@ -28,6 +28,6 @@
     "source": "https://git.drupalcode.org/project/field_group_background_image"
   },
   "require": {
-    "drupal/field_group": "^3.4"
+    "drupal/field_group": "^3.4 || ^4.0"
   }
 }

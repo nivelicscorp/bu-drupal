@@ -98,7 +98,7 @@ class ShsController extends ControllerBase {
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    *
-   * @return JsonResponse
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
    *   Json response.
    */
   public function createTerm(Request $request) {

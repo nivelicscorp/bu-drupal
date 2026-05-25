@@ -315,6 +315,7 @@ jQuery(document).ready(function () {
   var heightAside = jQuery('aside').height();
   var heightGeneral = jQuery(window).height() - jQuery("header").height();
 
+  console.log('DEBUG fixedOptions:', 'aside.height=', heightAside, 'heightGeneral=', heightGeneral, 'block-newsletter=', jQuery('.block-newsletter').length, 'aside=', jQuery('aside').length, 'width=', jQuery(window).width());
   fixedOptions(heightAside, heightGeneral);
 
   var $allCollapsibles = jQuery('.collapsibe-block-title');
@@ -386,7 +387,7 @@ function fixedOptions(heightAside, heightGeneral) {
   var href = location.href;
   var pathHref = href.substring(href.lastIndexOf('/') + 1);
 
-  if (ventana_ancho > 960) {
+  if (ventana_ancho > 960 && jQuery('.block-newsletter').length && jQuery('aside').length) {
     if (href.indexOf("que-hacemos") > -1) {
       //console.log('que hacemos');
       jQuery("aside").css("height", heightGeneral);

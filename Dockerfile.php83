@@ -1,0 +1,51 @@
+FROM alpine:3.20
+
+# Install PHP 8.3, nginx, supervisord and required extensions
+RUN apk add --no-cache \
+    php83 php83-fpm php83-pdo php83-pdo_mysql php83-mbstring php83-xml \
+    php83-curl php83-gd php83-zip php83-intl php83-opcache php83-session \
+    php83-tokenizer php83-dom php83-ctype php83-fileinfo php83-iconv \
+    php83-simplexml php83-xmlreader php83-xmlwriter php83-phar php83-openssl \
+    php83-sodium php83-pecl-apcu php83-exif php83-bcmath \
+    nginx nginx-mod-http-headers-more supervisor curl git composer \
+    && ln -sf /usr/bin/php83 /usr/bin/php \
+    && ln -sf /usr/sbin/php-fpm83 /usr/sbin/php-fpm \
+    && mkdir -p /run/nginx /var/lib/nginx/logs /tmp/client_temp \
+    && chown -R nobody:nobody /run /var/lib/nginx /var/log/nginx /tmp/client_temp
+
+# Configure nginx
+COPY docker/config/nginx.conf /etc/nginx/nginx.conf
+
+# Configure PHP-FPM
+COPY docker/config/fpm-pool.conf /etc/php83/php-fpm.d/www.conf
+COPY docker/config/php.ini /etc/php83/conf.d/custom.ini
+
+# Configure supervisord
+COPY docker/config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+# Create working directory
+RUN mkdir -p /opt/drupal/web && chown -R nobody:nobody /opt/drupal
+
+# Setup document root
+WORKDIR /opt/drupal/web
+
+# Switch to non-root user
+USER nobody
+
+# Copy source code
+COPY --chown=nobody:nobody src/ /opt/drupal/web/
+COPY --chown=nobody:nobody docker/drupal/settings.php /opt/drupal/web/sites/default/settings.php
+
+# Setup files directory
+RUN mkdir -p /opt/drupal/web/sites/default/files && \
+    chmod -R 777 /opt/drupal/web/sites/default/files
+
+# Install dependencies
+RUN composer install --no-interaction --no-dev --prefer-dist --ignore-platform-reqs 2>/dev/null || true
+
+# Date
+RUN date > build-date.txt
+
+EXPOSE 8080
+
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

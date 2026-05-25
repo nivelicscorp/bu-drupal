@@ -4,3 +4,7 @@ services:
     arguments:
       - '@logger.factory'
       - '@http_client'
+      - '@language_manager'
+      - '@config.factory'
+      - '@cache.default'
+      - '@datetime.time'

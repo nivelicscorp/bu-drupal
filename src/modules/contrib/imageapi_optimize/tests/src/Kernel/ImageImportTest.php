@@ -14,6 +14,6 @@ class ImageImportTest extends OriginalImageImportTest {
  /**
   * {@inheritdoc}
   */
-  public static $modules = ['imageapi_optimize'];
+  protected static $modules = ['imageapi_optimize'];
 
 }

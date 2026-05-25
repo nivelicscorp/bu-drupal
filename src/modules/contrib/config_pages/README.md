@@ -9,7 +9,7 @@ just a thing you're looking for :)
 
 Introduction
 ------------
-This module provides fieldable entity that allows to create customisable
+This module provides fieldable entity that allows to create customizable
 feature-rich configuration pages and place them where you like in menu
 system, you are able to use fieldAPI with fine widgets created by community,
 so multi values drag&drop, autocomplete, file uploads

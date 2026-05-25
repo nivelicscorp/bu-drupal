@@ -333,7 +333,7 @@ class SvgSprite extends MediaTypeBase {
 
     if (!$this->currentUser->hasPermission('create media') && !$this->currentUser->hasPermission('autocreate icons')) {
       if ($message_output) {
-        drupal_set_message($this->t('You do not have the permission to create or autocreate icons.'), 'warning');
+        \Drupal::messenger()->addMessage($this->t('You do not have the permission to create or autocreate icons.'), 'warning');
       }
       return FALSE;
     }
@@ -387,14 +387,14 @@ class SvgSprite extends MediaTypeBase {
 
     if ($message_output) {
       if (!isset($messages['success'])) {
-        drupal_set_message($this->t('An error occured during icons generation'), 'error');
+        \Drupal::messenger()->addMessage($this->t('An error occured during icons generation'), 'error');
       }
       else {
         foreach ($messages['success'] as $icon_id => $message) {
-          drupal_set_message($this->t('@icon_id icon successfully created.', ['@icon_id' => ucfirst($icon_id)]));
+          \Drupal::messenger()->addMessage($this->t('@icon_id icon successfully created.', ['@icon_id' => ucfirst($icon_id)]));
         }
         foreach ($messages['error'] as $icon_id => $message) {
-          drupal_set_message($this->t('@icon_id: @error_message.', [
+          \Drupal::messenger()->addMessage($this->t('@icon_id: @error_message.', [
             '@icon_id' => ucfirst($icon_id),
             '@error_message' => $message,
           ]), 'error');

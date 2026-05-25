@@ -2,11 +2,6 @@
 
 declare(strict_types=1);
 
-/**
- * @file
- * Test class and methods for the Mailchimp Transactional Activity module.
- */
-
 namespace Drupal\Tests\mailchimp_transactional_activity\Functional;
 
 use Drupal\Tests\mailchimp_transactional\Functional\TestBase;
@@ -41,8 +36,8 @@ class ActivityTest extends TestBase {
   public function testGetActivity() {
     $email = 'recipient@example.com';
 
-    /** @var \Drupal\mailchimp_transactional\TestAPI $mailchimp_transactional_api */
-    $mailchimp_transactional_api = \Drupal::service('mailchimp_transactional.test');
+    /** @var \Drupal\mailchimp_transactional\TestApi $mailchimp_transactional_api */
+    $mailchimp_transactional_api = $this->container->get('mailchimp_transactional.test');
 
     $activity = $mailchimp_transactional_api->getMessages($email);
 

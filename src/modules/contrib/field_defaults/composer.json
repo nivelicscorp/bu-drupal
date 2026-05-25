@@ -9,10 +9,13 @@
         "issues": "https://www.drupal.org/project/issues/field_defaults",
         "source": "https://git.drupalcode.org/project/field_defaults"
     },
+    "require": {
+        "drupal/core": "^10.0 || ^11.0"
+    },
     "extra": {
         "drush": {
             "services": {
-                "drush.services.yml": "^9 || ^10 || ^11"
+                "drush.services.yml": "^11 || ^12"
             }
         }
     }

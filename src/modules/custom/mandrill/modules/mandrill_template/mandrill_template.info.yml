@@ -1,7 +1,7 @@
 name: 'Mandrill Template'
 description: 'Use Mandrill templates for messages sent through Mandrill.'
 core: 8.x
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^10 || ^11
 package: Mandrill
 dependencies:
   - mandrill:mandrill

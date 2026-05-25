@@ -1,3 +1,17 @@
 media.source.facebook:
   type: media.source.field_aware
   label: '"Facebook" media source configuration'
+
+media_entity_facebook.settings:
+  type: config_object
+  label: 'Media Entity Facebook settings'
+  mapping:
+    facebook_app_id:
+      type: string
+      label: 'Facebook App ID'
+    facebook_app_secret:
+      type: string
+      label: 'Facebook App secret'
+    use_embedded_posts:
+      type: boolean
+      label: 'Use Embedded Posts'

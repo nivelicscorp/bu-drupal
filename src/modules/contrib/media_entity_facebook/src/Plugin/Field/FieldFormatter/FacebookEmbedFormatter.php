@@ -2,10 +2,10 @@
 
 namespace Drupal\media_entity_facebook\Plugin\Field\FieldFormatter;
 
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FormatterBase;
-use Drupal\media_entity_facebook\FacebookMarkup;
 use Drupal\media_entity_facebook\Plugin\media\Source\Facebook;
 
 /**
@@ -32,8 +32,18 @@ class FacebookEmbedFormatter extends FormatterBase {
     if (($source = $media->getSource()) && $source instanceof Facebook) {
       foreach ($items as $delta => $item) {
         $element[$delta] = [
-          '#markup' => FacebookMarkup::create($source->getMetadata($media, 'html')),
+          '#cache' => [
+            'contexts' => Cache::mergeContexts(['languages'], $media->getCacheContexts()),
+            'tags' => $media->getCacheTags(),
+            'max-age' => $media->getCacheMaxAge(),
+          ],
         ];
+
+        $oembedResult = $source->getMetadata($media, 'html');
+
+        if ($oembedResult) {
+          $element[$delta] += $oembedResult;
+        }
       }
     }
 

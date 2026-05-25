@@ -1,4 +1,12 @@
 services:
   modal_page.modals:
-    class: Drupal\modal_page\ModalPage
-    arguments: ['@language_manager', '@entity.query', '@entity.manager', '@config.factory', '@request_stack', '@path.matcher', '@uuid']
+    class: Drupal\modal_page\Service\ModalPageService
+    arguments: ['@language_manager', '@entity_type.manager', '@config.factory', '@database', '@request_stack', '@path.matcher', '@uuid', '@current_user', '@path_alias.manager', '@module_handler', '@path.current']
+  modal_page.helper:
+    class: Drupal\modal_page\Service\ModalPageHelperService
+    arguments: ['@language_manager', '@current_user', '@entity_type.manager', '@config.factory']
+  modal_page.validators:
+    class: Drupal\modal_page\Service\ModalFieldValidationService
+  modal_page.scheduler:
+    class: Drupal\modal_page\Service\ModalPageScheduler
+    arguments: ['@entity_type.manager', '@config.factory', '@logger.factory', '@datetime.time']

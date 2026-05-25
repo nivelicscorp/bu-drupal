@@ -6,12 +6,14 @@ use Drupal\config_pages\Entity\ConfigPagesType;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\Tests\BrowserTestBase;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 /**
  * Tests that the ConfigPages Type can be cleared.
  *
  * @group config_pages
  */
+#[RunTestsInSeparateProcesses]
 class ClearConfigPageTest extends BrowserTestBase {
 
   /**
@@ -61,8 +63,7 @@ class ClearConfigPageTest extends BrowserTestBase {
       'field_storage' => $field_storage,
       'bundle' => 'config_pages_test_type',
       'label' => 'Test field',
-      'settings' => [
-      ],
+      'settings' => [],
     ]);
     $field->save();
 
@@ -81,7 +82,7 @@ class ClearConfigPageTest extends BrowserTestBase {
    * Check if Config page type was created successfully.
    */
   public function testConfigPagesClear() {
-    // @todo: Use this account instead of root when
+    // @todo Use this account instead of root when
     // https://www.drupal.org/project/config_pages/issues/3361228 is fixed
     $account = $this->drupalCreateUser([
       'edit config_pages entity',
@@ -101,10 +102,16 @@ class ClearConfigPageTest extends BrowserTestBase {
     $this->assertSession()->fieldValueEquals('field_test[0][value]', 'Test value');
 
     $this->submitForm([], 'Clear values');
-    $this->assertSession()->pageTextContains('Only do this if you are sure!');
-    $this->submitForm([], 'Clear it Now!');
 
-    // Values were cleared.
+    // Check the confirmation form shows the label, not the ID.
+    $this->assertSession()->pageTextContains('Do you want to clear ConfigPages Test Type Label?');
+    $this->assertSession()->pageTextContains('This will reset all field values to their defaults.');
+    $this->assertSession()->buttonExists('Clear');
+
+    $this->submitForm([], 'Clear');
+
+    // Check success message and values were cleared.
+    $this->assertSession()->pageTextContains('The config page ConfigPages Test Type Label has been cleared.');
     $this->assertSession()->fieldValueEquals('field_test[0][value]', '');
   }
 

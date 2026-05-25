@@ -1,0 +1,5 @@
+media_entity_facebook.settings:
+  title: 'Facebook media settings'
+  parent: system.admin_config_media
+  description: 'Manage Facebook media settings.'
+  route_name: media_entity_facebook.settings

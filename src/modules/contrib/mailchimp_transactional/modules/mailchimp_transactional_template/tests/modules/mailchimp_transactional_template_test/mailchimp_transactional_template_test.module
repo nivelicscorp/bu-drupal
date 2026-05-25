@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * @file
+ * Mailchimp transactional template test module file.
+ */
+
+/**
+ * Implements hook_mailchimp_transactional_template_map_alter().
+ */
+function mailchimp_transactional_template_test_mailchimp_transactional_template_map_alter(&$template_map, $module_key, $module) {
+  if ($module_key === 'template_map_alter_test') {
+    $template_map = NULL;
+  }
+}

@@ -24,7 +24,7 @@ function mailchimp_transactional_help($path, $arg) {
 /**
  * Display the names of the modules that are using Mailsystem.
  *
- * This is consistent with with Mailsystem's display. In the future, if
+ * This is consistent with with Mail System's display. In the future, if
  * Mailsystem were to provide an API for their labeling, that should be used.
  *
  * @return array
@@ -49,6 +49,10 @@ function mailchimp_transactional_get_module_key_names() {
 
   if (!empty($modules)) {
     foreach (array_keys($modules) as $module_name) {
+      if (!isset($descriptions[$module_name])) {
+        continue;
+      }
+
       foreach ($modules[$module_name] as $key => $options) {
         $id = $module_name . '_' . $key;
 
@@ -96,13 +100,13 @@ function mailchimp_transactional_get_to($to) {
  */
 function mailchimp_transactional_queue_info_alter(&$queues) {
   $config = \Drupal::config('mailchimp_transactional.settings');
-  $async = $config->get('mailchimp_transactional_process_async');
+  $async = $config->get('process_async');
 
   if (empty($async) || !isset($queues['mailchimp_transactional_queue'])) {
     return;
   }
 
-  $timeout = $config->get('mailchimp_transactional_queue_worker_timeout');
+  $timeout = $config->get('queue_worker_timeout');
 
   if (isset($timeout) && $timeout > 0) {
     $queues['mailchimp_transactional_queue']['cron']['time'] = $timeout;

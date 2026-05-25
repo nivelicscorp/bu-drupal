@@ -3,11 +3,11 @@ description: Allows to change the modules execution order.
 package: Development
 
 type: module
-core_version_requirement: ^9.0 || ^10.0
+core_version_requirement: ^10 || ^11
 
 configure: modules_weight.modules_weight_admin_settings
 
-# Information added by Drupal.org packaging script on 2024-03-05
-version: '3.0.1'
+# Information added by Drupal.org packaging script on 2025-01-23
+version: '3.0.2'
 project: 'modules_weight'
-datestamp: 1709671521
+datestamp: 1737650639

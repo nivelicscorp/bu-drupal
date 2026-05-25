@@ -1,8 +1,9 @@
 # CKEditor Quote #
 
-A CKEditor plugin for Drupal 8 to create a quote with text and author.
+A CKEditor plugin to create a quote with text and author.
 
-It improves the blockquote plugin by allowing the editor to add an author. It is compatible with previous existing blockquotes without author.
+It improves the blockquote plugin by allowing the editor to add an author. It
+is compatible with previous existing blockquotes without author.
 
 It allows editors to break the quote in different lines (by using &lt;p&gt;).
 

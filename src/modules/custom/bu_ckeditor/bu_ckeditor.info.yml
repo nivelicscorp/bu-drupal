@@ -1,9 +1,8 @@
 name: BU CKEditor
-description: Module to define, override and customize CKEditor plugins
-core_version_requirement: ^8.8 || ^9 || ^10
+description: Custom filters for content (gallery embed transform)
+core_version_requirement: ^10 || ^11
 type: module
 package: Custom
 
 dependencies:
-  - ckeditor
-  - editor
+  - drupal:filter

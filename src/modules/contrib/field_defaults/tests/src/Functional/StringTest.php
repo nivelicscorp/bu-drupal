@@ -13,17 +13,7 @@ class StringTest extends FieldDefaultsTestBase {
    * Test updating a string.
    */
   public function testFieldString() {
-    // In D10.2 the text field changed the machine name
-    // from 'string' to 'plain_text'.
-    $core_v = \Drupal::VERSION;
-
-    if (version_compare($core_v, '10.2', '<=')) {
-      $type = 'string';
-    }
-    else {
-      $type = 'plain_text';
-    }
-
+    $type = 'plain_text';
     $fieldName = $this->createField($type);
     $this->setDefaultValues($fieldName, 'string');
 

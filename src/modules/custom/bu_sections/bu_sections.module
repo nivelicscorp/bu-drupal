@@ -333,3 +333,11 @@ function bu_sections_views_query_alter(ViewExecutable $view, QueryPluginBase $qu
     }
   }
 }
+
+/**
+ * Helper: returns parent terms if the given term is a child, or empty array.
+ */
+function _taxonomy_term_is_children($tid) {
+  $parents = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadParents($tid);
+  return !empty($parents) ? $parents : [];
+}

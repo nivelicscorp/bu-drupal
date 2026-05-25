@@ -1,25 +1,6 @@
 {
-    "name": "drupol/bg_image_formatter",
+    "name": "drupal/bg_image_formatter",
+    "description": "Background Images Formatter provides an image formatter to display images in background with CSS.",
     "type": "drupal-module",
-    "description": "This module provides an image formatter that allows you to set an image in background of a container.",
-    "homepage": "https://drupal.org/project/bg_image_formatter",
-    "license": "GPL-2.0+",
-    "authors": [
-        {
-            "name": "Pol Dellaiera (@drupol)",
-            "homepage": "https://www.drupal.org/u/pol",
-            "role": "Maintainer"
-        }
-    ],
-    "require-dev": {
-        "drupol/drupal-conventions": "^1"
-    },
-    "extra": {
-        "grumphp": {
-            "config-default-path": "vendor/drupol/drupal-conventions/config/drupal8/grumphp.yml"
-        }
-    },
-    "scripts": {
-        "grumphp": "./vendor/bin/grumphp run"
-    }
+    "license": "GPL-2.0-or-later"
 }

@@ -73,7 +73,7 @@ class Mail implements SocialNetworkInterface {
 
     $link = [
       'url' => $url,
-      'title' => ['#markup' => '<i class="fa fa-envelope"></i><span class="visually-hidden">' . $this->getLabel() . '</span>'],
+      'title' => ['#markup' => '<i class="fa-solid fa-envelope"></i><span class="visually-hidden">' . $this->getLabel() . '</span>'],
       'attributes' => $this->getLinkAttributes($this->getLabel()),
     ];
 

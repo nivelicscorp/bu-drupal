@@ -122,7 +122,7 @@
       });
 
       // Add "any" option.
-      if (widget.model.itemCollection.length > 1) {
+      if (widget.model.itemCollection.length >= 1) {
         widget.$el.append($('<option>').text(widget.container.app.getSetting('anyLabel')).val(widget.container.app.getSetting('anyValue')));
       }
 
@@ -176,8 +176,7 @@
         $container.append(widget.$el.fadeIn(widget.container.app.getConfig('display.animationSpeed')));
       }
 
-      var createValue2 = widget.model.get('createValue');
-      if (widget.$el.val() === createValue2 || widget.$el.val() === "_none") {
+      if (drupalSettings.show_shs_add_input && widget.$el.val() === "_none") {
         var create_item_input_id = 'shs-widget-create-new-item-' + widget.container.app.getConfig('fieldName') + '-delta-' + widget.container.model.get('delta');
         $container.append($('<input>')
             .on('keyup', function (e) {
@@ -259,6 +258,8 @@
       this.model.set('defaultValue', value);
       // Fire events.
       this.container.collection.trigger('update:selection', this.model, value, this);
+      // Focus the current element.
+      this.container.$el.last().find('select').focus();
     }
 
   });

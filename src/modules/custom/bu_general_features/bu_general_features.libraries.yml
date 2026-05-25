@@ -1,0 +1,5 @@
+jquery.migrate:
+  js:
+    /libraries/jquery-migrate.min.js: { minified: true }
+  dependencies:
+    - core/jquery

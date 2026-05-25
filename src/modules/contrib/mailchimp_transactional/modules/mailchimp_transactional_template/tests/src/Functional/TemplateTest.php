@@ -2,14 +2,10 @@
 
 declare(strict_types=1);
 
-/**
- * @file
- * Test class and methods for the Mailchimp Transactional Template module.
- */
-
 namespace Drupal\Tests\mailchimp_transactional_template\Functional;
 
 use Drupal\Tests\mailchimp_transactional\Functional\TestBase;
+use Drupal\mailchimp_transactional_template\Entity\TemplateMap;
 
 /**
  * Test Mailchimp Transactional Template functionality.
@@ -28,6 +24,7 @@ class TemplateTest extends TestBase {
     'mailchimp_transactional_template',
   ];
 
+
   /**
    * {@inheritdoc}
    */
@@ -37,8 +34,8 @@ class TemplateTest extends TestBase {
    * Tests getting a list of templates for a given label.
    */
   public function testGetTemplates() {
-    /** @var \Drupal\mailchimp_transactional\TestAPI $mailchimp_transactional_api */
-    $mailchimp_transactional_api = \Drupal::service('mailchimp_transactional.test');
+    /** @var \Drupal\mailchimp_transactional\TestApi $mailchimp_transactional_api */
+    $mailchimp_transactional_api = $this->container->get('mailchimp_transactional.test');
 
     $templates = $mailchimp_transactional_api->getTemplates();
     $this->assertNotEmpty($templates, 'Tested retrieving templates.');
@@ -66,9 +63,8 @@ class TemplateTest extends TestBase {
       'name' => 'Recipient',
     ];
 
-    /** @var \Drupal\mailchimp_transactional\TestAPI $mailchimp_transactional_api */
-    $mailchimp_transactional_api = \Drupal::service('mailchimp_transactional.test');
-
+    /** @var \Drupal\mailchimp_transactional\TestApi $mailchimp_transactional_api */
+    $mailchimp_transactional_api = $this->container->get('mailchimp_transactional.test');
     $response = $mailchimp_transactional_api->sendTemplate($message, $template_name, $template_content);
 
     $this->assertNotNull($response, 'Tested response from sending templated message.');
@@ -92,8 +88,8 @@ class TemplateTest extends TestBase {
       'name' => 'Recipient',
     ];
 
-    /** @var \Drupal\mailchimp_transactional\TestAPI $mailchimp_transactional_api */
-    $mailchimp_transactional_api = \Drupal::service('mailchimp_transactional.test');
+    /** @var \Drupal\mailchimp_transactional\TestApi $mailchimp_transactional_api */
+    $mailchimp_transactional_api = $this->container->get('mailchimp_transactional.test');
 
     $response = $mailchimp_transactional_api->sendTemplate($message, $template_name, $template_content);
 
@@ -102,6 +98,21 @@ class TemplateTest extends TestBase {
     if (isset($response['status'])) {
       $this->assertEquals('error', $response['status'], 'Tested response status: ' . $response['status'] . ', ' . $response['message']);
     }
+  }
+
+  /**
+   * Test that the template map alter hook works.
+   */
+  public function testTemplateMapAlterHook() {
+    TemplateMap::create([
+      'id' => 'test-template',
+      'label' => 'Test Template',
+      'template_name' => 'Test Template',
+      'mailsystem_key' => 'key',
+    ])->save();
+
+    $this->assertEquals('Test Template', mailchimp_transactional_template_load_by_mailsystem('key', 'module')->template_name);
+    $this->assertEquals(NULL, mailchimp_transactional_template_load_by_mailsystem('template_map_alter_test', 'module'));
   }
 
 }

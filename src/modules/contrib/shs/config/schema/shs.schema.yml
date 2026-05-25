@@ -19,3 +19,11 @@ field.widget.settings.options_shs:
     save_lineage:
       type: boolean
       label: 'Save term lineage'
+
+field.formatter.settings.entity_reference_shs:
+  type: field.formatter.settings.entity_reference_label
+  label: 'Simple hierarchical select display format settings'
+  mapping:
+    link:
+      type: boolean
+      label: 'Link item labels to the referenced entities'

@@ -52,3 +52,27 @@ function mailchimp_transactional_template_install() {
     }
   }
 }
+
+/**
+ * Set new only_use_merge_vars option on existing templates.
+ */
+function mailchimp_transactional_template_update_8001(): string {
+  $configNames = \Drupal::configFactory()
+    ->listAll('mailchimp_transactional_template.mailchimp_transactional_template.');
+  $updateCount = 0;
+
+  foreach ($configNames as $configName) {
+    $config = \Drupal::configFactory()->getEditable($configName);
+    $data = $config->getRawData();
+
+    if (isset($data['only_use_merge_vars'])) {
+      continue;
+    }
+
+    $data['only_use_merge_vars'] = FALSE;
+    $config->setData($data);
+    $config->save();
+  }
+
+  return sprintf('Updated %d Mailchimp Transactional Template configurations.', $updateCount);
+}

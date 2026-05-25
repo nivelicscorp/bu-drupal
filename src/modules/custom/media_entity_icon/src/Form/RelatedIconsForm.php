@@ -486,10 +486,10 @@ class RelatedIconsForm extends FormBase {
     }
 
     if (!empty($output['success'])) {
-      drupal_set_message($this->t('Icons successfully migrated: @icon_ids.', ['@icon_ids' => implode(', ', $output['success'])]));
+      \Drupal::messenger()->addMessage($this->t('Icons successfully migrated: @icon_ids.', ['@icon_ids' => implode(', ', $output['success'])]));
     }
     if (!empty($output['error'])) {
-      drupal_set_message($this->t('Icons failed migration: @icon_ids.', ['@icon_ids' => implode(', ', $output['error'])]));
+      \Drupal::messenger()->addMessage($this->t('Icons failed migration: @icon_ids.', ['@icon_ids' => implode(', ', $output['error'])]));
     }
   }
 
@@ -523,10 +523,10 @@ class RelatedIconsForm extends FormBase {
     }
 
     if (!empty($output['success'])) {
-      drupal_set_message($this->t('SvgIcon thumbnails successfully updated: @icon_ids.', ['@icon_ids' => implode(', ', $output['success'])]));
+      \Drupal::messenger()->addMessage($this->t('SvgIcon thumbnails successfully updated: @icon_ids.', ['@icon_ids' => implode(', ', $output['success'])]));
     }
     if (!empty($output['error'])) {
-      drupal_set_message($this->t('SvgIcon thumbnails failed update: @icon_ids.', ['@icon_ids' => implode(', ', $output['error'])]));
+      \Drupal::messenger()->addMessage($this->t('SvgIcon thumbnails failed update: @icon_ids.', ['@icon_ids' => implode(', ', $output['error'])]));
     }
   }
 

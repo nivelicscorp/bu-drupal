@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Constraint;
 /**
  * Check if a value is a valid Facebook embed code or post URL.
  *
- * @constraint(
+ * @Constraint(
  *   id = "FacebookEmbedCode",
  *   label = @Translation("Facebook embed code", context = "Validation"),
  *   type = { "link", "string", "string_long" }

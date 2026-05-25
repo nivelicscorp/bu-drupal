@@ -158,7 +158,7 @@
    * @see https://stackoverflow.com/questions/1761051/difference-between-n-and-r/1761086#1761086
    */
   ml.unify_lineending = function(str) {
-    return str.replace(/(\r\n\r\n|\r\r|\n\n|\r\n|\r|\n)/g, "\n");
+    return str.replace(/(\r\n|\r|\n)/g, "\n");
   };
 
   /**
@@ -172,8 +172,6 @@
    * @see http://www.sitepoint.com/blogs/2004/02/16/line-endings-in-javascript/
    */
   ml.strip_tags = function(input, allowed) {
-    // Remove all newlines, spaces and tabs from the beginning and end of html.
-    input = input.trim();
     // Make sure line ending characters are unified.
     input = ml.unify_lineending(input);
     // Making sure the allowed arg is a string containing only tags in
@@ -368,6 +366,9 @@
     }
     else if ($(this).next('div.cke_chrome').length) {
       $(this).next('div.cke_chrome').after(counterElement);
+    }
+    else if ($(this).next('div.ck-editor').length) {
+      $(this).next('div.ck-editor').after(counterElement);
     }
     else {
       $(this).after(counterElement);

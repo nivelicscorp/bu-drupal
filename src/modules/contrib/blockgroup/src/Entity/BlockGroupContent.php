@@ -32,10 +32,9 @@ use Drupal\Core\Entity\EntityStorageInterface;
  *     "label"
  *   },
  *   links = {
- *     "canonical" = "/admin/structure/block_group_content/{block_group_content}",
  *     "edit-form" = "/admin/structure/block_group_content/{block_group_content}/edit",
  *     "delete-form" = "/admin/structure/block_group_content/{block_group_content}/delete",
- *     "collection" = "/admin/structure/visibility_group"
+ *     "collection" = "/admin/structure/block_group_content"
  *   }
  * )
  */

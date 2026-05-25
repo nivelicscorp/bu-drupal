@@ -4,25 +4,25 @@ namespace Drupal\Tests\config_pages\Functional;
 
 use Drupal\config_pages\Entity\ConfigPagesType;
 use Drupal\Tests\BrowserTestBase;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 /**
  * Tests that the ConfigPages Type can be created.
  *
  * @group config_pages
  */
+#[RunTestsInSeparateProcesses]
 class DeleteConfigPageTypeTest extends BrowserTestBase {
 
   /**
-   * Modules to enable.
-   *
-   * @var array
+   * {@inheritdoc}
    */
   protected static $modules = ['config_pages'];
 
   /**
    * {@inheritdoc}
    */
-  protected $defaultTheme = 'stable';
+  protected $defaultTheme = 'stark';
 
   /**
    * {@inheritdoc}

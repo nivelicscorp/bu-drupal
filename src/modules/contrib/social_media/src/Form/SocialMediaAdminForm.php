@@ -69,6 +69,7 @@ class SocialMediaAdminForm extends ConfigFormBase {
         '#type' => 'textfield',
         '#title' => $this->t('API url'),
         '#default_value' => $config->get('social_media.' . $key . '.api_url'),
+        '#maxlength' => 2048,
       ];
 
       // Handle some extra help text for the Twitter service.

@@ -38,7 +38,7 @@ class FormElementTest extends UnitTestCase {
    *
    * @see testGetMaxDelta()
    */
-  public function providerGetMaxDelta() {
+  public static function providerGetMaxDelta() {
     $tests['value higher than 100 - 1'] = [101, 101];
     $tests['value higher than 100 - 2'] = [234, 234];
     $tests['value lower than -100 - 1'] = [101, -101];

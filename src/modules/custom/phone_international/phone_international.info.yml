@@ -5,7 +5,7 @@ package: 'Field types'
 configure: phone_international.settings
 dependencies:
   - drupal:field
-core_version_requirement: ^9 || ^10
+core_version_requirement: ^10 || ^11
 
 # Information added by Drupal.org packaging script on 2024-07-02
 version: '3.3.1+5-dev'

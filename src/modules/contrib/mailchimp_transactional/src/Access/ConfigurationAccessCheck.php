@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace Drupal\mailchimp_transactional\Access;
 
 use Drupal\Core\Access\AccessResult;
@@ -38,7 +37,7 @@ class ConfigurationAccessCheck implements AccessInterface {
    */
   public function access() {
     $config = $this->config->get('mailchimp_transactional.settings');
-    $api_key = $config->get('mailchimp_transactional_api_key');
+    $api_key = $config->get('api_key');
 
     return AccessResult::allowedIf(!empty($api_key));
   }

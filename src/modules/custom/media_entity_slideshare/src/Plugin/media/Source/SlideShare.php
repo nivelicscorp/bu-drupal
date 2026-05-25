@@ -140,7 +140,7 @@ class SlideShare extends MediaSourceBase implements MediaSourceFieldConstraintsI
     $slideshow = NULL;
 
     if (isset($matches['secretkey'])) {
-      drupal_set_message(t("SlideShare don't allow an API whith secret key..."), 'warning');
+      \Drupal::messenger()->addMessage(t("SlideShare don't allow an API whith secret key..."), 'warning');
       return;
     }
     elseif (isset($matches['shortcode']) && isset($matches['login'])) {

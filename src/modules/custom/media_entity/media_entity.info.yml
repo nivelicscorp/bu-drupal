@@ -17,7 +17,7 @@ test_dependencies:
 # Information added by Drupal.org packaging script on 2017-11-15
 version: '8.x-1.7'
 core: '8.x'
-core_version_requirement: ^8 || ^9  || ^10 || ^11
+core_version_requirement: ^10 || ^11
 project: 'media_entity'
 datestamp: 1510737188
 

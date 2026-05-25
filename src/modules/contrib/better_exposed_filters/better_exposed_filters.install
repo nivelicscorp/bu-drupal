@@ -5,43 +5,87 @@
  * Contains better_exposed_filters.install.
  */
 
+use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
+use Drupal\Component\Plugin\Exception\PluginNotFoundException;
+use Drupal\Core\Entity\EntityStorageException;
+
 /**
- * Implements hook_requirements().
+ * Implements hook_uninstall().
  */
-function better_exposed_filters_requirements($phase): array {
-  if ($phase !== 'runtime') {
-    return [];
-  }
+function better_exposed_filters_uninstall(): void {
+  try {
+    $views = \Drupal::entityTypeManager()->getStorage('view')->loadMultiple();
 
-  // Check installed libraries.
-  $libraries_directory_file_finder = \Drupal::service('library.libraries_directory_file_finder');
-  $lib_slider_internal = $libraries_directory_file_finder->find('nouislider');
+    foreach ($views as $view) {
+      $dependencies = $view->getDependencies();
+      if (!in_array('better_exposed_filters', $dependencies['module'])) {
+        continue;
+      }
 
-  if ($lib_slider_internal) {
-    $requirements['bef_nouislider'] = [
-      'title' => t('BEF: library noUiSlider'),
-      'value' => t('Better exposed filters library noUiSlider is installed locally.'),
-      'description' => 'The library is installed and will be loaded from this Drupal site.',
-      'severity' => REQUIREMENT_OK,
-    ];
-  }
-  else {
-    $requirements['bef_nouislider'] = [
-      'title' => t('BEF: library noUiSlider'),
-      'value' => t('Better exposed filters library noUiSlider is not installed locally and will be loaded from CDN. Loading external files from a CDN may be a data protection violation.'),
-      'description' => 'Please install the library. For more information see README.md',
-      'severity' => REQUIREMENT_WARNING,
-    ];
-  }
+      $changed = FALSE;
+      $displays = $view->get('display');
+      foreach ($displays as &$display) {
+        if (!empty($display['display_options']['exposed_form']['type']) && $display['display_options']['exposed_form']['type'] === 'bef') {
+          $display['display_options']['exposed_form']['type'] = 'basic';
+          $changed = TRUE;
+        }
+      }
 
-  return $requirements;
+      if ($changed) {
+        $view->set('display', $displays);
+        $view->save();
+      }
+    }
+  }
+  catch (InvalidPluginDefinitionException | PluginNotFoundException | EntityStorageException) {
+  }
 }
 
 /**
  * Implements hook_update_last_removed().
  */
 function better_exposed_filters_update_last_removed(): int {
-  return 8005;
+  return 8003;
+}
+
+/**
+ * Set default value of filter_rewrite_values_key.
+ */
+function better_exposed_filters_update_8005(): void {
+  $config_factory = \Drupal::configFactory();
+  foreach ($config_factory->listAll('views.view.') as $config_name) {
+    $config = $config_factory->getEditable($config_name);
+    $needs_update = FALSE;
+    // Go through each display on each view.
+    $displays = $config->get('display');
+    foreach ($displays as $display_name => $display) {
+      if (!empty($display['display_options']['exposed_form'])) {
+        $exposed_form = $display['display_options']['exposed_form'];
+        // Find BEF exposed forms.
+        if (isset($exposed_form['type']) && $exposed_form['type'] === 'bef') {
+          $bef_settings = $exposed_form['options']['bef'];
+          foreach ($exposed_form['options']['bef'] as $type => $options) {
+            // General settings.
+            if ($type === 'filter') {
+              foreach ($options as $field_name => $option) {
+                if (isset($bef_settings['filter'][$field_name]['advanced']['rewrite'])) {
+                  // Update filter_rewrite_values_key setting.
+                  $bef_settings['filter'][$field_name]['advanced']['rewrite']['filter_rewrite_values_key'] = FALSE;
+                  $needs_update = TRUE;
+                }
+              }
+            }
+          }
+          // Update BEF settings.
+          $config->set("display.$display_name.display_options.exposed_form.options.bef", $bef_settings);
+        }
+      }
+    }
+
+    if ($needs_update) {
+      $config->save(TRUE);
+    }
+  }
 }
 
 /**

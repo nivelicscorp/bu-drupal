@@ -1,0 +1,11 @@
+{
+  "name": "drupal/ckeditor_quote",
+  "type": "drupal-module",
+  "license": "GPL-2.0-or-later",
+  "repositories": {
+    "drupal": {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    }
+  }
+}

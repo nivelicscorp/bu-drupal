@@ -44,14 +44,14 @@ class FormatterTest extends UnitTestCase {
    *
    * ::covers format.
    */
-  public function testFormatterService() {
+  public function testFormatterService(): void {
     $test_country = 'NO';
     $test_value = '98765432';
 
-    $this->assertEquals('987 65 432', $this->formatterService->format($test_value, PhoneNumberFormat::NATIONAL, $test_country));
-    $this->assertEquals('+47 987 65 432', $this->formatterService->format($test_value, PhoneNumberFormat::INTERNATIONAL, $test_country));
+    $this->assertEquals('98 76 54 32', $this->formatterService->format($test_value, PhoneNumberFormat::NATIONAL, $test_country));
+    $this->assertEquals('+47 98 76 54 32', $this->formatterService->format($test_value, PhoneNumberFormat::INTERNATIONAL, $test_country));
     $this->assertEquals('+4798765432', $this->formatterService->format($test_value, PhoneNumberFormat::E164, $test_country));
-    $this->assertEquals('tel:+47-987-65-432', $this->formatterService->format($test_value, PhoneNumberFormat::RFC3966, $test_country));
+    $this->assertEquals('tel:+47-98-76-54-32', $this->formatterService->format($test_value, PhoneNumberFormat::RFC3966, $test_country));
   }
 
   /**
@@ -59,7 +59,7 @@ class FormatterTest extends UnitTestCase {
    *
    * ::covers format.
    */
-  public function testUnparsableNumber() {
+  public function testUnparsableNumber(): void {
     $this->expectException(NumberParseException::class);
     $this->formatterService->format('98765432', PhoneNumberFormat::NATIONAL);
   }
@@ -69,7 +69,7 @@ class FormatterTest extends UnitTestCase {
    *
    * ::covers format.
    */
-  public function testInvalidNumber() {
+  public function testInvalidNumber(): void {
     $this->expectException(\InvalidArgumentException::class);
     $this->expectExceptionMessage('Number is invalid.');
     $this->formatterService->format('987654320', PhoneNumberFormat::NATIONAL, 'NO');

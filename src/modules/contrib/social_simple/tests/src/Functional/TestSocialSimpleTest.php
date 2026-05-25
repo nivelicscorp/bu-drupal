@@ -48,7 +48,7 @@ class TestSocialSimpleTest extends TestSocialSimpleTestBase {
     $this->getSession()->getPage()->fillField('social_simple_networks[twitter]', 'twitter');
     $this->getSession()->getPage()->fillField('social_simple_networks[googleplus]', 'googleplus');
     $this->getSession()->getPage()->fillField('social_simple_networks[facebook]', 'facebook');
-    $this->getSession()->getPage()->pressButton('Save content type');
+    $this->getSession()->getPage()->pressButton('Save');
     drupal_flush_all_caches();
 
     $this->drupalGet($bundle_path);
@@ -69,7 +69,7 @@ class TestSocialSimpleTest extends TestSocialSimpleTestBase {
     $this->drupalGet($bundle_path);
     $this->getSession()->getPage()->fillField('social_simple_networks[linkedin]', 'linkedin');
     $this->getSession()->getPage()->fillField('social_simple_hashtags', 'field_tags');
-    $this->getSession()->getPage()->pressButton('Save content type');
+    $this->getSession()->getPage()->pressButton('Save');
     drupal_flush_all_caches();
 
     $this->drupalGet($bundle_path);

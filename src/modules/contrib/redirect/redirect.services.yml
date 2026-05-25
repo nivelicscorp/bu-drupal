@@ -1,9 +1,13 @@
 parameters:
   route_normalizer_enabled: true
 services:
+  redirect.prefix_list:
+    class: Drupal\redirect\RedirectPrefixList
+    arguments: ['@cache.data', '@entity_type.manager']
+  Drupal\redirect\RedirectPrefixList: '@redirect.prefix_list'
   redirect.repository:
     class: Drupal\redirect\RedirectRepository
-    arguments: ['@entity_type.manager', '@database', '@config.factory']
+    arguments: ['@entity_type.manager', '@database', '@config.factory', '@request_stack', '@redirect.prefix_list']
     tags:
       - { name: backend_overridable }
   Drupal\redirect\RedirectRepository: '@redirect.repository'
@@ -23,7 +27,7 @@ services:
       - { name: event_subscriber }
   redirect.route_normalizer_request_subscriber:
     class: Drupal\redirect\EventSubscriber\RouteNormalizerRequestSubscriber
-    arguments: ['@url_generator', '@path.matcher', '@config.factory', '@redirect.checker']
+    arguments: ['@url_generator', '@path.matcher', '@config.factory', '@redirect.checker', '@path_alias.manager', '@path.current']
     tags:
       - { name: event_subscriber }
   redirect.route_subscriber:

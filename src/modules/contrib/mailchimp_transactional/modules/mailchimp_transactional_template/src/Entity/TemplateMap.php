@@ -1,10 +1,6 @@
 <?php
 
 declare(strict_types=1);
-/**
- * @file
- * Defines Template Map Config Entity.
- */
 
 namespace Drupal\mailchimp_transactional_template\Entity;
 
@@ -27,7 +23,7 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *       "delete" = "Drupal\mailchimp_transactional_template\Form\TemplateMapDeleteForm"
  *     }
  *   },
- *   admin_permission = "administer mailchimp_transactional",
+ *   admin_permission = "administer mailchimp transactional templates",
  *   entity_keys = {
  *     "id" = "id"
  *   },
@@ -36,6 +32,7 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *    "label",
  *    "template_name",
  *    "content_area",
+ *    "only_use_merge_vars",
  *    "mailsystem_key",
  *   },
  *   links = {
@@ -73,6 +70,13 @@ class TemplateMap extends ConfigEntityBase implements TemplateMapInterface {
    * @var string|null
    */
   public $content_area = NULL;
+
+  /**
+   * Whether this template map only uses merge variables.
+   *
+   * @var bool
+   */
+  public $only_use_merge_vars = FALSE;
 
   /**
    * The MailSystem key that is using this map.

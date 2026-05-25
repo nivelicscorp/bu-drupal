@@ -2,32 +2,18 @@
 
 /**
  * @file
- * Charts module integration with Highcharts library.
+ * Implement module related hooks for the charts_highcharts module.
  */
 
-use Drupal\charts\Theme\ChartsInterface;
+use Drupal\charts\ConfigUpdater;
+use Drupal\Core\Hook\Attribute\LegacyHook;
 
 /**
- * Implements hook_charts_info().
+ * Implements hook_charts_version3_to_new_settings_structure_alter().
+ *
+ * @phpstan-ignore-next-line
  */
-function charts_highcharts_charts_info() {
-  $info['highcharts'] = [
-    'label' => t('Highcharts'),
-    'render' => '_charts_highcharts_render',
-    'types' => ['area', 'bar', 'column', 'donut', 'line', 'pie', 'scatter'],
-    'file' => 'charts_highcharts.inc',
-  ];
-
-  return $info;
-}
-
-/**
- * Implements hook_charts_type_info().
- */
-function charts_highcharts_charts_type_info() {
-  $chart_types['donut'] = [
-    'label' => t('Donut'),
-    'axis' => ChartsInterface::CHARTS_SINGLE_AXIS,
-  ];
-  return $chart_types;
+#[LegacyHook]
+function charts_highcharts_charts_version3_to_new_settings_structure_alter(array &$new_settings, string $for, ConfigUpdater $config_updater) {
+  return \Drupal::service('charts_highcharts.hooks')->chartsVersion3ToNewSettingsStructureAlter($new_settings, $for, $config_updater);
 }

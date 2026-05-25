@@ -14,3 +14,4 @@ version: '8.x-1.2'
 core: '8.x'
 project: 'media_entity_image'
 datestamp: 1470170950
+core_version_requirement: ^10 || ^11

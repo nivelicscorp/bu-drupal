@@ -2,4 +2,4 @@ name: BU Page Admin Header
 description: Page administrator for header.
 package: Custom
 type: module
-core_version_requirement: ^8.8 || ^9  || ^10
+core_version_requirement: ^10 || ^11

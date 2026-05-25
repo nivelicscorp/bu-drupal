@@ -1,13 +1,33 @@
+modal-page-bootstrap-3:
+  js:
+    https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js: { type: external, minified: true }
+modal-page-bootstrap-5:
+  js:
+    https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js: { type: external, minified: true }
+  css:
+    component:
+      https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css: { type: external, minified: true }
+
+modal-page-utils:
+  js:
+    js/modal-page-utils.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+
 modal-page:
   css:
     theme:
       css/modal-page.css: {}
   js:
     js/modal-page.js: {}
-    https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js: { type: external, minified: true }
   dependencies:
     - core/jquery
-    - core/jquery.cookie
+    - js_cookie/js-cookie
+    - core/drupal
+    - core/once
+    - modal_page/modal-page-utils
+
 modal-page-admin:
   js:
     js/modal-page-admin.js: {}

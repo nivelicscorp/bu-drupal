@@ -1,10 +1,9 @@
 name: CKEditor Quote
 type: module
+core_version_requirement: ^9.3 || ^10 || ^11
 description: 'Provides a CKEditor plugin to embed a quote with text and author.'
-# core: '8.x'
 
-# Information added by Drupal.org packaging script on 2018-04-10
-version: '8.x-1.0-alpha1'
-core: '8.x'
+# Information added by Drupal.org packaging script on 2025-06-18
+version: '3.0.1'
 project: 'ckeditor_quote'
-datestamp: 1523358186
+datestamp: 1750228786

@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 namespace Drupal\mailchimp_transactional;
 
 use GuzzleHttp\Client;

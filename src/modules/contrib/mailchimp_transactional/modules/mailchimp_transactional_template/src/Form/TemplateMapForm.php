@@ -1,10 +1,6 @@
 <?php
 
 declare(strict_types=1);
-/**
- * @file
- * Contains form to edit and create Template Map Config Entity.
- */
 
 namespace Drupal\mailchimp_transactional_template\Form;
 
@@ -14,7 +10,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Routing\RouteBuilderInterface;
 use Drupal\Core\Url;
-use Drupal\mailchimp_transactional\APIInterface;
+use Drupal\mailchimp_transactional\ApiInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -27,7 +23,7 @@ class TemplateMapForm extends EntityForm {
   /**
    * The Mailchimp Transactional API.
    *
-   * @var \Drupal\mailchimp_transactional\APIInterface
+   * @var \Drupal\mailchimp_transactional\ApiInterface
    */
   protected $mailchimpTransactionalApi;
 
@@ -41,7 +37,7 @@ class TemplateMapForm extends EntityForm {
   /**
    * Class constructor.
    */
-  public function __construct(RouteBuilderInterface $route_builder, APIInterface $mailchimp_transactional_api) {
+  public function __construct(RouteBuilderInterface $route_builder, ApiInterface $mailchimp_transactional_api) {
     $this->routeBuilder = $route_builder;
     $this->mailchimpTransactionalApi = $mailchimp_transactional_api;
   }
@@ -110,7 +106,7 @@ class TemplateMapForm extends EntityForm {
       }
       $form['map_settings']['template_name'] = [
         '#type' => 'select',
-        '#title' => $this->t('Email Template'),
+        '#title' => $this->t('Email template'),
         '#description' => $this->t('Select a Mailchimp Transactional template.'),
         '#options' => $options,
         '#default_value' => $template_map->template_name ?? '',
@@ -118,7 +114,7 @@ class TemplateMapForm extends EntityForm {
         '#ajax' => [
           'callback' => '::templateCallback',
           'wrapper' => 'template-wrapper',
-          'method' => 'replace',
+          'method' => 'replaceWith',
           'effect' => 'fade',
           'progress' => [
             'type' => 'throbber',
@@ -141,7 +137,22 @@ class TemplateMapForm extends EntityForm {
           '#description' => $this->t('Select the template region to use for email content. <i>Note that you can populate more regions by attaching an array to your message with the index "mailchimp_transactional_template_content", using region names as indexes to the content for that region.'),
           '#options' => $regions,
           '#default_value' => $template_map->content_area ?? '',
-          '#required' => TRUE,
+          '#states' => [
+            'disabled' => [
+              ':input[name="only_use_merge_vars"]' => ['checked' => TRUE],
+            ],
+            'required' => [
+              ':input[name="only_use_merge_vars"]' => ['checked' => FALSE],
+            ],
+          ],
+        ];
+        $form['map_settings']['only_use_merge_vars'] = [
+          '#type' => 'checkbox',
+          '#title' => $this->t('Only use merge variables'),
+          '#description' => $this->t('When checked, the content from Drupal will not be used. You will need to ensure appropriate placeholder values are present in <code>@codeSnippet</code>.', [
+            '@codeSnippet' => '$message[\'params\'][\'mailchimp_transactional\'][\'overrides\'][\'global_merge_vars\']',
+          ]),
+          '#default_value' => $template_map->only_use_merge_vars ?? FALSE,
         ];
       }
       $usable_keys = mailchimp_transactional_template_usage();
@@ -188,6 +199,17 @@ class TemplateMapForm extends EntityForm {
   }
 
   /**
+   * {@inheritdoc}
+   */
+  public function validateForm(array &$form, FormStateInterface $form_state) {
+    parent::validateForm($form, $form_state);
+
+    if (empty($form_state->getValue('content_area')) && !$form_state->getValue('only_use_merge_vars')) {
+      $form_state->setErrorByName('content_area', $this->t('You must select a content area.'));
+    }
+  }
+
+  /**
    * AJAX callback handler for TemplateMapForm.
    */
   public function templateCallback($form, FormStateInterface $form_state) {
@@ -207,10 +229,11 @@ class TemplateMapForm extends EntityForm {
     $this->routeBuilder->setRebuildNeeded();
 
     $form_state->setRedirect('mailchimp_transactional_template.admin');
+    return $template_map->save();
   }
 
   /**
-   * Tests existance of entity.
+   * Tests existence of entity.
    */
   public function exists($id): bool {
     $entity = $this->entityTypeManager->getStorage('mailchimp_transactional_template')->getQuery()

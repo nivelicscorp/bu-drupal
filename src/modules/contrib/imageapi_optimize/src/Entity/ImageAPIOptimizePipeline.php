@@ -7,6 +7,9 @@ use Drupal\Core\Cache\Cache;
 use Drupal\Core\Config\Entity\ConfigEntityBase;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityWithPluginCollectionInterface;
+use Drupal\Core\File\FileExists;
+use Drupal\Core\File\FileSystemInterface;
+use Drupal\Core\Site\Settings;
 use Drupal\imageapi_optimize\ImageAPIOptimizeProcessorPluginCollection;
 use Drupal\imageapi_optimize\ImageAPIOptimizeProcessorInterface;
 use Drupal\imageapi_optimize\ImageAPIOptimizePipelineInterface;
@@ -143,6 +146,12 @@ class ImageAPIOptimizePipeline extends ConfigEntityBase implements ImageAPIOptim
    */
   public function flush() {
 
+    // Allow for skipping the automatic flushing of image styles for site
+    // admins/developers that want to handle this in a different way.
+    if (Settings::get('imageapi_optimize.disable_pipeline_flush', FALSE)) {
+      return $this;
+    }
+
     // Get all image optimize pipelines and if they use this pipeline, flush it.
     $style_storage = $this->entityTypeManager()->getStorage('image_style');
     foreach ($style_storage->loadMultiple() as $style) {
@@ -182,7 +191,13 @@ class ImageAPIOptimizePipeline extends ConfigEntityBase implements ImageAPIOptim
 
     foreach ($this->getProcessors() as $processor) {
       // Create a copy of this image for the processor to work on.
-      $temp_image_uri = file_unmanaged_copy($image_uri, $temp_image_uri, FILE_EXISTS_RENAME);
+      if (version_compare(\Drupal::VERSION, '10.3', '>=')) {
+        $temp_image_uri = \Drupal::service('file_system')->copy($image_uri, $temp_image_uri, FileExists::Rename);
+      }
+      else {
+        // @phpstan-ignore-next-line
+        $temp_image_uri = \Drupal::service('file_system')->copy($image_uri, $temp_image_uri, FileSystemInterface::EXISTS_RENAME);
+      }
       if ($temp_image_uri === FALSE) {
         return FALSE;
       }
@@ -200,7 +215,13 @@ class ImageAPIOptimizePipeline extends ConfigEntityBase implements ImageAPIOptim
 
       if ($image_changed) {
         // Copy the temporary file back over the original image.
-        file_unmanaged_move($temp_image_uri, $image_uri, FILE_EXISTS_REPLACE);
+        if (version_compare(\Drupal::VERSION, '10.3', '>=')) {
+            \Drupal::service('file_system')->move($temp_image_uri, $image_uri, FileExists::Replace);
+        }
+        else {
+          // @phpstan-ignore-next-line
+          \Drupal::service('file_system')->move($temp_image_uri, $image_uri, FileSystemInterface::EXISTS_REPLACE);
+        }
       }
     }
 
@@ -297,7 +318,7 @@ class ImageAPIOptimizePipeline extends ConfigEntityBase implements ImageAPIOptim
   public function __destruct() {
     foreach ($this->temporaryFiles as $file) {
       if (file_exists($file)) {
-        file_unmanaged_delete($file);
+        \Drupal::service('file_system')->delete($file);
       }
     }
   }

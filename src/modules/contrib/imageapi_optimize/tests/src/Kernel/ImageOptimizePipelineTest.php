@@ -15,7 +15,7 @@ class ImageOptimizePipelineTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = ['system', 'imageapi_optimize', 'imageapi_optimize_module_test'];
+  protected static $modules = ['system', 'imageapi_optimize', 'imageapi_optimize_module_test'];
 
   /**
    * Test using image pipeline
@@ -148,15 +148,7 @@ class ImageOptimizePipelineTest extends KernelTestBase {
   {
     self::assertFileExists($actualFile, $message);
 
-    self::assertEquals(
-      $extectedString,
-      file_get_contents($actualFile),
-      $message,
-      0,
-      10,
-      $canonicalize,
-      $ignoreCase
-    );
+    self::assertEqualsIgnoringCase($extectedString, file_get_contents($actualFile), $message);
   }
 
   /**
@@ -181,7 +173,7 @@ class ImageOptimizePipelineTest extends KernelTestBase {
       $filepath = 'Файл для тестирования ' . $this->randomMachineName();
     }
     if (!isset($scheme)) {
-      $scheme = file_default_scheme();
+      $scheme = \Drupal::config('system.file')->get('default_scheme');
     }
     $filepath = $scheme . '://' . $filepath;
 
@@ -190,7 +182,7 @@ class ImageOptimizePipelineTest extends KernelTestBase {
     }
 
     file_put_contents($filepath, $contents);
-    $this->assertTrue(is_file($filepath), t('The test file exists on the disk.'));
+    $this->assertFileExists($filepath, t('The test file exists on the disk.'));
     return $filepath;
   }
 
@@ -200,8 +192,8 @@ class ImageOptimizePipelineTest extends KernelTestBase {
   public function testNonExistentImagePipeline() {
 
     // Include special characters in the filename.
-    $image_uri = file_default_scheme() . '://Файл для тестирования ' . $this->randomMachineName() . '.png';
-    $this->assertFalse(is_file($image_uri), t('The test file does not exist on the disk.'));
+    $image_uri = \Drupal::config('system.file')->get('default_scheme') . '://Файл для тестирования ' . $this->randomMachineName() . '.png';
+    $this->assertFileDoesNotExist($image_uri, t('The test file does not exist on the disk.'));
 
     // Setup our pipeline.
     $pipeline = ImageAPIOptimizePipeline::create([

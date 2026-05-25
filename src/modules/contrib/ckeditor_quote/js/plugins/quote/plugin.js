@@ -19,7 +19,9 @@
       var lang = editor.lang.quote;
 
       // Define an editor command that opens our dialog.
-      editor.addCommand('quote', new CKEDITOR.dialogCommand('quoteDialog'));
+      const dialogCommand = new CKEDITOR.dialogCommand('quoteDialog');
+      dialogCommand.requiredContent = 'blockquote';
+      editor.addCommand('quote', dialogCommand);
 
       // Create a toolbar button that executes the above command.
       editor.ui.addButton('quote', {

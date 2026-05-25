@@ -7,8 +7,51 @@
 
 declare(strict_types=1);
 
-use Drupal\user\Entity\Role;
 use Drupal\mailchimp_transactional\MailchimpTransactionalInterface;
+use Drupal\user\Entity\Role;
+
+// cspell:ignore blacklist
+
+/**
+ * Clean up config keys.
+ */
+function mailchimp_transactional_update_8001() {
+  $config = \Drupal::configFactory()->getEditable('mailchimp_transactional.settings');
+
+  // Map old keys to new keys.
+  $key_map = [
+    'mailchimp_transactional_from_name' => 'from_name',
+    'mailchimp_transactional_from_email' => 'from_email',
+    'mailchimp_transactional_subaccount' => 'subaccount',
+    'mailchimp_transactional_filter_format' => 'filter_format',
+    'mailchimp_transactional_track_opens' => 'track_opens',
+    'mailchimp_transactional_track_clicks' => 'track_clicks',
+    'mailchimp_transactional_url_strip_qs' => 'url_strip_qs',
+    'mailchimp_transactional_analytics_campaign' => 'analytics_campaign',
+    'mailchimp_transactional_analytics_domains' => 'analytics_domains',
+    'mailchimp_transactional_batch_log_queued' => 'batch_log_queued',
+    'mailchimp_transactional_queue_worker_timeout' => 'queue_worker_timeout',
+    'mailchimp_transactional_log_defaulted_sends' => 'log_defaulted_sends',
+    'mailchimp_transactional_api_key' => 'api_key',
+    'mailchimp_transactional_api_timeout' => 'api_timeout',
+    'mailchimp_transactional_api_classname' => 'api_classname',
+    'mailchimp_transactional_mail_key_blacklist' => 'mail_key_denylist',
+    'mailchimp_transactional_process_async' => 'process_async',
+  ];
+
+  $data = $config->getRawData();
+  foreach ($key_map as $old_key => $new_key) {
+    if (!array_key_exists($old_key, $data)) {
+      continue;
+    }
+
+    $data[$new_key] = $data[$old_key];
+    unset($data[$old_key]);
+  }
+
+  $config->setData($data);
+  $config->save();
+}
 
 /**
  * Implements hook_install().
@@ -24,7 +67,7 @@ function mailchimp_transactional_install() {
 
     foreach ($mandrill_config as $key => $value) {
       $new_key = str_replace('mandrill', 'mailchimp_transactional', $key);
-      if ($new_key !== 'mailchimp_transactional_api_classname') {
+      if ($new_key !== 'api_classname') {
         $config->set($new_key, $value);
       }
     }
@@ -96,8 +139,8 @@ function mailchimp_transactional_install() {
   }
   else {
     // Set default values for config which require dynamic values.
-    $config->set('mailchimp_transactional_from_email', \Drupal::config('system.site')->get('mail'))
-      ->set('mailchimp_transactional_from_name', \Drupal::config('system.site')->get('site_name'))
+    $config->set('from_email', \Drupal::config('system.site')->get('mail'))
+      ->set('from_name', \Drupal::config('system.site')->get('site_name'))
       ->save();
   }
 

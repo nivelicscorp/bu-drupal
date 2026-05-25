@@ -2,31 +2,17 @@
 
 /**
  * @file
- * Charts module integration with Google Charts library.
+ * Implement module related hooks for the charts_google module.
  */
 
-use Drupal\charts\Theme\ChartsInterface;
-
-/**
- * Implements hook_charts_info().
- */
-function charts_google_charts_info() {
-  $info['google'] = [
-    'label' => t('Google Charts'),
-    'render' => '_charts_google_render',
-    'types' => ['area', 'bar', 'column', 'donut', 'line', 'pie', 'scatter'],
-    'file' => 'charts_google.inc',
-  ];
-  return $info;
-}
+use Drupal\Core\Hook\Attribute\LegacyHook;
 
 /**
- * Implements hook_charts_type_info().
+ * Implements hook_charts_version3_to_new_settings_structure_alter().
+ *
+ * @phpstan-ignore-next-line
  */
-function charts_google_charts_type_info() {
-  $chart_types['donut'] = [
-    'label' => t('Donut'),
-    'axis' => ChartsInterface::CHARTS_SINGLE_AXIS,
-  ];
-  return $chart_types;
+#[LegacyHook]
+function charts_google_charts_version3_to_new_settings_structure_alter(array &$new_settings, string $for) {
+  return \Drupal::service('charts_google.hooks')->chartsVersion3ToNewSettingsStructureAlter($new_settings, $for);
 }

@@ -36,9 +36,11 @@ class ConfigPagesTypeListBuilder extends ConfigEntityListBuilder {
   /**
    * {@inheritdoc}
    */
-  public function __construct(EntityTypeInterface $entity_type,
-                              EntityStorageInterface $storage,
-                              ConfigPagesContextManagerInterface $context) {
+  public function __construct(
+    EntityTypeInterface $entity_type,
+    EntityStorageInterface $storage,
+    ConfigPagesContextManagerInterface $context,
+  ) {
     $this->entityTypeId = $entity_type->id();
     $this->storage = $storage;
     $this->entityType = $entity_type;

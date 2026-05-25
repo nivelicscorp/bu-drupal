@@ -1,10 +1,6 @@
 <?php
 
 declare(strict_types=1);
-/**
- * @file
- * Contains \Drupal\mailchimp_transactional_template\TemplateService.
- */
 
 namespace Drupal\mailchimp_transactional_template;
 
@@ -43,11 +39,11 @@ class TemplateService extends Service {
           $template_content = array_merge($message['mailchimp_transactional_template_content'], $template_content);
         }
 
-        $response = $this->mailchimpTransactionalAPI->sendTemplate($message, $template_map->template_name, $template_content);
+        $response = $this->mailchimpTransactionalApi->sendTemplate($message, $template_map->template_name, $template_content);
       }
       else {
         // No template map, so send a standard message.
-        $response = $this->mailchimpTransactionalAPI->send(['message' => $message]);
+        $response = $this->mailchimpTransactionalApi->send(['message' => $message]);
       }
     }
     catch (\Exception $e) {

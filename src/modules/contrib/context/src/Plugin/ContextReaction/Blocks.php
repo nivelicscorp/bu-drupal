@@ -251,11 +251,6 @@ class Blocks extends ContextReactionPluginBase implements ContainerFactoryPlugin
           ->getStorage('context')
           ->load($configuration['context_id']);
 
-        $block_configuration_custom_id = "";
-        if (isset($block->getConfiguration()['custom_id'])) {
-          $block_configuration_custom_id = $block->getConfiguration()['custom_id'];
-        }
-
         // Create the render array for the block as a whole.
         // @see template_preprocess_block().
         $block_build = [
@@ -266,7 +261,7 @@ class Blocks extends ContextReactionPluginBase implements ContainerFactoryPlugin
           '#plugin_id' => $block->getPluginId(),
           '#base_plugin_id' => $block->getBaseId(),
           '#derivative_plugin_id' => $block->getDerivativeId(),
-          '#id' => $block_configuration_custom_id,
+          '#id' => $block->getConfiguration()['custom_id'],
           '#block_plugin' => $block,
           // Add a block entity with the configuration of the block plugin so
           // modules depending on the block property in e.g.
@@ -511,7 +506,7 @@ class Blocks extends ContextReactionPluginBase implements ContainerFactoryPlugin
   /**
    * {@inheritdoc}
    */
-  public function buildConfigurationForm(array $form, FormStateInterface $form_state, ContextInterface $context = NULL) {
+  public function buildConfigurationForm(array $form, FormStateInterface $form_state, ?ContextInterface $context = NULL) {
     $form['#attached']['library'][] = 'block/drupal.block';
 
     $themes = $this->themeHandler->listInfo();

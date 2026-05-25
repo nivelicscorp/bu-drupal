@@ -2,9 +2,10 @@
 
 namespace Drupal\config_pages;
 
-use Drupal\Core\Plugin\DefaultPluginManager;
+use Drupal\config_pages\Attribute\ConfigPagesContext;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
+use Drupal\Core\Plugin\DefaultPluginManager;
 
 /**
  * Context plugins manager.
@@ -25,7 +26,14 @@ class ConfigPagesContextManager extends DefaultPluginManager implements ConfigPa
    *   The module handler to invoke the alter hook with.
    */
   public function __construct(\Traversable $namespaces, CacheBackendInterface $cache_backend, ModuleHandlerInterface $module_handler) {
-    parent::__construct('Plugin/ConfigPagesContext', $namespaces, $module_handler, 'Drupal\config_pages\ConfigPagesContextInterface', 'Drupal\config_pages\Annotation\ConfigPagesContext');
+    parent::__construct(
+      'Plugin/ConfigPagesContext',
+      $namespaces,
+      $module_handler,
+      'Drupal\config_pages\ConfigPagesContextInterface',
+      ConfigPagesContext::class,
+      'Drupal\config_pages\Annotation\ConfigPagesContext'
+    );
 
     $this->alterInfo('config_pages_contexts_info');
     $this->setCacheBackend($cache_backend, 'config_pages_contexts');

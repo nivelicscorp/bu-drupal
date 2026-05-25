@@ -14,6 +14,6 @@ class MigrateImageStylesTest extends OriginalMigrateImageStylesTest {
  /**
   * {@inheritdoc}
   */
-  public static $modules = ['imageapi_optimize'];
+  protected static $modules = ['imageapi_optimize'];
 
 }

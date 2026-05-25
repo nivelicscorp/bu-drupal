@@ -187,7 +187,7 @@ class DeleteMultiple extends ConfirmFormBase {
       }
 
       if ($total_count) {
-        drupal_set_message($this->formatPlural($total_count, 'Deleted 1 media entity.', 'Deleted @count media entities.'));
+        \Drupal::messenger()->addMessage($this->formatPlural($total_count, 'Deleted 1 media entity.', 'Deleted @count media entities.'));
       }
 
       $this->tempStoreFactory->get('media_multiple_delete_confirm')->delete(\Drupal::currentUser()->id());

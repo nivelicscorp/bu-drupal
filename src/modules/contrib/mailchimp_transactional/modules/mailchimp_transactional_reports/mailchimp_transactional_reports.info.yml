@@ -1,12 +1,12 @@
 name: 'Mailchimp Transactional Reports'
 description: 'Providing reporting on activity through Mailchimp Transactional.'
-core_version_requirement: ^9 || ^10
+core_version_requirement: ^9 || ^10 || ^11
 package: Mailchimp Transactional
 dependencies:
   - mailchimp_transactional:mailchimp_transactional
 type: module
 
-# Information added by Drupal.org packaging script on 2023-11-13
-version: '1.1.2'
+# Information added by Drupal.org packaging script on 2025-11-03
+version: '1.2.0'
 project: 'mailchimp_transactional'
-datestamp: 1699888220
+datestamp: 1762178678

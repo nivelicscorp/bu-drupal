@@ -24,7 +24,7 @@ class TestService extends Service {
   /**
    * Constructs the service.
    *
-   * @param \Drupal\mailchimp_transactional\APIInterface $mailchimp_transactional_api
+   * @param \Drupal\mailchimp_transactional\ApiInterface $mailchimp_transactional_api
    *   The Mailchimp Transactional api service.
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The config factory service.
@@ -35,7 +35,7 @@ class TestService extends Service {
    * @param \Drupal\Core\State\StateInterface $state
    *   The state store.
    */
-  public function __construct(APIInterface $mailchimp_transactional_api, ConfigFactoryInterface $config_factory, LoggerChannelFactoryInterface $logger_factory, ModuleHandlerInterface $module_handler, StateInterface $state) {
+  public function __construct(ApiInterface $mailchimp_transactional_api, ConfigFactoryInterface $config_factory, LoggerChannelFactoryInterface $logger_factory, ModuleHandlerInterface $module_handler, StateInterface $state) {
     parent::__construct($mailchimp_transactional_api, $config_factory, $logger_factory, $module_handler);
     $this->state = $state;
   }

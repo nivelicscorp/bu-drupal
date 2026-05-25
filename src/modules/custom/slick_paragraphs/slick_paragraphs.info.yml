@@ -1,7 +1,7 @@
 name: Slick Paragraphs
 type: module
 description: 'Provides Slick Carousel integration with Paragraphs.'
-core_version_requirement: ^8 || ^9 || ^10
+core_version_requirement: ^10 || ^11
 package: Slick
 dependencies:
   - paragraphs:paragraphs

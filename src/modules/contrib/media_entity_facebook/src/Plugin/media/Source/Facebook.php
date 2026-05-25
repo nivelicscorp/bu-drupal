@@ -2,13 +2,14 @@
 
 namespace Drupal\media_entity_facebook\Plugin\media\Source;
 
+use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityFieldManagerInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Field\FieldTypePluginManagerInterface;
 use Drupal\media\MediaInterface;
 use Drupal\media\MediaSourceBase;
 use Drupal\media\MediaSourceFieldConstraintsInterface;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Entity\EntityFieldManagerInterface;
-use Drupal\Core\Field\FieldTypePluginManagerInterface;
-use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\media\MediaTypeInterface;
 use Drupal\media_entity_facebook\FacebookFetcher;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -19,9 +20,12 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @MediaSource(
  *   id = "facebook",
  *   label = @Translation("Facebook"),
- *   description = @Translation("Provides business logic and metadata for Facebook."),
+ *   description = @Translation("Embed facebook photos and video posts using Facebook's graph API."),
  *   allowed_field_types = {"string_long"},
- *   default_thumbnail_filename = "facebook.png"
+ *   default_thumbnail_filename = "facebook.png",
+ *   forms = {
+ *     "media_library_add" = "\Drupal\media_entity_facebook\Form\FacebookMediaLibraryAddForm",
+ *   }
  * )
  */
 class Facebook extends MediaSourceBase implements MediaSourceFieldConstraintsInterface {
@@ -78,15 +82,13 @@ class Facebook extends MediaSourceBase implements MediaSourceFieldConstraintsInt
    * {@inheritdoc}
    */
   public function getMetadataAttributes() {
-    $attributes = [
+    return [
       'author_name' => $this->t('Author Name'),
       'width' => $this->t('Width'),
       'height' => $this->t('Height'),
       'url' => $this->t('URL'),
       'html' => $this->t('HTML'),
     ];
-
-    return $attributes;
   }
 
   /**
@@ -114,7 +116,7 @@ class Facebook extends MediaSourceBase implements MediaSourceFieldConstraintsInt
         return $data['height'];
 
       case 'url':
-        return $data['url'];
+        return $this->getFacebookUrl($media);
 
       case 'html':
         return $data['html'];
@@ -172,14 +174,19 @@ class Facebook extends MediaSourceBase implements MediaSourceFieldConstraintsInt
     // just validate that the content URL is from the facebook domain.
     $content_url_regex = '/^https:\/\/(www\.)?facebook\.com\//i';
 
+    $shortenedUrl = '/^https:\/\/(www\.)?fb\.watch\//i';
+
     if (preg_match($content_url_regex, $data)) {
+      return $data;
+    }
+    elseif (preg_match($shortenedUrl, $data)) {
       return $data;
     }
     else {
       // Check if the user entered an iframe embed instead, and if so,
       // extract the post URL from the iframe src.
       $doc = new \DOMDocument();
-      if (@$doc->loadHTML($data)) {
+      if (!empty($data) && @$doc->loadHTML($data)) {
         $iframes = $doc->getElementsByTagName('iframe');
         if ($iframes->length > 0 && $iframes->item(0)->hasAttribute('src')) {
           $iframe_src = $iframes->item(0)->getAttribute('src');
@@ -195,6 +202,16 @@ class Facebook extends MediaSourceBase implements MediaSourceFieldConstraintsInt
     }
 
     return FALSE;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function prepareViewDisplay(MediaTypeInterface $type, EntityViewDisplayInterface $display) {
+    $display->setComponent($this->getSourceFieldDefinition($type)->getName(), [
+      'type' => 'facebook_embed',
+      'label' => 'visually_hidden',
+    ]);
   }
 
   /**

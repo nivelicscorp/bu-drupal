@@ -9,7 +9,7 @@ use Drupal\Tests\mailchimp_transactional\Functional\TestBase;
  *
  * @group mailchimp_transactional
  */
-class MailchimpTransactionalAPITest extends TestBase {
+class MailchimpTransactionalApiTest extends TestBase {
 
   /**
    * For testing sub account retrieval.
@@ -17,7 +17,8 @@ class MailchimpTransactionalAPITest extends TestBase {
    * @todo doesn't need to be a functional test, refactor.
    */
   public function testGetSubAccounts() {
-    $mailchimp_transactional_api = \Drupal::service('mailchimp_transactional.test');
+    /** @var \Drupal\mailchimp_transactional\TestApi $mailchimp_transactional_api */
+    $mailchimp_transactional_api = $this->container->get('mailchimp_transactional.test');
     $sub_accounts = $mailchimp_transactional_api->getSubAccounts();
     $this->assertNotEmpty($sub_accounts, 'Tested retrieving sub-accounts.');
     if (!empty($sub_accounts) && is_array($sub_accounts)) {

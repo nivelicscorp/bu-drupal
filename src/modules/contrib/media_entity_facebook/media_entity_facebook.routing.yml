@@ -1,0 +1,7 @@
+media_entity_facebook.settings:
+  path: '/admin/config/media/facebook-settings'
+  defaults:
+    _form: '\Drupal\media_entity_facebook\Form\FacebookSettingsForm'
+    _title: 'Facebook settings'
+  requirements:
+    _permission: 'administer media'

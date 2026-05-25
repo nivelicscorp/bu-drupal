@@ -1,17 +1,11 @@
 <?php
 
 declare(strict_types=1);
-/**
- * @file
- * Contains \Drupal\mailchimp_transactional_activity\Plugin\Derivative\ActivityLocalTasks.
- */
 
 namespace Drupal\mailchimp_transactional_activity\Plugin\Derivative;
 
 use Drupal\Component\Plugin\Derivative\DeriverBase;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\Discovery\ContainerDeriverInterface;
-use Drupal\mailchimp_transactional_activity\Entity\Activity;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -27,36 +21,26 @@ class ActivityLocalTasks extends DeriverBase implements ContainerDeriverInterfac
   protected $entityTypeManager;
 
   /**
-   * Constructor.
-   *
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-   *   The entity type manager.
-   */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager) {
-    $this->entityTypeManager = $entity_type_manager;
-  }
-
-  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, $base_plugin_id) {
-    return new static(
-      $container->get('entity_type.manager')
-    );
+    $instance = new static();
+    $instance->entityTypeManager = $container->get('entity_type.manager');
+
+    return $instance;
   }
 
   /**
    * {@inheritdoc}
    */
   public function getDerivativeDefinitions($base_plugin_definition) {
-    $activity_ids = \Drupal::entityQuery('mailchimp_transactional_activity')->execute();
-
+    $storage = $this->entityTypeManager
+      ->getStorage('mailchimp_transactional_activity');
+    $activities = $storage->loadMultiple();
     $entity_definitions = $this->entityTypeManager->getDefinitions();
 
-    $activity_entities = Activity::loadMultiple($activity_ids);
-
     /** @var \Drupal\mailchimp_transactional_activity\Entity\Activity $activity */
-    foreach ($activity_entities as $activity) {
+    foreach ($activities as $activity) {
       $entity = $entity_definitions[$activity->entity_type];
 
       if (!$activity->enabled || empty($entity)) {

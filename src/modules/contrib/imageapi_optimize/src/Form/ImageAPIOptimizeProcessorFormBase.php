@@ -49,7 +49,7 @@ abstract class ImageAPIOptimizeProcessorFormBase extends FormBase {
    *
    * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
    */
-  public function buildForm(array $form, FormStateInterface $form_state, ImageAPIOptimizePipelineInterface $imageapi_optimize_pipeline = NULL, $imageapi_optimize_processor = NULL) {
+  public function buildForm(array $form, FormStateInterface $form_state, ?ImageAPIOptimizePipelineInterface $imageapi_optimize_pipeline = NULL, $imageapi_optimize_processor = NULL) {
     $this->imageAPIOptimizePipeline = $imageapi_optimize_pipeline;
     try {
       $this->imageAPIOptimizeProcessor = $this->prepareImageAPIOptimizeProcessor($imageapi_optimize_processor);

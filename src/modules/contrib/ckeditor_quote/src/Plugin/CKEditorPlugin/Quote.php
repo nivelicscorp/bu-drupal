@@ -29,7 +29,7 @@ class Quote extends CKEditorPluginBase {
   public function getButtons() {
     // Make sure that the path to the image matches the file structure of
     // the CKEditor plugin you are implementing.
-    $path = drupal_get_path('module', 'ckeditor_quote') . '/js/plugins/quote';
+    $path = \Drupal::service('extension.list.module')->getPath('ckeditor_quote') . '/js/plugins/quote';
     return array(
       'quote' => array(
         'label' => t('Quote'),
@@ -44,7 +44,7 @@ class Quote extends CKEditorPluginBase {
   public function getFile() {
     // Make sure that the path to the plugin.js matches the file structure of
     // the CKEditor plugin you are implementing.
-    return drupal_get_path('module', 'ckeditor_quote') . '/js/plugins/quote/plugin.js';
+    return \Drupal::service('extension.list.module')->getPath('ckeditor_quote') . '/js/plugins/quote/plugin.js';
   }
 
   /**

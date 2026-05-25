@@ -18,7 +18,7 @@ use Drupal\mailchimp_transactional_template\Entity\TemplateMap;
  * @return array
  *   Array of Template Maps.
  */
-function mailchimp_transactional_template_load_entities(string $id = NULL) {
+function mailchimp_transactional_template_load_entities(?string $id = NULL) {
   $query = \Drupal::entityQuery('mailchimp_transactional_template');
 
   if (!empty($id)) {
@@ -70,7 +70,10 @@ function mailchimp_transactional_template_load_by_mailsystem($module_key, $modul
       }
     }
 
-    return $module_match ?: reset($template_maps);
+    $template_map = $module_match ?: reset($template_maps);
+    \Drupal::moduleHandler()->alter('mailchimp_transactional_template_map', $template_map, $module_key, $module);
+
+    return $template_map;
   }
 
   return NULL;

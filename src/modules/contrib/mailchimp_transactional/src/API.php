@@ -1,19 +1,20 @@
 <?php
 
 declare(strict_types=1);
+
 namespace Drupal\mailchimp_transactional;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 
 /**
  * Service class to integrate with Mailchimp Transactional.
  */
-class API implements APIInterface {
+class Api implements ApiInterface {
   use StringTranslationTrait;
 
   /**
@@ -174,7 +175,7 @@ class API implements APIInterface {
     return FALSE;
   }
 
-   /**
+  /**
    * {@inheritdoc}
    */
   public function sendTemplate(array $message, $template_id, array $template_content): array {
@@ -185,7 +186,7 @@ class API implements APIInterface {
           'status' => 'error',
           'email' => $message['message']['to'][0]['email'] ?? 'recipient',
           'message' => 'Failed to instantiate the Mailchimp Transactional API client. Check the logs for more information.',
-        ]
+        ],
       ];
     }
 
@@ -203,8 +204,8 @@ class API implements APIInterface {
         (object) [
           'status' => 'error',
           'email' => $message['message']['to'][0]['email'] ?? 'recipient',
-          'message' => $result->getMessage()
-        ]
+          'message' => $result->getMessage(),
+        ],
       ];
     }
 
@@ -222,7 +223,7 @@ class API implements APIInterface {
           'status' => 'error',
           'email' => $message['message']['to'][0]['email'] ?? 'recipient',
           'message' => 'Failed to instantiate the Mailchimp Transactional API client. Check the logs for more information.',
-        ]
+        ],
       ];
     }
 
@@ -236,8 +237,8 @@ class API implements APIInterface {
         (object) [
           'status' => 'error',
           'email' => $message['message']['to'][0]['email'] ?? 'recipient',
-          'message' => $result->getMessage()
-        ]
+          'message' => $result->getMessage(),
+        ],
       ];
     }
 
@@ -280,8 +281,8 @@ class API implements APIInterface {
       return NULL;
     }
 
-    $api_key ?? $api_key = $this->config->get('mailchimp_transactional_api_key');
-    $api_timeout = $this->config->get('mailchimp_transactional_api_timeout');
+    $api_key ?? $api_key = $this->config->get('api_key');
+    $api_timeout = $this->config->get('api_timeout');
     if (empty($api_key)) {
       $msg = $this->t('Failed to load Mailchimp Transactional API Key. Please check your Mailchimp Transactional settings.');
       $this->log->error($msg);
@@ -290,7 +291,7 @@ class API implements APIInterface {
     }
     // We allow the class name to be overridden, following the example of core's
     // mailsystem, in order to use alternate Mailchimp Transactional classes.
-    $class_name = $this->config->get('mailchimp_transactional_api_classname');
+    $class_name = $this->config->get('api_classname');
     return new $class_name($this->httpClient, $api_key, $api_timeout);
   }
 

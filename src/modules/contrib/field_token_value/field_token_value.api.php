@@ -21,7 +21,7 @@
 function hook_field_token_value_output_alter(&$element, $wrapper_info) {
   // Attach a CSS file if the paragraph wrapper is being used.
   if ($wrapper_info['tag'] == 'p') {
-    $element['#attached']['css'][] = drupal_get_path('module', 'my_module') . '/css/my-styles.css';
+    $element['#attached']['css'][] = \Drupal::service('extension.list.module')->getPath('my_module') . '/css/my-styles.css';
   }
 }
 

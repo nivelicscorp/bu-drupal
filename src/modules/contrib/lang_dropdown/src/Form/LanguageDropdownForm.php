@@ -7,8 +7,17 @@ use Drupal\Component\Utility\Html;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\Language;
-use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Url;
+use Drupal\Core\Routing\TrustedRedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Language\LanguageManagerInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Drupal\Core\Path\PathMatcherInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Extension\ModuleHandlerInterface;
+use Drupal\Core\Render\RendererInterface;
+use Drupal\lang_dropdown\LanguageDropdownConstants;
 
 /**
  * Language Switch Form.
@@ -20,6 +29,48 @@ class LanguageDropdownForm extends FormBase {
   protected $settings;
 
   /**
+   * The language manager.
+   *
+   * @var \Drupal\Core\Language\LanguageManagerInterface
+   */
+  protected $languageManager;
+
+  /**
+   * The request object.
+   *
+   * @var \Symfony\Component\HttpFoundation\RequestStack
+   */
+  protected $requestStack;
+
+  /**
+   * The path matcher.
+   *
+   * @var \Drupal\Core\Path\PathMatcherInterface
+   */
+  protected $pathMatcher;
+
+  /**
+   * The route match.
+   *
+   * @var \Drupal\Core\Routing\RouteMatchInterface
+   */
+  protected $routeMatch;
+
+  /**
+   * The module handler.
+   *
+   * @var \Drupal\Core\Extension\ModuleHandlerInterface
+   */
+  protected $moduleHandler;
+
+  /**
+   * The renderer service.
+   *
+   * @var Drupal\Core\Render\RendererInterface
+   */
+  protected $renderer;
+
+  /**
    * {@inheritdoc}
    */
   public function getFormId() {
@@ -29,26 +80,53 @@ class LanguageDropdownForm extends FormBase {
   /**
    * Constructs a \Drupal\lang_dropdown\Form\LanguageDropdownForm object.
    *
-   * @param array $languages
-   *   The languages for the switcher.
-   * @param string $type
-   *   The type of negotiation.
-   * @param array $settings
-   *   The configuration for the switcher form.
+   * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
+   *   The language manager.
+   * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
+   *   The request stack object.
+   * @param \Drupal\Core\Path\PathMatcherInterface $path_matcher
+   *   The path matcher service.
+   * @param \Drupal\Core\Routing\RouteMatchInterface $route_match
+   *   The current route match.
+   * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
+   *   The module handler.
+   * @param \Drupal\Core\Render\RendererInterface $renderer
+   *   The Renderer
    */
-  public function __construct(array $languages, $type, array $settings = []) {
-    $this->languages = $languages;
-    $this->type = $type;
-    $this->settings = $settings;
+  public function __construct(LanguageManagerInterface $language_manager, RequestStack $request_stack, PathMatcherInterface $path_matcher, RouteMatchInterface $route_match, ModuleHandlerInterface $module_handler, RendererInterface $renderer) {
+    $this->languageManager = $language_manager;
+    $this->requestStack = $request_stack;
+    $this->pathMatcher = $path_matcher;
+    $this->routeMatch = $route_match;
+    $this->moduleHandler = $module_handler;
+    $this->renderer = $renderer;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state) {
-    $language_url = \Drupal::languageManager()->getCurrentLanguage(Language::TYPE_URL);
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('language_manager'),
+      $container->get('request_stack'),
+      $container->get('path.matcher'),
+      $container->get('current_route_match'),
+      $container->get('module_handler'),
+      $container->get('renderer')
+    );
+  }
 
-    $unique_id = uniqid('lang_dropdown_form', TRUE);
+  /**
+   * {@inheritdoc}
+   */
+  public function buildForm(array $form, FormStateInterface $form_state, array $languages = [], $type = Language::TYPE_URL, array $settings = []) {
+    $this->languages = $languages;
+    $this->type = $type;
+    $this->settings = $settings;
+
+    $language_url = $this->languageManager->getCurrentLanguage($this->type);
+
+    $unique_id = Html::getId('lang_dropdown_form');
 
     $options = $hidden_elements = [];
     $js_settings = [
@@ -80,17 +158,24 @@ class LanguageDropdownForm extends FormBase {
       // Build the options in an associative array,
       // so it will be ready for #options in select form element.
       switch ($this->settings['display']) {
-        case LANGDROPDOWN_DISPLAY_TRANSLATED:
+        case LanguageDropdownConstants::LANGDROPDOWN_DISPLAY_TRANSLATED:
         default:
           $options += [$lang_code => $this->t($language->getName())];
           break;
 
-        case LANGDROPDOWN_DISPLAY_NATIVE:
-          $options += [$lang_code => $language->getName()];
+        case LanguageDropdownConstants::LANGDROPDOWN_DISPLAY_NATIVE:
+          $native_language = $this->languageManager->getNativeLanguages()[$lang_code];
+          $options += [$lang_code => $native_language->getName()];
           break;
 
-        case LANGDROPDOWN_DISPLAY_LANGCODE:
+        case LanguageDropdownConstants::LANGDROPDOWN_DISPLAY_LANGCODE:
           $options += [$lang_code => $lang_code];
+          break;
+
+        case LanguageDropdownConstants::LANGDROPDOWN_DISPLAY_SELFTRANSLATED:
+          $native_language = $this->languageManager->getNativeLanguages()[$lang_code];
+          $native_language_translated = $this->t($native_language->getName(), [], ['langcode' => $lang_code]);
+          $options += [$lang_code => $native_language_translated];
           break;
       }
 
@@ -100,7 +185,7 @@ class LanguageDropdownForm extends FormBase {
         $url = $lang_options['url'];
         if ($url->isRouted()) {
           $route_name = $url->getRouteName();
-          $is_current_path = ($route_name === '<current>') || ($route_name == \Drupal::routeMatch()->getRouteName()) || ($route_name === '<front>' && \Drupal::service('path.matcher')->isFrontPage());
+          $is_current_path = ($route_name === '<current>') || ($route_name == $this->routeMatch->getRouteName()) || ($route_name === '<front>' && $this->pathMatcher->isFrontPage());
           $is_current_language = (empty($language) || $language->getId() == $language_url->getId());
           if ($is_current_path && $is_current_language) {
             $language_selected = $lang_code;
@@ -116,7 +201,7 @@ class LanguageDropdownForm extends FormBase {
       // Now we build our hidden form inputs to handle the redirections.
       $url = (isset($lang_options['url']) && $this->settings['tohome'] == 0) ? $lang_options['url'] : Url::fromRoute('<front>');
       if (!isset($lang_options['query'])) {
-        $lang_options['query'] = \Drupal::request()->query->all();
+        $lang_options['query'] = $this->requestStack->query->all();
       }
       $hidden_elements[$lang_code] = [
         '#type' => 'hidden',
@@ -124,10 +209,10 @@ class LanguageDropdownForm extends FormBase {
       ];
 
       // Handle flags with Language icons module using JS widget.
-      if (isset($this->settings['widget']) && \Drupal::moduleHandler()->moduleExists('languageicons')) {
+      if (isset($this->settings['widget']) && $this->moduleHandler->moduleExists('languageicons')) {
         $languageicons_config = $this->configFactory()->get('languageicons.settings');
         $languageicons_path = $languageicons_config->get('path');
-        $js_settings['languageicons'][$lang_code] = file_create_url(str_replace('*', $lang_code, $languageicons_path));
+        $js_settings['languageicons'][$lang_code] = \Drupal::service('file_url_generator')->generateAbsoluteString(str_replace('*', $lang_code, $languageicons_path));
       }
     }
 
@@ -136,7 +221,7 @@ class LanguageDropdownForm extends FormBase {
     $selected_option = ($language_session_selected === '') ? $language_selected : $language_session_selected;
 
     // Icon for the selected language.
-    if (!$this->settings['widget'] && \Drupal::moduleHandler()->moduleExists('languageicons')) {
+    if (!$this->settings['widget'] && $this->moduleHandler->moduleExists('languageicons')) {
       /** @var \Drupal\Core\Language\LanguageInterface $language */
       $language = $this->languages[$selected_option]['language'];
       $selected_option_language_icon = [
@@ -144,11 +229,11 @@ class LanguageDropdownForm extends FormBase {
         '#language' => $language,
         '#title' => $language->getName(),
       ];
-      $selected_option_language_icon = render($selected_option_language_icon);
+      $selected_option_language_icon = $this->renderer->renderPlain($selected_option_language_icon);
     }
 
     // Add required files and settings for JS widget.
-    if ($this->settings['widget'] == LANGDROPDOWN_MSDROPDOWN) {
+    if ($this->settings['widget'] == LanguageDropdownConstants::LANGDROPDOWN_MSDROPDOWN) {
       $js_settings += [
         'widget' => 'msdropdown',
         'visibleRows' => $this->settings['msdropdown']['visible_rows'],
@@ -160,7 +245,7 @@ class LanguageDropdownForm extends FormBase {
       $selected_skin = $this->settings['msdropdown']['skin'];
       if ($selected_skin === 'custom') {
         $custom_skin = Html::escape($this->settings['msdropdown']['custom_skin']);
-        $form['#attached']['library'][] = 'ms-dropdown';
+        $form['#attached']['library'][] = 'lang_dropdown/ms-dropdown';
         $js_settings += [
           'mainCSS' => $custom_skin,
         ];
@@ -176,7 +261,7 @@ class LanguageDropdownForm extends FormBase {
       $form['#attached']['library'][] = 'lang_dropdown/ms-dropdown';
       $form['#attached']['drupalSettings']['lang_dropdown'][$unique_id] = $js_settings;
     }
-    elseif ($this->settings['widget'] == LANGDROPDOWN_CHOSEN) {
+    elseif ($this->settings['widget'] == LanguageDropdownConstants::LANGDROPDOWN_CHOSEN) {
       $js_settings += [
         'widget' => 'chosen',
         'disable_search' => $this->settings['chosen']['disable_search'],
@@ -186,7 +271,7 @@ class LanguageDropdownForm extends FormBase {
       $form['#attached']['library'][] = 'lang_dropdown/chosen';
       $form['#attached']['drupalSettings']['lang_dropdown'][$unique_id] = $js_settings;
     }
-    elseif ($this->settings['widget'] == LANGDROPDOWN_DDSLICK) {
+    elseif ($this->settings['widget'] == LanguageDropdownConstants::LANGDROPDOWN_DDSLICK) {
       $form['#attached']['library'][] = 'lang_dropdown/ddslick';
       $selected_skin = $this->settings['ddslick']['skin'];
       $js_settings += [
@@ -216,7 +301,7 @@ class LanguageDropdownForm extends FormBase {
       '#attributes' => [
         'style' => 'width:' . $this->settings['width'] . 'px',
         'class' => ['lang-dropdown-select-element'],
-        'id' => 'lang-dropdown-select-' . $unique_id,
+        'data-lang-dropdown-id' => $unique_id,
       ],
       '#attached' => [
         'library' => ['lang_dropdown/lang-dropdown-form'],
@@ -228,13 +313,16 @@ class LanguageDropdownForm extends FormBase {
     }
 
     $form += $hidden_elements;
-    if (\Drupal::moduleHandler()->moduleExists('languageicons')) {
+    if ($this->moduleHandler->moduleExists('languageicons')) {
       $form['lang_dropdown_select'][$flag_position] = $selected_option_language_icon;
     }
 
+    $unique_form_id = Html::getUniqueId('lang_dropdown_form');
+
     $form['#attributes']['class'][] = 'lang_dropdown_form';
+    $form['#attributes']['class'][] = 'clearfix';
     $form['#attributes']['class'][] = $this->type;
-    $form['#attributes']['id'] = 'lang_dropdown_form_' . $unique_id;
+    $form['#attributes']['id'] = 'lang_dropdown_form_' . $unique_form_id;
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Go'),
@@ -256,29 +344,28 @@ class LanguageDropdownForm extends FormBase {
     $type = $form_state->getValue('lang_dropdown_type');
     $tohome = $form_state->getValue('lang_dropdown_tohome');
 
-    $language_codes = \Drupal::languageManager()->getLanguages();
+    $language_codes = $this->languageManager->getLanguages();
     if (!array_key_exists($language_code, $language_codes)) {
       return;
     }
 
-    $types = \Drupal::languageManager()->getDefinedLanguageTypesInfo();
+    $types = $this->languageManager->getDefinedLanguageTypesInfo();
     if (!array_key_exists($type, $types)) {
       return;
     }
 
-    $route = \Drupal::service('path.matcher')->isFrontPage() ? '<front>' : '<current>';
-    $url = Url::fromRoute($route);
-    $languages = \Drupal::languageManager()->getLanguageSwitchLinks($type, $url);
+    $languages = $this->languageManager->getLanguageSwitchLinks($type, Url::fromRouteMatch(\Drupal::routeMatch()));
 
     $language = $languages->links[$language_code];
 
     $newurl = (isset($language['url']) && $tohome == 0) ? $language['url'] : Url::fromRoute('<front>');
 
     if (!isset($language['query'])) {
-      $language['query'] = \Drupal::request()->query->all();
+      $language['query'] = $this->requestStack->getCurrentRequest()->query->all();
     }
 
-    $form_state->setRedirect($newurl->getRouteName(), $newurl->getRouteParameters(), $language);
+    $url = new Url($newurl->getRouteName(), $newurl->getRouteParameters(), $language);
+    $form_state->setResponse(new TrustedRedirectResponse($url->toString(), Response::HTTP_SEE_OTHER));
   }
 
 }

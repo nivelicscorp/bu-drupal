@@ -1,0 +1,20 @@
+{
+  "name": "drupal/image_class",
+  "description": "Extends the image formatter by adding an option to add an element class.",
+  "type": "drupal-module",
+  "homepage": "https://www.drupal.org/project/image_class",
+  "authors": [
+    {
+      "name": "yannickoo",
+      "homepage": "https://www.drupal.org/u/yannickoo"
+    }
+  ],
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/image_class",
+    "source": "http://git.drupal.org/project/image_class.git"
+  },
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "drupal/core": "^10.1 || ^11"
+  }
+}

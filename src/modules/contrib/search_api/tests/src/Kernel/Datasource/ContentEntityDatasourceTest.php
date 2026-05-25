@@ -8,6 +8,7 @@ use Drupal\KernelTests\KernelTestBase;
 use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\search_api\Entity\Index;
 use Drupal\Tests\search_api\Functional\ExampleContentTrait;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 /**
  * Tests correct functionality of the content entity datasource.
@@ -16,6 +17,7 @@ use Drupal\Tests\search_api\Functional\ExampleContentTrait;
  *
  * @group search_api
  */
+#[RunTestsInSeparateProcesses]
 class ContentEntityDatasourceTest extends KernelTestBase {
 
   use ExampleContentTrait;
@@ -306,7 +308,7 @@ class ContentEntityDatasourceTest extends KernelTestBase {
    *
    * @see \Drupal\search_api\Plugin\search_api\datasource\ContentEntity::getPartialItemIds()
    */
-  protected function getItemIds(array $bundles = NULL, array $languages = NULL) {
+  protected function getItemIds(?array $bundles = NULL, ?array $languages = NULL) {
     $discovered_ids = [];
     for ($page = 0;; ++$page) {
       $new_ids = $this->datasource->getPartialItemIds($page, $bundles, $languages);

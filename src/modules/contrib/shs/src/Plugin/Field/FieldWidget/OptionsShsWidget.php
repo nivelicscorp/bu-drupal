@@ -130,6 +130,7 @@ class OptionsShsWidget extends OptionsSelectWidget implements ContainerFactoryPl
     $summary = parent::settingsSummary();
 
     if ($this->getSetting('create_new_items')) {
+
       $summary[] = $this->t('Allow creation of new items');
       if ($this->getSetting('create_new_levels')) {
         $summary[] = $this->t('Allow creation of new levels');
@@ -213,9 +214,9 @@ class OptionsShsWidget extends OptionsSelectWidget implements ContainerFactoryPl
     // We need to run this through a render function because Drupal.url generates
     // a placeholder token.
     $urlBubbleable = Url::fromRoute('shs.create_term')->toString(TRUE);
-    $urlRender = array(
+    $urlRender = [
       '#markup' => $urlBubbleable->getGeneratedUrl(),
-    );
+    ];
     BubbleableMetadata::createFromRenderArray($urlRender)
       ->merge($urlBubbleable)->applyTo($urlRender);
     $url = (string) \Drupal::service('renderer')->renderPlain($urlRender);
@@ -253,6 +254,8 @@ class OptionsShsWidget extends OptionsSelectWidget implements ContainerFactoryPl
     $element['#attached'] = array_merge($element['#attached'], [
       'library' => ['shs/shs.form'],
     ]);
+    $form['#attached']['drupalSettings']['show_shs_add_input'] = $this->getSetting('create_new_items');
+
     return $element;
   }
 
@@ -281,13 +284,8 @@ class OptionsShsWidget extends OptionsSelectWidget implements ContainerFactoryPl
       'classes' => shs_get_class_definitions($element['#field_name'], $context),
     ];
     $element['#attached'] = $element['#attached'] ?: [];
-    $element['#attached'] = array_merge($element['#attached'], [
-      'drupalSettings' => [
-        'shs' => [
-          $element_key => $element['#shs'],
-        ],
-      ],
-    ]);
+    $element['#attached']['drupalSettings']['shs'] = [$element_key => $element['#shs']];
+    unset($element['#maxlength']);
 
     return $element;
   }
@@ -433,4 +431,5 @@ class OptionsShsWidget extends OptionsSelectWidget implements ContainerFactoryPl
   public function getCreateLabel() {
     return (string) t('Create...');
   }
+
 }

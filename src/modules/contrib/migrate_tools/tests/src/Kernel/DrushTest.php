@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Drupal\Tests\migrate_tools\Kernel {
 
@@ -13,7 +13,7 @@ namespace Drupal\Tests\migrate_tools\Kernel {
   use Psr\Log\LoggerInterface;
 
   /**
-   * Tests for the Drush 9 commands.
+   * Tests for the Drush commands.
    *
    * @group migrate_tools
    */
@@ -42,6 +42,7 @@ namespace Drupal\Tests\migrate_tools\Kernel {
       'group' => NULL,
       'tag' => NULL,
       'limit' => NULL,
+      'batch-size' => FALSE,
       'feedback' => NULL,
       'idlist' => NULL,
       'idlist-delimiter' => MigrateTools::DEFAULT_ID_LIST_DELIMITER,
@@ -53,7 +54,18 @@ namespace Drupal\Tests\migrate_tools\Kernel {
       'sync' => FALSE,
     ];
 
+    /**
+     * Migrate Tools Drush commands.
+     *
+     * @var \Drupal\migrate_tools\Drush\Commands\MigrateToolsCommands|null
+     */
     private ?MigrateToolsCommands $commands = NULL;
+
+    /**
+     * The Migration plugin manager.
+     *
+     * @var \Drupal\migrate\Plugin\MigrationPluginManagerInterface
+     */
     private MigrationPluginManagerInterface $migrationPluginManager;
 
     /**
@@ -75,7 +87,11 @@ namespace Drupal\Tests\migrate_tools\Kernel {
         $this->migrationPluginManager,
         $this->container->get('date.formatter'),
         $this->container->get('entity_type.manager'),
-        $this->container->get('keyvalue'));
+        $this->container->get('keyvalue'),
+        $this->container->get('datetime.time'),
+        $this->container->get('string_translation'),
+        $this->container->get('migrate_tools.migration_drush_command_progress'),
+      );
       $this->commands->setLogger($this->logger);
     }
 
@@ -114,7 +130,15 @@ namespace Drupal\Tests\migrate_tools\Kernel {
     public function testFailingStatusThrowsException(): void {
       $this->expectException(\Exception::class);
       $this->expectExceptionMessage('The "does_not_exist" plugin does not exist.');
-      $this->commands->status('invalid_plugin');
+      // Explicitly pass an array of the defaults for $options, as otherwise
+      // its default value, which contains definitions of the options for
+      // Drush, will be incorrectly used as actual values.
+      $this->commands->status('invalid_plugin', [
+        'group' => '',
+        'tag' => '',
+        'names-only' => FALSE,
+        'continue-on-failure' => FALSE,
+      ]);
     }
 
     /**
@@ -276,6 +300,17 @@ namespace Drupal\Tests\migrate_tools\Kernel {
       $this->expectException(\Exception::class);
       $this->expectExceptionMessage('Migration does_not_exist does not exist');
       $this->commands->fieldsSource('does_not_exist');
+    }
+
+    /**
+     * Tests that optional dependencies are respected in migration ordering.
+     */
+    public function testOptionalDependencyOrdering(): void {
+      $result = $this->commands->status('order_beta,order_gamma,order_alpha', ['names-only' => TRUE]);
+      $rows = $result->getArrayCopy();
+      $this->assertSame('order_gamma', $rows[0]['id']);
+      $this->assertSame('order_beta', $rows[1]['id']);
+      $this->assertSame('order_alpha', $rows[2]['id']);
     }
 
   }

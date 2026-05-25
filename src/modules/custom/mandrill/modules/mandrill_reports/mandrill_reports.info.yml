@@ -1,7 +1,7 @@
 name: 'Mandrill Reports'
 description: 'Providing reporting on activity through Mandrill.'
 core: 8.x
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^10 || ^11
 package: Mandrill
 dependencies:
   - mandrill:mandrill

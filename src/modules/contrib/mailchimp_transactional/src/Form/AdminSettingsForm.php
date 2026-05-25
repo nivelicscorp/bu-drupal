@@ -4,18 +4,11 @@ declare(strict_types=1);
 
 namespace Drupal\mailchimp_transactional\Form;
 
-use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Mail\MailManagerInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Path\PathValidatorInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
-use Drupal\Core\Render\RendererInterface;
-use Drupal\mailchimp_transactional\ServiceInterface;
-use Drupal\mailchimp_transactional\APIInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Implements an Mailchimp Transactional Admin Settings form.
@@ -60,52 +53,23 @@ class AdminSettingsForm extends ConfigFormBase {
   /**
    * The Mailchimp Transactional API service.
    *
-   * @var \Drupal\mailchimp_transactional\APIInterface
+   * @var \Drupal\mailchimp_transactional\ApiInterface
    */
-  protected $mailchimpTransactionalAPI;
-
-  /**
-   * Constructor.
-   *
-   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
-   *   The config factory.
-   * @param \Drupal\Core\Mail\MailManagerInterface $mail_manager
-   *   The mail system manager.
-   * @param \Drupal\Core\Path\PathValidatorInterface $path_validator
-   *   The path validator.
-   * @param \Drupal\Core\Render\RendererInterface $renderer
-   *   The object renderer.
-   * @param \Drupal\Core\Extension\ModuleHandlerInterface $moduleHandler
-   *   The module handler.
-   * @param \Drupal\mailchimp_transactional\APIInterface $mailchimp_transactional_api
-   *   The Mailchimp Transactional API service.
-   * @param \Drupal\mailchimp_transactional\ServiceInterface $mailchimp_transactional
-   *   The Mailchimp Transactional service.
-   */
-  public function __construct(ConfigFactoryInterface $config_factory, MailManagerInterface $mail_manager, PathValidatorInterface $path_validator, RendererInterface $renderer, ModuleHandlerInterface $moduleHandler, APIInterface $mailchimp_transactional_api, ServiceInterface $mailchimp_transactional) {
-    parent::__construct($config_factory);
-    $this->mailManager = $mail_manager;
-    $this->pathValidator = $path_validator;
-    $this->renderer = $renderer;
-    $this->moduleHandler = $moduleHandler;
-    $this->mailchimpTransactionalAPI = $mailchimp_transactional_api;
-    $this->mailchimpTransactional = $mailchimp_transactional;
-
-  }
+  protected $mailchimpTransactionalApi;
 
   /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
-    return new static(
-      $container->get('config.factory'),
-      $container->get('plugin.manager.mail'),
-      $container->get('path.validator'),
-      $container->get('renderer'),
-      $container->get('module_handler'),
-      $container->get('mailchimp_transactional'),
-      $container->get('mailchimp_transactional.service'),
-    );
+    $instance = parent::create($container);
+    $instance->mailManager = $container->get('plugin.manager.mail');
+    $instance->pathValidator = $container->get('path.validator');
+    $instance->renderer = $container->get('renderer');
+    $instance->moduleHandler = $container->get('module_handler');
+    $instance->mailchimpTransactionalApi = $container->get('mailchimp_transactional');
+    $instance->mailchimpTransactional = $container->get('mailchimp_transactional.service');
+
+    return $instance;
   }
 
   /**
@@ -122,9 +86,9 @@ class AdminSettingsForm extends ConfigFormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state): array {
     $config = $this->configFactory()->get('mailchimp_transactional.settings');
-    $key = $config->get('mailchimp_transactional_api_key');
+    $key = $config->get('api_key');
 
-    $form['mailchimp_transactional_api_key'] = [
+    $form['api_key'] = [
       '#title' => $this->t('Mailchimp Transactional API Key'),
       '#type' => 'textfield',
       '#description' => $this->t('Create or grab your API key from the %link.', ['%link' => Link::fromTextAndUrl($this->t('Mailchimp Transactional settings'), Url::fromUri('https://mandrillapp.com/settings/index'))->toString()]),
@@ -133,19 +97,20 @@ class AdminSettingsForm extends ConfigFormBase {
     ];
 
     if ($this->moduleHandler->moduleExists('coi')) {
-      $form['mailchimp_transactional_api_key']['#config'] = [
-        'key' => 'mailchimp_transactional.settings:mailchimp_transactional_api_key',
+      $form['api_key']['#config'] = [
+        'key' => 'mailchimp_transactional.settings:api_key',
         'secret' => TRUE,
       ];
-    } elseif ($config->hasOverrides('mailchimp_transactional_api_key')) {
-      $form['mailchimp_transactional_api_key']['#disabled'] = TRUE;
-      $form['mailchimp_transactional_api_key']['#description'] = $this->t('The API key is overridden, likely in settings.php, and cannot be changed here.');
+    }
+    elseif ($config->hasOverrides('api_key')) {
+      $form['api_key']['#disabled'] = TRUE;
+      $form['api_key']['#description'] = $this->t('The API key is overridden, likely in settings.php, and cannot be changed here.');
     }
 
-    if (!$this->mailchimpTransactionalAPI->isLibraryInstalled()) {
+    if (!$this->mailchimpTransactionalApi->isLibraryInstalled()) {
       $this->messenger()->addWarning($this->t('The Mailchimp Transactional PHP library is not installed. Please see installation directions in README.md'));
     }
-    $hasValidKey = $key && !$this->mailchimpTransactionalAPI->isApiKeyValid($key);
+    $hasValidKey = $key && !$this->mailchimpTransactionalApi->isApiKeyValid($key);
     if ($hasValidKey) {
       $this->messenger()->addWarning($this->t('The provided Mailchimp Transactional API key is invalid'));
     }
@@ -172,9 +137,9 @@ class AdminSettingsForm extends ConfigFormBase {
       $form['mailchimp_transactional_status'] = [
         '#type' => 'markup',
         '#markup' => $this->t(
-          'Mailchimp Transactional is currently configured to be used by the 
-          following Module Keys. To change these settings or configure 
-          additional systems to use Mailchimp Transactional, use 
+          'Mailchimp Transactional is currently configured to be used by the
+          following Module Keys. To change these settings or configure
+          additional systems to use Mailchimp Transactional, use
           <a href=":link">Mail System</a>.<br/><br/>@table',
           [
             ':link' => $mail_system_path->toString(),
@@ -184,11 +149,11 @@ class AdminSettingsForm extends ConfigFormBase {
     }
     elseif (!$form_state->get('rebuild')) {
       $this->messenger()->addWarning($this->t(
-        'PLEASE NOTE: Mailchimp Transactional is not currently configured 
-        for use by Drupal. In order to route your email through Mailchimp 
-        Transactional, you must configure at least one MailSystemInterface 
+        'PLEASE NOTE: Mailchimp Transactional is not currently configured
+        for use by Drupal. In order to route your email through Mailchimp
+        Transactional, you must configure at least one MailSystemInterface
         (other than mailchimp_transactional) to use "Mailchimp Transactional
-        mailer" in <a href=":link">Mail System</a>, or you will only be able 
+        mailer" in <a href=":link">Mail System</a>, or you will only be able
         to send Test emails through Mailchimp Transactional.',
         [':link' => $mail_system_path->toString()]
       ));
@@ -198,27 +163,27 @@ class AdminSettingsForm extends ConfigFormBase {
       '#collapsible' => TRUE,
       '#title' => $this->t('Email options'),
     ];
-    $form['email_options']['mailchimp_transactional_from'] = [
+    $form['email_options']['from'] = [
       '#title' => $this->t('From address'),
       '#type' => 'textfield',
       '#description' => $this->t(
-        'The sender email address. If this address has not been verified, 
-        messages will be queued and not sent until it is. This address will appear 
-        in the "from" field, and any emails sent through Mailchimp Transactional 
+        'The sender email address. If this address has not been verified,
+        messages will be queued and not sent until it is. This address will appear
+        in the "from" field, and any emails sent through Mailchimp Transactional
         with a "from" address will have that address moved to the Reply-To field.'
       ),
-      '#default_value' => $config->get('mailchimp_transactional_from_email'),
+      '#default_value' => $config->get('from_email'),
     ];
-    $form['email_options']['mailchimp_transactional_from_name'] = [
+    $form['email_options']['from_name'] = [
       '#type' => 'textfield',
       '#title' => $this->t('From name'),
-      '#default_value' => $config->get('mailchimp_transactional_from_name'),
+      '#default_value' => $config->get('from_name'),
       '#description' => $this->t('Optionally enter a from name to be used.'),
     ];
 
     $sub_accounts_options = [];
     if ($hasValidKey) {
-      $sub_accounts = $this->mailchimpTransactionalAPI->getSubAccounts();
+      $sub_accounts = $this->mailchimpTransactionalApi->getSubAccounts();
       if (!empty($sub_accounts)) {
         $sub_accounts_options = ['_none' => '-- Select --'];
         foreach ($sub_accounts as $account) {
@@ -230,11 +195,11 @@ class AdminSettingsForm extends ConfigFormBase {
     }
 
     if ($sub_accounts_options !== []) {
-      $form['email_options']['mailchimp_transactional_subaccount'] = [
+      $form['email_options']['subaccount'] = [
         '#type' => 'select',
         '#title' => $this->t('Subaccount'),
         '#options' => $sub_accounts_options,
-        '#default_value' => $config->get('mailchimp_transactional_subaccount'),
+        '#default_value' => $config->get('subaccount'),
         '#description' => $this->t('Choose a subaccount to send through.'),
       ];
     }
@@ -243,51 +208,51 @@ class AdminSettingsForm extends ConfigFormBase {
     foreach ($formats as $v => $format) {
       $options[$v] = $format->get('name');
     }
-    $form['email_options']['mailchimp_transactional_filter_format'] = [
+    $form['email_options']['filter_format'] = [
       '#type' => 'select',
       '#title' => $this->t('Input format'),
       '#description' => $this->t('If selected, the input format to apply to the message body before sending to the Mailchimp Transactional API.'),
       '#options' => $options,
-      '#default_value' => [$config->get('mailchimp_transactional_filter_format')],
+      '#default_value' => [$config->get('filter_format')],
     ];
     $form['send_options'] = [
       '#title' => $this->t('Send options'),
       '#type' => 'fieldset',
       '#collapsible' => TRUE,
     ];
-    $form['send_options']['mailchimp_transactional_track_opens'] = [
+    $form['send_options']['track_opens'] = [
       '#title' => $this->t('Track opens'),
       '#type' => 'checkbox',
       '#description' => $this->t('Whether or not to turn on open tracking for messages.'),
-      '#default_value' => $config->get('mailchimp_transactional_track_opens'),
+      '#default_value' => $config->get('track_opens'),
     ];
-    $form['send_options']['mailchimp_transactional_track_clicks'] = [
+    $form['send_options']['track_clicks'] = [
       '#title' => $this->t('Track clicks'),
       '#type' => 'checkbox',
       '#description' => $this->t('Whether or not to turn on click tracking for messages.'),
-      '#default_value' => $config->get('mailchimp_transactional_track_clicks'),
+      '#default_value' => $config->get('track_clicks'),
     ];
-    $form['send_options']['mailchimp_transactional_url_strip_qs'] = [
+    $form['send_options']['url_strip_qs'] = [
       '#title' => $this->t('Strip query string'),
       '#type' => 'checkbox',
       '#description' => $this->t('Whether or not to strip the query string from URLs when aggregating tracked URL data.'),
-      '#default_value' => $config->get('mailchimp_transactional_url_strip_qs'),
+      '#default_value' => $config->get('url_strip_qs'),
     ];
-    $form['send_options']['mailchimp_transactional_mail_key_blacklist'] = [
-      '#title' => $this->t('Content logging blacklist'),
+    $form['send_options']['mail_key_denylist'] = [
+      '#title' => $this->t('Content logging denylist'),
       '#type' => 'textarea',
       '#description' => $this->t('Comma delimited list of Drupal mail keys to exclude content logging for. CAUTION: Removing the default password reset key may expose a security risk.'),
-      '#default_value' => $config->get('mailchimp_transactional_mail_key_blacklist'),
+      '#default_value' => $config->get('mail_key_denylist'),
     ];
 
-    $form['send_options']['mailchimp_transactional_log_defaulted_sends'] = [
+    $form['send_options']['log_defaulted_sends'] = [
       '#title' => $this->t('Log sends from module/key pairs that are not registered independently in mailsystem.'),
       '#type' => 'checkbox',
       '#description' => $this->t('If you select Mailchimp Transactional as the site-wide default email sender in %mailsystem and check this box, any messages that are sent through Mailchimp Transactional using module/key pairs that are not specifically registered in mailsystem will cause a message to be written to the system log (type: Mailchimp Transactional, severity: info). Enable this to identify keys and modules for automated emails for which you would like to have more granular control. It is not recommended to leave this box checked for extended periods, as it slows Mailchimp Transactional and can clog your logs.',
         [
           '%mailsystem' => Link::fromTextAndUrl($this->t('Mail System'), $mail_system_path)->toString(),
         ]),
-      '#default_value' => $config->get('mailchimp_transactional_log_defaulted_sends'),
+      '#default_value' => $config->get('log_defaulted_sends'),
     ];
 
     $form['analytics'] = [
@@ -295,17 +260,17 @@ class AdminSettingsForm extends ConfigFormBase {
       '#collapsible' => TRUE,
       '#title' => $this->t('Google analytics'),
     ];
-    $form['analytics']['mailchimp_transactional_analytics_domains'] = [
+    $form['analytics']['analytics_domains'] = [
       '#title' => $this->t('Google analytics domains'),
       '#type' => 'textfield',
       '#description' => $this->t('One or more domains for which any matching URLs will automatically have Google Analytics parameters appended to their query string. Separate each domain with a comma.'),
-      '#default_value' => $config->get('mailchimp_transactional_analytics_domains'),
+      '#default_value' => $config->get('analytics_domains'),
     ];
-    $form['analytics']['mailchimp_transactional_analytics_campaign'] = [
+    $form['analytics']['analytics_campaign'] = [
       '#title' => $this->t('Google analytics campaign'),
       '#type' => 'textfield',
       '#description' => $this->t("The value to set for the utm_campaign tracking parameter. If this isn't provided the messages from address will be used instead."),
-      '#default_value' => $config->get('mailchimp_transactional_analytics_campaign'),
+      '#default_value' => $config->get('analytics_campaign'),
     ];
     $form['asynchronous_options'] = [
       '#title' => $this->t('Asynchronous options'),
@@ -315,32 +280,32 @@ class AdminSettingsForm extends ConfigFormBase {
         'id' => ['mailchimp-transactional-async-options'],
       ],
     ];
-    $form['asynchronous_options']['mailchimp_transactional_process_async'] = [
+    $form['asynchronous_options']['process_async'] = [
       '#title' => $this->t('Queue outgoing messages'),
       '#type' => 'checkbox',
       '#description' => $this->t('When set, emails will not be immediately sent. Instead, they will be placed in a queue and sent when cron is triggered.'),
-      '#default_value' => $config->get('mailchimp_transactional_process_async'),
+      '#default_value' => $config->get('process_async'),
     ];
-    $form['asynchronous_options']['mailchimp_transactional_batch_log_queued'] = [
+    $form['asynchronous_options']['batch_log_queued'] = [
       '#title' => $this->t('Log queued emails'),
       '#type' => 'checkbox',
       '#description' => $this->t('Do you want to create a log entry when an email is queued to be sent?'),
-      '#default_value' => $config->get('mailchimp_transactional_batch_log_queued'),
+      '#default_value' => $config->get('batch_log_queued'),
       '#states' => [
         'invisible' => [
-          ':input[name="mailchimp_transactional_process_async"]' => ['checked' => FALSE],
+          ':input[name="process_async"]' => ['checked' => FALSE],
         ],
       ],
     ];
-    $form['asynchronous_options']['mailchimp_transactional_queue_worker_timeout'] = [
+    $form['asynchronous_options']['queue_worker_timeout'] = [
       '#title' => $this->t('Queue worker timeout'),
       '#type' => 'textfield',
       '#size' => '12',
       '#description' => $this->t('Number of seconds to spend processing messages during cron. Zero or negative values are not allowed.'),
-      '#default_value' => $config->get('mailchimp_transactional_queue_worker_timeout'),
+      '#default_value' => $config->get('queue_worker_timeout'),
       '#states' => [
         'invisible' => [
-          ':input[name="mailchimp_transactional_process_async"]' => ['checked' => FALSE],
+          ':input[name="process_async"]' => ['checked' => FALSE],
         ],
       ],
     ];
@@ -360,8 +325,8 @@ class AdminSettingsForm extends ConfigFormBase {
   public function validateForm(array &$form, FormStateInterface $form_state) {
     // Don't save the API key if it's overridden.
     $config = $this->configFactory()->get('mailchimp_transactional.settings');
-    if ($config->hasOverrides('mailchimp_transactional_api_key')) {
-      $form_state->unsetValue('mailchimp_transactional_api_key');
+    if ($config->hasOverrides('api_key')) {
+      $form_state->unsetValue('api_key');
     }
   }
 
@@ -408,21 +373,21 @@ class AdminSettingsForm extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->configFactory()->getEditable('mailchimp_transactional.settings')
-      ->set('mailchimp_transactional_api_key', $form_state->getValue('mailchimp_transactional_api_key'))
-      ->set('mailchimp_transactional_from_email', $form_state->getValue('mailchimp_transactional_from'))
-      ->set('mailchimp_transactional_from_name', $form_state->getValue('mailchimp_transactional_from_name'))
-      ->set('mailchimp_transactional_subaccount', $form_state->getValue('mailchimp_transactional_subaccount'))
-      ->set('mailchimp_transactional_filter_format', $form_state->getValue('mailchimp_transactional_filter_format'))
-      ->set('mailchimp_transactional_track_opens', $form_state->getValue('mailchimp_transactional_track_opens'))
-      ->set('mailchimp_transactional_track_clicks', $form_state->getValue('mailchimp_transactional_track_clicks'))
-      ->set('mailchimp_transactional_url_strip_qs', $form_state->getValue('mailchimp_transactional_url_strip_qs'))
-      ->set('mailchimp_transactional_mail_key_blacklist', $form_state->getValue('mailchimp_transactional_mail_key_blacklist'))
-      ->set('mailchimp_transactional_log_defaulted_sends', $form_state->getValue('mailchimp_transactional_log_defaulted_sends'))
-      ->set('mailchimp_transactional_analytics_domains', $form_state->getValue('mailchimp_transactional_analytics_domains'))
-      ->set('mailchimp_transactional_analytics_campaign', $form_state->getValue('mailchimp_transactional_analytics_campaign'))
-      ->set('mailchimp_transactional_process_async', $form_state->getValue('mailchimp_transactional_process_async'))
-      ->set('mailchimp_transactional_batch_log_queued', $form_state->getValue('mailchimp_transactional_batch_log_queued'))
-      ->set('mailchimp_transactional_queue_worker_timeout', $form_state->getValue('mailchimp_transactional_queue_worker_timeout'))
+      ->set('api_key', $form_state->getValue('api_key'))
+      ->set('from_email', $form_state->getValue('from'))
+      ->set('from_name', $form_state->getValue('from_name'))
+      ->set('subaccount', $form_state->getValue('subaccount'))
+      ->set('filter_format', $form_state->getValue('filter_format'))
+      ->set('track_opens', $form_state->getValue('track_opens'))
+      ->set('track_clicks', $form_state->getValue('track_clicks'))
+      ->set('url_strip_qs', $form_state->getValue('url_strip_qs'))
+      ->set('mail_key_denylist', $form_state->getValue('mail_key_denylist'))
+      ->set('log_defaulted_sends', $form_state->getValue('log_defaulted_sends'))
+      ->set('analytics_domains', $form_state->getValue('analytics_domains'))
+      ->set('analytics_campaign', $form_state->getValue('analytics_campaign'))
+      ->set('process_async', $form_state->getValue('process_async'))
+      ->set('batch_log_queued', $form_state->getValue('batch_log_queued'))
+      ->set('queue_worker_timeout', $form_state->getValue('queue_worker_timeout'))
       ->save();
   }
 

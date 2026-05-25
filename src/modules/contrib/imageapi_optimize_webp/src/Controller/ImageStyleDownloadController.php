@@ -33,17 +33,20 @@ class ImageStyleDownloadController extends CoreImageStyleDownloadController {
   /**
    * {@inheritdoc}
    */
-  public function deliver(Request $request, $scheme, ImageStyleInterface $image_style) {
+  public function deliver(Request $request, $scheme, ImageStyleInterface $image_style, string $required_derivative_scheme) {
     $target = $request->query->get('file');
+    if (!$target) {
+      throw new NotFoundHttpException();
+    }
     $path_info = pathinfo($target);
     // If .webp file, look for image to derive from.
-    if ($path_info['extension'] == 'webp') {
+    if (isset($path_info['extension']) && $path_info['extension'] === 'webp') {
       $image_uri = $scheme . '://' . $target;
       // Continue processing if source found, else throw NotFoundHttpException.
       if ($source_uri = $this->lookupSourceImage($image_uri)) {
         // Replace webp image with source image and call parent:deliver().
         $request->query->set('file', str_replace($scheme . '://', '', $source_uri));
-        $source_response = parent::deliver($request, $scheme, $image_style);
+        $source_response = parent::deliver($request, $scheme, $image_style, $required_derivative_scheme);
         $derivative_uri = $image_style->buildUri($image_uri);
         // If parent:deliver() returns BinaryFileResponse, we'll replace
         // the BinaryFileResponse with one containing the .webp image
@@ -54,7 +57,7 @@ class ImageStyleDownloadController extends CoreImageStyleDownloadController {
             $uri = $image->getSource();
             $headers = [
               'Content-Type' => 'image/webp',
-              'Content-Length' => filesize($image->getToolkit()->getResource()),
+              'Content-Length' => $image->getFileSize(),
             ];
             return new BinaryFileResponse($uri, 200, $headers, $scheme !== 'private');
           }
@@ -68,7 +71,7 @@ class ImageStyleDownloadController extends CoreImageStyleDownloadController {
       throw new NotFoundHttpException();
     }
     else {
-      return parent::deliver($request, $scheme, $image_style);
+      return parent::deliver($request, $scheme, $image_style, $required_derivative_scheme);
     }
   }
 

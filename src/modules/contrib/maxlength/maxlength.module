@@ -115,6 +115,8 @@ function maxlength_field_widget_third_party_settings_form(WidgetInterface $plugi
 
     return $element;
   }
+  // Always return an array, even if there’s nothing to show.
+  return [];
 }
 
 /**

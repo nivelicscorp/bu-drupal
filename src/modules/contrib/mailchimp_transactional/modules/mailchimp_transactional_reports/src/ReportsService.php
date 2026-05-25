@@ -1,16 +1,12 @@
 <?php
 
 declare(strict_types=1);
-/**
- * @file
- * Contains \Drupal\mailchimp_transactional_reports\ReportsService.
- */
 
 namespace Drupal\mailchimp_transactional_reports;
 
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\mailchimp_transactional\APIInterface;
+use Drupal\mailchimp_transactional\ApiInterface;
 
 /**
  * Mailchimp Transactional Reports service.
@@ -20,7 +16,7 @@ class ReportsService implements ReportsServiceInterface {
   /**
    * The Mailchimp Transactional API service.
    *
-   * @var \Drupal\mailchimp_transactional\APIInterface
+   * @var \Drupal\mailchimp_transactional\ApiInterface
    */
   protected $mailchimpTransactionalApi;
 
@@ -42,14 +38,14 @@ class ReportsService implements ReportsServiceInterface {
   /**
    * Constructs the service.
    *
-   * @param \Drupal\mailchimp_transactional\APIInterface $mailchimp_transactional_api
+   * @param \Drupal\mailchimp_transactional\ApiInterface $mailchimp_transactional_api
    *   The Mailchimp Transactional API service.
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The config factory service.
    * @param \Drupal\Core\Cache\CacheBackendInterface $cache
    *   The mailchimp_transactional cache service.
    */
-  public function __construct(APIInterface $mailchimp_transactional_api, ConfigFactoryInterface $config_factory, CacheBackendInterface $cache) {
+  public function __construct(ApiInterface $mailchimp_transactional_api, ConfigFactoryInterface $config_factory, CacheBackendInterface $cache) {
     $this->mailchimpTransactionalApi = $mailchimp_transactional_api;
     $this->config = $config_factory;
     $this->cache = $cache;

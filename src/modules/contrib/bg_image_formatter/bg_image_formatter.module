@@ -8,6 +8,26 @@
 declare(strict_types = 1);
 
 use Drupal\Core\Ajax\AddCssCommand;
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function bg_image_formatter_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the bg_image_formatter module.
+    case 'help.page.bg_image_formatter':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This module provides an image formatter that allows you
+      to set an image in background of a tag.
+      The images are from a field of an entity and not from a configuration page or
+      a custom entity or something else, so it is very easy to setup and manage.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
 
 /**
  * Implements hook_ajax_render_alter().

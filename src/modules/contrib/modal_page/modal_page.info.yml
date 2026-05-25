@@ -1,12 +1,15 @@
-name: Modal Page
-description: Create modal for specifics pages.
+name: Modal
+description: Modal project allows you to add dialogs to your site for lightboxes, user notifications, or completely custom content
 type: module
-# core: '8.x'
+core_version_requirement: ^10 || ^11
 package: User interface
-configure: modal_page.default
+configure: modal_page.settings
+dependencies:
+  - drupal:filter
+  - drupal:datetime
+  - 'js_cookie:js_cookie'
 
-# Information added by Drupal.org packaging script on 2017-11-27
-version: '8.x-2.0'
-core: '8.x'
+# Information added by Drupal.org packaging script on 2026-04-25
+version: '5.1.12'
 project: 'modal_page'
-datestamp: 1511806993
+datestamp: 1777125226

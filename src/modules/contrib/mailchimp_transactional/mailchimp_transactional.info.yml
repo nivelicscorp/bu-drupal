@@ -2,14 +2,15 @@ name: Mailchimp Transactional
 type: module
 description: 'Allow for site emails to be sent through Mailchimp Transactional.'
 package: Mailchimp Transactional
-core_version_requirement: ^9 || ^10
+core_version_requirement: ^9 || ^10 || ^11
+php: 7.4
 
 configure: mailchimp_transactional.admin
 
 dependencies:
   - mailsystem:mailsystem
 
-# Information added by Drupal.org packaging script on 2023-11-13
-version: '1.1.2'
+# Information added by Drupal.org packaging script on 2025-11-03
+version: '1.2.0'
 project: 'mailchimp_transactional'
-datestamp: 1699888220
+datestamp: 1762178678

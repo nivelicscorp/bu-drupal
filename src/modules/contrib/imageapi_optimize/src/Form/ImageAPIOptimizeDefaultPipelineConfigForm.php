@@ -28,7 +28,7 @@ class ImageAPIOptimizeDefaultPipelineConfigForm extends ConfigFormBase {
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state, Request $request = NULL) {
+  public function buildForm(array $form, FormStateInterface $form_state, ?Request $request = NULL) {
     $config = $this->config('imageapi_optimize.settings');
     $form['default_pipeline'] = [
       '#type' => 'select',

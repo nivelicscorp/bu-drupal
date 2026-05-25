@@ -11,3 +11,4 @@ version: '8.x-2.1'
 core: '8.x'
 project: 'media_entity_slideshare'
 datestamp: 1519219994
+core_version_requirement: ^10 || ^11

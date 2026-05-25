@@ -1,3 +1,4 @@
+(function(){if(typeof jQuery!=="undefined"){if(typeof jQuery.type==="undefined"){jQuery.type=function(o){if(o==null)return o+"";var t={};"Boolean Number String Function Array Date RegExp Object Error Symbol".split(" ").forEach(function(n){t["[object "+n+"]"]=n.toLowerCase()});return typeof o==="object"||typeof o==="function"?t[Object.prototype.toString.call(o)]||"object":typeof o}}if(typeof jQuery.isFunction==="undefined"){jQuery.isFunction=function(o){return typeof o==="function"}}if(typeof jQuery.isArray==="undefined"){jQuery.isArray=Array.isArray}}})();
 /*
      _ _      _       _
  ___| (_) ___| | __  (_)___

@@ -62,7 +62,7 @@ class Twitter implements SocialNetworkInterface {
     $url = Url::fromUri(self::TWITTER_URL, $options);
     $link = [
       'url' => $url,
-      'title' => ['#markup' => '<i class="fa fa-twitter"></i><span class="visually-hidden">' . $this->getLabel() . '</span>'],
+      'title' => ['#markup' => '<i class="fa-brands fa-x-twitter"></i><span class="visually-hidden">' . $this->getLabel() . '</span>'],
       'attributes' => $this->getLinkAttributes($this->getLabel()),
     ];
 

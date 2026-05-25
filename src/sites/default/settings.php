@@ -1,54 +1,38 @@
 <?php
 
-/**
- * Load services definition file.
- */
-$settings['container_yamls'][] = __DIR__ . '/services.yml';
+// phpcs:ignoreFile
 
-/**
- * Include the Pantheon-specific settings file.
- *
- * n.b. The settings.pantheon.php file makes some changes
- *      that affect all envrionments that this site
- *      exists in.  Always include this file, even in
- *      a local development environment, to insure that
- *      the site settings remain consistent.
- */
-include __DIR__ . "/settings.pantheon.php";
+$databases['default']['default'] = [
+  'database' => getenv('DB_NAME'),
+  'username' => getenv('DB_USER'),
+  'password' => getenv('DB_PASSWORD'),
+  'host' => getenv('DB_HOST'),
+  'port' => '3306',
+  'driver' => 'mysql',
+  'namespace' => 'Drupal\mysql\Driver\Database\mysql',
+  'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/',
+  'prefix' => '',
+  'collation' => 'utf8mb4_general_ci',
+];
 
-/**
- * If there is a local settings file, then include it
- */
-$local_settings = __DIR__ . "/settings.local.php";
-if (file_exists($local_settings)) {
-  include $local_settings;
-}
-if (isset($_ENV['PANTHEON_ENVIRONMENT']) && php_sapi_name() != 'cli') {
-  // Redirect to https://$primary_domain in the Live environment
-  if ($_ENV['PANTHEON_ENVIRONMENT'] === 'live') {
-    /** Replace www.example.com with your registered domain name */
-    $primary_domain = 'bu.com.co';
-  }
-  else {
-    // Redirect to HTTPS on every Pantheon environment.
-    $primary_domain = $_SERVER['HTTP_HOST'];
-  }
+$settings['hash_salt'] = 'nB5tu2TTkVUVR3p6QYJSKgLFHQL26K2bHz3-TQq3wicioOwkJs-BZYy4WrVokHtH7ffQwaeLwr';
 
-  if ($_SERVER['HTTP_HOST'] != $primary_domain
-      || !isset($_SERVER['HTTP_USER_AGENT_HTTPS'])
-      || $_SERVER['HTTP_USER_AGENT_HTTPS'] != 'ON' ) {
+// $settings['config_sync_directory'] = '../config/sync';
+$settings['config_sync_directory'] = '/opt/drupal/web/sites/default/config/sync';
 
-    # Name transaction "redirect" in New Relic for improved reporting (optional)
-    if (extension_loaded('newrelic')) {
-      newrelic_name_transaction("redirect");
-    }
+// $config['elasticsearch_connector.cluster.elasticsearch']['url'] = getenv('ELASTICSEARCH_URL');
 
-    header('HTTP/1.0 301 Moved Permanently');
-    header('Location: https://'. $primary_domain . $_SERVER['REQUEST_URI']);
-    exit();
-  }
-  // Drupal 8 Trusted Host Settings
-  if (is_array($settings)) {
-    $settings['trusted_host_patterns'] = array('^'. preg_quote($primary_domain) .'$');
-  }
-}
+$settings['file_private_path'] = '../private/files';
+
+// $settings['trusted_host_patterns'] = [
+//   '^bu\.com\.co$',
+//   '^www\.bu\.com\.co$',
+// ];
+
+// if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+//   $base_url = 'https://www.bu.com.co';
+// } else {
+//   $base_url = 'http://www.bu.com.co';
+// }
+$cookie_domain = "localhost";
+

@@ -11,3 +11,4 @@ version: '8.x-1.0-beta1'
 core: '8.x'
 project: 'media_entity_icon'
 datestamp: 1502885357
+core_version_requirement: ^10 || ^11

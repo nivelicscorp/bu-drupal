@@ -1,0 +1,22 @@
+<div class="facebook-embedded-content">
+  {% if is_iframe %}
+    {{ url|raw }}
+  {% else %}
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/{{- fb_sdk_langcode -}}/sdk.js#xfbml=1&version=v11.0" {{ script_attributes|without('src', 'async', 'defer') }}></script>
+
+    {# Add a placeholder to the Facebook media, so that in CKEditor
+    it doesn't display as an empty square. #}
+    <div class="fb-media-placeholder-loading" style="padding:2em;background-color:#FBFBFB;text-align:center;">{{ url }}</div>
+    <script>
+    var placeholders = document.querySelectorAll(".fb-media-placeholder-loading");
+    for (var i = 0; i < placeholders.length; ++i) {
+      placeholders[i].style.display = "none";
+    }
+    </script>
+
+    <div class="fb-post"
+        data-href="{{ url }}"
+        data-width="500"
+    ></div>
+  {% endif %}
+</div>

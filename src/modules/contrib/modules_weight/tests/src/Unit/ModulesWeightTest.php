@@ -107,7 +107,7 @@ class ModulesWeightTest extends UnitTestCase {
    *
    * @see testGetModulesList()
    */
-  public function providerGetModulesList() {
+  public static function providerGetModulesList() {
 
     // Show core modules.
     $show_core_modules['modules_weight'] = [

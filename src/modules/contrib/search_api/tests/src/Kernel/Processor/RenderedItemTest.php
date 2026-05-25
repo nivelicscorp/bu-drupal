@@ -22,6 +22,7 @@ use Drupal\user\Entity\User;
 use Drupal\user\UserInterface;
 
 // cspell:ignore knoten körper titel zusammenfassung
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 /**
  * Tests the "Rendered item" processor.
@@ -30,6 +31,7 @@ use Drupal\user\UserInterface;
  *
  * @see \Drupal\search_api\Plugin\search_api\processor\RenderedItem
  */
+#[RunTestsInSeparateProcesses]
 class RenderedItemTest extends ProcessorTestBase {
 
   use ContentTypeCreationTrait;
@@ -146,7 +148,7 @@ class RenderedItemTest extends ProcessorTestBase {
         'roles' => ['anonymous'],
         'view_mode' => [
           'entity:node' => [
-            'page' => 'full',
+            'page' => 'search_index',
             'article' => 'teaser',
           ],
           'entity:user' => [
@@ -255,7 +257,7 @@ class RenderedItemTest extends ProcessorTestBase {
       $this->assertInstanceOf(TextValueInterface::class, $values[0], "$type item $entity_id rendered value is properly wrapped in a text value object.");
       $field_value = $values[0]->getText();
       $this->assertIsString($field_value, "$type item $entity_id rendered value is a string.");
-      $this->assertEquals(1, count($values), "$type item $entity_id rendered value is a single value.");
+      $this->assertCount(1, $values, "$type item $entity_id rendered value is a single value.");
 
       switch ($datasource_id) {
         case 'entity:node':
@@ -291,12 +293,9 @@ class RenderedItemTest extends ProcessorTestBase {
     // when the processor was broken, because the schema metadata was also
     // adding it to the output.
     $nid = $node->id();
-    // The role="article" ARIA attribute was removed in Drupal 10.1. To be able
-    // to run this test both against earlier and later versions of Drupal Core,
-    // we need to use a regular expression.
     $this->assertStringContainsString('<article>', $field_value, 'Node item ' . $nid . ' not rendered in theme Stable.');
     if ($node->bundle() === 'page') {
-      $this->assertStringNotContainsString('>Read more<', $field_value, 'Node item ' . $nid . " rendered in view-mode \"full\".");
+      $this->assertStringNotContainsString('>Read more<', $field_value, 'Node item ' . $nid . " rendered in view-mode \"search_index\".");
       $this->assertStringContainsString('>' . $node->get('body')->getValue()[0]['value'] . '<', $field_value, 'Node item ' . $nid . ' does not have rendered body inside HTML-Tags.');
     }
     else {
@@ -428,7 +427,7 @@ class RenderedItemTest extends ProcessorTestBase {
     $expected = [
       'config' => [
         'core.entity_view_mode.comment.full',
-        'core.entity_view_mode.node.full',
+        'core.entity_view_mode.node.search_index',
         'core.entity_view_mode.node.teaser',
         'core.entity_view_mode.user.compact',
       ],
@@ -438,7 +437,7 @@ class RenderedItemTest extends ProcessorTestBase {
     EntityViewMode::load('node.teaser')->delete();
     $expected = [
       'entity:node' => [
-        'page' => 'full',
+        'page' => 'search_index',
       ],
       'entity:user' => [
         'user' => 'compact',
@@ -465,7 +464,7 @@ class RenderedItemTest extends ProcessorTestBase {
       $config['view_mode'] = [
         'entity:node' => [
           ':default' => 'teaser',
-          'page' => 'full',
+          'page' => 'search_index',
         ],
       ];
       $field->setConfiguration($config);
@@ -503,15 +502,83 @@ class RenderedItemTest extends ProcessorTestBase {
       $field = $item->getField('rendered_item');
       $values = $field->getValues();
       $field_value = $values[0]->getText();
-      // Nodes of type "page" should use the "full" view mode while all others
-      // should use the "teaser" view mode.
+      // Nodes of type "page" should use the "search_index" view mode while all
+      // others should use the "teaser" view mode.
       if ($item->getOriginalObject()->getEntity()->bundle() === 'page') {
         $this->assertStringNotContainsString('>Read more<', $field_value, "Node item {$item->getId()} rendered in view-mode \"teaser\".");
       }
       else {
-        $this->assertStringContainsString('>Read more<', $field_value, "Node item {$item->getId()} rendered in view-mode \"full\".");
+        $this->assertStringContainsString('>Read more<', $field_value, "Node item {$item->getId()} rendered in view-mode \"search_index\".");
       }
     }
+  }
+
+  /**
+   * Tests that exceptions during rendering are handled correctly.
+   *
+   * @see search_api_test_preprocess_node()
+   */
+  public function testExceptionDuringRendering(): void {
+    // As the nodes were just saved, they are all already queued for
+    // post-request indexing. Since we want to test with just a single one,
+    // remove all others and then re-save our test node to make extra-sure that
+    // it's queued.
+    $post_request_indexing = \Drupal::getContainer()->get('search_api.post_request_indexing');
+    $other_item_ids = [
+      'entity:node/2:en',
+      'entity:node/3:en',
+      'entity:user/0:en',
+    ];
+    $post_request_indexing->removeFromIndexing($this->index->id(), $other_item_ids);
+    $this->index->getTrackerInstance()->trackItemsIndexed($other_item_ids);
+    $node = $this->nodes[1];
+    $node->save();
+
+    // First index and make sure there is no error and the "rendered_item" field
+    // values gets indexed correctly.
+    $post_request_indexing->destruct();
+    $remaining = $this->index->getTrackerInstance()->getRemainingItems();
+    $this->assertEquals([], $remaining);
+    $get_indexed_values = function (): array {
+      return \Drupal::database()->select("search_api_db_{$this->index->id()}", 't')
+        ->fields('t', ['rendered_item', 'rendered_item_1'])
+        ->condition('item_id', 'entity:node/1:en')
+        ->execute()
+        ->fetchAssoc();
+    };
+    $values = $get_indexed_values();
+    $this->assertStringContainsString('node 1', $values['rendered_item']);
+    $this->assertStringContainsString('node 1', $values['rendered_item_1']);
+
+    // Now make search_api_test_preprocess_node() throw an exception.
+    \Drupal::keyValue('search_api_test')->set('preprocess_node_error', TRUE);
+
+    // Re-save the node again which should queue it for post-request indexing.
+    $node->save();
+    $remaining = $this->index->getTrackerInstance()->getRemainingItems();
+    $this->assertEquals(['entity:node/1:en'], $remaining);
+
+    // Trigger post-request indexing: Two errors should be logged (one for each
+    // field) and the two "rendered_item" fields should now be empty.
+    $this->logger->setExpectedErrors(2);
+    $post_request_indexing->destruct();
+    $this->logger->assertAllExpectedErrorsEncountered();
+    $this->assertFalse($post_request_indexing->isIndexingActive());
+    $values = $get_indexed_values();
+    $this->assertEquals(['rendered_item' => NULL, 'rendered_item_1' => NULL], $values);
+
+    // Even though the field values were sent to the server, due to the warnings
+    // set on the item it should not have been marked as successfully indexed.
+    $remaining = $this->index->getTrackerInstance()->getRemainingItems();
+    $this->assertEquals(['entity:node/1:en'], $remaining);
+
+    // Running cron should still produce the errors but mark the item as
+    // indexed.
+    $this->logger->setExpectedErrors(2);
+    search_api_cron();
+    $this->logger->assertAllExpectedErrorsEncountered();
+    $remaining = $this->index->getTrackerInstance()->getRemainingItems();
+    $this->assertEquals([], $remaining);
   }
 
 }

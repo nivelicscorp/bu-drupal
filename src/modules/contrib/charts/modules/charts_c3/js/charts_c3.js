@@ -1,22 +1,26 @@
-/**
- * @file
- * JavaScript integration between C3 and Drupal.
- */
-(function ($) {
-  'use strict';
+/* global c3 */
+(function (Drupal, once) {
+  // Create a registry to store C3 instances.
+  Drupal.c3Charts = Drupal.c3Charts || { instances: {} };
 
   Drupal.behaviors.chartsC3 = {
-    attach: function (context, settings) {
+    attach(context) {
+      const contents = new Drupal.Charts.Contents();
+      once('charts-c3', '.charts-c3', context).forEach(function (element) {
+        const chartId = element.id;
+        const config = contents.getData(chartId);
 
-      $('.charts-c3').each(function (param) {
-        var chartId = $(this).attr('id');
-        $('#' + chartId).once().each(function () {
-          if ($(this).attr('data-chart')) {
-            var c3Chart = $(this).attr('data-chart');
-            c3.generate(JSON.parse(c3Chart));
-          }
-        });
+        // Store the generated instance in our registry.
+        Drupal.c3Charts.instances[chartId] = c3.generate(config);
+
+        if (
+          element.nextElementSibling &&
+          element.nextElementSibling.hasAttribute('data-charts-debug-container')
+        ) {
+          element.nextElementSibling.querySelector('code').innerText =
+            JSON.stringify(config, null, ' ');
+        }
       });
-    }
+    },
   };
-}(jQuery));
+})(Drupal, once);

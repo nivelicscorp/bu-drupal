@@ -117,17 +117,11 @@ function config_pages_theme_suggestions_config_pages(array $variables) {
 }
 
 /**
- * Prepares variables for config page templates.
+ * Implements hook_preprocess_HOOK() for config_pages templates.
  *
  * Default template: config-pages.html.twig.
- *
- * @param array $variables
- *   An associative array containing:
- *   - elements: An array of elements to display in view mode.
- *   - config_pages: The config_pages object.
- *   - view_mode: View mode; e.g., 'full', 'teaser'...
  */
-function template_preprocess_config_pages(array &$variables) {
+function config_pages_preprocess_config_pages(array &$variables): void {
   $variables['view_mode'] = $variables['elements']['#view_mode'];
   $variables['config_pages'] = $variables['elements']['#config_pages'];
 
@@ -152,11 +146,11 @@ function config_pages_menu_links_discovered_alter(&$links) {
     $menu_path = $page_type->menu['path'];
     $title = $page_type->label();
     $parent_route_name = config_pages_find_parent_route_name($menu_path);
-    $description = !empty($page_type->menu['description']) ? t($page_type->menu['description']) : '';
+    $description = !empty($page_type->menu['description']) ? $page_type->menu['description'] : '';
     $weight = !empty($page_type->menu['weight']) ? $page_type->menu['weight'] : 0;
 
     $links['config_pages.' . $bundle] = [
-      'title' => t($title),
+      'title' => $title,
       'description' => $description,
       'parent' => $parent_route_name,
       'route_name' => 'config_pages.' . $bundle,

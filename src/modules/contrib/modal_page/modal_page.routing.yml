@@ -4,15 +4,7 @@ modal_page.settings:
     _title: 'Modal Page Settings'
     _form: 'Drupal\modal_page\Form\ModalPageSettingsForm'
   requirements:
-    _permission: 'access content'
-
-entity.modal_page_modal.canonical:
-  path: '/admin/structure/modal/{modal_page_modal}'
-  defaults:
-    _entity_view: 'modal_page_modal'
-    _title: 'Modal'
-  requirements:
-    _entity_access: 'modal_page_modal.view'
+    _permission: 'administer modal page'
 
 modal_page.default:
   path: '/admin/structure/modal'
@@ -20,28 +12,40 @@ modal_page.default:
     _entity_list: 'modal_page_modal'
     _title: 'Modal'
   requirements:
-    _permission: 'view modal entity'
+    _permission: 'administer modal page'
 
-modal_page.add_modal:
-  path: '/admin/structure/modal/add'
+modal_page.help:
+  path: '/admin/modal/help'
   defaults:
-    _entity_form: modal_page_modal.add
-    _title: 'Add Modal'
+    _controller: '\Drupal\modal_page\Controller\ModalHelpController::index'
+    _title: 'Help'
   requirements:
-    _entity_create_access: 'modal_page_modal'
+    _permission: 'administer modal page'
 
-entity.modal_page_modal.edit_form:
-  path: '/admin/structure/modal/{modal_page_modal}/edit'
+modal_page.enable_bootstrap:
+  path: '/modal-page/ajax/enable-bootstrap'
   defaults:
-    _entity_form: modal_page_modal.edit
-    _title: 'Edit Modal'
+    _title: 'Enable Bootstrap Automatically'
+    _controller: '\Drupal\modal_page\Controller\ModalAjaxController::enableBootstrapAutomatically'
   requirements:
-    _entity_access: 'modal_page_modal.edit'
+    _permission: 'administer modal page'
 
-entity.modal_page_modal.delete_form:
-  path: '/admin/structure/modal/{modal_page_modal}/delete'
+modal_page.hook_modal_submit:
+  path: '/modal/ajax/hook-modal-submit'
   defaults:
-    _entity_form: modal_page_modal.delete
-    _title: 'Delete Modal'
+    _title: 'Modal Submit'
+    _controller: '\Drupal\modal_page\Controller\ModalAjaxController::hookModalSubmit'
   requirements:
-    _entity_access: 'modal_page_modal.delete'
+    _permission: 'access content'
+    _access: 'TRUE'
+
+modal_page.cron:
+  path: '/modal-page/cron/{cron_key}'
+  defaults:
+    _title: 'Modal Cron'
+    _controller: '\Drupal\modal_page\Controller\ModalCronController'
+    _description: 'Run the modal cron process'
+  options:
+    no_cache: TRUE
+  requirements:
+    _custom_access: '\Drupal\modal_page\Controller\ModalCronController::access'

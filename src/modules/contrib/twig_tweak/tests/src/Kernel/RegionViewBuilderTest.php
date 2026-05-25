@@ -57,6 +57,9 @@ final class RegionViewBuilderTest extends AbstractTestCase {
    * Test callback.
    */
   public function testRegionViewBuilder(): void {
+    if (version_compare(\Drupal::VERSION, '11.1.dev', '<')) {
+      $this->markTestSkipped();
+    }
 
     $view_builder = $this->container->get('twig_tweak.region_view_builder');
     /** @var \Drupal\Core\Render\RendererInterface $renderer */
@@ -81,19 +84,19 @@ final class RegionViewBuilderTest extends AbstractTestCase {
       'public_block' => [
         '#cache' =>
           [
-            'keys' => [
-              'entity_view',
-              'block',
-              'public_block',
-            ],
             'contexts' => [],
             'tags' => [
               'block_view',
               'config:block.block.public_block',
             ],
             'max-age' => Cache::PERMANENT,
+            'keys' => [
+              'entity_view',
+              'block',
+              'public_block',
+            ],
           ],
-        '#weight' => NULL,
+        '#weight' => 0,
         '#lazy_builder' => [
           'Drupal\\block\\BlockViewBuilder::lazyBuilder',
           [

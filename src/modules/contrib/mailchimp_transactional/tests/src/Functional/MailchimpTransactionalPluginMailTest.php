@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Drupal\mailchimp_transactional\Plugin\Mail\TestMail;
 use Drupal\Tests\mailchimp_transactional\Functional\TestBase;
+use Drupal\mailchimp_transactional\Plugin\Mail\TestMail;
 
 /**
  * Test that the mail plugin behaves reliably.
@@ -28,6 +28,7 @@ class MailchimpTransactionalPluginMailTest extends TestBase {
       'Recipient Two <recipient.two@example.com>,' .
       'Recipient Three <recipient.three@example.com>';
     $response = $mail_system->mail($message);
+
     $this->assertTrue($response, 'Tested sending message to multiple recipients.');
   }
 
@@ -38,7 +39,7 @@ class MailchimpTransactionalPluginMailTest extends TestBase {
    *   Mail but with mock data instead of real API data, via TestService.
    */
   private function getMailchimpTransactionalMail() {
-    return new TestMail();
+    return TestMail::create($this->container, [], 'mailchimp_transactional_test_mail', []);
   }
 
 }

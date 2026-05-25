@@ -2,27 +2,27 @@
 
 namespace Drupal\modal_page\Form;
 
-use Drupal\Core\Entity\ContentEntityConfirmFormBase;
+use Drupal\Core\Entity\EntityConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 
 /**
- * Class: ModalDeleteForm.
+ * Builds the form to delete Modal entities.
  */
-class ModalDeleteForm extends ContentEntityConfirmFormBase {
+class ModalDeleteForm extends EntityConfirmFormBase {
 
   /**
    * {@inheritdoc}
    */
   public function getQuestion() {
-    return $this->t('Are you sure you want to delete entity %title?', ['%title' => $this->entity->label()]);
+    return $this->t('Are you sure you want to delete %name?', ['%name' => $this->entity->label()]);
   }
 
   /**
    * {@inheritdoc}
    */
   public function getCancelUrl() {
-    return new Url('modal_page.default');
+    return new Url('entity.modal.collection');
   }
 
   /**
@@ -34,26 +34,18 @@ class ModalDeleteForm extends ContentEntityConfirmFormBase {
 
   /**
    * {@inheritdoc}
-   *
-   * Delete the entity and log the event. logger() replaces the watchdog.
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $entity = $this->getEntity();
-    $entity->delete();
+    $this->entity->delete();
 
-    $this->logger('modal_page')->notice('@type: deleted %title.',
-      [
+    $this->messenger()->addMessage(
+      $this->t('content @type: deleted @label.', [
         '@type' => $this->entity->bundle(),
-        '%title' => $this->entity->label(),
-      ]);
+        '@label' => $this->entity->label(),
+      ])
+    );
 
-    drupal_set_message(t('Modal %title deleted.',
-      [
-        '@type' => $this->entity->bundle(),
-        '%title' => $this->entity->label(),
-      ]));
-
-    $form_state->setRedirect('modal_page.default');
+    $form_state->setRedirectUrl($this->getCancelUrl());
   }
 
 }

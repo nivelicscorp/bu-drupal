@@ -2,6 +2,7 @@
 
 namespace Drupal\config_pages;
 
+use Drupal\config_pages\Entity\ConfigPagesType;
 use Drupal\Core\Entity\EntityForm;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Form\FormStateInterface;
@@ -44,6 +45,13 @@ class ConfigPagesTypeForm extends EntityForm {
   protected $messenger;
 
   /**
+   * The config pages context plugin manager.
+   *
+   * @var \Drupal\config_pages\ConfigPagesContextManagerInterface
+   */
+  protected $configPagesContextManager;
+
+  /**
    * Constructs a ConfigPagesForm object.
    *
    * @param \Drupal\Core\Path\PathValidatorInterface $path_validator
@@ -52,13 +60,19 @@ class ConfigPagesTypeForm extends EntityForm {
    *   The router interface.
    * @param \Drupal\Core\Messenger\MessengerInterface $messenger
    *   Messenger.
+   * @param \Drupal\config_pages\ConfigPagesContextManagerInterface $config_pages_context_manager
+   *   The config pages context plugin manager.
    */
-  public function __construct(PathValidatorInterface $path_validator,
-                              RouteBuilderInterface $router_builder,
-                              MessengerInterface $messenger) {
+  public function __construct(
+    PathValidatorInterface $path_validator,
+    RouteBuilderInterface $router_builder,
+    MessengerInterface $messenger,
+    ConfigPagesContextManagerInterface $config_pages_context_manager,
+  ) {
     $this->pathValidator = $path_validator;
     $this->routerBuilder = $router_builder;
     $this->messenger = $messenger;
+    $this->configPagesContextManager = $config_pages_context_manager;
   }
 
   /**
@@ -68,7 +82,8 @@ class ConfigPagesTypeForm extends EntityForm {
     return new static(
       $container->get('path.validator'),
       $container->get('router.builder'),
-      $container->get('messenger')
+      $container->get('messenger'),
+      $container->get('plugin.manager.config_pages_context')
     );
   }
 
@@ -115,7 +130,7 @@ class ConfigPagesTypeForm extends EntityForm {
     ];
 
     $options = [];
-    $items = \Drupal::service('plugin.manager.config_pages_context')->getDefinitions();
+    $items = $this->configPagesContextManager->getDefinitions();
 
     foreach ($items as $plugin_id => $item) {
       $options[$plugin_id] = $item['label'];
@@ -249,7 +264,23 @@ class ConfigPagesTypeForm extends EntityForm {
   public function save(array $form, FormStateInterface $form_state) {
 
     $config_pages_type = $this->entity;
+
+    // Capture old context hash before saving to detect context changes.
+    $oldContextData = NULL;
+    $unchanged = ConfigPagesType::load($config_pages_type->id());
+    if ($unchanged) {
+      $oldContextData = $unchanged->getContextData();
+    }
+
     $status = $config_pages_type->save();
+
+    // Migrate existing entities if context settings changed.
+    if ($oldContextData !== NULL) {
+      $newContextData = $config_pages_type->getContextData();
+      if ($oldContextData !== $newContextData) {
+        $this->migrateEntitiesContext($config_pages_type, $oldContextData, $newContextData);
+      }
+    }
 
     $edit_link = $this->entity->toLink($this->t('Edit'), 'edit-form')->toString();
     $logger = $this->logger('config_pages');
@@ -272,6 +303,61 @@ class ConfigPagesTypeForm extends EntityForm {
     }
 
     $form_state->setRedirectUrl($this->entity->toUrl('collection'));
+
+    return $status;
+  }
+
+  /**
+   * Migrate existing config page entities when context settings change.
+   *
+   * Updates the context hash on entities that match the old context data
+   * so they remain accessible under the new context settings.
+   *
+   * @param \Drupal\config_pages\ConfigPagesTypeInterface $type
+   *   The config page type.
+   * @param string $oldContextData
+   *   The old serialized context data.
+   * @param string $newContextData
+   *   The new serialized context data.
+   */
+  protected function migrateEntitiesContext(
+    ConfigPagesTypeInterface $type,
+    string $oldContextData,
+    string $newContextData,
+  ): void {
+    $storage = $this->entityTypeManager->getStorage('config_pages');
+
+    // Find entities with the old context hash.
+    $entities = $storage->loadByProperties([
+      'type' => $type->id(),
+      'context' => $oldContextData,
+    ]);
+
+    if (empty($entities)) {
+      return;
+    }
+
+    // Check if an entity with the new context hash already exists.
+    $existing = $storage->loadByProperties([
+      'type' => $type->id(),
+      'context' => $newContextData,
+    ]);
+
+    if (!empty($existing)) {
+      $this->messenger->addWarning($this->t(
+        'Context settings changed but a config page already exists for the new context. The previous config page data is preserved but may need manual migration using the Import feature.'
+      ));
+      return;
+    }
+
+    // Migrate: update the context hash on the entity.
+    $entity = current($entities);
+    $entity->set('context', $newContextData);
+    $entity->save();
+
+    $this->messenger->addStatus($this->t(
+      'Existing config page data has been migrated to the new context settings.'
+    ));
   }
 
 }

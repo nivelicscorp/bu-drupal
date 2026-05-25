@@ -35,15 +35,15 @@ abstract class TestBase extends BrowserTestBase {
    * Pre-test setup function.
    *
    * Enables dependencies.
-   * Sets the mailchimp_transactional_api_key variable to the test key.
+   * Sets the api_key variable to the test key.
    */
   protected function setUp(): void {
     parent::setUp();
 
     $config = $this->config('mailchimp_transactional.settings');
-    $config->set('mailchimp_transactional_from_email', 'foo@bar.com');
-    $config->set('mailchimp_transactional_from_name', 'foo');
-    $config->set('mailchimp_transactional_api_key', MailchimpTransactionalInterface::MAILCHIMP_TRANSACTIONAL_TEST_API_KEY);
+    $config->set('from_email', 'foo@bar.com');
+    $config->set('from_name', 'foo');
+    $config->set('api_key', MailchimpTransactionalInterface::MAILCHIMP_TRANSACTIONAL_TEST_API_KEY);
     $config->save();
   }
 

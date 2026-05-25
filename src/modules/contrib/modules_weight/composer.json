@@ -23,6 +23,6 @@
     "source": "http://cgit.drupalcode.org/modules_weight"
   },
   "require": {
-    "drupal/core": "^9.0|| ^10.0"
+    "drupal/core": "^10 || ^11"
   }
 }

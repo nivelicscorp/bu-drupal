@@ -4,16 +4,19 @@ mailchimp_transactional_template.mailchimp_transactional_template.*:
   mapping:
     id:
       type: string
-      label: 'Machine Name'
+      label: 'Machine name'
     label:
       type: string
       label: 'Label'
     template_name:
       type: string
-      label: 'Template Name'
+      label: 'Template name'
     content_area:
       type: string
-      label: 'Editable Content Area'
+      label: 'Template region'
+    only_use_merge_vars:
+      type: boolean
+      label: 'Only use merge variables'
     mailsystem_key:
       type: string
-      label: 'Mail System Key'
+      label: 'Email key'

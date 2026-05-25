@@ -1,16 +1,14 @@
 <?php
 
 declare(strict_types=1);
-/**
- * @file
- * Contains \Drupal\mailchimp_transactional_template\Form\TemplateMapDeleteForm.
- */
 
 namespace Drupal\mailchimp_transactional_template\Form;
 
 use Drupal\Core\Entity\EntityConfirmFormBase;
-use Drupal\Core\Url;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteBuilderInterface;
+use Drupal\Core\Url;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Form controller for the TemplateMap entity delete form.
@@ -18,6 +16,30 @@ use Drupal\Core\Form\FormStateInterface;
  * @ingroup mailchimp_transactional_template
  */
 class TemplateMapDeleteForm extends EntityConfirmFormBase {
+
+  /**
+   * The route builder.
+   *
+   * @var \Drupal\Core\Routing\RouteBuilderInterface
+   */
+  protected $routeBuilder;
+
+  /**
+   * Class constructor.
+   */
+  public function __construct(RouteBuilderInterface $route_builder) {
+    $this->routeBuilder = $route_builder;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('router.builder'),
+      $container->get('mailchimp_transactional')
+    );
+  }
 
   /**
    * {@inheritdoc}
@@ -46,7 +68,7 @@ class TemplateMapDeleteForm extends EntityConfirmFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->entity->delete();
 
-    \Drupal::service('router.builder')->setRebuildNeeded();
+    $this->routeBuilder->setRebuildNeeded();
 
     $this->messenger()->addStatus($this->t('Mailchimp Transactional Template Map %label has been deleted.', ['%label' => $this->entity->label()]));
 

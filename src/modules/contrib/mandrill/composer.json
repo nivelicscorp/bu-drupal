@@ -1,8 +1,0 @@
-{
-  "name": "drupal/mandrill",
-  "type": "drupal-module",
-  "require": {
-    "php": "^7.0 || ^8.0",
-    "mailchimp/transactional": "^1.0.19"
-  }
-}

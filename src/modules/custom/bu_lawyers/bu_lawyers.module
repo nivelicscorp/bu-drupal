@@ -480,8 +480,8 @@ function enviar_correo_bu() {
 
   $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
   if ($result['result'] !== true) {
-    drupal_set_message(t('There was a problem sending your message and it was not sent.'), 'error');
+    \Drupal::messenger()->addMessage(t('There was a problem sending your message and it was not sent.'), 'error');
   } else {
-    //drupal_set_message(t('Your message has been sent.'));
+    //\Drupal::messenger()->addMessage(t('Your message has been sent.'));
   }
 }

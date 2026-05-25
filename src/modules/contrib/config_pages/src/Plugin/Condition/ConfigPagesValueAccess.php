@@ -2,13 +2,15 @@
 
 namespace Drupal\config_pages\Plugin\Condition;
 
-use Drupal\Core\Condition\ConditionPluginBase;
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Form\FormStateInterface;
-use Drupal\config_pages\Entity\ConfigPagesType;
 use Drupal\config_pages\ConfigPagesLoaderServiceInterface;
+use Drupal\config_pages\Entity\ConfigPagesType;
+use Drupal\Core\Condition\Attribute\Condition;
+use Drupal\Core\Condition\ConditionPluginBase;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides a 'Access by ConfigPage field value' condition.
@@ -18,6 +20,10 @@ use Drupal\Core\Entity\EntityFieldManagerInterface;
  *   label = @Translation("ConfigPage field value")
  * )
  */
+#[Condition(
+  id: "config_pages_values_access",
+  label: new TranslatableMarkup("ConfigPage field value"),
+)]
 class ConfigPagesValueAccess extends ConditionPluginBase implements ContainerFactoryPluginInterface {
 
   /**
@@ -60,7 +66,7 @@ class ConfigPagesValueAccess extends ConditionPluginBase implements ContainerFac
     $plugin_id,
     $plugin_definition,
     ConfigPagesLoaderServiceInterface $configPagesLoader,
-    EntityFieldManagerInterface $entityFieldManager
+    EntityFieldManagerInterface $entityFieldManager,
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->configPagesLoader = $configPagesLoader;

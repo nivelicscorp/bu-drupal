@@ -20,20 +20,27 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class QueueProcessor extends QueueWorkerBase implements ContainerFactoryPluginInterface {
 
   /**
+   * The file system service.
+   *
+   * @var \Drupal\mailchimp_transactional_template\TemplateService
+   */
+  protected $mailchimpTransactional;
+
+  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    return new static($configuration, $plugin_id, $plugin_definition);
+    $instance = new static($configuration, $plugin_id, $plugin_definition);
+    $instance->mailchimpTransactional = $container->get('mailchimp_transactional.service');
+
+    return $instance;
   }
 
   /**
    * {@inheritdoc}
    */
   public function processItem($data) {
-    /** @var \Drupal\mailchimp_transactional\Service $mailchimp_transactional */
-    $mailchimp_transactional = \Drupal::service('mailchimp_transactional.service');
-
-    $mailchimp_transactional->send($data['message']);
+    $this->mailchimpTransactional->send($data['message']);
   }
 
 }

@@ -3,9 +3,11 @@ function gtag() {
   dataLayer.push(arguments);
 }
 gtag('js', new Date());
+// Drupal's global gtag ID. For more info: https://developers.google.com/tag-platform/devguides/gtag-integration
 gtag('set', 'developer_id.dMDhkMT', true);
 
 (function (drupalSettings) {
+  if (!drupalSettings.gtag) {return;}
   const config = drupalSettings.gtag;
 
   if (config.consentMode === true) {

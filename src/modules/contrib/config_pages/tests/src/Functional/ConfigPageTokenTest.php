@@ -4,25 +4,25 @@ namespace Drupal\Tests\config_pages\Functional;
 
 use Drupal\config_pages\Entity\ConfigPagesType;
 use Drupal\Tests\BrowserTestBase;
+use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
 
 /**
  * Tests that the ConfigPages token expose works.
  *
  * @group config_pages
  */
+#[RunTestsInSeparateProcesses]
 class ConfigPageTokenTest extends BrowserTestBase {
 
   /**
-   * Modules to enable.
-   *
-   * @var array
+   * {@inheritdoc}
    */
   protected static $modules = ['config_pages'];
 
   /**
    * {@inheritdoc}
    */
-  protected $defaultTheme = 'stable';
+  protected $defaultTheme = 'stark';
 
   /**
    * {@inheritdoc}

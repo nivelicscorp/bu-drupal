@@ -1,10 +1,6 @@
 <?php
 
 declare(strict_types=1);
-/**
- * @file
- * Contains \Drupal\mailchimp_transactional_reports\ReportsInterface.
- */
 
 namespace Drupal\mailchimp_transactional_reports;
 

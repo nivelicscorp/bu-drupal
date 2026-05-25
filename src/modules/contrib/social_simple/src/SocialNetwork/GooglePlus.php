@@ -53,7 +53,7 @@ class GooglePlus implements SocialNetworkInterface {
     $url = Url::fromUri(self::GOOGLEPLUS_URL, $options);
     $link = [
       'url' => $url,
-      'title' => ['#markup' => '<i class="fa fa-google-plus"></i><span class="visually-hidden">' . $this->getLabel() . '</span>'],
+      'title' => ['#markup' => '<i class="fa-brands fa-google-plus-g"></i><span class="visually-hidden">' . $this->getLabel() . '</span>'],
       'attributes' => $this->getLinkAttributes($this->getLabel()),
     ];
     return $link;

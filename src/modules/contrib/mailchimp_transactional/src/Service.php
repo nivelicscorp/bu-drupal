@@ -16,9 +16,9 @@ class Service implements ServiceInterface {
   /**
    * The Mailchimp Transactional API service.
    *
-   * @var \Drupal\mailchimp_transactional\APIInterface
+   * @var \Drupal\mailchimp_transactional\ApiInterface
    */
-  protected $mailchimpTransactionalAPI;
+  protected $mailchimpTransactionalApi;
 
   /**
    * The Config Factory service.
@@ -44,7 +44,7 @@ class Service implements ServiceInterface {
   /**
    * Constructs the service.
    *
-   * @param \Drupal\mailchimp_transactional\APIInterface $mailchimp_transactional_api
+   * @param \Drupal\mailchimp_transactional\ApiInterface $mailchimp_transactional_api
    *   The Mailchimp Transactional api service.
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The config factory service.
@@ -53,8 +53,8 @@ class Service implements ServiceInterface {
    * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
    *   The module handler.
    */
-  public function __construct(APIInterface $mailchimp_transactional_api, ConfigFactoryInterface $config_factory, LoggerChannelFactoryInterface $logger_factory, ModuleHandlerInterface $module_handler) {
-    $this->mailchimpTransactionalAPI = $mailchimp_transactional_api;
+  public function __construct(ApiInterface $mailchimp_transactional_api, ConfigFactoryInterface $config_factory, LoggerChannelFactoryInterface $logger_factory, ModuleHandlerInterface $module_handler) {
+    $this->mailchimpTransactionalApi = $mailchimp_transactional_api;
     $this->config = $config_factory;
     $this->log = $logger_factory->get('mailchimp_transactional');
     $this->moduleHandler = $module_handler;
@@ -124,7 +124,7 @@ class Service implements ServiceInterface {
    */
   public function send($message) {
     try {
-      $response = $this->mailchimpTransactionalAPI->send(['message' => $message]);
+      $response = $this->mailchimpTransactionalApi->send(['message' => $message]);
 
       return $this->handleSendResponse($response, $message);
     }

@@ -195,7 +195,7 @@ class SvgIcon extends MediaTypeBase {
       $tmp = $this->fileSystem->tempnam('temporary://', 'icon_');
       $svg_tmp = $this->fileSystem->realpath($tmp . '.svg');
       if (file_put_contents($svg_tmp, $svg_data) === FALSE) {
-        drupal_set_message(t('The SVG file could not be prepared.'), 'error');
+        \Drupal::messenger()->addMessage(t('The SVG file could not be prepared.'), 'error');
         return FALSE;
       }
 

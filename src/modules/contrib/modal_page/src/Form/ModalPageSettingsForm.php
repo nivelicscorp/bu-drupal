@@ -4,11 +4,47 @@ namespace Drupal\modal_page\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+use Drupal\Core\PhpStorage\PhpStorageFactory;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\modal_page\Helper\ModalPageSettersTraitHelper;
 
 /**
  * Form for configure messages.
  */
 class ModalPageSettingsForm extends ConfigFormBase {
+
+  use ModalPageSettersTraitHelper;
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    /** @var static $instance */
+    $instance = parent::create($container);
+    $instance->setModuleHandler($container->get('module_handler'));
+
+    return $instance;
+  }
+
+  /**
+   * Set Message info.
+   */
+  public function setMessagesInfo() {
+
+    $type = 'status';
+
+    // Transform to Info if Info Messages is enabled.
+    if ($this->moduleHandler->moduleExists('info_messages')) {
+      $type = 'info';
+    }
+
+    $this->messenger()->addMessage($this->t('You can create your Modal at <a href="@url_settings">@url_settings</a>', [
+      '@url_settings' => Url::fromRoute('modal_page.default')->toString(),
+    ]), $type);
+
+    return NULL;
+  }
 
   /**
    * {@inheritdoc}
@@ -31,32 +67,92 @@ class ModalPageSettingsForm extends ConfigFormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
 
+    $this->setMessagesInfo();
     $config = $this->config('modal_page.settings');
 
-    $form['modals_by_page'] = [
-      '#type'  => 'details',
-      '#title' => $this->t('Modals by page'),
-      '#open'  => TRUE,
+    $form['global_settings'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Global Settings'),
+      '#open' => TRUE,
     ];
 
-    $form['modals_by_page']['modal_page_modals'] = [
-      '#title' => $this->t('Modals settings'),
+    $form['global_settings']['bootstrap'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Bootstrap'),
+      '#open' => TRUE,
+    ];
+
+    $form['global_settings']['bootstrap']['verify_load_bootstrap_automatically'] = [
+      '#title' => $this->t("Verify and Load Bootstrap automatically if necessary (Recommended)"),
+      '#type' => 'checkbox',
+      '#description' => $this->t("It will verify and load bootstrap.min.js only if you don't have it loaded yet."),
+      '#default_value' => $config->get('verify_load_bootstrap_automatically'),
+    ];
+
+    $form['global_settings']['bootstrap']['load_bootstrap'] = [
+      '#title' => $this->t("Load Bootstrap with Modal Page"),
+      '#type' => 'checkbox',
+      '#description' => $this->t('It will load bootstrap.min.js. If you already have it loaded in other place you can disable this option.'),
+      '#default_value' => $config->get('load_bootstrap'),
+      '#states' => [
+        'disabled' => [
+          ':input[name="verify_load_bootstrap_automatically"]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
+
+    $form['global_settings']['bootstrap']['bootstrap_version'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Select a version'),
+      '#options' => [
+        '3x' => $this->t('Bootstrap 3'),
+        '5x' => $this->t('Bootstrap 5'),
+      ],
+      '#default_value' => $config->get('bootstrap_version') ?? '3x',
+    ];
+
+    // If is running on Drupal 11 or above, disable BS3.
+    if (\Drupal::VERSION >= '11.0.0') {
+      unset($form['global_settings']['bootstrap']['bootstrap_version']['#options']['3x']);
+    }
+
+    $form['global_settings']['html_tags'] = [
+      '#type' => 'details',
+      '#title' => $this->t('HTML Tags'),
+      '#open' => TRUE,
+    ];
+
+    $form['global_settings']['html_tags']['allowed_tags'] = [
       '#type' => 'textarea',
-      '#description' => $this->t('Insert values with format: <br><br><b>Page|Title|Text|Button|Text for "Do Not Show Again" (Optional)</b> &lt;front&gt; is the front page. <br><br> e.g.  <b>Home|Welcome|Welcome to our new website|Thanks|Do not show again</b>'),
-      '#default_value' => $config->get('modals'),
+      '#title' => $this->t('Allowed Tags'),
+      '#description' => $this->t("A list of HTML tags that can be used, separated by commas(,)."),
+      '#default_value' => $config->get('allowed_tags') ?? "h1,h2,a,b,big,code,del,em,i,ins,pre,q,small,span,strong,sub,sup,tt,ol,ul,li,p,br,img",
     ];
 
-    $form['modals_by_parameter'] = [
-      '#type'  => 'details',
-      '#title' => $this->t('Modals by parameter'),
-      '#open'  => TRUE,
+    $form['global_settings']['performance'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Performance'),
+      '#open' => TRUE,
     ];
 
-    $form['modals_by_parameter']['modal_page_modals_by_parameter'] = [
-      '#title' => $this->t('Modals by settings (By parameter)'),
-      '#type' => 'textarea',
-      '#description' => $this->t('Insert values with format: <br><br><b>parameter=value|Title|Text|Button|Text for "Do Not Show Again" (Optional)</b>. <br><br> e.g.  <b>visitor=welcome|Welcome|Welcome to our new website|Thanks|Do not show again</b>'),
-      '#default_value' => $config->get('modals_by_parameter'),
+    $form['global_settings']['performance']['clear_caches_on_modal_save'] = [
+      '#title' => $this->t("Clear caches when save Modal"),
+      '#type' => 'checkbox',
+      '#default_value' => $config->get('clear_caches_on_modal_save'),
+    ];
+
+    $form['global_settings']['cookie_settings'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Cookies'),
+      '#open' => TRUE,
+    ];
+
+    $form['global_settings']['cookie_settings']['default_cookie_expiration'] = [
+      '#type' => 'number',
+      '#title' => $this->t('Default Cookie Expiration'),
+      '#description' => $this->t("Enter value in days. Enter 0 to expire at end of session.
+        <br> Default is 10000 (never show again)."),
+      '#default_value' => $config->get('default_cookie_expiration') ?? 10000,
     ];
 
     $form['actions'] = [
@@ -69,6 +165,7 @@ class ModalPageSettingsForm extends ConfigFormBase {
     ];
 
     return $form;
+
   }
 
   /**
@@ -76,22 +173,30 @@ class ModalPageSettingsForm extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
 
-    $array_values_modals = array_values(array_filter(explode(PHP_EOL, str_replace("\r", '', $form_state->getValue('modal_page_modals')))));
-    $array_values_modals_by_parameter = array_values(array_filter(explode(PHP_EOL, str_replace("\r", '', $form_state->getValue('modal_page_modals_by_parameter')))));
-
-    $modal_page_modals = implode(PHP_EOL, $array_values_modals);
-    $modal_page_modals_by_parameter = implode(PHP_EOL, $array_values_modals_by_parameter);
+    $loadBootstrap = $form_state->getValue('load_bootstrap');
+    $verifyLoadBootstrapAutomatically = $form_state->getValue('verify_load_bootstrap_automatically');
+    $bootstrapVersion = $form_state->getValue('bootstrap_version');
 
     $config = $this->config('modal_page.settings');
-
-    $config->set('modals', $modal_page_modals);
-    $config->set('modals_by_parameter', $modal_page_modals_by_parameter);
+    $bootstrapActualVersion = $config->get('bootstrap_version');
+    $config->set('load_bootstrap', $loadBootstrap);
+    $config->set('verify_load_bootstrap_automatically', $verifyLoadBootstrapAutomatically);
+    $config->set('bootstrap_version', $bootstrapVersion);
+    $config->set('allowed_tags', $form_state->getValue('allowed_tags'));
+    $config->set('clear_caches_on_modal_save', $form_state->getValue('clear_caches_on_modal_save'));
+    $config->set('default_cookie_expiration', $form_state->getValue('default_cookie_expiration'));
 
     $config->save();
 
-    drupal_flush_all_caches();
+    if (!empty($config->get('clear_caches_on_modal_save'))) {
+      PhpStorageFactory::get('twig')->deleteAll();
+    }
 
     parent::submitForm($form, $form_state);
+
+    if ($bootstrapActualVersion != $form_state->getValue('bootstrap_version')) {
+      drupal_flush_all_caches();
+    }
   }
 
 }

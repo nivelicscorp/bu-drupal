@@ -1,6 +1,7 @@
 {
   "name": "drupal/mailchimp_transactional",
   "type": "drupal-module",
+  "description": "Allow for site emails to be sent through Mailchimp Transactional.",
   "require": {
     "mailchimp/transactional": "^1.0.47",
     "drupal/mailsystem": "^4"

@@ -14,13 +14,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class ConfigPagesContextBase extends PluginBase implements ConfigPagesContextInterface, ContainerFactoryPluginInterface {
 
   /**
-   * {@inheritdoc}
-   */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition);
-  }
-
-  /**
    * Get the label of the context.
    *
    * @return string
@@ -52,7 +45,7 @@ class ConfigPagesContextBase extends PluginBase implements ConfigPagesContextInt
   }
 
   /**
-   * Return array of available links to switch on given context.
+   * Return an array of available links to switch on the given context.
    *
    * @return array
    *   Return links.

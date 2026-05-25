@@ -1,22 +1,18 @@
-# Define the 'local' links for the module
-
-modal.settings_tab:
-  route_name: modal_page.default
-  title: Settings
+# Define tab links
+modal.list:
+  title: Modal list
+  route_name: entity.modal.collection
   base_route: modal_page.default
+  weight: 1
 
-modal.view:
-  route_name: entity.modal_page_modal.canonical
-  base_route: entity.modal_page_modal.canonical
-  title: View
+modal.settings:
+  title: Settings
+  route_name: modal_page.settings
+  base_route: modal_page.default
+  weight: 2
 
-modal.page_edit:
-  route_name: entity.modal_page_modal.edit_form
-  base_route: entity.modal_page_modal.canonical
-  title: Edit
-
-modal.delete_confirm:
-  route_name:  entity.modal_page_modal.delete_form
-  base_route:  entity.modal_page_modal.canonical
-  title: Delete
-  weight: 10
+modal.help:
+  title: Help
+  route_name: modal_page.help
+  base_route: modal_page.default
+  weight: 3

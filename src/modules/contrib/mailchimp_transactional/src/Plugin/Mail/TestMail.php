@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Drupal\mailchimp_transactional\Plugin\Mail;
 
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
 /**
  * Mailchimp Transactional test mail plugin.
  *
@@ -13,15 +15,16 @@ namespace Drupal\mailchimp_transactional\Plugin\Mail;
  *   description = @Translation("Sends test messages through Mailchimp Transactional.")
  * )
  */
-class TestMail extends Mail {
+class TestMail extends TransactionMail {
 
   /**
-   * Constructor.
+   * {@inheritdoc}
    */
-  public function __construct() {
-    parent::__construct();
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    $instance = parent::create($container, $configuration, $plugin_id, $plugin_definition);
+    $instance->mailchimpTransactional = $container->get('mailchimp_transactional.test.service');
 
-    $this->mailchimpTransactional = \Drupal::service('mailchimp_transactional.test.service');
+    return $instance;
   }
 
 }

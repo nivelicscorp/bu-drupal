@@ -59,7 +59,7 @@ final class TwigTweakTest extends BrowserTestBase {
     $image_file->save();
 
     $media_file = File::create([
-      'uri' => $test_files[8]->uri,
+      'uri' => $test_files[9]->uri,
       'uuid' => '5dd794d0-cb75-4130-9296-838aebc1fe74',
       'status' => FileInterface::STATUS_PERMANENT,
     ]);
@@ -75,6 +75,7 @@ final class TwigTweakTest extends BrowserTestBase {
     $node_values = [
       'title' => 'Alpha',
       'uuid' => 'ad1b902a-344f-41d1-8c61-a69f0366dbfa',
+      'body' => 'The node content.',
       'field_image' => [
         'target_id' => $image_file->id(),
         'alt' => 'Alt text',
@@ -152,8 +153,8 @@ final class TwigTweakTest extends BrowserTestBase {
 
     // -- Entity (default view mode).
     $xpath = '//div[@class = "tt-entity-default"]';
-    $xpath .= '/article[contains(@class, "node") and not(contains(@class, "node--view-mode-teaser"))]';
-    $xpath .= '/h2/a/span[text() = "Alpha"]';
+    $xpath .= '/article[contains(@class, "node") and contains(@class, "node--view-mode-full")]';
+    $xpath .= '/div[@class = "node__content"]/div/p[text() = "The node content."]';
     $this->assertXpath($xpath);
 
     // -- Entity (teaser view mode).
@@ -165,7 +166,7 @@ final class TwigTweakTest extends BrowserTestBase {
     // -- Entity by UUID.
     $xpath = '//div[@class = "tt-entity-uuid"]';
     $xpath .= '/article[contains(@class, "node")]';
-    $xpath .= '/h2/a/span[text() = "Alpha"]';
+    $xpath .= '/div[@class = "node__content"]/div/p[text() = "The node content."]';
     $this->assertXpath($xpath);
 
     // -- Entity by UUID (missing).

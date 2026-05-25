@@ -1,4 +1,0 @@
-services:
-  mailchimp_transactional.service:
-    class: Drupal\mailchimp_transactional_template\TemplateService
-    arguments: ['@mailchimp_transactional', '@config.factory', '@logger.factory', '@module_handler']

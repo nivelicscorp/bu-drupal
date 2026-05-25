@@ -9,7 +9,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Drupal\Console\Core\Command\Command;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
-use Drupal\Console\Annotations\DrupalCommand;
 
 /**
  * Class Drupal command.

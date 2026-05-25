@@ -55,7 +55,7 @@ class Linkedin implements SocialNetworkInterface {
     $url = Url::fromUri(self::LINKEDIN_URL, $options);
     $link = [
       'url' => $url,
-      'title' => ['#markup' => '<i class="fa fa-linkedin"></i><span class="visually-hidden">' . $this->getLabel() . '</span>'],
+      'title' => ['#markup' => '<i class="fa-brands fa-linkedin-in"></i><span class="visually-hidden">' . $this->getLabel() . '</span>'],
       'attributes' => $this->getLinkAttributes($this->getLabel()),
     ];
     return $link;

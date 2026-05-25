@@ -2,9 +2,11 @@
 
 namespace Drupal\config_pages\Plugin\ConfigPagesContext;
 
+use Drupal\config_pages\Attribute\ConfigPagesContext;
 use Drupal\config_pages\ConfigPagesContextBase;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -16,6 +18,10 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   label = @Translation("Language"),
  * )
  */
+#[ConfigPagesContext(
+  id: "language",
+  label: new TranslatableMarkup("Language"),
+)]
 class Language extends ConfigPagesContextBase {
 
   /**
@@ -52,7 +58,7 @@ class Language extends ConfigPagesContextBase {
    *   Return value of the context.
    */
   public function getValue() {
-    $lang = $this->languageManager->getCurrentLanguage(LanguageInterface::TYPE_URL);
+    $lang = $this->languageManager->getCurrentLanguage(LanguageInterface::TYPE_CONTENT);
     return $lang->getId();
   }
 
@@ -63,7 +69,7 @@ class Language extends ConfigPagesContextBase {
    *   Return the label of the context.
    */
   public function getLabel() {
-    return $this->languageManager->getCurrentLanguage(LanguageInterface::TYPE_URL)->getName();
+    return $this->languageManager->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getName();
   }
 
   /**

@@ -2,7 +2,7 @@
 
 namespace Drupal\media_entity_facebook\Plugin\Validation\Constraint;
 
-use Drupal\Core\Field\FieldItemInterface;
+use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\media_entity_facebook\Plugin\media\Source\Facebook;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
@@ -16,24 +16,24 @@ class FacebookEmbedCodeConstraintValidator extends ConstraintValidator {
    * {@inheritdoc}
    */
   public function validate($value, Constraint $constraint) {
+    $data = NULL;
     if (is_string($value)) {
       $data = $value;
     }
-    elseif ($value instanceof FieldItemInterface) {
-      $class = get_class($value);
-      $property = $class::mainPropertyName();
+    elseif ($value instanceof FieldItemListInterface) {
+      $property = $value->getFieldDefinition()->getFieldStorageDefinition()->getMainPropertyName();
       if ($property) {
         $data = $value->$property;
       }
     }
-    else {
-      $data = '';
-    }
     if ($data) {
-      $post_url = Facebook::parseFacebookEmbedField($value);
+      $post_url = Facebook::parseFacebookEmbedField($data);
       if ($post_url === FALSE) {
         $this->context->addViolation($constraint->message);
       }
+    }
+    else {
+      $this->context->addViolation($constraint->message);
     }
   }
 

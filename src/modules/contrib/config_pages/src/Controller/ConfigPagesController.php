@@ -3,25 +3,25 @@
 namespace Drupal\config_pages\Controller;
 
 use Drupal\config_pages\ConfigPagesInterface;
+use Drupal\config_pages\ConfigPagesTypeInterface;
+use Drupal\config_pages\Entity\ConfigPagesType;
+use Drupal\config_pages\Form\ConfigPagesClearConfirmationForm;
+use Drupal\config_pages\Form\ConfigPagesImportConfirmationForm;
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Access\AccessResultInterface;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Entity\EntityStorageInterface;
-use Drupal\config_pages\ConfigPagesTypeInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ThemeHandlerInterface;
-use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\Core\Form\FormBuilderInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Drupal\config_pages\Entity\ConfigPagesType;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 
 /**
- * Class controller for ConfigPage entity..
- *
- * @package Drupal\config_pages
+ * Controller for ConfigPage entity.
  */
 class ConfigPagesController extends ControllerBase {
-
-  use StringTranslationTrait;
 
   /**
    * The config page storage.
@@ -45,6 +45,13 @@ class ConfigPagesController extends ControllerBase {
   protected $themeHandler;
 
   /**
+   * The form builder.
+   *
+   * @var \Drupal\Core\Form\FormBuilderInterface
+   */
+  protected $formBuilder;
+
+  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
@@ -53,7 +60,8 @@ class ConfigPagesController extends ControllerBase {
       $entity_type_manager->getStorage('config_pages'),
       $entity_type_manager->getStorage('config_pages_type'),
       $container->get('theme_handler'),
-      $entity_type_manager
+      $entity_type_manager,
+      $container->get('form_builder')
     );
   }
 
@@ -68,15 +76,21 @@ class ConfigPagesController extends ControllerBase {
    *   The theme handler.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   Entity Type manager.
+   * @param \Drupal\Core\Form\FormBuilderInterface $form_builder
+   *   The form builder.
    */
-  public function __construct(EntityStorageInterface $config_pages_storage,
-                              EntityStorageInterface $config_pages_type_storage,
-                              ThemeHandlerInterface $theme_handler,
-                              EntityTypeManagerInterface $entity_type_manager) {
+  public function __construct(
+    EntityStorageInterface $config_pages_storage,
+    EntityStorageInterface $config_pages_type_storage,
+    ThemeHandlerInterface $theme_handler,
+    EntityTypeManagerInterface $entity_type_manager,
+    FormBuilderInterface $form_builder,
+  ) {
     $this->configPagesStorage = $config_pages_storage;
     $this->configPagesTypeStorage = $config_pages_type_storage;
     $this->themeHandler = $theme_handler;
     $this->entityTypeManager = $entity_type_manager;
+    $this->formBuilder = $form_builder;
   }
 
   /**
@@ -116,7 +130,7 @@ class ConfigPagesController extends ControllerBase {
   /**
    * Presents the config page creation/edit form.
    *
-   * @param \Drupal\config_pages\ConfigPagesTypeInterface $config_pages_type
+   * @param \Drupal\config_pages\ConfigPagesTypeInterface|null $config_pages_type
    *   The config page type to add.
    *
    * @return array
@@ -125,7 +139,25 @@ class ConfigPagesController extends ControllerBase {
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function classInit(ConfigPagesTypeInterface $config_pages_type = NULL) {
+  public function classInit(?ConfigPagesTypeInterface $config_pages_type = NULL) {
+    $config_page = $this->getConfigPage($config_pages_type);
+
+    return $this->entityFormBuilder()->getForm($config_page);
+  }
+
+  /**
+   * Load or create a config page entity for the given type.
+   *
+   * @param \Drupal\config_pages\ConfigPagesTypeInterface $config_pages_type
+   *   The config page type.
+   *
+   * @return \Drupal\config_pages\ConfigPagesInterface
+   *   The config page entity.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   */
+  private function getConfigPage(ConfigPagesTypeInterface $config_pages_type) {
     $cp_type = $config_pages_type->id();
     $typeEntity = ConfigPagesType::load($cp_type);
 
@@ -143,17 +175,62 @@ class ConfigPagesController extends ControllerBase {
       ->condition('context', $contextData)
       ->execute();
 
+    // Fallback: try loading with empty context hash.
+    // This handles the case where context was recently enabled but existing
+    // entities still have the old no-context hash.
+    if (empty($config_page_ids)) {
+      $emptyContextHash = serialize([]);
+      if ($contextData !== $emptyContextHash) {
+        $config_page_ids = $this->entityTypeManager
+          ->getStorage('config_pages')
+          ->getQuery()
+          ->accessCheck()
+          ->condition('type', $cp_type)
+          ->condition('context', $emptyContextHash)
+          ->execute();
+      }
+    }
+
     if (!empty($config_page_ids)) {
       $config_page_id = array_shift($config_page_ids);
       $entityStorage = $this->entityTypeManager->getStorage('config_pages');
+      /** @var \Drupal\config_pages\ConfigPagesInterface $config_page */
       $config_page = $entityStorage->load($config_page_id);
     }
     else {
+      /** @var \Drupal\config_pages\ConfigPagesInterface $config_page */
       $config_page = $this->configPagesStorage->create([
         'type' => $cp_type,
       ]);
     }
-    return $this->entityFormBuilder()->getForm($config_page);
+
+    return $config_page;
+  }
+
+  /**
+   * Custom access check for config page routes.
+   *
+   * @param \Drupal\config_pages\ConfigPagesTypeInterface $config_pages_type
+   *   The config page type.
+   *
+   * @return \Drupal\Core\Access\AccessResultInterface
+   *   The access result.
+   */
+  public function access(ConfigPagesTypeInterface $config_pages_type) {
+    $config_page = $this->getConfigPage($config_pages_type);
+
+    // Get the access result.
+    $access_result = $config_page->access('update', NULL, TRUE);
+
+    // Ensure we have an AccessResult object.
+    if (!$access_result instanceof AccessResultInterface) {
+      // Convert boolean to AccessResult.
+      $access_result = $access_result ?
+        AccessResult::allowed() :
+        AccessResult::forbidden();
+    }
+
+    return $access_result->cachePerPermissions();
   }
 
   /**
@@ -166,7 +243,22 @@ class ConfigPagesController extends ControllerBase {
    *   A form array as expected by drupal_render().
    */
   public function clearConfirmation(ConfigPagesInterface $config_pages) {
-    return \Drupal::formBuilder()->getForm('Drupal\config_pages\Form\ConfigPagesClearConfirmationForm', $config_pages->id());
+    return $this->formBuilder->getForm(ConfigPagesClearConfirmationForm::class, $config_pages->id());
+  }
+
+  /**
+   * Presents the config page import confirmation form.
+   *
+   * @param \Drupal\config_pages\ConfigPagesInterface $config_pages
+   *   Config Page.
+   * @param string $imported_entity_id
+   *   The ID of the entity to import from.
+   *
+   * @return array
+   *   A form array as expected by drupal_render().
+   */
+  public function importConfirmation(ConfigPagesInterface $config_pages, $imported_entity_id) {
+    return $this->formBuilder->getForm(ConfigPagesImportConfirmationForm::class, $config_pages->id(), $imported_entity_id);
   }
 
   /**

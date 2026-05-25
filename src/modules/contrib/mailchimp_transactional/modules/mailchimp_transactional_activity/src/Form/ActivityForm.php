@@ -1,10 +1,6 @@
 <?php
 
 declare(strict_types=1);
-/**
- * @file
- * Contains \Drupal\mailchimp_transactional_activity\Form\ActivityForm.
- */
 
 namespace Drupal\mailchimp_transactional_activity\Form;
 
@@ -138,7 +134,7 @@ class ActivityForm extends EntityForm {
       '#ajax' => [
         'callback' => '::entityCallback',
         'wrapper' => 'entity-wrapper',
-        'method' => 'replace',
+        'method' => 'replaceWith',
         'effect' => 'fade',
         'progress' => [
           'type' => 'throbber',
@@ -173,7 +169,7 @@ class ActivityForm extends EntityForm {
         '#ajax' => [
           'callback' => '::entityCallback',
           'wrapper' => 'entity-wrapper',
-          'method' => 'replace',
+          'method' => 'replaceWith',
           'effect' => 'fade',
           'progress' => [
             'type' => 'throbber',
@@ -244,6 +240,7 @@ class ActivityForm extends EntityForm {
     $this->routeBuilder->setRebuildNeeded();
 
     $form_state->setRedirect('mailchimp_transactional_activity.admin');
+    return $activity->save();
   }
 
   /**
@@ -274,7 +271,7 @@ class ActivityForm extends EntityForm {
    * @return array
    *   List of entities that can be used as an #options list.
    */
-  public function fieldmapOptions(string $entity_type, string $entity_bundle = NULL): array {
+  public function fieldmapOptions(string $entity_type, ?string $entity_bundle = NULL): array {
     $options = ['' => $this->t('-- Select --')];
 
     $fields = $this->entityFieldManager->getFieldMap();

@@ -97,7 +97,7 @@ class FieldValueGenerator {
         $entity->set($field_id, $new_field_value);
       }
       catch (\Exception $e) {
-        watchdog_exception('field_token_value', $e);
+        \Drupal\Component\Utility\DeprecationHelper::backwardsCompatibleCall(\Drupal::VERSION, '10.1.0', fn() => \Drupal\Core\Utility\Error::logException(\Drupal::logger('field_token_value'), $e), fn() => watchdog_exception('field_token_value', $e));
         $warning_message = new TranslatableMarkup('There was an error generating the field value for the field %field.', [
           '%field' => $field_id,
         ]);

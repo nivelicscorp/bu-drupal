@@ -1,5 +1,4 @@
-INTRODUCTION
-------------
+# Image Optimize
 
 The Image Optimize module provides a framework for image optimization.
 
@@ -16,49 +15,53 @@ Built in support is provided for Drupal image styles, after the usual image
 style has been applied the derivative image is passed into a configurable
 pipeline for optimization.
 
-  * For a full description of the module, visit the project page:
-    https://drupal.org/project/imageapi_optimize
+For a full description of the module, visit the
+[project page](https://www.drupal.org/project/imageapi_optimize).
 
-  * To submit bug reports and feature suggestions, or to track changes:
-    https://drupal.org/project/issues/imageapi_optimize
+Submit bug reports and feature suggestions, or track changes in the
+[issue queue](https://www.drupal.org/project/issues/imageapi_optimize).
 
 
-REQUIREMENTS
-------------
+## Table of contents
+
+- Requirements
+- Installation
+- Configuration
+
+
+## Requirements
 
 The module does not have any direct requirements of its own, however, you will
 need another module that provides a processor for optimizing images.
 
 For example, you may one want of:
 
-  * [Image Optimize Binaries](https://www.drupal.org/project/imageapi_optimize_binaries)
+- [Image Optimize Binaries](https://www.drupal.org/project/imageapi_optimize_binaries)
 
-  * [Image Optimize reSmush.it](https://www.drupal.org/project/imageapi_optimize_resmushit)
+- [Image Optimize reSmush.it](https://www.drupal.org/project/imageapi_optimize_resmushit)
 
-  * [Image Optimize TinyPNG](https://www.drupal.org/project/imageapi_optimize_tinypng)
+- [Image Optimize TinyPNG](https://www.drupal.org/project/imageapi_optimize_tinypng)
 
-  * [Kraken](https://www.drupal.org/project/kraken)
-
-
-INSTALLATION
-------------
-
-  * Install as you would normally install a contributed Drupal module. Visit:
-    https://drupal.org/documentation/install/modules-themes/modules-8
-    for further information.
+- [Kraken](https://www.drupal.org/project/kraken)
 
 
-CONFIGURATION
--------------
+## Installation
 
-  * Configure Image Optimize pipelines in Administration » Configuration » Media
-    » Image Optimize pipelines:
+Install as you would normally install a contributed Drupal module. For further
+information, see
+[Installing Drupal Modules](https://www.drupal.org/docs/extending-drupal/installing-drupal-modules).
 
-    * Either add a new pipeline or edit an existing one.
 
-  * Configure which pipelines are used by image styles in Administration » Configuration » Media
-    » Image styles:
+## Configuration
 
-    * You can set a sitewide default
+- Configure Image Optimize pipelines in Administration » Configuration » Media
+  » Image Optimize pipelines:
 
-    * Or edit each style individually to assign a pipeline.
+  - Either add a new pipeline or edit an existing one.
+
+- Configure which pipelines are used by image styles in Administration » Configuration » Media
+  » Image styles:
+
+  - You can set a sitewide default
+
+  - Or edit each style individually to assign a pipeline.

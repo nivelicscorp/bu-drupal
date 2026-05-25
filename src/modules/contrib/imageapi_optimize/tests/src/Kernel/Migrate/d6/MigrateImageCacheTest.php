@@ -14,6 +14,6 @@ class MigrateImageCacheTest extends OriginalMigrateImageCacheTest {
  /**
   * {@inheritdoc}
   */
-  public static $modules = ['imageapi_optimize'];
+  protected static $modules = ['imageapi_optimize'];
 
 }

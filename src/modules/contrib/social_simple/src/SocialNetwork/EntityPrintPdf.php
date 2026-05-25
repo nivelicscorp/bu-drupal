@@ -73,7 +73,7 @@ class EntityPrintPdf implements SocialNetworkInterface {
   public function getShareLink($share_url, $title = '', EntityInterface $entity = NULL, array $additional_options = []) {
     $link = [
       'url' => Url::fromUserInput('#'),
-      'title' => ['#markup' => '<i class="fa fa-file-pdf-o"></i><span class="visually-hidden">' . $this->getLabel() . '</span>'],
+      'title' => ['#markup' => '<i class="fa-regular fa-file-pdf"></i><span class="visually-hidden">' . $this->getLabel() . '</span>'],
       'attributes' => ['style' => 'display: none;'],
     ];
     if (!$this->moduleHandler->moduleExists('entity_print')) {

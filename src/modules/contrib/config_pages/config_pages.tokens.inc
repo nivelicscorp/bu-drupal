@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Builds placeholder replacement tokens for configration pages.
+ * Builds placeholder replacement tokens for configuration pages.
  */
 
 use Drupal\Core\Render\BubbleableMetadata;
@@ -52,7 +52,7 @@ function config_pages_token_info() {
 function config_pages_tokens($type, $tokens, array $data, array $options, BubbleableMetadata $bubbleable_metadata) {
   $replacements = [];
 
-  if ($type != 'config_page') {
+  if ($type !== 'config_page') {
     return $replacements;
   }
   foreach ($tokens as $name => $original) {

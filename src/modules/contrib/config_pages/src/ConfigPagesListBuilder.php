@@ -43,8 +43,10 @@ class ConfigPagesListBuilder extends EntityListBuilder implements EntityListBuil
   /**
    * {@inheritdoc}
    */
-  public static function createInstance(ContainerInterface $container,
-                                        EntityTypeInterface $entity_type) {
+  public static function createInstance(
+    ContainerInterface $container,
+    EntityTypeInterface $entity_type,
+  ) {
 
     return new static(
       $entity_type,
@@ -58,11 +60,13 @@ class ConfigPagesListBuilder extends EntityListBuilder implements EntityListBuil
   /**
    * {@inheritdoc}
    */
-  public function __construct(EntityTypeInterface $entity_type,
-                              EntityStorageInterface $storage,
-                              EntityStorageInterface $cpt_storage,
-                              ConfigPagesContextManagerInterface $cp_context,
-                              AccountProxyInterface $account) {
+  public function __construct(
+    EntityTypeInterface $entity_type,
+    EntityStorageInterface $storage,
+    EntityStorageInterface $cpt_storage,
+    ConfigPagesContextManagerInterface $cp_context,
+    AccountProxyInterface $account,
+  ) {
     parent::__construct($entity_type, $storage);
     $this->cptStorage = $cpt_storage;
     $this->cpContext = $cp_context;

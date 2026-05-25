@@ -77,31 +77,21 @@ function views_vcards_preprocess_views_vcards_view_row_vcard(&$variables) {
   $xss = new Xss();
   $renderer = \Drupal::service('renderer');
 
-  $variables['first_name']     = htmlspecialchars_decode($xss::filter($renderer->renderInIsolation($item->first_name), []), ENT_QUOTES | ENT_HTML5);
-  $variables['middle_name']    = htmlspecialchars_decode($xss::filter($renderer->renderInIsolation($item->middle_name), []), ENT_QUOTES | ENT_HTML5);
-  $variables['last_name']      = htmlspecialchars_decode($xss::filter($renderer->renderInIsolation($item->last_name), []), ENT_QUOTES | ENT_HTML5);
-  $variables['full_name']      = htmlspecialchars_decode($xss::filter($renderer->renderInIsolation($item->full_name), []), ENT_QUOTES | ENT_HTML5);
-  $variables['title']          = htmlspecialchars_decode($xss::filter($renderer->renderInIsolation($item->title), []), ENT_QUOTES | ENT_HTML5);
-  $variables['email']          = htmlspecialchars_decode($xss::filter($renderer->renderInIsolation($item->email), []), ENT_QUOTES | ENT_HTML5);
-  $variables['email2']         = htmlspecialchars_decode($xss::filter($renderer->renderInIsolation($item->email2), []), ENT_QUOTES | ENT_HTML5);
-  $variables['email3']         = htmlspecialchars_decode($xss::filter($renderer->renderInIsolation($item->email3), []), ENT_QUOTES | ENT_HTML5);
-  $variables['home_address']   = htmlspecialchars_decode($xss::filter($renderer->renderInIsolation($item->home_address), []), ENT_QUOTES | ENT_HTML5);
-  $variables['home_city']      = htmlspecialchars_decode($xss::filter($renderer->renderInIsolation($item->home_city), []), ENT_QUOTES | ENT_HTML5);
-  $variables['home_state']     = htmlspecialchars_decode($xss::filter($renderer->renderInIsolation($item->home_state), []), ENT_QUOTES | ENT_HTML5);
-  $variables['home_zip']       = htmlspecialchars_decode($xss::filter($renderer->renderInIsolation($item->home_zip), []), ENT_QUOTES | ENT_HTML5);
-  $variables['home_country']   = htmlspecialchars_decode($xss::filter($renderer->renderInIsolation($item->home_country), []), ENT_QUOTES | ENT_HTML5);
-  $variables['home_phone']     = htmlspecialchars_decode($xss::filter($renderer->renderInIsolation($item->home_phone), []), ENT_QUOTES | ENT_HTML5);
-  $variables['home_cellphone'] = htmlspecialchars_decode($xss::filter($renderer->renderInIsolation($item->home_cellphone), []), ENT_QUOTES | ENT_HTML5);
-  $variables['home_website']   = htmlspecialchars_decode($xss::filter($renderer->renderInIsolation($item->home_website), []), ENT_QUOTES | ENT_HTML5);
-  $variables['work_title']     = htmlspecialchars_decode($xss::filter($renderer->renderInIsolation($item->work_title), []), ENT_QUOTES | ENT_HTML5);
-  $variables['work_company']   = htmlspecialchars_decode($xss::filter($renderer->renderInIsolation($item->work_company), []), ENT_QUOTES | ENT_HTML5);
-  $variables['work_address']   = htmlspecialchars_decode($xss::filter($renderer->renderInIsolation($item->work_address), []), ENT_QUOTES | ENT_HTML5);
-  $variables['work_city']      = htmlspecialchars_decode($xss::filter($renderer->renderInIsolation($item->work_city), []), ENT_QUOTES | ENT_HTML5);
-  $variables['work_state']     = htmlspecialchars_decode($xss::filter($renderer->renderInIsolation($item->work_state), []), ENT_QUOTES | ENT_HTML5);
-  $variables['work_zip']       = htmlspecialchars_decode($xss::filter($renderer->renderInIsolation($item->work_zip), []), ENT_QUOTES | ENT_HTML5);
-  $variables['work_country']   = htmlspecialchars_decode($xss::filter($renderer->renderInIsolation($item->work_country), []), ENT_QUOTES | ENT_HTML5);
-  $variables['work_phone']     = htmlspecialchars_decode($xss::filter($renderer->renderInIsolation($item->work_phone), []), ENT_QUOTES | ENT_HTML5);
-  $variables['work_fax']       = htmlspecialchars_decode($xss::filter($renderer->renderInIsolation($item->work_fax), []), ENT_QUOTES | ENT_HTML5);
-  $variables['work_website']   = htmlspecialchars_decode($xss::filter($renderer->renderInIsolation($item->work_website), []), ENT_QUOTES | ENT_HTML5);
-  $variables['photo']          = $item->photo;
+  // Grab the variables previously defined by the theme hook.
+  $registry = \Drupal::service('theme.registry')->get();
+  $names = array_keys($registry['views_vcards_view_row_vcard']['variables']);
+
+  // Iterate over the variables to filter each value.
+  foreach ($names as $name) {
+    if (isset($item->$name) && is_array($item->$name) && !empty($item->$name['#markup'])) {
+      $render = [$item->$name];
+      $value = $xss::filter($renderer->renderInIsolation($render));
+      $value = htmlspecialchars_decode($value, ENT_QUOTES | ENT_HTML5);
+      $value = trim(strip_tags($value, '<a>'));
+      if (strlen($value) > 0) {
+        $variables[$name] = $value;
+      }
+    }
+  }
+  $variables['photo'] = $item->photo;
 }

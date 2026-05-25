@@ -1,16 +1,14 @@
 <?php
 
 declare(strict_types=1);
-/**
- * @file
- * Contains \Drupal\mailchimp_transactional_activity\Form\ActivityDeleteForm.
- */
 
 namespace Drupal\mailchimp_transactional_activity\Form;
 
 use Drupal\Core\Entity\EntityConfirmFormBase;
-use Drupal\Core\Url;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteBuilderInterface;
+use Drupal\Core\Url;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Form controller for the Activity entity delete form.
@@ -18,6 +16,32 @@ use Drupal\Core\Form\FormStateInterface;
  * @ingroup mailchimp_transactional_activity
  */
 class ActivityDeleteForm extends EntityConfirmFormBase {
+
+  /**
+   * The route builder service.
+   *
+   * @var \Drupal\Core\Routing\RouteBuilderInterface
+   */
+  protected $routeBuilder;
+
+  /**
+   * Constructs a new ActivityDeleteForm.
+   *
+   * @param \Drupal\Core\Routing\RouteBuilderInterface $route_builder
+   *   The route builder service.
+   */
+  public function __construct(RouteBuilderInterface $route_builder) {
+    $this->routeBuilder = $route_builder;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('router.builder')
+    );
+  }
 
   /**
    * {@inheritdoc}
@@ -46,7 +70,7 @@ class ActivityDeleteForm extends EntityConfirmFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->entity->delete();
 
-    \Drupal::service('router.builder')->setRebuildNeeded();
+    $this->routeBuilder->setRebuildNeeded();
 
     $this->messenger()->addStatus($this->t('Mailchimp Transactional Activity %label has been deleted.', ['%label' => $this->entity->label()]));
 

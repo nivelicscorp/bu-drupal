@@ -19,9 +19,6 @@ class ModulesWeightCommands extends DrushCommands {
 
   const MODULES_WEIGHT_GREEN_OUTPUT = "\033[1;32;40m\033[1m%s\033[0m";
   const MODULES_WEIGHT_RED_OUTPUT = "\033[31;40m\033[1m%s\033[0m";
-
-  // This is more readable.
-  const REQ = InputOption::VALUE_REQUIRED;
   const OPT = InputOption::VALUE_OPTIONAL;
 
   /**
@@ -88,10 +85,12 @@ class ModulesWeightCommands extends DrushCommands {
   }
 
   /**
-   * Validate for drush:mw-show-system-modules command.
+   * Validate for mw-show-system-modules command.
    *
    * @param \Consolidation\AnnotatedCommand\CommandData $commandData
    *   The command data.
+   *
+   * @hook validate mw-show-system-modules
    *
    * @throws \Exception
    */
@@ -116,7 +115,7 @@ class ModulesWeightCommands extends DrushCommands {
    * @param string $arg
    *   The status option (on, off).
    *
-   * @command drush:mw-show-system-modules
+   * @command mw-show-system-modules
    * @aliases mw-ssm
    */
   public function moduleWeightShowSystemModules(string $arg) {
@@ -159,10 +158,12 @@ class ModulesWeightCommands extends DrushCommands {
   }
 
   /**
-   * Validate for drush:mw-reorder.
+   * Validate for mw-reorder.
    *
    * @param \Consolidation\AnnotatedCommand\CommandData $commandData
    *   The commanda data.
+   *
+   * @hook validate mw-reorder
    *
    * @throws \Drush\Exceptions\UserAbortException
    */
@@ -202,7 +203,7 @@ class ModulesWeightCommands extends DrushCommands {
    * @param array $options
    *   The options.
    *
-   * @command drush:mw-reorder
+   * @command mw-reorder
    * @aliases mw-r
    * @options minus If the option is present the weight will be consider as a
    *  negative value. Read for more information

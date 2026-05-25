@@ -3,4 +3,4 @@ services:
     class: \Drupal\field_defaults\Commands\FieldDefaultsBulkCommands
     tags:
       - { name: drush.command }
-    arguments: ['@entity_type.manager', '@language_manager', '@extension.list.module']
+    arguments: ['@entity_type.manager', '@field_defaults.processor']

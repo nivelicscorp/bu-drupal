@@ -31,7 +31,7 @@ class VCardSettingsForm extends ConfigFormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config('vcard.settings');
     if (!_vcard_init()) {
-      drupal_set_message($this->t('The PEAR package Contact_Vcard_Build (required by vcard.module) has not been installed properly, please read INSTALL.txt.'), 'warning');
+      \Drupal::messenger()->addMessage($this->t('The PEAR package Contact_Vcard_Build (required by vcard.module) has not been installed properly, please read INSTALL.txt.'), 'warning');
     }
 
     $form['display'] = array(
@@ -93,7 +93,7 @@ class VCardSettingsForm extends ConfigFormBase {
     $display_settings_hcard = $form_state->getValue('vcard_display_profile_hcard');
     $config->set('vcard_display_profile_hcard', $display_settings_hcard)->save();
 
-    drupal_set_message($this->t('Configurations have been saved.'));
+    \Drupal::messenger()->addMessage($this->t('Configurations have been saved.'));
   }
 
 }

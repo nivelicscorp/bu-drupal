@@ -1,17 +1,24 @@
-modal_page.admin:
-  title: 'Modal Page'
-  description: 'Settings of Modal Page'
-  parent: system.admin_config_ui
-  route_name: modal_page.settings
-
-modal_page.default:
+# Modal menu items definition
+entity.modal.collection:
   title: 'Modal'
+  route_name: entity.modal.collection
+  description: 'List Modal (bundles)'
   parent: system.admin_structure
-  description: 'Create and manage Modal.'
-  route_name: modal_page.default
-  
+
 modal_page.add_modal:
   title: 'Add Modal'
-  route_name: modal_page.add_modal
+  route_name: entity.modal.add_form
   description: 'Add Modal'
-  parent: modal_page.default
+  parent: entity.modal.collection
+
+modal_page.admin:
+  title: 'Modal Page'
+  route_name: modal_page.settings
+  description: 'Settings for the Modal Page'
+  parent: system.admin_config_ui
+
+modal_page.global_settings:
+  title: 'Global Settings'
+  route_name: modal_page.settings
+  description: 'Global Settings'
+  parent: entity.modal.collection

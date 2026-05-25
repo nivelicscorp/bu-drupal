@@ -1,7 +1,7 @@
 name: Views Filter Autosubmit
 type: module
 description: Recreates the autosubmit option for Views exposed filters.
-core_version_requirement: ^8.8 || ^9 || ^10 || ^11
+core_version_requirement: ^10 || ^11
 package: Views
 dependencies:
   - views

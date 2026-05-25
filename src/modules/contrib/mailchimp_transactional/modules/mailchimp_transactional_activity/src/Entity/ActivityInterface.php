@@ -1,10 +1,6 @@
 <?php
 
 declare(strict_types=1);
-/**
- * @file
- * Contains \Drupal\mailchimp_transactional_activity\ActivityInterface.
- */
 
 namespace Drupal\mailchimp_transactional_activity\Entity;
 

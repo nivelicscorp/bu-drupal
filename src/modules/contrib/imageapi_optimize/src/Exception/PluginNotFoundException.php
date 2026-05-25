@@ -18,7 +18,7 @@ class PluginNotFoundException extends CorePluginNotFoundException {
   /**
    * @inheritDoc
    */
-  public function __construct($plugin_id, $message = '', $code = 0, \Exception $previous = NULL) {
+  public function __construct($plugin_id, $message = '', $code = 0, ?\Exception $previous = NULL) {
     parent::__construct($plugin_id, $message, $code, $previous);
     $this->pluginId = $plugin_id;
   }

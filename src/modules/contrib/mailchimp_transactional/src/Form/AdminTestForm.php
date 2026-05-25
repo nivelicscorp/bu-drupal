@@ -1,13 +1,17 @@
 <?php
 
 declare(strict_types=1);
+
 namespace Drupal\mailchimp_transactional\Form;
 
+use Drupal\Component\Plugin\Exception\PluginException;
+use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Form\ConfirmFormBase;
-use Drupal\Core\Url;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\mailchimp_transactional\Plugin\Mail\Mail;
-use Drupal\mailchimp_transactional\Plugin\Mail\TestMail;
+use Drupal\Core\Mail\MailManagerInterface;
+use Drupal\Core\Url;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Form controller for the Mailchimp Transactional send test email form.
@@ -15,6 +19,27 @@ use Drupal\mailchimp_transactional\Plugin\Mail\TestMail;
  * @ingroup mailchimp_transactional
  */
 class AdminTestForm extends ConfirmFormBase {
+
+  /**
+   * The config factory.
+   *
+   * @var \Drupal\Core\Config\ConfigFactoryInterface
+   */
+  protected $configFactory;
+
+  /**
+   * The file system service.
+   *
+   * @var \Drupal\Core\File\FileSystemInterface
+   */
+  protected $fileSystem;
+
+  /**
+   * The mail manager service.
+   *
+   * @var \Drupal\Core\Mail\MailManagerInterface
+   */
+  protected $mailManager;
 
   /**
    * {@inheritdoc}
@@ -52,6 +77,33 @@ class AdminTestForm extends ConfirmFormBase {
   }
 
   /**
+   * Constructor.
+   *
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The config factory.
+   * @param \Drupal\Core\File\FileSystemInterface $file_system
+   *   The file system service.
+   * @param \Drupal\Core\Mail\MailManagerInterface $mail_manager
+   *   The mail manager service.
+   */
+  public function __construct(ConfigFactoryInterface $config_factory, FileSystemInterface $file_system, MailManagerInterface $mail_manager) {
+    $this->configFactory = $config_factory;
+    $this->fileSystem = $file_system;
+    $this->mailManager = $mail_manager;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('config.factory'),
+      $container->get('file_system'),
+      $container->get('plugin.manager.mail'),
+    );
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state): array {
@@ -59,12 +111,12 @@ class AdminTestForm extends ConfirmFormBase {
 
     $click_tracking_url = Url::fromUri('https://www.drupal.org/project/mailchimp_transactional');
 
-    $mailchimp_transactional_test_mail = \Drupal::config('mailsystem.settings')->get('defaults')['sender'] == 'mailchimp_transactional_test_mail';
+    $mailchimp_transactional_test_mail = $this->configFactory->get('mailsystem.settings')->get('defaults')['sender'] == 'mailchimp_transactional_test_mail';
 
     $form['mailchimp_transactional_test_address'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Send to'),
-      '#default_value' => \Drupal::config('system.site')->get('mail'),
+      '#default_value' => $this->configFactory->get('system.site')->get('mail'),
       '#description' => $this->t('Multiple addresses allowed with comma separation, including <code>name &lt;email@example.com&gt;</code> formatting.'),
       '#required' => TRUE,
     ];
@@ -116,7 +168,7 @@ class AdminTestForm extends ConfirmFormBase {
     }
 
     if ($form_state->getValue('include_attachment')) {
-      $message['attachments'][] = \Drupal::service('file_system')->realpath('core/themes/bartik/logo.svg');
+      $message['attachments'][] = $this->fileSystem->realpath('core/themes/stark/logo.svg');
       $message['body'] .= ' ' . $this->t('The Drupal icon is included as an attachment to test the attachment functionality.');
     }
 
@@ -124,14 +176,12 @@ class AdminTestForm extends ConfirmFormBase {
     // This service will either be mailchimp_transactional_mail or
     // mailchimp_transactional_test_mail or the route that exposes this form
     // won't even show up - see MailerAccessCheck.php.
-    $sender = \Drupal::config('mailsystem.settings')->get('defaults')['sender'];
-    if ($sender == 'mailchimp_transactional_mail') {
-      /** @var \Drupal\mailchimp_transactional\Plugin\Mail\Mail $mailchimp_transactional */
-      $mailer = new Mail();
+    $sender = $this->configFactory->get('mailsystem.settings')->get('defaults')['sender'];
+    try {
+      $mailer = $this->mailManager->createInstance($sender);
     }
-    elseif ($sender == 'mailchimp_transactional_test_mail') {
-      /** @var \Drupal\mailchimp_transactional\Plugin\Mail\TestMail $mailchimp_transactional */
-      $mailer = new TestMail();
+    catch (PluginException $exception) {
+      return;
     }
 
     // Ensure we have a mailer and send the message.

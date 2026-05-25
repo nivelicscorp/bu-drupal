@@ -5,28 +5,18 @@
     "homepage": "https://www.drupal.org/project/modal_page",
     "authors": [
         {
-            "name": "Renato Gonçalves (RenatoG)",
-            "email": "renatog@ciandt.com",
-            "homepage": "https://www.drupal.org/u/RenatoG",
-            "role": "Maintainer"
-        },
-        {
-            "name": "Lucas Arruda (larruda)",
-            "email": "lucas@ciandt.com",
-            "homepage": "https://www.drupal.org/u/larruda",
-            "role": "Maintainer"
-        },
-        {
-            "name": "Felipe Ribeiro (felribeiro)",
-            "email": "fribeiro@ciandt.com",
-            "homepage": "https://www.drupal.org/u/felribeiro",
-            "role": "Maintainer"
+            "name": "See contributors",
+            "homepage": "https://www.drupal.org/node/2841111/committers",
+            "role": "Developer"
         }
     ],
     "support": {
         "issues": "https://www.drupal.org/project/issues/modal_page",
         "irc": "irc://irc.freenode.org/drupal-contribute",
-        "source": "https://cgit.drupalcode.org/modal_page"
+        "source": "https://git.drupalcode.org/project/modal_page"
     },
-    "license": "GPL-2.0+"
+    "require": {
+        "drupal/js_cookie": "^1.0"
+    },
+    "license": "GPL-2.0-or-later"
 }

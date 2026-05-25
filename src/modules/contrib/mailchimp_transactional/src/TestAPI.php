@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 namespace Drupal\mailchimp_transactional;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
@@ -12,7 +13,7 @@ use GuzzleHttp\Client;
 /**
  * Overrides functions in the Mailchimp Transactional API service for testing.
  */
-class TestAPI extends API {
+class TestApi extends Api {
   /**
    * The email validator.
    *

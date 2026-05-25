@@ -2,16 +2,11 @@
 
 declare(strict_types=1);
 
-/**
- * @file
- * Contains \Drupal\mailchimp_transactional_activity\Controller\ActivityController.
- */
-
 namespace Drupal\mailchimp_transactional_activity\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Datetime\DateFormatterInterface;
-use Drupal\mailchimp_transactional\APIInterface;
+use Drupal\mailchimp_transactional\ApiInterface;
 use Drupal\user\Entity\User;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -30,14 +25,14 @@ class ActivityController extends ControllerBase {
   /**
    * The Mailchimp Transactional API.
    *
-   * @var \Drupal\mailchimp_transactional\APIInterface
+   * @var \Drupal\mailchimp_transactional\ApiInterface
    */
   protected $mailchimpTransactionalApi;
 
   /**
    * Class constructor.
    */
-  public function __construct(DateFormatterInterface $date_formatter, APIInterface $mailchimp_transactional_api) {
+  public function __construct(DateFormatterInterface $date_formatter, ApiInterface $mailchimp_transactional_api) {
     $this->dateFormatter = $date_formatter;
     $this->mailchimpTransactionalApi = $mailchimp_transactional_api;
   }
@@ -64,7 +59,6 @@ class ActivityController extends ControllerBase {
   public function overview(User $user) {
     $content = [];
 
-    /** @var \Drupal\mailchimp_transactional\API $this->mailchimpTransactionalApi */
     $email = $user->getEmail();
     $messages = $this->mailchimpTransactionalApi->getMessages($email);
 
@@ -82,7 +76,7 @@ class ActivityController extends ControllerBase {
         $this->t('Clicks'),
         $this->t('Tags'),
       ],
-      '#empty' => 'No activity yet.',
+      '#empty' => $this->t('No activity yet.'),
     ];
 
     foreach ($messages as $index => $message) {

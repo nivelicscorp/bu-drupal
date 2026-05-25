@@ -28,6 +28,8 @@ class GoogleAnalyticsVisibilityRoles extends ProcessPluginBase implements Contai
   protected $moduleHandler;
 
   /**
+   * The migration process plugin.
+   *
    * The migration process plugin, configured for lookups in the d6_user_role
    * and d7_user_role migrations.
    *
@@ -59,7 +61,7 @@ class GoogleAnalyticsVisibilityRoles extends ProcessPluginBase implements Contai
       $plugin_id,
       $plugin_definition,
       $container->get('module_handler'),
-      $container->get('plugin.manager.migrate.process')->createInstance('migration', $migration_configuration, $migration)
+      $container->get('plugin.manager.migrate.process')->createInstance('migration_lookup', $migration_configuration, $migration)
     );
   }
 
@@ -67,7 +69,7 @@ class GoogleAnalyticsVisibilityRoles extends ProcessPluginBase implements Contai
    * {@inheritdoc}
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
-    list($roles) = $value;
+    [$roles] = $value;
 
     // Remove role IDs disabled in D6/D7.
     $roles = array_filter($roles);

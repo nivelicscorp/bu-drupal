@@ -41,7 +41,6 @@ class SettingsForm extends FormBase {
   public static function create(ContainerInterface $container) {
     // Instantiates this form class.
     return new static(
-    // Load the service required to construct this class.
       $container->get('config.factory'),
       $container->get('messenger')
     );
@@ -60,6 +59,7 @@ class SettingsForm extends FormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->configFactory->getEditable('field_defaults.settings');
 
+    // @todo change to "preserve" to allow compatibility with preserve_changed module.
     $form['retain_changed_date'] = [
       '#title' => $this->t('Retain original entity updated time'),
       '#description' => $this->t('When default values are updated retain the entity original update date.'),

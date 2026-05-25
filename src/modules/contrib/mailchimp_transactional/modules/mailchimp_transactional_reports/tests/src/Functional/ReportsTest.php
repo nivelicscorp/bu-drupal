@@ -1,10 +1,6 @@
 <?php
 
 declare(strict_types=1);
-/**
- * @file
- * Test class and methods for the Mailchimp Transactional Reports module.
- */
 
 namespace Drupal\Tests\mailchimp_transactional_reports\Functional;
 
@@ -37,7 +33,7 @@ class ReportsTest extends TestBase {
    */
   public function testGetReportsData() {
     /** @var \Drupal\mailchimp_transactional_reports\ReportsService $reports */
-    $reports = \Drupal::service('mailchimp_transactional_reports.test.service');
+    $reports = $this->container->get('mailchimp_transactional_reports.test.service');
 
     $reports_data = [
       'user' => $reports->getUser(),

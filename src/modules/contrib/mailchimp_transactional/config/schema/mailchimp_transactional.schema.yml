@@ -2,39 +2,39 @@ mailchimp_transactional.settings:
   type: config_object
   label: 'Mailchimp Transactional settings'
   mapping:
-    mailchimp_transactional_from_name:
+    from_name:
       type: string
       label: 'Sender name'
-    mailchimp_transactional_from_email:
+    from_email:
       type: string
       label: 'Sender email'
-    mailchimp_transactional_subaccount:
+    subaccount:
       type: string
-    mailchimp_transactional_filter_format:
+    filter_format:
       type: string
-    mailchimp_transactional_track_opens:
+    track_opens:
       type: boolean
-    mailchimp_transactional_track_clicks:
+    track_clicks:
       type: boolean
-    mailchimp_transactional_url_strip_qs:
+    url_strip_qs:
       type: boolean
-    mailchimp_transactional_analytics_campaign:
+    analytics_campaign:
       type: string
-    mailchimp_transactional_analytics_domains:
+    analytics_domains:
       type: string
-    mailchimp_transactional_batch_log_queued:
+    batch_log_queued:
       type: boolean
-    mailchimp_transactional_queue_worker_timeout:
+    queue_worker_timeout:
       type: integer
-    mailchimp_transactional_log_defaulted_sends:
+    log_defaulted_sends:
       type: boolean
-    mailchimp_transactional_api_key:
+    api_key:
       type: string
-    mailchimp_transactional_api_timeout:
+    api_timeout:
       type: integer
-    mailchimp_transactional_api_classname:
+    api_classname:
       type: string
-    mailchimp_transactional_mail_key_blacklist:
+    mail_key_denylist:
       type: string
-    mailchimp_transactional_process_async:
+    process_async:
       type: boolean

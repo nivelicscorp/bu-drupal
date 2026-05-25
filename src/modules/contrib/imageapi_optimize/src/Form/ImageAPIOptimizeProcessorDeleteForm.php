@@ -56,7 +56,7 @@ class ImageAPIOptimizeProcessorDeleteForm extends ConfirmFormBase {
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state, ImageAPIOptimizePipelineInterface $imageapi_optimize_pipeline = NULL, $imageapi_optimize_processor = NULL) {
+  public function buildForm(array $form, FormStateInterface $form_state, ?ImageAPIOptimizePipelineInterface $imageapi_optimize_pipeline = NULL, $imageapi_optimize_processor = NULL) {
     $this->imageAPIOptimizePipeline = $imageapi_optimize_pipeline;
     $this->imageAPIOptimizeProcessor = $this->imageAPIOptimizePipeline->getProcessor($imageapi_optimize_processor);
 

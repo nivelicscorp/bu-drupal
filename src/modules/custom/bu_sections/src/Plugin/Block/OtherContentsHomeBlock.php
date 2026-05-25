@@ -56,6 +56,8 @@ class OtherContentsHomeBlock extends BlockBase implements BlockPluginInterface, 
 
   /**
    * {@inheritdoc}
+   *
+   * @todo Refactor new static() to use parent::create() pattern for Drupal 11 compatibility.
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     return new static(

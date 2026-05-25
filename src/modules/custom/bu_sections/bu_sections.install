@@ -31,7 +31,7 @@ function bu_sections_update_8002() {
 function bu_sections_update_8003() {
   $query = \Drupal::entityQuery('taxonomy_term');
   $query->condition('vid', 'section');
-  $entity_ids = $query->execute();
+  $entity_ids = $query->accessCheck(FALSE)->execute();
 
   $entity_manager = \Drupal::entityTypeManager();
   $terms = $entity_manager->getStorage('taxonomy_term')->loadMultiple($entity_ids);
@@ -48,7 +48,7 @@ function bu_sections_update_8003() {
 function bu_sections_update_8004() {
   $query = \Drupal::entityQuery('taxonomy_term');
   $query->condition('vid', ['areas', 'indrustrias'], 'IN');
-  $entity_ids = $query->execute();
+  $entity_ids = $query->accessCheck(FALSE)->execute();
 
   $entity_manager = \Drupal::entityTypeManager();
   $terms = $entity_manager->getStorage('taxonomy_term')->loadMultiple($entity_ids);
@@ -64,7 +64,7 @@ function bu_sections_update_8004() {
 function bu_sections_update_8005() {
   $query = \Drupal::entityQuery('node');
   $query->condition('type', ['bulletin', 'lawyer ', 'noticia'], 'IN');
-  $entity_ids = $query->execute();
+  $entity_ids = $query->accessCheck(FALSE)->execute();
 
   $entity_manager = \Drupal::entityTypeManager();
   $nodes = $entity_manager->getStorage('node')->loadMultiple($entity_ids);

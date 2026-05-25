@@ -290,7 +290,7 @@ function bu_lawyers_views_pre_render(\Drupal\views\ViewExecutable $view) {
 
 function get_pay_button($id) {
   $webform_submission = \Drupal\webform\Entity\WebformSubmission::load($id);
-  $node_storage = \Drupal::entityManager()->getStorage('node');
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
   $nid = $webform_submission->getElementData('evento');
   $evento = $node_storage->load($nid);
   $valor_evento = $evento->get('field_v')->getValue();

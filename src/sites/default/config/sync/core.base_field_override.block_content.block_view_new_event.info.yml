@@ -1,0 +1,18 @@
+uuid: fa3aaef4-0b89-463c-bde0-855118f300cb
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.block_view_new_event
+id: block_content.block_view_new_event.info
+field_name: info
+entity_type: block_content
+bundle: block_view_new_event
+label: 'Descripción del bloque'
+description: 'Una breve descripción de su bloque.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

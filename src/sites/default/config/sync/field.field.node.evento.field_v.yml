@@ -1,0 +1,19 @@
+uuid: 106974bc-b0d8-4e72-9738-d8bb9e11258c
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_v
+    - node.type.evento
+id: node.evento.field_v
+field_name: field_v
+entity_type: node
+bundle: evento
+label: 'Valor del evento'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

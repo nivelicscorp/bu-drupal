@@ -1,0 +1,21 @@
+uuid: 66400108-0070-4d55-8e86-5020bf3f8eaa
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_graphs_type
+    - paragraphs.paragraphs_type.statistical_graphs
+  module:
+    - options
+id: paragraph.statistical_graphs.field_graphs_type
+field_name: field_graphs_type
+entity_type: paragraph
+bundle: statistical_graphs
+label: 'Graphs type'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,29 @@
+uuid: d2fb6d1f-682d-4b56-95e5-fbd8e71b5e68
+langcode: es
+status: false
+dependencies:
+  content:
+    - 'block_content:banner_intermedio_home:2a5966f5-7d5c-4e38-8715-7e3363b55bd9'
+  module:
+    - block_content
+    - system
+  theme:
+    - brigard
+id: masde80anosayudandoaloscolombianos
+theme: brigard
+region: content
+weight: -10
+provider: null
+plugin: 'block_content:2a5966f5-7d5c-4e38-8715-7e3363b55bd9'
+settings:
+  id: 'block_content:2a5966f5-7d5c-4e38-8715-7e3363b55bd9'
+  label: 'Quiénes somos'
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: '<front>'

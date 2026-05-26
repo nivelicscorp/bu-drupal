@@ -1,0 +1,29 @@
+uuid: c5078b48-bdef-43cb-bbf6-69b01bb7a10c
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_industrias
+    - node.type.lawyer
+    - taxonomy.vocabulary.indrustrias
+id: node.lawyer.field_industrias
+field_name: field_industrias
+entity_type: node
+bundle: lawyer
+label: Industrias
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      indrustrias: indrustrias
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

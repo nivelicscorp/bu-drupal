@@ -1,0 +1,103 @@
+uuid: 14f75026-4491-43a9-b255-1eb161af04c3
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.sider_bar
+    - field.field.block_content.sider_bar.body
+    - field.field.block_content.sider_bar.field_title
+    - field.field.block_content.sider_bar.field_url
+  module:
+    - field_group
+    - link
+    - text
+third_party_settings:
+  field_group:
+    group_container:
+      children:
+        - group_title
+        - field_url
+        - group_body
+      label: container
+      parent_name: ''
+      region: content
+      weight: 0
+      format_type: html_element
+      format_settings:
+        label: container
+        classes: contact-div
+        id: ''
+        element: h4
+        show_label: false
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
+    group_title:
+      children:
+        - field_title
+      label: title
+      parent_name: group_container
+      region: content
+      weight: 27
+      format_type: html_element
+      format_settings:
+        classes: ''
+        id: ''
+        element: span
+        show_label: false
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
+    group_body:
+      children:
+        - body
+      label: body
+      parent_name: group_container
+      region: content
+      weight: 29
+      format_type: html_element
+      format_settings:
+        classes: ''
+        id: ''
+        element: span
+        show_label: false
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
+id: block_content.sider_bar.default
+targetEntityType: block_content
+bundle: sider_bar
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 22
+    region: content
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 21
+    region: content
+  field_url:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 28
+    region: content
+hidden:
+  langcode: true

@@ -1,0 +1,7 @@
+uuid: c49dae71-0506-45cc-b6e6-2511c9805112
+langcode: es
+status: false
+dependencies: {  }
+formId: node_page_form
+captchaType: default
+label: node_page_form

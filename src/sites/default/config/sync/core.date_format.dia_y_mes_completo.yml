@@ -1,0 +1,8 @@
+uuid: a0b7758e-a8cf-4635-b469-142589a57acb
+langcode: es
+status: true
+dependencies: {  }
+id: dia_y_mes_completo
+label: 'Dia y mes completo'
+locked: false
+pattern: 'd \d\e F'

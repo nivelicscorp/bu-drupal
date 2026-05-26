@@ -1,0 +1,28 @@
+uuid: 035aafdd-3e2a-4414-b717-d0ccdc1f1b05
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_informe
+    - node.type.informe
+    - node.type.lawyer
+id: node.lawyer.field_informe
+field_name: field_informe
+entity_type: node
+bundle: lawyer
+label: Informe
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      informe: informe
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

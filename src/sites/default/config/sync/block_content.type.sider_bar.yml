@@ -1,0 +1,8 @@
+uuid: 2b0a618a-c509-4987-9f2a-d86a06b1b7de
+langcode: es
+status: true
+dependencies: {  }
+id: sider_bar
+label: 'Bloque sider bar'
+revision: false
+description: ''

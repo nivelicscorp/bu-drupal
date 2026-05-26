@@ -1,0 +1,20 @@
+uuid: 73b4aad2-7f75-41b3-a9c9-e00b077f3fc9
+langcode: es
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.base_de_datos
+  module:
+    - path
+id: taxonomy_term.base_de_datos.path
+field_name: path
+entity_type: taxonomy_term
+bundle: base_de_datos
+label: 'Alias de URL'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

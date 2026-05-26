@@ -1,0 +1,19 @@
+uuid: be49f132-a9fc-4380-8252-064cd9fa4971
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_resumen
+    - taxonomy.vocabulary.nuevos_servicios
+id: taxonomy_term.nuevos_servicios.field_resumen
+field_name: field_resumen
+entity_type: taxonomy_term
+bundle: nuevos_servicios
+label: Resúmen
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

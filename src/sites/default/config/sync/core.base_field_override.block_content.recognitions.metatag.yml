@@ -1,0 +1,18 @@
+uuid: eb070221-c00d-4e36-9f1e-68d9295eedf3
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.recognitions
+id: block_content.recognitions.metatag
+field_name: metatag
+entity_type: block_content
+bundle: recognitions
+label: Metatags
+description: 'The meta tags for the entity.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: map

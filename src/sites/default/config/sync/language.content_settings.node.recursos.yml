@@ -1,0 +1,16 @@
+uuid: b55988d0-8149-45c2-b560-7248f129a89b
+langcode: es
+status: true
+dependencies:
+  config:
+    - node.type.recursos
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: node.recursos
+target_entity_type_id: node
+target_bundle: recursos
+default_langcode: site_default
+language_alterable: true

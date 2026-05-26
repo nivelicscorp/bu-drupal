@@ -1,0 +1,8 @@
+uuid: ac3da334-60a7-4a55-b53c-aff6afa6f473
+langcode: es
+status: true
+dependencies: {  }
+id: vinculese-a-bu
+label: 'Vincúlese a BU'
+description: 'pertenece al pie de página'
+locked: false

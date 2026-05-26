@@ -1,0 +1,28 @@
+uuid: 518e555e-59c0-485f-952d-9de5f2fe963e
+langcode: es
+status: true
+dependencies:
+  module:
+    - menu_ui
+    - social_simple
+  enforced:
+    module:
+      - webform_node
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+  social_simple:
+    share: 0
+    title: ''
+    networks: {  }
+    hashtags: '0'
+_core:
+  default_config_hash: BuY_3PjmYtRTSuvyFORJZUe0-TQiNXEE6yYQ_dkjxW8
+name: 'Formulario web'
+type: webform
+description: 'A basic page with a webform attached.'
+help: null
+new_revision: false
+preview_mode: 1
+display_submitted: false

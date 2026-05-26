@@ -1,0 +1,19 @@
+uuid: 33db5985-edb1-4bf2-ac00-acb73523d011
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.banner_intermedio_home
+    - field.storage.block_content.field_title
+id: block_content.banner_intermedio_home.field_title
+field_name: field_title
+entity_type: block_content
+bundle: banner_intermedio_home
+label: Title
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

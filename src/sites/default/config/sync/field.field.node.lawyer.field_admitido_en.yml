@@ -1,0 +1,19 @@
+uuid: a889f934-70b2-4db8-b0d8-1c3a784be948
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_admitido_en
+    - node.type.lawyer
+id: node.lawyer.field_admitido_en
+field_name: field_admitido_en
+entity_type: node
+bundle: lawyer
+label: 'Admitido en'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

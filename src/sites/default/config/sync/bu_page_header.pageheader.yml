@@ -1,0 +1,1445 @@
+bu_page_header: null
+_core:
+  default_config_hash: PiKKW8ZjMIT5HDMqBln2lQmwxJqKumHf9fLfMhDPJj0
+langcode: es
+content:
+  fieldset:
+    0:
+      url: noticias
+      title: Noticias
+      subtitle: ''
+      lead: 'Las últimas noticias legales sobre diferentes industrias y áreas de práctica'
+      image:
+        - '1095'
+    1:
+      url: que-hacemos
+      title: 'Qué hacemos'
+      subtitle: ''
+      lead: 'Brindamos asesoría legal en todas las áreas del derecho de los negocios, con un alcance global que nos permite estar a la vanguardia.'
+      image:
+        - '1096'
+    2:
+      url: boletines
+      title: 'Boletín Legal '
+      subtitle: ''
+      lead: 'Las últimas noticias legales sobre diferentes industrias y áreas de práctica'
+      image:
+        - '12816'
+    3:
+      url: contacto
+      title: Contáctenos
+      subtitle: ''
+      lead: 'Por favor diligencie el formato para atender su solicitud'
+      image:
+        - '1098'
+    4:
+      url: pasantias-verano-inscripcion
+      title: 'Pasantías de verano'
+      subtitle: ''
+      lead: 'Le abrimos las puertas de la firma a los estudiantes de últimos semestres de Derecho, integrándose a nuestro equipo de trabajo durante siete semanas'
+      image:
+        - '1099'
+    5:
+      url: contact
+      title: 'Contact Us'
+      subtitle: ''
+      lead: 'Please fill out the following form so that we can attend your request'
+      image:
+        - '1100'
+    6:
+      url: historia
+      title: 'Historia '
+      subtitle: ''
+      lead: 'Fundada en 1934 y con más de 80 años de experiencia, somos la firma de abogados líder en Colombia y una de las de mayor prestigio en la región'
+      image:
+        - '1101'
+    7:
+      url: history
+      title: History
+      subtitle: ''
+      lead: 'Founded in 1934 and with more than 80 years of experience, we are recognized as the leading law firm in Colombia and one of the most prestigious in the region'
+      image:
+        - '1102'
+    8:
+      url: awards
+      title: Awards
+      subtitle: ''
+      lead: 'International publications specialized in legal markets highlight our attorneys and the firm'
+      image:
+        - '1103'
+    9:
+      url: reconocimientos
+      title: Reconocimientos
+      subtitle: ''
+      lead: 'Las publicaciones internacionales especializadas en el mercado de firmas de abogados destacan a nuestros abogados y a la firma'
+      image:
+        - '1104'
+    10:
+      url: conexiones-globales
+      title: 'Conexiones Globales'
+      subtitle: ''
+      lead: 'Pertenecemos a las más importantes redes globales de firmas de abogados'
+      image:
+        - '1106'
+    11:
+      url: global-connections
+      title: 'Global Connections'
+      subtitle: ''
+      lead: 'We belong to the most important law firm global networks'
+      image:
+        - '1107'
+    12:
+      url: what-we-do
+      title: 'What We Do'
+      subtitle: ''
+      lead: 'We provide legal advice in all areas of business law, with a global reach that allows us to be at the forefront of best practices. '
+      image:
+        - '1109'
+    13:
+      url: lawyers
+      title: 'Our People'
+      subtitle: ''
+      lead: 'Talent, experience, dedication and responsibility, our commitment to you'
+      image:
+        - '1110'
+    14:
+      url: abogados
+      title: 'Nuestra gente'
+      subtitle: ''
+      lead: 'Talento, experiencia, dedicación y responsabilidad, nuestro compromiso con usted'
+      image:
+        - '940'
+    15:
+      url: indicadores-macroeconomicos
+      title: 'Indicadores Macroeconómicos'
+      subtitle: ''
+      lead: 'Principales indicadores económicos de Colombia'
+      image:
+        - '1111'
+    16:
+      url: macroeconomic-information
+      title: 'Macroeconomic Information'
+      subtitle: ''
+      lead: 'Main economic indicators of Colombia'
+      image:
+        - '1113'
+    17:
+      url: corporate-governance
+      title: 'Corporate Governance'
+      subtitle: ''
+      lead: 'We have a corporate governance structure that allows us to implement the best international practices'
+      image:
+        - '1114'
+    18:
+      url: gobierno-corporativo
+      title: 'Gobierno Corporativo'
+      subtitle: ''
+      lead: 'Contamos con una estructura de gobierno corporativo que nos permite implementar las mejores prácticas internacionales'
+      image:
+        - '1115'
+    19:
+      url: pasantias-de-verano
+      title: 'Pasantías de verano'
+      subtitle: ''
+      lead: 'Le abrimos las puertas de la firma a los estudiantes de últimos semestres de Derecho, integrándose a nuestro equipo de trabajo durante siete semanas'
+      image:
+        - '1116'
+    20:
+      url: pasantias-verano-inscripcion
+      title: 'Summer Internships'
+      subtitle: ''
+      lead: 'With our Summer Internships, we open our doors to final semester law students to start their career, joining our team for seven weeks'
+      image:
+        - '1118'
+    21:
+      url: trabaje-con-nosotros
+      title: 'Trabaje con nosotros'
+      subtitle: ''
+      lead: 'Como firma líder del mercado legal colombiano, somos conscientes que nuestro factor de éxito es el talento humano'
+      image:
+        - '1120'
+    22:
+      url: work-us
+      title: 'Work With Us'
+      subtitle: ''
+      lead: 'As a leading firm in the Colombian legal market, we are aware that our success factor is human talent'
+      image:
+        - '1121'
+    23:
+      url: shared-value
+      title: 'Shared Value'
+      subtitle: ''
+      lead: 'We are committed to the integral development of the most vulnerable communities in Colombia through our Shared Value Program'
+      image:
+        - '1122'
+    24:
+      url: valor-compartido
+      title: 'Valor Compartido'
+      subtitle: ''
+      lead: 'Estamos comprometidos con el desarrollo integral de las comunidades más vulnerables de Colombia a través de nuestro programa de Valor Compartido'
+      image:
+        - '1123'
+    25:
+      url: vinculese-bu
+      title: 'Vincúlese a BU'
+      subtitle: ''
+      lead: 'Conozca cómo y por qué hacer parte de nuestra firma'
+      image:
+        - '1125'
+    26:
+      url: join-bu
+      title: ' Join BU'
+      subtitle: ''
+      lead: 'Get to know how and why to be part of our family'
+      image:
+        - '1126'
+    27:
+      url: inscripcion
+      title: 'Trabaje con nosotros'
+      subtitle: ''
+      lead: 'Como firma líder del mercado legal colombiano, somos conscientes que nuestro factor de éxito es el talento humano'
+      image:
+        - '1384'
+    28:
+      url: summer-internships-registration
+      title: 'Summer internships'
+      subtitle: ''
+      lead: 'With our Summer Internships, we open our doors to final semester law students to start their career, joining our team for seven weeks'
+      image:
+        - '1129'
+    29:
+      url: inscription
+      title: 'Work with us'
+      subtitle: ''
+      lead: 'As a leading firm in the Colombian legal market, we are aware that our success factor is human talent'
+      image:
+        - '1130'
+    30:
+      url: news
+      title: News
+      subtitle: ''
+      lead: 'The latest legal news regarding different industries and practice areas'
+      image:
+        - '1132'
+    31:
+      url: quienes-somos
+      title: 'Quiénes somos'
+      subtitle: ''
+      lead: '"Considero que Brigard es la firma más importante e influyente de Colombia, y sus abogados son los mejores en cada área del derecho(..)” Chambers and Partners...'
+      image:
+        - '1134'
+    32:
+      url: who-we-are
+      title: 'Who We Are'
+      subtitle: ''
+      lead: '“I consider Brigard to be the most important and influential firm in Colombia, their practitioners are the best in every area of law (…)” Chambers and Partners'
+      image:
+        - '1136'
+    33:
+      url: medio-ambiente
+      title: 'Medio ambiente'
+      subtitle: ''
+      lead: ''
+      image:
+        - '1140'
+    34:
+      url: environment
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1143'
+    35:
+      url: diversity
+      title: Diversity
+      subtitle: ''
+      lead: 'We consider diversity as a source of creativity, innovation and interchangeability of ideas that add value to our environment'
+      image:
+        - '1144'
+    36:
+      url: diversidad
+      title: Diversidad
+      subtitle: ''
+      lead: 'Consideramos que la diversidad es fuente de creatividad, innovación e intercambio de ideas que agregan valor a nuestro entorno'
+      image:
+        - '1146'
+    37:
+      url: educacion
+      title: Educación
+      subtitle: ''
+      lead: 'Para nosotros, la educación es fuente de grandes oportunidades para las nuevas generaciones'
+      image:
+        - '1147'
+    38:
+      url: education
+      title: Education
+      subtitle: ''
+      lead: 'For us education is a source of great opportunities for future generations'
+      image:
+        - '1149'
+    39:
+      url: pro-bono
+      title: 'Pro bono'
+      subtitle: ''
+      lead: 'We offer a pro bono program which aims to facilitate access to justice through legal advice and training for individuals and communities with low income'
+      image:
+        - '1151'
+    40:
+      url: pro-bono
+      title: 'Pro bono'
+      subtitle: ''
+      lead: 'Ofrecemos un programa de asesoría pro bono que busca facilitar el acceso a la justicia a personas con escasos recursos económicos'
+      image:
+        - '1153'
+    41:
+      url: pasantias-verano-inscripcion
+      title: 'Pasantías de verano'
+      subtitle: ''
+      lead: 'Le abrimos las puertas de la firma a los estudiantes de últimos semestres de Derecho, integrándose a nuestro equipo de trabajo durante siete semanas'
+      image:
+        - '1154'
+    42:
+      url: reconciliacion
+      title: Reconciliación
+      subtitle: ''
+      lead: 'Nuestro equipo está comprometido con la generación de nuevas oportunidades de desarrollo económico y social para comunidades víctimas de la violencia'
+      image:
+        - '1155'
+    43:
+      url: reconciliation
+      title: Reconciliation
+      subtitle: ''
+      lead: 'Our team is committed to create new opportunities in terms of economic or social development for communities that have been victim of our country’s violence'
+      image:
+        - '1157'
+    44:
+      url: newsletters
+      title: 'Legal Bulletin'
+      subtitle: ''
+      lead: 'The latest legal news about different industries and practice areas'
+      image:
+        - '1159'
+    45:
+      url: pasantias-de-verano-2009
+      title: 'Pasantías de verano 2009'
+      subtitle: ''
+      lead: 'Le abrimos las puertas de la firma a los estudiantes de últimos semestres de Derecho, integrándose a nuestro equipo de trabajo durante siete semanas'
+      image:
+        - '1161'
+    46:
+      url: '1152'
+      title: 'Summer Internships 2009'
+      subtitle: ''
+      lead: 'With our Summer Internships, we open our doors to final semester law students to start their career, joining our team for seven weeks'
+      image:
+        - '1162'
+    47:
+      url: pasantias-de-verano-2010
+      title: 'Pasantías de verano 2010'
+      subtitle: ''
+      lead: 'Le abrimos las puertas de la firma a los estudiantes de últimos semestres de Derecho, integrándose a nuestro equipo de trabajo durante siete semanas'
+      image:
+        - '1164'
+    48:
+      url: '1153'
+      title: 'Summer Internships 2010'
+      subtitle: ''
+      lead: 'With our Summer Internships, we open our doors to final semester law students to start their career, joining our team for seven weeks'
+      image:
+        - '1166'
+    49:
+      url: pasantias-de-verano-2011
+      title: 'Pasantías de verano 2011'
+      subtitle: ''
+      lead: 'Le abrimos las puertas de la firma a los estudiantes de últimos semestres de Derecho, integrándose a nuestro equipo de trabajo durante siete semanas'
+      image:
+        - '1168'
+    50:
+      url: '1154'
+      title: 'Summer Internships 2011'
+      subtitle: ''
+      lead: 'With our Summer Internships, we open our doors to final semester law students to start their career, joining our team for seven weeks'
+      image:
+        - '1169'
+    51:
+      url: pasantias-de-verano-2012
+      title: 'Pasantías de verano 2012'
+      subtitle: ''
+      lead: 'Le abrimos las puertas de la firma a los estudiantes de últimos semestres de Derecho, integrándose a nuestro equipo de trabajo durante siete semanas'
+      image:
+        - '1171'
+    52:
+      url: '1155'
+      title: 'Summer Internships 2012'
+      subtitle: ''
+      lead: 'With our Summer Internships, we open our doors to final semester law students to start their career, joining our team for seven weeks'
+      image:
+        - '1172'
+    53:
+      url: pasantias-de-verano-2013
+      title: 'Pasantías de verano 2013'
+      subtitle: ''
+      lead: 'Le abrimos las puertas de la firma a los estudiantes de últimos semestres de Derecho, integrándose a nuestro equipo de trabajo durante siete semanas'
+      image:
+        - '1174'
+    54:
+      url: '1156'
+      title: 'Summer Internships 2013'
+      subtitle: ''
+      lead: 'With our Summer Internships, we open our doors to final semester law students to start their career, joining our team for seven weeks'
+      image:
+        - '1176'
+    55:
+      url: pasantias-de-verano-2014
+      title: 'Pasantías de verano 2014'
+      subtitle: ''
+      lead: 'Le abrimos las puertas de la firma a los estudiantes de últimos semestres de Derecho, integrándose a nuestro equipo de trabajo durante siete semanas'
+      image:
+        - '1178'
+    56:
+      url: '1157'
+      title: 'Summer Internships 2014'
+      subtitle: ''
+      lead: 'With our Summer Internships, we open our doors to final semester law students to start their career, joining our team for seven weeks'
+      image:
+        - '1180'
+    57:
+      url: pasantias-de-verano-2015
+      title: 'Pasantías de verano 2015'
+      subtitle: ''
+      lead: 'Le abrimos las puertas de la firma a los estudiantes de últimos semestres de Derecho, integrándose a nuestro equipo de trabajo durante siete semanas'
+      image:
+        - '1182'
+    58:
+      url: '1151'
+      title: 'Summer Internships 2015'
+      subtitle: ''
+      lead: 'With our Summer Internships, we open our doors to final semester law students to start their career, joining our team for seven weeks'
+      image:
+        - '1184'
+    59:
+      url: pasantias-de-verano-2016
+      title: 'Pasantías de verano 2016'
+      subtitle: ''
+      lead: 'Le abrimos las puertas de la firma a los estudiantes de últimos semestres de Derecho, integrándose a nuestro equipo de trabajo durante siete semanas'
+      image:
+        - '1186'
+    60:
+      url: '1150'
+      title: 'Summer Internships 2016'
+      subtitle: ''
+      lead: 'With our Summer Internships, we open our doors to final semester law students to start their career, joining our team for seven weeks'
+      image:
+        - '1188'
+    61:
+      url: pasantias-de-verano-2017
+      title: 'Pasantías de verano 2017'
+      subtitle: ''
+      lead: 'Le abrimos las puertas de la firma a los estudiantes de últimos semestres de Derecho, integrándose a nuestro equipo de trabajo durante siete semanas'
+      image:
+        - '1189'
+    62:
+      url: '1149'
+      title: 'Summer Internships 2017'
+      subtitle: ''
+      lead: 'With our Summer Internships, we open our doors to final semester law students to start their career, joining our team for seven weeks'
+      image:
+        - '1190'
+    63:
+      url: summer-internships
+      title: 'Summer Internships'
+      subtitle: ''
+      lead: 'With our Summer Internships, we open our doors to final semester law students to start their career, joining our team for seven weeks'
+      image:
+        - '1191'
+    64:
+      url: aduanas-y-comercio-internacional
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1193'
+    65:
+      url: bancario-y-servicios-financieros
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1195'
+    66:
+      url: cambiario-derivados-y-productos-estructurados
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1196'
+    67:
+      url: competencia-e-integraciones
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1198'
+    68:
+      url: compliance
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1200'
+    69:
+      url: corporativo
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1201'
+    70:
+      url: energias-renovables-y-eficiencia-energetica
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1203'
+    71:
+      url: fusiones-y-adquisiciones
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1205'
+    72:
+      url: gestion-de-patrimonio
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1207'
+    73:
+      url: impuestos
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1209'
+    74:
+      url: infraestructura-y-servicios-publicos
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1210'
+    75:
+      url: inmigraciones
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1211'
+    76:
+      url: inmobiliario-urbanistico-hoteles-y-agroindustria
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1213'
+    77:
+      url: laboral
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1215'
+    78:
+      url: litigios-arbitraje-e-insolvencia
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1216'
+    79:
+      url: mercado-de-capitales-y-regulacion-de-valores
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1217'
+    80:
+      url: recursos-naturales
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1219'
+    81:
+      url: seguros-y-reaseguros
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1221'
+    82:
+      url: telecomunicaciones-medios-y-tecnologia
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1223'
+    83:
+      url: antitrust-and-competition-law
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1225'
+    84:
+      url: banking-and-financial-services
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1227'
+    85:
+      url: capital-markets-securities-and-private-equity
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1228'
+    86:
+      url: compliance
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1229'
+    87:
+      url: corporate
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1230'
+    88:
+      url: customs-and-international-trade
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1231'
+    89:
+      url: forex-derivatives-and-structured-finance
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1233'
+    90:
+      url: immigration
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1234'
+    91:
+      url: infrastructure-and-public-utilities
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1236'
+    92:
+      url: labor-and-employment
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1237'
+    93:
+      url: litigation-arbitration-and-insolvency
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1238'
+    94:
+      url: mergers-and-acquisitions
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1240'
+    95:
+      url: natural-resources
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1241'
+    96:
+      url: real-estate-urban-regulation-hotel-and-agribusiness
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1051'
+    97:
+      url: renewable-energy-and-energy-efficiency
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1242'
+    98:
+      url: tax
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1244'
+    99:
+      url: telecommunications-media-and-technology
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1246'
+    100:
+      url: trusts-and-estates
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1248'
+    101:
+      url: ambiental
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1139'
+    102:
+      url: bancario-mercado-de-capitales-y-servicios-financieros
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1249'
+    103:
+      url: comercio-exterior
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1251'
+    104:
+      url: energia
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1253'
+    105:
+      url: infraestructura-y-transporte
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1254'
+    106:
+      url: inmobiliario
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1303'
+    107:
+      url: mineria-y-petroleo
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1257'
+    108:
+      url: seguros-y-reaseguros-0
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1258'
+    109:
+      url: tecnologia-medios-y-comunicaciones
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1260'
+    110:
+      url: banking-capital-market-and-financial-services
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1261'
+    111:
+      url: energy
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1263'
+    112:
+      url: environmental
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1265'
+    113:
+      url: infrastructure-and-transportation
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1266'
+    114:
+      url: insurance-and-reinsurance-0
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1267'
+    115:
+      url: international-trade
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1268'
+    116:
+      url: mining-and-oil
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1269'
+    117:
+      url: real-estate
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1270'
+    118:
+      url: technology-media-and-communications
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1272'
+    119:
+      url: politica-tratamiento-informacion
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1337'
+    120:
+      url: privacy-policy
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1338'
+    121:
+      url: terminos-y-condiciones
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1339'
+    122:
+      url: terms-and-conditions
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1340'
+    123:
+      url: trabaje-con-nosotros/inscripcion
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1381'
+    124:
+      url: registration
+      title: 'Work with us'
+      subtitle: ''
+      lead: 'As a leading firm in the Colombian legal market, we are aware that our success factor is human talent'
+      image:
+        - '1382'
+    125:
+      url: boletin-edicion-36
+      title: 'Boletín Edición 36'
+      subtitle: ''
+      lead: ' Las últimas noticias legales sobre diferentes industrias y área'
+      image:
+        - '1486'
+    126:
+      url: legal-bulletin-36
+      title: 'Legal Bulletin 36'
+      subtitle: ''
+      lead: 'The latest legal news regarding different industries and practice areas.'
+      image:
+        - '1487'
+    127:
+      url: labor-and-employment-bulletin
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1504'
+    128:
+      url: boletin-laboral
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1505'
+    129:
+      url: eventos
+      title: Eventos
+      subtitle: ''
+      lead: 'Nuestros eventos y conferencias tratan temas de actualidad legal. Nuestro compromiso es mantenerlo informado con las últimas tendencias del mercado'
+      image:
+        - '1526'
+    130:
+      url: noticias/firma-colombiana-del-ano-en-impuestos-2018
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '1655'
+    131:
+      url: ambiente-y-negocios-sostenibles
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '2028'
+    132:
+      url: environment-and-sustainable-business
+      title: ''
+      subtitle: ''
+      lead: ''
+      image:
+        - '2029'
+    133:
+      url: informes
+      title: Informes
+      subtitle: ''
+      lead: 'Le brindamos nuestro conocimiento y experiencia a través de herramientas digitales útiles.'
+      image: {  }
+    134:
+      url: podcast
+      title: Podcast
+      subtitle: ''
+      lead: "Le brindamos nuestro conocimiento y experiencia a través de una serie de Podcast especializados.\r\n"
+      image:
+        - '13736'
+    135:
+      url: herramientas
+      title: Herramientas
+      subtitle: ''
+      lead: 'Le brindamos nuestro conocimiento y experiencia a través de herramientas digitales útiles.'
+      image: {  }
+    136:
+      url: insights
+      title: Insights
+      subtitle: ''
+      lead: 'Le brindamos nuestro conocimiento y experiencia a través de herramientas digitales útiles.'
+      image:
+        - '13740'
+    137:
+      url: memorias
+      title: 'Memorias '
+      subtitle: ''
+      lead: 'Le brindamos nuestro conocimiento y experiencia a través de herramientas digitales útiles. '
+      image: {  }
+    138:
+      url: memories
+      title: Memories
+      subtitle: ''
+      lead: 'Le brindamos nuestro conocimiento y experiencia a través de herramientas digitales útiles. '
+      image: {  }
+    139:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    140:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    141:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    142:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    143:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    144:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    145:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    146:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    147:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    148:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    149:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    150:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    151:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    152:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    153:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    154:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    155:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    156:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    157:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    158:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    159:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    160:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    161:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    162:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    163:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    164:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    165:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    166:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    167:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    168:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    169:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    170:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    171:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    172:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    173:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    174:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    175:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    176:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    177:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    178:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    179:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    180:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    181:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    182:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    183:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    184:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    185:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    186:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    187:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    188:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    189:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    190:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    191:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    192:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    193:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    194:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    195:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    196:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    197:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    198:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    199:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    200:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    201:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    202:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    203:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    204:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    205:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    206:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    207:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    208:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    209:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    210:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    211:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    212:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    213:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    214:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    215:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    216:
+      url: ''
+      title: ''
+      subtitle: ''
+      lead: ''
+      image: {  }
+    actions:
+      add: 'Agregar Establecimiento'

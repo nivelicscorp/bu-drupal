@@ -1,0 +1,33 @@
+uuid: a4005c46-fa9d-45b5-976a-5fbfcfda50d4
+langcode: es
+status: false
+dependencies:
+  content:
+    - 'block_content:block_view_new_event:85bd19bc-e08c-4d0f-b789-3fdb3d9524a2'
+  module:
+    - block_class
+    - block_content
+    - system
+  theme:
+    - brigard
+third_party_settings:
+  block_class:
+    classes: content-bloques-news-events
+id: blockviewnewsevents
+theme: brigard
+region: content
+weight: -8
+provider: null
+plugin: 'block_content:85bd19bc-e08c-4d0f-b789-3fdb3d9524a2'
+settings:
+  id: 'block_content:85bd19bc-e08c-4d0f-b789-3fdb3d9524a2'
+  label: 'block view news events'
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: '<front>'

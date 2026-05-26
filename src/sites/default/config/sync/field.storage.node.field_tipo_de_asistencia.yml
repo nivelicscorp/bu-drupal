@@ -1,0 +1,30 @@
+uuid: 023586f7-60da-42ac-8480-3c909f9e63f8
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_tipo_de_asistencia
+field_name: field_tipo_de_asistencia
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: Presencial
+      label: Presencial
+    -
+      value: Virtual
+      label: Virtual
+    -
+      value: 'Presencial / Virtual'
+      label: 'Presencial / Virtual'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,218 @@
+uuid: a7a03a8f-543a-4c5e-9a23-c4eae07ab9f0
+langcode: es
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.insights
+    - field.field.node.evento.body
+    - field.field.node.evento.field_agenda_del_evento
+    - field.field.node.evento.field_anadir_al_calendario
+    - field.field.node.evento.field_area
+    - field.field.node.evento.field_conferencistas
+    - field.field.node.evento.field_enlace_de_zoom
+    - field.field.node.evento.field_es_privado
+    - field.field.node.evento.field_fecha_del_evento
+    - field.field.node.evento.field_fecha_y_hora
+    - field.field.node.evento.field_hora_del_vento
+    - field.field.node.evento.field_image
+    - field.field.node.evento.field_industrias
+    - field.field.node.evento.field_lugar_del_evento
+    - field.field.node.evento.field_metatags
+    - field.field.node.evento.field_show_form
+    - field.field.node.evento.field_tipo_de_asistencia
+    - field.field.node.evento.field_tipo_de_evento
+    - field.field.node.evento.field_v
+    - node.type.evento
+  module:
+    - addtocalendar
+    - datetime
+    - ds
+    - entity_reference_revisions
+    - field_group
+    - link
+    - metatag
+    - svg_image
+    - text
+    - user
+third_party_settings:
+  field_group:
+    group_col_event_left:
+      children:
+        - field_image
+        - body
+        - field_conferencistas
+        - field_agenda_del_evento
+        - field_anadir_al_calendario
+        - field_enlace_de_zoom
+        - group_compartir
+        - field_metatags
+      label: col-event-left
+      parent_name: ''
+      region: content
+      weight: 0
+      format_type: html_element
+      format_settings:
+        classes: ''
+        id: ''
+        element: div
+        show_label: false
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
+    group_compartir:
+      children:
+        - social_simple_buttons
+      label: 'Compartir:'
+      parent_name: group_col_event_left
+      region: content
+      weight: 7
+      format_type: fieldset
+      format_settings:
+        classes: news-share
+        id: ''
+        description: ''
+id: node.evento.insights
+targetEntityType: node
+bundle: evento
+mode: insights
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_agenda_del_evento:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_anadir_al_calendario:
+    type: add_to_calendar
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_conferencistas:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_enlace_de_zoom:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: nofollow
+      target: _blank
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 6
+    region: content
+  field_fecha_del_evento:
+    type: datetime_default
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: mes_dia_corto
+    third_party_settings:
+      addtocalendar:
+        addtocalendar_show: 0
+        addtocalendar_settings:
+          style: '0'
+          display_text: 'Añadir al Calendario'
+          atc_title:
+            field: token
+            tokenized: Title
+          atc_description:
+            field: token
+            tokenized: Description
+          atc_location:
+            field: token
+            tokenized: Location
+          atc_organizer:
+            field: token
+            tokenized: 'Brigard Urrutia'
+          atc_organizer_email:
+            field: token
+            tokenized: info@bu.com.co
+          atc_date_end:
+            field: token
+            tokenized: ''
+          atc_privacy: public
+          data_secure: auto
+          data_calendars:
+            'Google Calendar': '0'
+            'Outlook Online': '0'
+            iCalendar: '0'
+            Outlook: '0'
+            'Yahoo! Calendar': '0'
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 1
+    region: content
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_metatags:
+    type: metatag_empty_formatter
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  social_simple_buttons:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 13
+    region: content
+hidden:
+  field_area: true
+  field_es_privado: true
+  field_fecha_y_hora: true
+  field_hora_del_vento: true
+  field_industrias: true
+  field_lugar_del_evento: true
+  field_show_form: true
+  field_tipo_de_asistencia: true
+  field_tipo_de_evento: true
+  field_v: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

@@ -1,0 +1,117 @@
+uuid: 721f5885-a6af-4e86-9a66-2b0fd0c17975
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.lawyer.body
+    - field.field.node.lawyer.field_admitido_en
+    - field.field.node.lawyer.field_area
+    - field.field.node.lawyer.field_boletin
+    - field.field.node.lawyer.field_calificacion
+    - field.field.node.lawyer.field_ciudad
+    - field.field.node.lawyer.field_email
+    - field.field.node.lawyer.field_experiencia
+    - field.field.node.lawyer.field_formacion_educativa
+    - field.field.node.lawyer.field_image
+    - field.field.node.lawyer.field_industrias
+    - field.field.node.lawyer.field_informe
+    - field.field.node.lawyer.field_lawyer_score
+    - field.field.node.lawyer.field_lenguajes
+    - field.field.node.lawyer.field_membership
+    - field.field.node.lawyer.field_membership_with_gender
+    - field.field.node.lawyer.field_metatags
+    - field.field.node.lawyer.field_nuevos_servicios
+    - field.field.node.lawyer.field_podcast
+    - field.field.node.lawyer.field_publicaciones_del_profesio
+    - field.field.node.lawyer.field_reconocimientos
+    - field.field.node.lawyer.field_recurso
+    - field.field.node.lawyer.field_telephone
+    - image.style.img_300x300
+    - node.type.lawyer
+  module:
+    - ds
+    - svg_image
+    - user
+id: node.lawyer.teaser
+targetEntityType: node
+bundle: lawyer
+mode: teaser
+content:
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: img_300x300
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+      image_loading:
+        attribute: lazy
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 0
+    region: content
+  field_membership:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 1
+    region: content
+  field_membership_with_gender:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 2
+    region: content
+hidden:
+  body: true
+  field_admitido_en: true
+  field_area: true
+  field_boletin: true
+  field_calificacion: true
+  field_ciudad: true
+  field_email: true
+  field_experiencia: true
+  field_formacion_educativa: true
+  field_industrias: true
+  field_informe: true
+  field_lawyer_score: true
+  field_lenguajes: true
+  field_metatags: true
+  field_nuevos_servicios: true
+  field_podcast: true
+  field_publicaciones_del_profesio: true
+  field_reconocimientos: true
+  field_recurso: true
+  field_telephone: true
+  langcode: true
+  links: true
+  search_api_excerpt: true
+  social_simple_buttons: true

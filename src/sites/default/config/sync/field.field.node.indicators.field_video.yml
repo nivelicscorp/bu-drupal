@@ -1,0 +1,27 @@
+uuid: 3ce2d94a-88e5-427b-8745-a7b67a018f82
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_video
+    - node.type.indicators
+  module:
+    - video_embed_field
+id: node.indicators.field_video
+field_name: field_video
+entity_type: node
+bundle: indicators
+label: Video
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_providers:
+    facebook: facebook
+    vimeo: vimeo
+    youtube: youtube
+    vine: vine
+    youtube_playlist: '0'
+field_type: video_embed_field

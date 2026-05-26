@@ -1,0 +1,11 @@
+uuid: 44564015-b7b2-459d-b948-30afe7cae361
+langcode: es
+status: true
+dependencies:
+  config:
+    - image.style.img_1280_x_390
+id: 1280x390
+label: 1280x390
+image_style_mappings: {  }
+breakpoint_group: responsive_image
+fallback_image_style: img_1280_x_390

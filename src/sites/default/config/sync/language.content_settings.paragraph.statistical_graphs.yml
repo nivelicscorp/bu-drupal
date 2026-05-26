@@ -1,0 +1,18 @@
+uuid: cd44a401-c3a7-4136-9b61-32e06eb78ee7
+langcode: es
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.statistical_graphs
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: paragraph.statistical_graphs
+target_entity_type_id: paragraph
+target_bundle: statistical_graphs
+default_langcode: site_default
+language_alterable: true

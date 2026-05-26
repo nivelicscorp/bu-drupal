@@ -1,0 +1,19 @@
+uuid: cc66335a-209c-4f6a-a147-ca899614ff80
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_subtitle
+    - node.type.indicators
+id: node.indicators.field_subtitle
+field_name: field_subtitle
+entity_type: node
+bundle: indicators
+label: Subtitle
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

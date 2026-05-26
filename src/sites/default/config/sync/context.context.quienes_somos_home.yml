@@ -1,0 +1,47 @@
+uuid: f7b9e6fa-1a76-4286-82f8-4485a964c4cb
+langcode: es
+status: true
+dependencies:
+  content:
+    - 'block_content:testimonial:26e39ee0-8877-441f-8299-63c0d693d9e2'
+  module:
+    - block_content
+    - system
+label: 'Quiénes Somos Home'
+name: quienes_somos_home
+group: theme
+description: ''
+requireAllConditions: false
+disabled: false
+conditions:
+  request_path:
+    id: request_path
+    negate: false
+    uuid: 4ed80d41-8666-49bb-b827-ab50e027e6f0
+    context_mapping: {  }
+    pages: /taxonomy/term/1129
+reactions:
+  blocks:
+    id: blocks
+    uuid: fcf4155c-a6c1-48f2-88f6-8744666b6cb9
+    blocks:
+      9eb724b3-4bdb-4c2e-ab51-649353d4ddab:
+        uuid: 9eb724b3-4bdb-4c2e-ab51-649353d4ddab
+        id: 'block_content:26e39ee0-8877-441f-8299-63c0d693d9e2'
+        label: 'Testimonials for Sections'
+        provider: block_content
+        label_display: '0'
+        region: footer_slider
+        weight: '-10'
+        custom_id: block_content_26e39ee0_8877_441f_8299_63c0d693d9e2
+        theme: brigard
+        css_class: ''
+        unique: 0
+        context_id: quienes_somos_home
+        context_mapping: {  }
+        status: true
+        info: ''
+        view_mode: full
+    include_default_blocks: 1
+    saved: false
+weight: 3

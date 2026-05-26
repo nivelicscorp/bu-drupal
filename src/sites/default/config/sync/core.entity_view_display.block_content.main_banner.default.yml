@@ -1,0 +1,83 @@
+uuid: 8eae89e0-cf9e-495f-ad5b-290f7d5de1f3
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.main_banner
+    - field.field.block_content.main_banner.body
+    - field.field.block_content.main_banner.field_banner_video
+    - field.field.block_content.main_banner.field_desktop_image
+    - field.field.block_content.main_banner.field_main_banner
+    - field.field.block_content.main_banner.field_mobil_image
+    - field.field.block_content.main_banner.field_type_banner
+  module:
+    - entity_reference_revisions
+    - svg_image
+    - text
+    - video_embed_field
+id: block_content.main_banner.default
+targetEntityType: block_content
+bundle: main_banner
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_banner_video:
+    type: video_embed_field_video
+    label: hidden
+    settings:
+      autoplay: true
+      responsive: true
+      width: 854
+      height: 480
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_desktop_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: ''
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_main_banner:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_mobil_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: ''
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 3
+    region: content
+hidden:
+  field_type_banner: true
+  langcode: true
+  search_api_excerpt: true

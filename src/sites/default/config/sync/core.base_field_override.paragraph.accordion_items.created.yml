@@ -1,0 +1,18 @@
+uuid: 1247d11f-c89a-4d4a-9303-3979f78aacc4
+langcode: es
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.accordion_items
+id: paragraph.accordion_items.created
+field_name: created
+entity_type: paragraph
+bundle: accordion_items
+label: Fecha
+description: 'The time that the Paragraph was created.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

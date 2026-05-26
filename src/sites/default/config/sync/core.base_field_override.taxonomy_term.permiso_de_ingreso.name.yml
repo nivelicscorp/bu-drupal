@@ -1,0 +1,18 @@
+uuid: ee21c582-4435-413b-863a-13e9bcda1224
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.permiso_de_ingreso
+id: taxonomy_term.permiso_de_ingreso.name
+field_name: name
+entity_type: taxonomy_term
+bundle: permiso_de_ingreso
+label: Name
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,23 @@
+uuid: faa6417f-9b71-4112-91a8-853b5ce3b122
+langcode: es
+status: true
+dependencies: {  }
+name: img_360_x_580
+label: 'img 360 x 580'
+effects:
+  969e010a-0153-4ac1-8104-b90dd8ae4f3e:
+    uuid: 969e010a-0153-4ac1-8104-b90dd8ae4f3e
+    id: image_scale
+    weight: 1
+    data:
+      width: 360
+      height: 580
+      upscale: true
+  181fbacd-c7d2-44cf-b9cc-6fcf7f037256:
+    uuid: 181fbacd-c7d2-44cf-b9cc-6fcf7f037256
+    id: image_crop
+    weight: 2
+    data:
+      width: 360
+      height: 580
+      anchor: center-center

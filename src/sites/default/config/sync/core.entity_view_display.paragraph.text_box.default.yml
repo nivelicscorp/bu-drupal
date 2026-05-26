@@ -1,0 +1,44 @@
+uuid: cac591c4-5411-4d8b-a976-93a1cf7d7cf8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.text_box.field_caption
+    - field.field.paragraph.text_box.field_label
+    - field.field.paragraph.text_box.field_link
+    - paragraphs.paragraphs_type.text_box
+  module:
+    - link
+id: paragraph.text_box.default
+targetEntityType: paragraph
+bundle: text_box
+mode: default
+content:
+  field_caption:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_label:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_link:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden: {  }

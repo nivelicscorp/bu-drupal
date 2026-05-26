@@ -1,0 +1,29 @@
+uuid: 1ff92c4c-e072-45a0-849e-bd03503d4dc1
+langcode: en
+status: false
+dependencies:
+  content:
+    - 'block_content:indicators:ff3ae207-750d-4c88-9ccf-9a09139b95f9'
+  module:
+    - block_content
+    - system
+  theme:
+    - brigard
+id: blockindicators
+theme: brigard
+region: content
+weight: -9
+provider: null
+plugin: 'block_content:ff3ae207-750d-4c88-9ccf-9a09139b95f9'
+settings:
+  id: 'block_content:ff3ae207-750d-4c88-9ccf-9a09139b95f9'
+  label: 'Block Indicators'
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    context_mapping: {  }
+    pages: /node/1

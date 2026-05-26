@@ -1,0 +1,83 @@
+uuid: f7dc526b-5c2f-46fe-86ae-4a22f8938d20
+langcode: es
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:853a0884-4127-43b9-8ef6-d42ddc9063e1'
+    - 'block_content:recognitions:37bb0efb-faf0-4f41-b4ca-01df984adcfb'
+    - 'block_content:testimonial:26e39ee0-8877-441f-8299-63c0d693d9e2'
+  module:
+    - block_content
+    - system
+label: 'Valor Compartido Home'
+name: valor_compartido_home
+group: theme
+description: ''
+requireAllConditions: false
+disabled: false
+conditions:
+  request_path:
+    id: request_path
+    negate: false
+    uuid: 1a88bd95-2d76-4b61-add6-da1556933f48
+    context_mapping: {  }
+    pages: /taxonomy/term/1137
+reactions:
+  blocks:
+    id: blocks
+    uuid: e99d5b60-4f4f-4da7-aeac-ec0334576127
+    blocks:
+      6c26547c-5a06-4dc3-a3fc-5e929b6b2970:
+        uuid: 6c26547c-5a06-4dc3-a3fc-5e929b6b2970
+        id: 'block_content:853a0884-4127-43b9-8ef6-d42ddc9063e1'
+        label: 'Buzón de sugerencias'
+        provider: block_content
+        label_display: '0'
+        region: footer_slider
+        weight: '-10'
+        custom_id: block_content_853a0884_4127_43b9_8ef6_d42ddc9063e1
+        theme: brigard
+        css_class: ''
+        unique: 0
+        context_id: valor_compartido_home
+        context_mapping: {  }
+        status: true
+        info: ''
+        view_mode: full
+      742a3687-cdb0-4451-a1df-f27d2dea66cc:
+        uuid: 742a3687-cdb0-4451-a1df-f27d2dea66cc
+        id: 'block_content:26e39ee0-8877-441f-8299-63c0d693d9e2'
+        label: 'Testimonials for Sections'
+        provider: block_content
+        label_display: '0'
+        region: footer_slider
+        weight: '-9'
+        custom_id: block_content_26e39ee0_8877_441f_8299_63c0d693d9e2
+        theme: brigard
+        css_class: ''
+        unique: 0
+        context_id: valor_compartido_home
+        context_mapping: {  }
+        status: true
+        info: ''
+        view_mode: full
+      29b47185-2ab9-4e59-a76d-753f2258b948:
+        uuid: 29b47185-2ab9-4e59-a76d-753f2258b948
+        id: 'block_content:37bb0efb-faf0-4f41-b4ca-01df984adcfb'
+        label: Reconocimientos
+        provider: block_content
+        label_display: visible
+        region: footer_slider
+        weight: '0'
+        custom_id: block_content_37bb0efb_faf0_4f41_b4ca_01df984adcfb
+        theme: brigard
+        css_class: reconocimientos-block
+        unique: 0
+        context_id: valor_compartido_home
+        context_mapping: {  }
+        status: true
+        info: ''
+        view_mode: full
+    include_default_blocks: 1
+    saved: false
+weight: 5

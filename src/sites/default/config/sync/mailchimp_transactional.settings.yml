@@ -1,0 +1,19 @@
+_core:
+  default_config_hash: 1voH1sN6U7SgNMXT8tdbT3CU2TtoqtB_xIKmn8i0VnM
+from_name: 'Info Brigard'
+from_email: info@bu.com.co
+subaccount: null
+filter_format: basic_html
+track_opens: false
+track_clicks: false
+url_strip_qs: false
+analytics_campaign: ''
+analytics_domains: ''
+batch_log_queued: false
+queue_worker_timeout: null
+log_defaulted_sends: false
+api_key: md-tR9uim1SRLyLSrjAFMaULg
+api_timeout: 60
+api_classname: \Drupal\mailchimp_transactional\DrupalMailchimpTransactional
+mail_key_denylist: ''
+process_async: false

@@ -1,0 +1,38 @@
+uuid: bdb53c13-ff6d-4a1a-a262-72609a63b5ea
+langcode: es
+status: true
+dependencies:
+  config:
+    - node.type.bulletin
+    - node.type.lawyer
+    - node.type.noticia
+  module:
+    - language
+    - node
+id: content_nodes_general
+label: 'Content Nodes - General'
+type: 'canonical_entities:node'
+pattern: '/[node:title]'
+selection_criteria:
+  6aebaf6f-434c-4c03-8ab5-e6eb0ec4af23:
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: node
+    bundles:
+      bulletin: bulletin
+      lawyer: lawyer
+      noticia: noticia
+  a80cef61-7a42-457f-827a-545621654ecf:
+    id: language
+    negate: false
+    context_mapping:
+      language: 'node:langcode:language'
+    langcodes:
+      es: es
+      en: en
+selection_logic: and
+weight: -8
+relationships:
+  'node:langcode:language':
+    label: Language

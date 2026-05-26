@@ -1,0 +1,29 @@
+uuid: b5e4a65e-f28f-49db-843b-b2086fad7888
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_nuevos_servicios
+    - node.type.noticia
+    - taxonomy.vocabulary.nuevos_servicios
+id: node.noticia.field_nuevos_servicios
+field_name: field_nuevos_servicios
+entity_type: node
+bundle: noticia
+label: 'Nuevos servicios'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      nuevos_servicios: nuevos_servicios
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

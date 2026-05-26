@@ -1,0 +1,61 @@
+uuid: d69a729c-cd40-4c1f-8027-6147c2bf382c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.indicators.field_graph
+    - field.field.paragraph.indicators.field_label
+    - field.field.paragraph.indicators.field_percentage
+    - field.field.paragraph.indicators.field_title
+    - paragraphs.paragraphs_type.indicators
+  module:
+    - svg_image
+id: paragraph.indicators.default
+targetEntityType: paragraph
+bundle: indicators
+mode: default
+content:
+  field_graph:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: ''
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_label:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_percentage:
+    type: number_decimal
+    label: hidden
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

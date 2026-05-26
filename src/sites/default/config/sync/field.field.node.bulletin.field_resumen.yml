@@ -1,0 +1,19 @@
+uuid: e81b3d0d-0a2c-487d-abcf-186ccb396b75
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_resumen
+    - node.type.bulletin
+id: node.bulletin.field_resumen
+field_name: field_resumen
+entity_type: node
+bundle: bulletin
+label: Resumen
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

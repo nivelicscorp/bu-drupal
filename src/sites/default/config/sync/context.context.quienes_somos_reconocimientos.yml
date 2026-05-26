@@ -1,0 +1,48 @@
+uuid: 144d805a-815f-4bbd-968b-48a94b2e8972
+langcode: es
+status: true
+dependencies:
+  config:
+    - views.view.content_by_section
+  module:
+    - system
+    - views
+label: 'Quiénes somos - Reconocimientos'
+name: quienes_somos_reconocimientos
+group: theme
+description: ''
+requireAllConditions: false
+disabled: false
+conditions:
+  request_path:
+    id: request_path
+    negate: false
+    uuid: 676d4219-c793-4749-9240-f5ff6f16ae82
+    context_mapping: {  }
+    pages: /taxonomy/term/1131
+reactions:
+  blocks:
+    id: blocks
+    uuid: fd8dda3d-f9ba-4787-b79a-5c59d950e6a3
+    blocks:
+      86b8a868-261e-4d89-9ef6-6dc82fe668cd:
+        uuid: 86b8a868-261e-4d89-9ef6-6dc82fe668cd
+        id: 'views_block:content_by_section-block_content_by_section'
+        label: 'Nuestros reconocimientos'
+        provider: views
+        label_display: visible
+        region: content
+        weight: '0'
+        custom_id: views_block_content_by_section_block_content_by_section
+        theme: brigard
+        css_class: ''
+        unique: 0
+        context_id: quienes_somos_reconocimientos
+        context_mapping:
+          field_section_target_id: '@custom_context_provider.taxonomy_term_context:taxonomy_term'
+        views_label: 'Nuestros reconocimientos'
+        items_per_page: none
+        override: {  }
+    include_default_blocks: 1
+    saved: false
+weight: 4

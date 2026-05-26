@@ -1,0 +1,36 @@
+title: 'Registration event payment natural person'
+description: 'Registration event payment natural person'
+elements: |
+  oblogatorios:
+    '#markup': 'Fields marked with * are required'
+  nombre:
+    '#title': Name
+    '#placeholder': 'Name *'
+  apellido:
+    '#title': 'Last name'
+    '#placeholder': 'Last name *'
+  identificacion:
+    '#title': Identification
+    '#placeholder': 'Identification *'
+  cargo:
+    '#title': Position
+    '#placeholder': 'Position *'
+  empresa:
+    '#title': Company
+    '#placeholder': 'Company *'
+  correo_electronico:
+    '#title': Mail
+    '#placeholder': 'Mail *'
+  celular:
+    '#title': 'Cell phone'
+    '#placeholder': 'Cell phone *'
+  acepto_los_terminos_y_condiciones:
+    '#title': 'I accept the terms and conditions'
+    '#description': 'I accept the <a href="/terminos-condiciones">terms and conditions</a>'
+  grande_contribuyentes:
+    '#markup': "Large Taxpayers, res. 8836 of Dec. 18, 1998. VAT and ICA withholding agents. <br />\nEconomic Activity 69 and rate 6.9 per thousand\n"
+  actions:
+    '#submit__label': REGISTER
+settings:
+  confirmation_title: 'Thank you'
+  confirmation_message: 'We have received your pre-registration.'

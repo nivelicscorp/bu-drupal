@@ -1,0 +1,26 @@
+uuid: 5cc44508-31a2-400e-a7af-fc77da1c11c8
+langcode: es
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - brigard
+_core:
+  default_config_hash: oXUb3JZR2WW5VOdw4HrhRicCsq51mCgLfRyvheG68ck
+id: brigard_breadcrumbs
+theme: brigard
+region: navigation_collapsible
+weight: -15
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: 'Enlaces de ayuda a la navegación'
+  label_display: '0'
+  provider: system
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: '<front>'

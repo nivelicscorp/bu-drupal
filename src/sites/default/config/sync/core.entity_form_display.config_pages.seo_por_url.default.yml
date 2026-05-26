@@ -1,0 +1,28 @@
+uuid: 1fcaa3ec-98e4-4c72-b756-cb11d7c5bf0d
+langcode: en
+status: true
+dependencies:
+  config:
+    - config_pages.type.seo_por_url
+    - field.field.config_pages.seo_por_url.field_urls
+  module:
+    - paragraphs
+id: config_pages.seo_por_url.default
+targetEntityType: config_pages
+bundle: seo_por_url
+mode: default
+content:
+  field_urls:
+    type: entity_reference_paragraphs
+    weight: 0
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+hidden:
+  label: true

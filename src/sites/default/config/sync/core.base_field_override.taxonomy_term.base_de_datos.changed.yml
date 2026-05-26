@@ -1,0 +1,18 @@
+uuid: d150c0e8-88ed-47ab-a73d-ab0c0d0a672b
+langcode: es
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.base_de_datos
+id: taxonomy_term.base_de_datos.changed
+field_name: changed
+entity_type: taxonomy_term
+bundle: base_de_datos
+label: Modificado
+description: 'La fecha en que el término fue creado por última vez.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

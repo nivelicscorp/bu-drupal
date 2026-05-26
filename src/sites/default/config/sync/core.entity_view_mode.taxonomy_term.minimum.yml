@@ -1,0 +1,11 @@
+uuid: febebb33-9572-4dfa-a5aa-5681682e3718
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: taxonomy_term.minimum
+label: Minimum
+description: ''
+targetEntityType: taxonomy_term
+cache: true

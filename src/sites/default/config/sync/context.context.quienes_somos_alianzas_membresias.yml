@@ -1,0 +1,48 @@
+uuid: 7e03c932-d50b-49b7-a0d1-6f58dbc66873
+langcode: es
+status: true
+dependencies:
+  config:
+    - views.view.content_by_section
+  module:
+    - system
+    - views
+label: 'Quiénes Somos - Alianzas y membresías'
+name: quienes_somos_alianzas_membresias
+group: theme
+description: ''
+requireAllConditions: false
+disabled: false
+conditions:
+  request_path:
+    id: request_path
+    negate: false
+    uuid: 93a7dd15-5789-45f0-94e0-5b8c785212f2
+    context_mapping: {  }
+    pages: /taxonomy/term/1132
+reactions:
+  blocks:
+    id: blocks
+    uuid: d186016d-b73b-4f33-92ed-6cdcbd83f82b
+    blocks:
+      1d9264ea-987e-4543-b37e-bbe895fc43dd:
+        uuid: 1d9264ea-987e-4543-b37e-bbe895fc43dd
+        id: 'views_block:content_by_section-block_content_by_section'
+        label: 'Nuestras alianzas y membresías'
+        provider: views
+        label_display: visible
+        region: content
+        weight: '0'
+        custom_id: views_block_content_by_section_block_content_by_section
+        theme: brigard
+        css_class: ''
+        unique: 0
+        context_id: quienes_somos_alianzas_membresias
+        context_mapping:
+          field_section_target_id: '@custom_context_provider.taxonomy_term_context:taxonomy_term'
+        views_label: 'Nuestras alianzas y membresías'
+        items_per_page: none
+        override: {  }
+    include_default_blocks: 1
+    saved: false
+weight: 1

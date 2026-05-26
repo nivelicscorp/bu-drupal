@@ -1,0 +1,23 @@
+uuid: d358d3e3-5fc5-42a4-822f-4d80e9e0eefe
+langcode: es
+status: true
+dependencies: {  }
+name: img_200x200
+label: 'img 200x200'
+effects:
+  2bb9509b-ac81-47f3-8dc3-1943561a457e:
+    uuid: 2bb9509b-ac81-47f3-8dc3-1943561a457e
+    id: image_scale
+    weight: 1
+    data:
+      width: 200
+      height: null
+      upscale: false
+  e5b57353-a544-4469-b6aa-1f1b5bf015be:
+    uuid: e5b57353-a544-4469-b6aa-1f1b5bf015be
+    id: image_crop
+    weight: 2
+    data:
+      width: 200
+      height: 200
+      anchor: center-center

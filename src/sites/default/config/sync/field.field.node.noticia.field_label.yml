@@ -1,0 +1,19 @@
+uuid: 2f16db8f-28d4-4cce-bda3-1c638d1d4189
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_label
+    - node.type.noticia
+id: node.noticia.field_label
+field_name: field_label
+entity_type: node
+bundle: noticia
+label: 'Descripción título'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

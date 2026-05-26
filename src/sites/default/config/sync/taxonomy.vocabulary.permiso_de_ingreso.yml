@@ -1,0 +1,9 @@
+uuid: 627b3f46-e929-4911-9d80-af24202fafcd
+langcode: es
+status: true
+dependencies: {  }
+name: 'Permiso de ingreso'
+vid: permiso_de_ingreso
+description: null
+weight: 0
+new_revision: false

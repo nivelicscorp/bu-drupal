@@ -1,0 +1,23 @@
+uuid: eb8e54bf-ed4c-40d5-b257-91cecc5b8490
+langcode: es
+status: true
+dependencies: {  }
+name: 300x350
+label: 300x350
+effects:
+  59d8b491-86c6-4775-a04e-b359dc73535c:
+    uuid: 59d8b491-86c6-4775-a04e-b359dc73535c
+    id: image_scale
+    weight: 1
+    data:
+      width: null
+      height: 350
+      upscale: false
+  5acc1afa-45f5-4066-91b8-fffd152bf67a:
+    uuid: 5acc1afa-45f5-4066-91b8-fffd152bf67a
+    id: image_crop
+    weight: 2
+    data:
+      width: 300
+      height: 350
+      anchor: center-center

@@ -1,0 +1,9 @@
+uuid: dce067ef-85c2-41ab-ae6b-265959514548
+langcode: es
+status: true
+dependencies: {  }
+id: statistical_graphs
+label: 'Statistical graphs'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

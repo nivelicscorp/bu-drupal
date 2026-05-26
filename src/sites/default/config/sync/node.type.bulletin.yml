@@ -1,0 +1,27 @@
+uuid: e069e749-a82f-4cf8-ab77-3cc8678c6776
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+    - social_simple
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+  social_simple:
+    share: 1
+    title: ''
+    networks:
+      twitter: twitter
+      facebook: facebook
+      googleplus: googleplus
+      linkedin: linkedin
+    hashtags: '0'
+name: Newsletter
+type: bulletin
+description: null
+help: null
+new_revision: false
+preview_mode: 1
+display_submitted: false

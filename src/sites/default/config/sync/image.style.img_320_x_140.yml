@@ -1,0 +1,23 @@
+uuid: 843c5701-9e30-43f2-a3cc-c5fb64b59fce
+langcode: es
+status: true
+dependencies: {  }
+name: img_320_x_140
+label: 'img 320 x 140'
+effects:
+  91372bf4-279f-4047-948e-9602e82970ba:
+    uuid: 91372bf4-279f-4047-948e-9602e82970ba
+    id: image_scale
+    weight: 1
+    data:
+      width: 340
+      height: null
+      upscale: false
+  8bb0b048-143a-4e88-b340-0345f046a85d:
+    uuid: 8bb0b048-143a-4e88-b340-0345f046a85d
+    id: image_crop
+    weight: 2
+    data:
+      width: 330
+      height: 145
+      anchor: center-center

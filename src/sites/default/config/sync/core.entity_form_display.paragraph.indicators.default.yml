@@ -1,0 +1,58 @@
+uuid: 97bc8686-f81a-41ed-b453-4c895af93544
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.indicators.field_graph
+    - field.field.paragraph.indicators.field_label
+    - field.field.paragraph.indicators.field_percentage
+    - field.field.paragraph.indicators.field_title
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.indicators
+  module:
+    - svg_image
+id: paragraph.indicators.default
+targetEntityType: paragraph
+bundle: indicators
+mode: default
+content:
+  field_graph:
+    type: image_image
+    weight: 1
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_label:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_percentage:
+    type: number
+    weight: 2
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  translation:
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

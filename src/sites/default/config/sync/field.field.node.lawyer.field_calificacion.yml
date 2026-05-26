@@ -1,0 +1,23 @@
+uuid: d7a16bef-e945-41f6-9315-cbdd1b6b1143
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_calificacion
+    - node.type.lawyer
+id: node.lawyer.field_calificacion
+field_name: field_calificacion
+entity_type: node
+bundle: lawyer
+label: Calificación
+description: 'Ejemplo: 1.1'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: float

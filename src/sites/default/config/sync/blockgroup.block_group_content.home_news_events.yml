@@ -1,0 +1,6 @@
+uuid: d56fa625-6a64-4de9-b2ac-7687c0557e75
+langcode: es
+status: true
+dependencies: {  }
+id: home_news_events
+label: 'home_news events'

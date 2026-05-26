@@ -1,0 +1,11 @@
+uuid: c6f13acd-24f2-4d82-acfc-a10d852efff0
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+id: node.main_banner
+label: 'main banner'
+description: ''
+targetEntityType: node
+cache: true

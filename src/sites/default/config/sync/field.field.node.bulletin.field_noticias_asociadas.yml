@@ -1,0 +1,28 @@
+uuid: d84411b5-460a-47f3-8282-56f01c13b4d3
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_noticias_asociadas
+    - node.type.bulletin
+    - node.type.noticia
+id: node.bulletin.field_noticias_asociadas
+field_name: field_noticias_asociadas
+entity_type: node
+bundle: bulletin
+label: 'Noticias asociadas'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      noticia: noticia
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

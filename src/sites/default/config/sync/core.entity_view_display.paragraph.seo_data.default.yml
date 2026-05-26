@@ -1,0 +1,30 @@
+uuid: bf3909ca-75e3-4f02-82fc-9a82134f8a6f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.seo_data.field_seo_description
+    - field.field.paragraph.seo_data.field_url
+    - paragraphs.paragraphs_type.seo_data
+id: paragraph.seo_data.default
+targetEntityType: paragraph
+bundle: seo_data
+mode: default
+content:
+  field_seo_description:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_url:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

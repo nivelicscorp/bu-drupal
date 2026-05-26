@@ -1,0 +1,20 @@
+uuid: 12d32d02-62ec-40b7-a84d-866d214ce7a2
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_nuevos_servicios
+field_name: field_nuevos_servicios
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

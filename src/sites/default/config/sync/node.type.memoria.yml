@@ -1,0 +1,29 @@
+uuid: 4afcd312-f6ec-431c-b774-f22dd7034c30
+langcode: es
+status: true
+dependencies:
+  module:
+    - menu_ui
+    - social_simple
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+  social_simple:
+    share: 1
+    title: ''
+    networks:
+      twitter: twitter
+      facebook: facebook
+      googleplus: googleplus
+      linkedin: linkedin
+    hashtags: '0'
+    forward_integration: null
+name: Memoria
+type: memoria
+description: null
+help: null
+new_revision: true
+preview_mode: 0
+display_submitted: false

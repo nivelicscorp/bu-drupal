@@ -1,0 +1,23 @@
+uuid: f5aabb47-fbd6-4740-bdfb-51ef4b281b5a
+langcode: en
+status: true
+dependencies: {  }
+name: img_180x180
+label: 'img 180x180'
+effects:
+  d39fdf21-a265-4fad-a83a-d3380f57af90:
+    uuid: d39fdf21-a265-4fad-a83a-d3380f57af90
+    id: image_scale
+    weight: 1
+    data:
+      width: 180
+      height: null
+      upscale: false
+  0f9be4fc-753f-4e44-b761-88aa1d3138b3:
+    uuid: 0f9be4fc-753f-4e44-b761-88aa1d3138b3
+    id: image_crop
+    weight: 2
+    data:
+      width: 180
+      height: 180
+      anchor: center-center

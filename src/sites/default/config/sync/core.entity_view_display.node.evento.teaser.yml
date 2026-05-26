@@ -1,0 +1,215 @@
+uuid: 918b253f-58e6-4d71-ad28-bcfc92cb44d8
+langcode: es
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.evento.body
+    - field.field.node.evento.field_agenda_del_evento
+    - field.field.node.evento.field_anadir_al_calendario
+    - field.field.node.evento.field_area
+    - field.field.node.evento.field_conferencistas
+    - field.field.node.evento.field_enlace_de_zoom
+    - field.field.node.evento.field_es_privado
+    - field.field.node.evento.field_fecha_del_evento
+    - field.field.node.evento.field_fecha_y_hora
+    - field.field.node.evento.field_hora_del_vento
+    - field.field.node.evento.field_image
+    - field.field.node.evento.field_industrias
+    - field.field.node.evento.field_lugar_del_evento
+    - field.field.node.evento.field_metatags
+    - field.field.node.evento.field_show_form
+    - field.field.node.evento.field_tipo_de_asistencia
+    - field.field.node.evento.field_tipo_de_evento
+    - field.field.node.evento.field_v
+    - image.style.300x350
+    - node.type.evento
+  module:
+    - addtocalendar
+    - datetime
+    - ds
+    - image_class
+    - link
+    - options
+    - svg_image
+    - text
+    - user
+id: node.evento.teaser
+targetEntityType: node
+bundle: evento
+mode: teaser
+content:
+  body:
+    type: text_trimmed
+    label: hidden
+    settings:
+      trim_length: 100
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 1
+    region: content
+  field_anadir_al_calendario:
+    type: add_to_calendar
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_enlace_de_zoom:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: nofollow
+      target: _blank
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 6
+    region: content
+  field_fecha_del_evento:
+    type: datetime_default
+    label: hidden
+    settings:
+      timezone_override: America/Bogota
+      format_type: mes_dia_corto
+    third_party_settings:
+      addtocalendar:
+        addtocalendar_show: 0
+        addtocalendar_settings:
+          style: blue
+          display_text: 'Add to Calendar'
+          atc_title:
+            field: token
+            tokenized: Title
+          atc_description:
+            field: token
+            tokenized: Description
+          atc_location:
+            field: token
+            tokenized: Location
+          atc_organizer:
+            field: token
+            tokenized: 'Brigard Urrutia'
+          atc_organizer_email:
+            field: token
+            tokenized: info@bu.com.co
+          atc_date_end:
+            field: token
+            tokenized: ''
+          atc_privacy: public
+          data_secure: auto
+          data_calendars:
+            'Google Calendar': '0'
+            'Outlook Online': '0'
+            iCalendar: '0'
+            Outlook: '0'
+            'Yahoo! Calendar': '0'
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 2
+    region: content
+  field_hora_del_vento:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 4
+    region: content
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: content
+      image_style: 300x350
+      image_loading:
+        attribute: lazy
+      svg_attributes:
+        width: 300
+        height: 350
+      svg_render_as_image: true
+    third_party_settings:
+      image_class:
+        class: ''
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 0
+    region: content
+  field_lugar_del_evento:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_tipo_de_asistencia:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  field_tipo_de_evento:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 3
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
+    region: content
+hidden:
+  field_agenda_del_evento: true
+  field_area: true
+  field_conferencistas: true
+  field_es_privado: true
+  field_fecha_y_hora: true
+  field_industrias: true
+  field_metatags: true
+  field_show_form: true
+  field_v: true
+  langcode: true
+  search_api_excerpt: true
+  social_simple_buttons: true

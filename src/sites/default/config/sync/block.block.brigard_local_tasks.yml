@@ -1,0 +1,22 @@
+uuid: 1bf0ebca-7aff-4205-bcf6-96a12ac1dcb7
+langcode: es
+status: true
+dependencies:
+  theme:
+    - brigard
+_core:
+  default_config_hash: X9I1OB0W3WlWtrK-CNcg6hNWwa8wficanpH8pYnDZDE
+id: brigard_local_tasks
+theme: brigard
+region: content
+weight: -14
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Pestañas
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: true
+visibility: {  }

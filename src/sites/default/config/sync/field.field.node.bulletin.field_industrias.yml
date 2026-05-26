@@ -1,0 +1,29 @@
+uuid: f710a831-b8e7-4c82-ba6e-df06599a9c9f
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_industrias
+    - node.type.bulletin
+    - taxonomy.vocabulary.indrustrias
+id: node.bulletin.field_industrias
+field_name: field_industrias
+entity_type: node
+bundle: bulletin
+label: Industrias
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      indrustrias: indrustrias
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

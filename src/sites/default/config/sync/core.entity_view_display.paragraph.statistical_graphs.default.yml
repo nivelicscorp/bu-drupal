@@ -1,0 +1,86 @@
+uuid: d77902d4-74a2-422c-8b5b-2666f2d93fa7
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.statistical_graphs.field_descripcion
+    - field.field.paragraph.statistical_graphs.field_grafico_embebido
+    - field.field.paragraph.statistical_graphs.field_graphs_type
+    - field.field.paragraph.statistical_graphs.field_headers
+    - field.field.paragraph.statistical_graphs.field_items_indicators
+    - field.field.paragraph.statistical_graphs.field_title
+    - field.field.paragraph.statistical_graphs.field_title_x
+    - field.field.paragraph.statistical_graphs.field_title_y
+    - paragraphs.paragraphs_type.statistical_graphs
+  module:
+    - entity_reference_revisions
+    - options
+    - text
+id: paragraph.statistical_graphs.default
+targetEntityType: paragraph
+bundle: statistical_graphs
+mode: default
+content:
+  field_descripcion:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_grafico_embebido:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_graphs_type:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_headers:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_items_indicators:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_title_x:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_title_y:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+hidden: {  }

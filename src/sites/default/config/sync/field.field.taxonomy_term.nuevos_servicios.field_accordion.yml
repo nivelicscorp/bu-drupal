@@ -1,0 +1,64 @@
+uuid: 1b7d0b89-7ccc-44a9-b4ef-9f5080c86636
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_accordion
+    - paragraphs.paragraphs_type.accordion
+    - taxonomy.vocabulary.nuevos_servicios
+  module:
+    - entity_reference_revisions
+id: taxonomy_term.nuevos_servicios.field_accordion
+field_name: field_accordion
+entity_type: taxonomy_term
+bundle: nuevos_servicios
+label: Acordeón
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      accordion: accordion
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: 13
+        enabled: true
+      accordion_items:
+        weight: 14
+        enabled: false
+      agenda_del_evento:
+        weight: 15
+        enabled: false
+      conferencistas:
+        weight: 16
+        enabled: false
+      contenidos_con_foto:
+        weight: 17
+        enabled: false
+      indicators:
+        weight: 18
+        enabled: false
+      items_indicators:
+        weight: 19
+        enabled: false
+      main_banner:
+        weight: 20
+        enabled: false
+      recognition_items:
+        weight: 21
+        enabled: false
+      statistical_graphs:
+        weight: 22
+        enabled: false
+      testimonial_items:
+        weight: 23
+        enabled: false
+      text_box:
+        weight: 24
+        enabled: false
+field_type: entity_reference_revisions

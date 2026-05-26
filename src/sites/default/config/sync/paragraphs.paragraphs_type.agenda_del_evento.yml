@@ -1,0 +1,9 @@
+uuid: 7517f7bc-0e7f-49f9-8bf2-2a5c70ca572b
+langcode: es
+status: true
+dependencies: {  }
+id: agenda_del_evento
+label: 'Agenda del evento'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

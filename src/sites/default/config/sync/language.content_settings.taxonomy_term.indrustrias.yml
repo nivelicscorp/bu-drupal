@@ -1,0 +1,18 @@
+uuid: f4c3b01f-7802-4be8-999a-89281e442c59
+langcode: es
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.indrustrias
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: taxonomy_term.indrustrias
+target_entity_type_id: taxonomy_term
+target_bundle: indrustrias
+default_langcode: site_default
+language_alterable: false

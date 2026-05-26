@@ -1,0 +1,65 @@
+uuid: 99ffec91-c0b7-4ff3-b5f5-4f128af67fbf
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.accordion.field_items
+    - field.field.paragraph.accordion.field_label
+    - paragraphs.paragraphs_type.accordion
+    - views.view.accordion_
+  module:
+    - ds
+    - views_field_formatter
+id: paragraph.accordion.default
+targetEntityType: paragraph
+bundle: accordion
+mode: default
+content:
+  field_items:
+    type: views_field_formatter
+    label: hidden
+    settings:
+      view: 'accordion_::default'
+      arguments:
+        field_value:
+          weight: '0'
+          checked: 0
+        entity_id:
+          checked: '1'
+          weight: '0'
+        delta:
+          weight: '0'
+          checked: 0
+        entity_revision_id:
+          weight: '0'
+          checked: 0
+      implode_character: ''
+      hide_empty: 0
+      multiple: 0
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 1
+    region: content
+  field_label:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: h2
+            lb-col: false
+            classes: {  }
+    weight: 0
+    region: content
+hidden: {  }

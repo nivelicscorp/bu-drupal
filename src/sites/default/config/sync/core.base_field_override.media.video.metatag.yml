@@ -1,0 +1,18 @@
+uuid: b4aa6d3f-d6c5-46ee-9338-7e329aecc6e3
+langcode: en
+status: true
+dependencies:
+  config:
+    - media.type.video
+id: media.video.metatag
+field_name: metatag
+entity_type: media
+bundle: video
+label: Metatags
+description: 'The meta tags for the entity.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: map

@@ -1,0 +1,11 @@
+uuid: e35a8e27-cedd-4005-96d0-13fb06b10179
+langcode: es
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: taxonomy_term.teaser
+label: Resumen
+description: ''
+targetEntityType: taxonomy_term
+cache: true

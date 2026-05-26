@@ -1,0 +1,19 @@
+uuid: 23550f4f-4425-4587-b8db-33b025df47dd
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+    - text
+id: node.field_publicaciones_del_profesio
+field_name: field_publicaciones_del_profesio
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

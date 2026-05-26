@@ -1,0 +1,67 @@
+uuid: 9e04eb2c-56e7-48bf-9615-a8ff6d638a98
+langcode: es
+status: true
+dependencies:
+  config:
+    - views.view.newsletter_internal
+  content:
+    - 'block_content:sider_bar:bcbb3fb9-71f3-4699-ad1c-47e1722ecdde'
+  module:
+    - block_content
+    - system
+    - views
+label: 'Home noticias'
+name: news
+group: theme
+description: ''
+requireAllConditions: true
+disabled: false
+conditions:
+  request_path:
+    id: request_path
+    negate: false
+    uuid: 0cfbe005-192f-409b-b262-61b3609d8755
+    context_mapping: {  }
+    pages: /noticias
+reactions:
+  blocks:
+    id: blocks
+    uuid: f021cbff-ec0e-41ea-b86c-1bc3d350bcf6
+    blocks:
+      8e01bf74-8eb6-4897-b5ed-1cddb8741057:
+        uuid: 8e01bf74-8eb6-4897-b5ed-1cddb8741057
+        id: 'views_block:newsletter_internal-block_1'
+        label: ''
+        provider: views
+        label_display: visible
+        region: sidebar_right
+        weight: '0'
+        custom_id: views_block_newsletter_internal_block_1
+        theme: brigard
+        css_class: sidebar-boletin
+        unique: 0
+        context_id: news
+        context_mapping: {  }
+        views_label: ''
+        items_per_page: none
+        override: {  }
+      94be6e32-42ec-4692-b187-2091a47af39d:
+        uuid: 94be6e32-42ec-4692-b187-2091a47af39d
+        id: 'block_content:bcbb3fb9-71f3-4699-ad1c-47e1722ecdde'
+        label: Contactenos
+        provider: block_content
+        label_display: '0'
+        region: sidebar_right
+        weight: '1'
+        custom_id: block_content_bcbb3fb9_71f3_4699_ad1c_47e1722ecdde
+        theme: brigard
+        css_class: 'block-contact-sidebar block-contact-sidebar-color--blue'
+        unique: 0
+        context_id: news
+        context_mapping: {  }
+        status: true
+        info: ''
+        view_mode: full
+    include_default_blocks: 1
+    saved: false
+weight: -4

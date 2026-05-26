@@ -1,0 +1,29 @@
+uuid: aa934d8e-08c7-4953-9ecd-3a785a640c8f
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_nuevos_servicios
+    - node.type.recursos
+    - taxonomy.vocabulary.nuevos_servicios
+id: node.recursos.field_nuevos_servicios
+field_name: field_nuevos_servicios
+entity_type: node
+bundle: recursos
+label: 'Nuevos servicios'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      nuevos_servicios: nuevos_servicios
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

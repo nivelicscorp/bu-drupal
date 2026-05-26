@@ -1,0 +1,56 @@
+title: 'Summer Internships Registration'
+elements: |
+  titulo:
+    '#text': "<h2 class=\"title-form\">Registration form</h2>\n\n<p>Fields marked with an asterisk (*) are required</p>\n"
+  nombre:
+    '#title': Name
+    '#placeholder': 'Name*'
+  apellido:
+    '#placeholder': 'Last name*'
+  fecha_de_nacimiento:
+    '#title': 'Date of birth*'
+  nacionalidad:
+    '#title': Nationality
+    '#placeholder': 'Nationality*'
+  telefono:
+    '#title': 'Phone or Cell'
+    '#placeholder': 'Phone or Cell*'
+  email:
+    '#placeholder': 'Email*'
+  direccion:
+    '#title': Address
+    '#placeholder': 'Address*'
+  ciudad:
+    '#title': City
+    '#placeholder': 'City*'
+  pais:
+    '#title': Country
+    '#placeholder': 'Country*'
+  universidad:
+    '#title': University
+    '#placeholder': 'University*'
+  semestre_ano:
+    '#title': 'Semester / Year'
+    '#placeholder': 'Semester / Year*'
+  promedio_academico_:
+    '#title': 'Grade point average*'
+    '#placeholder': 'Grade point average*'
+  nivel_de_ingles_1_a_100_:
+    '#title': 'English level (1 a 100)'
+    '#placeholder': 'English level (1 a 100)*'
+  nivel_de_espanol_1_a_100_:
+    '#title': 'Spanish Level (1 a 100)'
+    '#placeholder': 'Spanish level (1 a 100)*'
+  otros_idiomas:
+    '#title': 'Other languages'
+    '#placeholder': 'Other languages'
+  seleccione_sus_areas_de_interes:
+    '#title': 'Select your areas of interest'
+  areas_de_interes:
+    '#title': 'Areas of interest'
+  adjuntar_hoja_de_vida:
+    '#title': 'Attach resume'
+  adjuntar_carta_de_interes:
+    '#title': 'Attach Letter of Interest'
+  actions:
+    '#submit__label': Submit

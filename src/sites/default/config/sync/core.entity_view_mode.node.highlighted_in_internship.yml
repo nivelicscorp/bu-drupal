@@ -1,0 +1,11 @@
+uuid: eefc623a-313c-4af2-b3e7-d141f9fe6ba0
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+id: node.highlighted_in_internship
+label: 'Contenido destacado en pasantía'
+description: ''
+targetEntityType: node
+cache: true

@@ -1,0 +1,19 @@
+uuid: b1a4fdc6-76b6-4418-89e5-75bd35792806
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_lenguajes
+    - node.type.lawyer
+id: node.lawyer.field_lenguajes
+field_name: field_lenguajes
+entity_type: node
+bundle: lawyer
+label: Idiomas
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

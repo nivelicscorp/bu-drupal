@@ -1,0 +1,18 @@
+uuid: d1438e31-882b-4301-ba03-15a014131be3
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.icono_item_menu
+id: block_content.icono_item_menu.info
+field_name: info
+entity_type: block_content
+bundle: icono_item_menu
+label: 'Descripción del bloque'
+description: 'Una breve descripción de su bloque.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

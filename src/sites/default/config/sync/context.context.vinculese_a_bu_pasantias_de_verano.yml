@@ -1,0 +1,48 @@
+uuid: 6b5421eb-3508-47c9-8b42-34325926ce7d
+langcode: es
+status: true
+dependencies:
+  config:
+    - views.view.section_children
+  module:
+    - system
+    - views
+label: 'Vincúlese a BU - Pasantías de verano'
+name: vinculese_a_bu_pasantias_de_verano
+group: theme
+description: ''
+requireAllConditions: false
+disabled: false
+conditions:
+  request_path:
+    id: request_path
+    negate: false
+    uuid: 89cf4e35-c941-4428-a31b-82b322570b22
+    context_mapping: {  }
+    pages: /taxonomy/term/1144
+reactions:
+  blocks:
+    id: blocks
+    uuid: 9817c7ec-5831-42a0-8e11-437bb973c776
+    blocks:
+      28b4647d-6591-480f-99c0-8022253dad09:
+        uuid: 28b4647d-6591-480f-99c0-8022253dad09
+        id: 'views_block:section_children-minimum_view_mode_block'
+        label: ''
+        provider: views
+        label_display: '0'
+        region: content
+        weight: '0'
+        custom_id: views_block_section_children_minimum_view_mode_block
+        theme: brigard
+        css_class: ''
+        unique: 0
+        context_id: vinculese_a_bu_pasantias_de_verano
+        context_mapping:
+          parent: '@custom_context_provider.taxonomy_term_context:taxonomy_term'
+        views_label: ''
+        items_per_page: none
+        override: {  }
+    include_default_blocks: 1
+    saved: false
+weight: 0

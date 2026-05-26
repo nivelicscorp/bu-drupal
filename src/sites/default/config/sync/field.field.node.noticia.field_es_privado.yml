@@ -1,0 +1,23 @@
+uuid: 78f2e286-7bd8-4892-b32b-b6d9efa2898b
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_es_privado
+    - node.type.noticia
+id: node.noticia.field_es_privado
+field_name: field_es_privado
+entity_type: node
+bundle: noticia
+label: 'Es privado?'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

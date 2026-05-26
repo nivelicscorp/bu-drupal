@@ -1,0 +1,35 @@
+uuid: e4ef5a39-fa8f-46e5-b1eb-4be7fea76fc4
+langcode: es
+status: true
+dependencies:
+  config:
+    - webform.webform.boletin
+  module:
+    - block_class
+    - system
+    - webform
+  theme:
+    - brigard
+third_party_settings:
+  block_class:
+    classes: block-newsletter
+id: formularioweb
+theme: brigard
+region: footer_slider
+weight: -7
+provider: null
+plugin: webform_block
+settings:
+  id: webform_block
+  label: 'Formulario web'
+  label_display: '0'
+  provider: webform
+  webform_id: boletin
+  default_data: ''
+  redirect: false
+  lazy: false
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: '<front>'

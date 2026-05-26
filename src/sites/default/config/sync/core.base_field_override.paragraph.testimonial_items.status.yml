@@ -1,0 +1,22 @@
+uuid: df70b539-6296-4283-ac92-254c62723708
+langcode: es
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.testimonial_items
+id: paragraph.testimonial_items.status
+field_name: status
+entity_type: paragraph
+bundle: testimonial_items
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

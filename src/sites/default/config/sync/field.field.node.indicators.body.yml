@@ -1,0 +1,23 @@
+uuid: 25c357ec-e385-440f-8b62-cea90ab1aa68
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.indicators
+  module:
+    - text
+id: node.indicators.body
+field_name: body
+entity_type: node
+bundle: indicators
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

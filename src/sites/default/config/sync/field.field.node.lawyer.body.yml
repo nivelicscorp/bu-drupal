@@ -1,0 +1,23 @@
+uuid: 25723336-7598-4f07-9e16-05f9d57701d8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.lawyer
+  module:
+    - text
+id: node.lawyer.body
+field_name: body
+entity_type: node
+bundle: lawyer
+label: Perfil
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

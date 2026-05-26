@@ -1,0 +1,110 @@
+uuid: c4ae7ae1-0c33-4152-b647-5a71efd195af
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.node.recursos.body
+    - field.field.node.recursos.field_area
+    - field.field.node.recursos.field_footer
+    - field.field.node.recursos.field_image
+    - field.field.node.recursos.field_industrias
+    - field.field.node.recursos.field_nuevos_servicios
+    - node.type.recursos
+  module:
+    - field_group
+    - text
+    - user
+third_party_settings:
+  field_group:
+    group_para_mayor_informacion_con:
+      children:
+        - field_footer
+      label: 'Para mayor información contacte nuestro equipo'
+      parent_name: ''
+      region: content
+      weight: 1
+      format_type: fieldset
+      format_settings:
+        classes: contact-us
+        id: ''
+        description: ''
+    group_conozca_mas_sobre_:
+      children:
+        - field_area
+        - field_industrias
+        - field_nuevos_servicios
+      label: 'Conozca nuestra experiencia en:'
+      parent_name: ''
+      region: content
+      weight: 2
+      format_type: fieldset
+      format_settings:
+        classes: know-more
+        show_empty_fields: false
+        id: ''
+        description: ''
+    group_compartir_este_contenido:
+      children:
+        - social_simple_buttons
+      label: 'Compartir este contenido'
+      parent_name: ''
+      region: content
+      weight: 3
+      format_type: fieldset
+      format_settings:
+        classes: news-share
+        id: ''
+        description: ''
+id: node.recursos.default
+targetEntityType: node
+bundle: recursos
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_area:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_footer:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_industrias:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_nuevos_servicios:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  social_simple_buttons:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
+    region: content
+hidden:
+  field_image: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

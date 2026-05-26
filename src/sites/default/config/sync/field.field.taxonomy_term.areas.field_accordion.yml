@@ -1,0 +1,52 @@
+uuid: 5863a1bf-87d8-49a4-82b1-3f372129d217
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_accordion
+    - paragraphs.paragraphs_type.accordion
+    - taxonomy.vocabulary.areas
+  module:
+    - entity_reference_revisions
+id: taxonomy_term.areas.field_accordion
+field_name: field_accordion
+entity_type: taxonomy_term
+bundle: areas
+label: Acordeón
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      accordion: accordion
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: 9
+        enabled: true
+      agenda_del_evento:
+        weight: 8
+        enabled: false
+      conferencistas:
+        weight: 9
+        enabled: false
+      indicators:
+        weight: 10
+        enabled: false
+      items_indicators:
+        weight: 11
+        enabled: false
+      main_banner:
+        weight: 12
+        enabled: false
+      statistical_graphs:
+        weight: 13
+        enabled: false
+      text_box:
+        weight: 14
+        enabled: false
+field_type: entity_reference_revisions

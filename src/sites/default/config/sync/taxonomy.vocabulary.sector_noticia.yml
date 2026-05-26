@@ -1,0 +1,9 @@
+uuid: 58069751-0b56-447d-b4e6-c659c823100d
+langcode: es
+status: true
+dependencies: {  }
+name: 'Sector Noticia'
+vid: sector_noticia
+description: null
+weight: 0
+new_revision: false

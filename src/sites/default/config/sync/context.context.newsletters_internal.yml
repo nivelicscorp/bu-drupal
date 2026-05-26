@@ -1,0 +1,29 @@
+uuid: a797a224-a9be-4f60-b3be-3752c2902030
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+label: 'Boletines interna'
+name: newsletters_internal
+group: theme
+description: ''
+requireAllConditions: false
+disabled: false
+conditions:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: e175bd3f-4acf-432e-bf01-743dceabcc8c
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      bulletin: bulletin
+reactions:
+  blocks:
+    id: blocks
+    uuid: 9e659ed4-866d-4595-afd8-582e5be6d961
+    blocks: {  }
+    include_default_blocks: 1
+    saved: false
+weight: 0

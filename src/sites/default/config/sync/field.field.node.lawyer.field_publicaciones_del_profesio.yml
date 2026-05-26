@@ -1,0 +1,21 @@
+uuid: bb003209-4103-4ec6-99ba-596fcf1a3e24
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_publicaciones_del_profesio
+    - node.type.lawyer
+  module:
+    - text
+id: node.lawyer.field_publicaciones_del_profesio
+field_name: field_publicaciones_del_profesio
+entity_type: node
+bundle: lawyer
+label: 'Publicaciones del profesional'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

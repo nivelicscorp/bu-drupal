@@ -1,0 +1,18 @@
+uuid: 8276ea5d-1312-4428-a5d9-d8581b39ba89
+langcode: es
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.base_de_datos
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: false
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: taxonomy_term.base_de_datos
+target_entity_type_id: taxonomy_term
+target_bundle: base_de_datos
+default_langcode: site_default
+language_alterable: false

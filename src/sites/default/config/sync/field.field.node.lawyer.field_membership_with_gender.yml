@@ -1,0 +1,29 @@
+uuid: d8f43804-02fb-41a0-8322-66da56a8d458
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_membership_with_gender
+    - node.type.lawyer
+    - taxonomy.vocabulary.membership_with_gender
+id: node.lawyer.field_membership_with_gender
+field_name: field_membership_with_gender
+entity_type: node
+bundle: lawyer
+label: 'Membership con Genero'
+description: 'Utilice esta clasificación de membresía en caso de que se quiera que en un idioma se distinga entre ellas por genero'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      membership_with_gender: membership_with_gender
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

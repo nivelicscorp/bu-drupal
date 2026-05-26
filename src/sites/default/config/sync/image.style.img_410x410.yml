@@ -1,0 +1,15 @@
+uuid: 5f83c9a3-98f7-44dd-9df2-1f96817c4b4c
+langcode: es
+status: true
+dependencies: {  }
+name: img_410x410
+label: 'img 410x410'
+effects:
+  2c25b397-1079-4685-b6f0-69af00100bb1:
+    uuid: 2c25b397-1079-4685-b6f0-69af00100bb1
+    id: image_scale
+    weight: 1
+    data:
+      width: 640
+      height: null
+      upscale: false

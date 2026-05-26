@@ -1,0 +1,67 @@
+uuid: 88425d78-4ff1-462d-b9e9-ee8ab4520e19
+langcode: en
+status: true
+dependencies:
+  config:
+    - config_pages.type.seo_por_url
+    - field.storage.config_pages.field_urls
+    - paragraphs.paragraphs_type.seo_data
+  module:
+    - entity_reference_revisions
+id: config_pages.seo_por_url.field_urls
+field_name: field_urls
+entity_type: config_pages
+bundle: seo_por_url
+label: URLs
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      seo_data: seo_data
+    negate: 0
+    target_bundles_drag_drop:
+      accordion:
+        weight: 14
+        enabled: false
+      accordion_items:
+        weight: 15
+        enabled: false
+      agenda_del_evento:
+        weight: 16
+        enabled: false
+      conferencistas:
+        weight: 17
+        enabled: false
+      contenidos_con_foto:
+        weight: 18
+        enabled: false
+      indicators:
+        weight: 19
+        enabled: false
+      items_indicators:
+        weight: 20
+        enabled: false
+      main_banner:
+        weight: 21
+        enabled: false
+      recognition_items:
+        weight: 22
+        enabled: false
+      seo_data:
+        weight: 23
+        enabled: true
+      statistical_graphs:
+        weight: 24
+        enabled: false
+      testimonial_items:
+        weight: 25
+        enabled: false
+      text_box:
+        weight: 26
+        enabled: false
+field_type: entity_reference_revisions

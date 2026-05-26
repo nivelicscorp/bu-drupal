@@ -1,0 +1,23 @@
+uuid: df8e40f7-f6fb-45a5-aff5-e06542eaf8d5
+langcode: es
+status: true
+dependencies: {  }
+name: img_1280_x_390
+label: 'img 1280 x 390'
+effects:
+  09a6e7be-52dd-41a0-a0ae-15a18c90387b:
+    uuid: 09a6e7be-52dd-41a0-a0ae-15a18c90387b
+    id: image_scale
+    weight: 1
+    data:
+      width: 1280
+      height: null
+      upscale: true
+  ee34d869-2504-4c3f-b20e-24eb6d62895a:
+    uuid: ee34d869-2504-4c3f-b20e-24eb6d62895a
+    id: image_crop
+    weight: 2
+    data:
+      width: 1280
+      height: 400
+      anchor: center-center

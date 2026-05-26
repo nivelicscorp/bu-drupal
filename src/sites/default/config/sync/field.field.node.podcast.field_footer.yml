@@ -1,0 +1,24 @@
+uuid: 7b836f31-4de2-4b19-b88f-ea801d5dfda5
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_footer
+    - node.type.podcast
+  module:
+    - text
+id: node.podcast.field_footer
+field_name: field_footer
+entity_type: node
+bundle: podcast
+label: 'Footer Body'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: "<p>info@bu.com.co</p>\r\n"
+    format: basic_html
+default_value_callback: ''
+settings: {  }
+field_type: text_long

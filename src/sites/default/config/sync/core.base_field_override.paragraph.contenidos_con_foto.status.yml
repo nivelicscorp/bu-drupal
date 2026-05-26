@@ -1,0 +1,22 @@
+uuid: c96cb221-35be-4c41-9c70-2466fa56b3f7
+langcode: es
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.contenidos_con_foto
+id: paragraph.contenidos_con_foto.status
+field_name: status
+entity_type: paragraph
+bundle: contenidos_con_foto
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

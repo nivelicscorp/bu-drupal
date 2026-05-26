@@ -1,0 +1,33 @@
+uuid: 5f2e245e-63a0-4d3c-9234-c3c402ab7353
+langcode: es
+status: false
+dependencies:
+  config:
+    - node.type.page
+  module:
+    - language
+    - node
+id: pasantias_eng
+label: 'Pasantias eng'
+type: 'canonical_entities:node'
+pattern: '/join-bu/summer-internships/[node:title]'
+selection_criteria:
+  4bc43cc6-dde3-4557-ae02-bbd8c1ac165a:
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: node
+    bundles:
+      page: page
+  8589658d-ee4b-40a9-96fb-e8bcc0223d25:
+    id: language
+    negate: false
+    context_mapping:
+      language: 'node:langcode:language'
+    langcodes:
+      en: en
+selection_logic: and
+weight: -2
+relationships:
+  'node:langcode:language':
+    label: Language

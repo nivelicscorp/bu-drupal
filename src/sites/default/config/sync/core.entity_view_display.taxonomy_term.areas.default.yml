@@ -1,0 +1,36 @@
+uuid: c15cd8a7-e2a7-4060-a440-2fa5d5e2ac5e
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.areas.field_accordion
+    - field.field.taxonomy_term.areas.field_resumen
+    - taxonomy.vocabulary.areas
+  module:
+    - entity_reference_revisions
+    - text
+id: taxonomy_term.areas.default
+targetEntityType: taxonomy_term
+bundle: areas
+mode: default
+content:
+  description:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_accordion:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  field_resumen: true
+  langcode: true
+  search_api_excerpt: true

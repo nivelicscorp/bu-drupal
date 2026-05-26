@@ -1,0 +1,23 @@
+uuid: 89270fed-5395-45a2-bb07-56e03d0593ae
+langcode: es
+status: true
+dependencies: {  }
+name: img_127x136
+label: 'img 127x136'
+effects:
+  33452011-c2ea-4e9f-b71e-415e134b970c:
+    uuid: 33452011-c2ea-4e9f-b71e-415e134b970c
+    id: image_scale
+    weight: 1
+    data:
+      width: 127
+      height: null
+      upscale: false
+  124b4b9e-b52a-4527-a826-467dbbd05c08:
+    uuid: 124b4b9e-b52a-4527-a826-467dbbd05c08
+    id: image_crop
+    weight: 2
+    data:
+      width: 127
+      height: 136
+      anchor: center-center

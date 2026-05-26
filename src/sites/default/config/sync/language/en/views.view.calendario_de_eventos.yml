@@ -1,0 +1,19 @@
+display:
+  page_1:
+    display_options:
+      empty:
+        area:
+          content:
+            value: "<style type=\"text/css\">.form-item-field-tipo-de-evento-value{display:none !important;} .content-page-full{width: 100% !important;}\r\n</style>\r\n<p style=\"text-align: center; font-size: 24px; color: #032d73;\">At this time we do not have scheduled events. For more information about future events, we invite you to subscribe to our newsletter.</p>\r\n"
+            format: full_html
+  block_3:
+    display_options:
+      fields:
+        nothing:
+          alter:
+            text: "                        <div class=\"next-event\">\r\n                            <p class=\"subtitle\">Events</p>\r\n                            <p class=\"description\">{{ title }}</p>\r\n                            <div class=\"date\">{{ field_fecha_del_evento }}</div>\r\n                            <div class=\"links\">\r\n                                <a href=\"/en/events\" class=\"link-red\">VIEW MORE EVENTS</a>\r\n                            </div>\r\n                        </div>\r\n"
+      empty:
+        area:
+          content:
+            value: "<div class=\"next-event\">\r\n<div class=\"links\"><a class=\"link-red\" href=\"/en/eventos\">VIEW MORE EVENTS</a></div>\r\n</div>\r\n"
+            format: full_html

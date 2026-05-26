@@ -1,0 +1,23 @@
+uuid: 38980c0c-6875-4cdf-9c8a-e320715ccd76
+langcode: es
+status: true
+dependencies: {  }
+name: ba
+label: 'banner mobile'
+effects:
+  db08886a-89b0-4c68-a5a1-ed6c9c145a65:
+    uuid: db08886a-89b0-4c68-a5a1-ed6c9c145a65
+    id: image_scale
+    weight: 1
+    data:
+      width: null
+      height: 600
+      upscale: false
+  d50cee85-e2b5-489d-b057-e980571e5870:
+    uuid: d50cee85-e2b5-489d-b057-e980571e5870
+    id: image_crop
+    weight: 2
+    data:
+      width: 400
+      height: 600
+      anchor: center-center

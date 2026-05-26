@@ -1,0 +1,29 @@
+uuid: e588e7d5-ecc4-46f7-bf8d-5d8d77a0e0e4
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.agenda_del_evento.field_caption
+    - field.field.paragraph.agenda_del_evento.field_label
+    - paragraphs.paragraphs_type.agenda_del_evento
+id: paragraph.agenda_del_evento.default
+targetEntityType: paragraph
+bundle: agenda_del_evento
+mode: default
+content:
+  field_caption:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_label:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

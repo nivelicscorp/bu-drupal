@@ -1,0 +1,23 @@
+uuid: c9e8fb1c-4afc-4d68-8c74-e7f680bff66d
+langcode: es
+status: true
+dependencies: {  }
+name: img_1282_x_640
+label: 'img 1282 x 640'
+effects:
+  6aecc19b-d94c-4023-ba09-8df85c5e0c9f:
+    uuid: 6aecc19b-d94c-4023-ba09-8df85c5e0c9f
+    id: image_scale
+    weight: 1
+    data:
+      width: 1282
+      height: 640
+      upscale: true
+  db8d0d20-208e-454a-abc5-9b30747c69c1:
+    uuid: db8d0d20-208e-454a-abc5-9b30747c69c1
+    id: image_crop
+    weight: 2
+    data:
+      width: 1282
+      height: 640
+      anchor: center-center

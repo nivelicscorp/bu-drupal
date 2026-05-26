@@ -1,0 +1,16 @@
+uuid: 63976ce2-28b5-4df1-a256-808535471610
+langcode: es
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.nuevos_servicios
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: taxonomy_term.nuevos_servicios
+target_entity_type_id: taxonomy_term
+target_bundle: nuevos_servicios
+default_langcode: site_default
+language_alterable: true

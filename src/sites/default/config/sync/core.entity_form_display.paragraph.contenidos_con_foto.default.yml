@@ -1,0 +1,52 @@
+uuid: ee347c06-0fea-465a-b8ed-222fb0be632f
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.contenidos_con_foto.field_description
+    - field.field.paragraph.contenidos_con_foto.field_graph
+    - field.field.paragraph.contenidos_con_foto.field_link
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.contenidos_con_foto
+  module:
+    - link
+    - svg_image
+    - text
+id: paragraph.contenidos_con_foto.default
+targetEntityType: paragraph
+bundle: contenidos_con_foto
+mode: default
+content:
+  field_description:
+    type: text_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_graph:
+    type: image_image
+    weight: 0
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_link:
+    type: link_default
+    weight: 2
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  translation:
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

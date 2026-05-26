@@ -1,0 +1,22 @@
+uuid: f6729df3-1797-44c3-a650-f61d2ee00dee
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.recognitions
+id: block_content.recognitions.status
+field_name: status
+entity_type: block_content
+bundle: recognitions
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

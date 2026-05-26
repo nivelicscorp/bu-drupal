@@ -1,0 +1,19 @@
+uuid: 43859ca2-e66b-4c8e-a00d-afc0533436fb
+langcode: es
+status: true
+dependencies:
+  module:
+    - addtocalendar
+    - node
+id: node.field_anadir_al_calendario
+field_name: field_anadir_al_calendario
+entity_type: node
+type: add_to_calendar_field
+settings: {  }
+module: addtocalendar
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

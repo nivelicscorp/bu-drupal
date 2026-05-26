@@ -1,0 +1,33 @@
+uuid: 52577f22-d715-4134-9949-f1446657ca14
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.membership
+  module:
+    - language
+    - taxonomy
+id: path_taxonomy_membresia
+label: 'path Taxonomy membresía'
+type: 'canonical_entities:taxonomy_term'
+pattern: '/abogados/[term:name]'
+selection_criteria:
+  7b4867ca-ad1d-4d53-b5e9-00903c87c165:
+    id: 'entity_bundle:taxonomy_term'
+    negate: false
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    bundles:
+      membership: membership
+  564c8b9d-449e-4747-a97f-12c69628ec25:
+    id: language
+    negate: false
+    context_mapping:
+      language: 'taxonomy_term:langcode:language'
+    langcodes:
+      es: es
+selection_logic: and
+weight: 1
+relationships:
+  'taxonomy_term:langcode:language':
+    label: Language

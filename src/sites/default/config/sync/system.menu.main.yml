@@ -1,0 +1,10 @@
+uuid: 70d54de6-97b7-4c41-a4ef-3dcee1a00924
+langcode: es
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: Q2Ra3jfoIVk0f3SjxJX61byRQFVBAbpzYDQOiY-kno8
+id: main
+label: 'NO SE USA'
+description: 'NO SE USA'
+locked: true

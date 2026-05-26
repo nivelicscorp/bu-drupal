@@ -1,0 +1,284 @@
+uuid: 38772a5d-c1b1-4e84-a259-79640a08b270
+langcode: es
+status: open
+dependencies: {  }
+weight: 0
+open: null
+close: null
+uid: 1
+template: false
+archive: false
+id: descarga_informe
+title: 'Descarga informe'
+description: ''
+categories: {  }
+elements: |-
+  processed_text:
+    '#type': processed_text
+    '#text': |
+      <p><strong>Para descargar este informe completo, llene los siguientes campos:</strong></p>
+    '#format': basic_html
+  nombre:
+    '#type': textfield
+    '#title': Nombre
+    '#title_display': invisible
+    '#description_display': invisible
+    '#placeholder': Nombre
+    '#autocomplete': 'off'
+    '#required': true
+    '#required_error': 'Campo obligatorio'
+  empresa:
+    '#type': textfield
+    '#title': Empresa
+    '#title_display': invisible
+    '#description_display': invisible
+  correo_electronico:
+    '#type': email
+    '#title': 'Correo electrónico'
+    '#title_display': invisible
+    '#description_display': invisible
+    '#placeholder': 'Correo electrónico'
+    '#autocomplete': 'off'
+    '#required': true
+    '#required_error': 'Campo obligatorio'
+  archivo:
+    '#type': hidden
+    '#title': archivo
+    '#prepopulate': true
+  captcha:
+    '#type': captcha
+    '#captcha_type': recaptcha/reCAPTCHA
+  actions:
+    '#type': webform_actions
+    '#title': 'Submit button(s)'
+    '#states':
+      disabled:
+        - ':input[name="nombre"]':
+            empty: true
+        - or
+        - ':input[name="correo_electronico"]':
+            empty: true
+    '#submit__label': Descargar
+css: ''
+javascript: ''
+settings:
+  ajax: false
+  ajax_scroll_top: form
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_theme_name: ''
+  form_title: both
+  form_submit_once: false
+  form_open_message: ''
+  form_close_message: ''
+  form_exception_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_disable_remote_addr: false
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_reset: false
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  form_attributes: {  }
+  form_method: ''
+  form_action: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: ''
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_log: false
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  submission_views: {  }
+  submission_views_replace: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: true
+  wizard_confirmation_label: ''
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
+  wizard_track: ''
+  wizard_prev_button_label: ''
+  wizard_next_button_label: ''
+  wizard_toggle: false
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  wizard_page_type: container
+  wizard_page_title_tag: h2
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: inline
+  confirmation_url: ''
+  confirmation_title: ''
+  confirmation_message: "<div class=\"container\">\r\n<div class=\"row\">\r\n<div class=\"message-mail\">\r\n<div class=\"close\"><a href='#' onclick='location.reload(true); return false;'>x</a></div>\r\n\r\n<div class=\"info\">\r\n<figure><img alt=\"Infraestructura y servicios públicos\" class=\"img-responsive\" height=\"62\" src=\"/themes/custom/brigard/img/mail-message.png\" width=\"71\" /></figure>\r\n\r\n<p>Este informe ha sido enviado a su correo electr&oacute;nico</p>\r\n</div>\r\n</div>\r\n</div>\r\n</div>"
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+  token_delete: false
+  serial_disabled: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers:
+  correo_electronico:
+    id: email
+    handler_id: correo_electronico
+    label: '[webform_submission:values:?]Correo electrónico'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: '[webform_submission:values:correo_electronico:raw]'
+      to_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      cc_mail: ''
+      cc_options: {  }
+      from_mail: _default
+      from_options: {  }
+      from_name: _default
+      reply_to: ''
+      return_path: ''
+      sender_mail: ''
+      sender_name: ''
+      subject: 'Thank you for downloading our content - Brigard Urrutia'
+      body: "<table width=\"100%\">\r\n\t<tbody>\r\n\t\t<tr>\r\n\t\t\t<td>\r\n\t\t\t<table align=\"center\" width=\"650\">\r\n\t\t\t\t<tbody>\r\n\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t<td style=\"padding:12px 0\"><a href=\"https://bu.com.co/es\"><img alt=\"Brigard Urrutia\" height=\"82\" src=\"https://www.bu.com.co/sites/default/files/2025-09/Recurso%204.png\" style=\"display: block; margin: 0 auto;\" width=\"165\" /></a></td>\r\n\t\t\t\t\t</tr>\r\n\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\r\n\t\t\t\t\t</tr>\r\n\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t<td>\r\n\t\t\t\t\t\t<table align=\"center\" style=\"margin-top: 60px; margin-bottom: 80px;\" width=\"510\">\r\n\t\t\t\t\t\t\t<tbody>\r\n\t\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\t\t\t<td>\r\n\t\t\t\t\t\t\t\t\t<p style=\"margin: 0; font-family: 'Palanquin Dark'; color:#1a3172; font-size: 25px; line-height: 28px; margin-bottom: 14px; text-align: center;\">Hemos recibido su solicitud.</p>\r\n\r\n\t\t\t\t\t\t\t\t\t<p style=\"margin: 0; font-family: 'Palanquin'; font-size: 18px; color: #888; margin-top: 10px; text-align: center;\">Para descargar el informe ingrese desde el siguiente link:</p>\r\n\r\n\t\t\t\t\t\t\t\t\t<p style=\"text-align: center;\"><a href=\"[webform_submission:values:archivo]\" style=\"text-align: center; border-bottom: 1px solid #dd235c; color: #dd235c; font-family: 'Palanquin'; font-size: 18px; text-decoration: none; text-align: center;\">Descargar informe</a></p>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t\t\t</tbody>\r\n\t\t\t\t\t\t</table>\r\n\t\t\t\t\t\t</td>\r\n\t\t\t\t\t</tr>\r\n\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t<td>\r\n\t\t\t\t\t\r\n\t\t\t\t\t\t</td>\r\n\t\t\t\t\t</tr>\r\n\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t<td>\r\n\t\t\t\t\t\t<table width=\"100%\" class=\"es-footer-body\" style=\"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:#002D74;\" cellspacing=\"0\" cellpadding=\"0\" bgcolor=\"#002d74\" align=\"center\">\r\n  <tbody>\r\n    <tr>\r\n      <td align=\"left\" style=\"padding:0;Margin:0;padding-top:20px;padding-left:0px;padding-right:0px\">\r\n        <table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" style=\"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px\">\r\n          <tbody>\r\n            <tr>\r\n              <td align=\"center\" valign=\"top\" style=\"padding:0;Margin:0;width:660px\">\r\n                <table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" style=\"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px\">\r\n                  <tbody>\r\n                    <tr>\r\n                      <td align=\"center\" style=\"padding:0;Margin:0\">\r\n                        <p style=\"Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;line-height:24px;color:#FFFFFF;font-size:16px\">Síganos en:</p>\r\n                      </td>\r\n                    </tr>\r\n                  </tbody>\r\n                </table>\r\n              </td>\r\n            </tr>\r\n          </tbody>\r\n        </table>\r\n      </td>\r\n    </tr>\r\n    <tr>\r\n      <td align=\"left\" style=\"padding:0;Margin:0;padding-top:20px;padding-left:20px;padding-right:20px\">\r\n        <table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" style=\"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px\">\r\n          <tbody>\r\n            <tr>\r\n              <td valign=\"top\" align=\"center\" style=\"padding:0;Margin:0;width:660px\">\r\n                <table width=\"100%\" cellspacing=\"0\" cellpadding=\"0\" style=\"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px\">\r\n                  <tbody>\r\n                    <tr>\r\n                      <td align=\"center\" style=\"padding:0;Margin:0;font-size:0px\">\r\n                        <table class=\"es-table-not-adapt es-social\" cellspacing=\"0\" cellpadding=\"0\" style=\"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px\">\r\n                          <tbody>\r\n                            <tr>\r\n                              <td valign=\"top\" align=\"center\" style=\"padding:0;Margin:0;padding-right:15px\"><a id=\"82931434\" target=\"_blank\" href=\"https://www.facebook.com/BrigardUrrutia\" style=\"-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:underline;color:#FFFFFF;font-size:14px\"><img title=\"Facebook\" src=\"https://www.bu.com.co/sites/default/files/2021-03/facebook-circle-white.png\" alt=\"Facebook\" width=\"32\" style=\"display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic\" /></a></td>\r\n                              <td valign=\"top\" align=\"center\" style=\"padding:0;Margin:0;padding-right:15px\"><a id=\"82931433\" target=\"_blank\" href=\"https://twitter.com/Brigard_Urrutia\" style=\"-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:underline;color:#FFFFFF;font-size:14px\"><img title=\"Twitter\" src=\"https://www.bu.com.co/sites/default/files/2026-01/X%20white%402x.png\" alt=\"Twitter\" width=\"32\" style=\"display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic\" /></a></td>\r\n                              <td valign=\"top\" align=\"center\" style=\"padding:0;Margin:0\"><a id=\"82931432\" target=\"_blank\" href=\"https://www.linkedin.com/company/brigard-urrutia/\" style=\"-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:underline;color:#FFFFFF;font-size:14px\"><img title=\"Linkedin\" src=\"https://www.bu.com.co/sites/default/files/2021-03/linkedin-circle-white.png\" alt=\"Linkedin\" width=\"32\" style=\"display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic\" /></a></td>\r\n                            </tr>\r\n                          </tbody>\r\n                        </table>\r\n                      </td>\r\n                    </tr>\r\n                  </tbody>\r\n                </table>\r\n              </td>\r\n            </tr>\r\n          </tbody>\r\n        </table>\r\n      </td>\r\n    </tr>\r\n    <tr>\r\n      <td align=\"left\" style=\"padding:0;Margin:0;padding-top:20px;padding-left:20px;padding-right:20px\">\r\n        <table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" style=\"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px\">\r\n          <tbody>\r\n            <tr>\r\n              <td align=\"center\" valign=\"top\" style=\"padding:0;Margin:0;width:660px\">\r\n                <table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" style=\"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px\">\r\n                  <tbody>\r\n                    <tr>\r\n                      <td align=\"center\" style=\"padding:0;Margin:0\">\r\n                        <p style=\"Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;line-height:24px;color:#FFFFFF;font-size:16px\"><strong><a id=\"82931431\" target=\"_blank\" style=\"-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:underline;color:#FFFFFF;font-size:16px;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;text-align:center\" href=\"https://www.bu.com.co\">www.bu.com.co</a></strong></p>\r\n                      </td>\r\n                    </tr>\r\n                  </tbody>\r\n                </table>\r\n              </td>\r\n            </tr>\r\n          </tbody>\r\n        </table>\r\n      </td>\r\n    </tr>\r\n    <tr>\r\n      <td align=\"left\" style=\"padding:0;Margin:0;padding-top:20px;padding-left:20px;padding-right:20px\">\r\n\r\n        <table cellpadding=\"0\" cellspacing=\"0\" class=\"es-left\" align=\"left\" style=\"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:left\">\r\n          <tbody>\r\n            <tr>\r\n              <td class=\"es-m-p20b\" align=\"left\" style=\"padding:0;Margin:0;width:320px\">\r\n                <table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" style=\"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px\">\r\n                  <tbody>\r\n\r\n                  </tbody>\r\n                </table>\r\n              </td>\r\n            </tr>\r\n          </tbody>\r\n        </table>\r\n\r\n\r\n\r\n        <table cellpadding=\"0\" cellspacing=\"0\" class=\"es-right\" align=\"right\" style=\"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:right\">\r\n          <tbody>\r\n            <tr>\r\n              <td align=\"left\" style=\"padding:0;Margin:0;width:320px\">\r\n                <table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" style=\"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px\">\r\n                  <tbody>\r\n\r\n                  </tbody>\r\n                </table>\r\n              </td>\r\n            </tr>\r\n          </tbody>\r\n        </table>\r\n\r\n      </td>\r\n    </tr>\r\n    <tr>\r\n      <td align=\"left\" style=\"padding:0;Margin:0;padding-left:20px;padding-right:20px\">\r\n        <table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" style=\"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px\">\r\n          <tbody>\r\n            <tr>\r\n              <td align=\"center\" valign=\"top\" style=\"padding:0;Margin:0;width:660px\">\r\n                <table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" style=\"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px\">\r\n                  <tbody>\r\n                    <tr>\r\n                      <td align=\"center\" style=\"padding:0;Margin:0;padding-top:10px;font-size:0\">\r\n                        <table border=\"0\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px\">\r\n                          <tbody>\r\n                            <tr>\r\n                              <td style=\"padding:0;Margin:0;border-bottom:1px solid #5F8DB5;background:none;height:1px;width:100%;margin:0px\"></td>\r\n                            </tr>\r\n                          </tbody>\r\n                        </table>\r\n                      </td>\r\n                    </tr>\r\n                  </tbody>\r\n                </table>\r\n              </td>\r\n            </tr>\r\n          </tbody>\r\n        </table>\r\n      </td>\r\n    </tr>\r\n    <tr>\r\n      <td align=\"left\" style=\"padding:0;Margin:0;padding-top:10px;padding-left:20px;padding-right:20px\">\r\n        <table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" style=\"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px\">\r\n          <tbody>\r\n            <tr>\r\n              <td align=\"center\" valign=\"top\" style=\"padding:0;Margin:0;width:660px\">\r\n                <table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" style=\"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px\">\r\n                  <tbody>\r\n                    <tr>\r\n                      <td align=\"left\" style=\"padding:0;Margin:0\">\r\n\r\n                      </td>\r\n                    </tr>\r\n                  </tbody>\r\n                </table>\r\n              </td>\r\n            </tr>\r\n          </tbody>\r\n        </table>\r\n      </td>\r\n    </tr>\r\n    <tr>\r\n      <td align=\"left\" style=\"Margin:0;padding-top:10px;padding-bottom:10px;padding-left:20px;padding-right:20px\">\r\n        <table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" style=\"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px\">\r\n          <tbody>\r\n            <tr>\r\n              <td align=\"center\" valign=\"top\" style=\"padding:0;Margin:0;width:660px\">\r\n                <table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" style=\"mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px\">\r\n                  <tbody>\r\n                    <tr>\r\n                      <td align=\"center\" style=\"padding:0;Margin:0\">\r\n                        <p style=\"Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:roboto, 'helvetica neue', helvetica, arial, sans-serif;line-height:21px;color:#FFFFFF;font-size:14px\"><strong> Brigard Urrutia 2026</strong></p>\r\n                      </td>\r\n                    </tr>\r\n                  </tbody>\r\n                </table>\r\n              </td>\r\n            </tr>\r\n          </tbody>\r\n        </table>\r\n      </td>\r\n    </tr>\r\n  </tbody>\r\n</table>\r\n\t\t\t\t\t\t</td>\r\n\t\t\t\t\t</tr>\r\n\t\t\t\t</tbody>\r\n\t\t\t</table>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>"
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      theme_name: ''
+      langcode: ''
+      parameters: {  }
+      debug: false
+variants: {  }

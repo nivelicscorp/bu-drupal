@@ -1,0 +1,18 @@
+uuid: dbccdb88-0587-4cee-88e9-b6152fe8fde9
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_percentage
+field_name: field_percentage
+entity_type: paragraph
+type: float
+settings: {  }
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

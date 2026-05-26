@@ -1,0 +1,22 @@
+uuid: 0f774962-16f7-4228-8f9f-b3b254d5aa47
+langcode: es
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.statistical_graphs
+id: paragraph.statistical_graphs.status
+field_name: status
+entity_type: paragraph
+bundle: statistical_graphs
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

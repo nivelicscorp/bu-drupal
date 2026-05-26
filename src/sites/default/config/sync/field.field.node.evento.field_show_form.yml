@@ -1,0 +1,23 @@
+uuid: f4cd7d44-0c95-4a51-829a-e76c82807d32
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_show_form
+    - node.type.evento
+id: node.evento.field_show_form
+field_name: field_show_form
+entity_type: node
+bundle: evento
+label: 'Mostrar formulario de inscripción'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

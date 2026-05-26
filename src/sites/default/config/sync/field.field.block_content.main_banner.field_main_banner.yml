@@ -1,0 +1,49 @@
+uuid: c9485756-0ba0-4a4b-920d-d0d64a5a2662
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.main_banner
+    - field.storage.block_content.field_main_banner
+    - paragraphs.paragraphs_type.main_banner
+  module:
+    - entity_reference_revisions
+id: block_content.main_banner.field_main_banner
+field_name: field_main_banner
+entity_type: block_content
+bundle: main_banner
+label: 'Main banner'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      main_banner: main_banner
+    negate: 0
+    target_bundles_drag_drop:
+      agenda_del_evento:
+        weight: 8
+        enabled: false
+      conferencistas:
+        weight: 9
+        enabled: false
+      indicators:
+        weight: 10
+        enabled: false
+      items_indicators:
+        weight: 11
+        enabled: false
+      main_banner:
+        weight: 12
+        enabled: true
+      statistical_graphs:
+        weight: 13
+        enabled: false
+      text_box:
+        weight: 14
+        enabled: false
+field_type: entity_reference_revisions

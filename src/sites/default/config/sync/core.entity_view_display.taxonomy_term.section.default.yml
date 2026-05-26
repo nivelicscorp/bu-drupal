@@ -1,0 +1,68 @@
+uuid: 850d859b-4077-484c-993f-07049f2375b1
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.section.field_bloque_de_contenido
+    - field.field.taxonomy_term.section.field_image
+    - field.field.taxonomy_term.section.field_resumen
+    - image.style.img_intercaladas
+    - taxonomy.vocabulary.section
+  module:
+    - ds
+    - image_class
+    - svg_image
+    - text
+id: taxonomy_term.section.default
+targetEntityType: taxonomy_term
+bundle: section
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_bloque_de_contenido:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_image:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: img_intercaladas
+      image_loading:
+        attribute: lazy
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+    third_party_settings:
+      image_class:
+        class: ''
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 2
+    region: content
+  field_resumen:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

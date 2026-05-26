@@ -1,0 +1,30 @@
+uuid: 68a5ca33-b673-4485-a543-446362a41610
+langcode: es
+status: true
+dependencies:
+  module:
+    - block_content
+    - file
+    - image
+id: block_content.field_logos
+field_name: field_logos
+entity_type: block_content
+type: image
+settings:
+  target_type: file
+  display_field: false
+  display_default: false
+  uri_scheme: public
+  default_image:
+    uuid: 42d4f21d-da59-4c30-822d-74fe9030a5de
+    alt: 'Brigard Urrutia'
+    title: 'Brigard Urrutia'
+    width: 108
+    height: 60
+module: image
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

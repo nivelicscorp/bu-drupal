@@ -1,0 +1,34 @@
+uuid: 72b08a20-e57e-43e9-a800-811ada5f879d
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.section
+  module:
+    - language
+    - taxonomy
+id: taxonomy_term_section
+label: 'Taxonomy Term Section'
+type: 'canonical_entities:taxonomy_term'
+pattern: '/[term:name]'
+selection_criteria:
+  721496dc-5bdc-4bd5-811b-e8e327244d7c:
+    id: 'entity_bundle:taxonomy_term'
+    negate: false
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    bundles:
+      section: section
+  cfecfb11-7b48-4aaa-8be5-edd6021d883c:
+    id: language
+    negate: false
+    context_mapping:
+      language: 'taxonomy_term:langcode:language'
+    langcodes:
+      es: es
+      en: en
+selection_logic: and
+weight: 5
+relationships:
+  'taxonomy_term:langcode:language':
+    label: Language

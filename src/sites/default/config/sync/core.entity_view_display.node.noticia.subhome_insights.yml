@@ -1,0 +1,144 @@
+uuid: 22c9476f-bace-491c-a81e-9a98b1329205
+langcode: es
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.subhome_insights
+    - field.field.node.noticia.body
+    - field.field.node.noticia.field_area
+    - field.field.node.noticia.field_es_privado
+    - field.field.node.noticia.field_footer
+    - field.field.node.noticia.field_image
+    - field.field.node.noticia.field_industrias
+    - field.field.node.noticia.field_label
+    - field.field.node.noticia.field_metatags
+    - field.field.node.noticia.field_nuevos_servicios
+    - field.field.node.noticia.field_pertenece_a_boletin
+    - field.field.node.noticia.field_resumen
+    - field.field.node.noticia.field_sector_noticia
+    - field.field.node.noticia.field_tags
+    - node.type.noticia
+  module:
+    - field_group
+    - metatag
+    - svg_image
+    - text
+    - user
+third_party_settings:
+  field_group:
+    group_label_share:
+      children:
+        - social_simple_buttons
+      label: 'Compartir estas noticia'
+      parent_name: ''
+      region: content
+      weight: 5
+      format_type: fieldset
+      format_settings:
+        classes: news-share
+        id: ''
+        description: ''
+    group_about_more:
+      children:
+        - field_area
+        - field_industrias
+      label: 'Conozca más sobre'
+      parent_name: ''
+      region: content
+      weight: 4
+      format_type: fieldset
+      format_settings:
+        classes: know-more
+        id: ''
+        description: ''
+    group_contact_us:
+      children:
+        - field_footer
+      label: 'Para mayor información contacte nuestro equipo'
+      parent_name: ''
+      region: content
+      weight: 3
+      format_type: fieldset
+      format_settings:
+        classes: contact-us
+        id: ''
+        description: ''
+id: node.noticia.subhome_insights
+targetEntityType: node
+bundle: noticia
+mode: subhome_insights
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_area:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_footer:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: ''
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_industrias:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_label:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_metatags:
+    type: metatag_empty_formatter
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  social_simple_buttons:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_es_privado: true
+  field_nuevos_servicios: true
+  field_pertenece_a_boletin: true
+  field_resumen: true
+  field_sector_noticia: true
+  field_tags: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

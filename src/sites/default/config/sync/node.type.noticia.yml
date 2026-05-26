@@ -1,0 +1,28 @@
+uuid: a20ee8c2-66cf-42f9-a8ab-559bfd2eb6e6
+langcode: es
+status: true
+dependencies:
+  module:
+    - menu_ui
+    - social_simple
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+  social_simple:
+    share: 1
+    title: ''
+    networks:
+      twitter: twitter
+      facebook: facebook
+      googleplus: googleplus
+      linkedin: linkedin
+    hashtags: '0'
+    forward_integration: null
+name: Noticias
+type: noticia
+description: null
+help: null
+new_revision: false
+preview_mode: 1
+display_submitted: false

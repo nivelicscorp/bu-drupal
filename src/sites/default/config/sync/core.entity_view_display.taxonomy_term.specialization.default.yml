@@ -1,0 +1,18 @@
+uuid: 9885c377-ae07-4d3b-8c61-74218450f973
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.specialization.field_accordion
+    - field.field.taxonomy_term.specialization.field_resumen
+    - taxonomy.vocabulary.specialization
+id: taxonomy_term.specialization.default
+targetEntityType: taxonomy_term
+bundle: specialization
+mode: default
+content: {  }
+hidden:
+  description: true
+  field_accordion: true
+  field_resumen: true
+  langcode: true

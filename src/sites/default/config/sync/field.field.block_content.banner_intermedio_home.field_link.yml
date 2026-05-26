@@ -1,0 +1,23 @@
+uuid: 59295321-b6ed-4cf4-b047-34f803dfa4a9
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.banner_intermedio_home
+    - field.storage.block_content.field_link
+  module:
+    - link
+id: block_content.banner_intermedio_home.field_link
+field_name: field_link
+entity_type: block_content
+bundle: banner_intermedio_home
+label: link
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 1
+  link_type: 17
+field_type: link

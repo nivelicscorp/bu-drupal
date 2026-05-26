@@ -1,0 +1,238 @@
+uuid: 38a920fc-efda-4c75-b5e0-4d9ea9e42a0b
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - field.storage.node.field_area
+    - field.storage.node.field_calificacion
+    - field.storage.node.field_experiencia
+    - field.storage.node.field_image
+    - field.storage.node.field_industrias
+    - field.storage.node.field_membership
+    - search_api.server.database_server_general
+  module:
+    - node
+    - taxonomy
+id: abogados
+name: Abogados
+description: ''
+read_only: false
+field_settings:
+  body:
+    label: Perfil
+    datasource_id: 'entity:node'
+    property_path: body
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.body
+  field_area:
+    label: 'Áreas de prática'
+    datasource_id: 'entity:node'
+    property_path: field_area
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_area
+  field_calificacion:
+    label: Calificación
+    datasource_id: 'entity:node'
+    property_path: field_calificacion
+    type: decimal
+    dependencies:
+      config:
+        - field.storage.node.field_calificacion
+  field_experiencia:
+    label: Experiencia
+    datasource_id: 'entity:node'
+    property_path: field_experiencia
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_experiencia
+  field_image:
+    label: Image
+    datasource_id: 'entity:node'
+    property_path: field_image
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_image
+  field_industrias:
+    label: Industrias
+    datasource_id: 'entity:node'
+    property_path: field_industrias
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_industrias
+  langcode:
+    label: Language
+    datasource_id: 'entity:node'
+    property_path: langcode
+    type: string
+    dependencies:
+      module:
+        - node
+  name:
+    label: 'Industrias » Taxonomy term » Nombre'
+    datasource_id: 'entity:node'
+    property_path: 'field_industrias:entity:name'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_industrias
+      module:
+        - taxonomy
+  name_1:
+    label: 'Áreas de prática » Taxonomy term » Nombre'
+    datasource_id: 'entity:node'
+    property_path: 'field_area:entity:name'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_area
+      module:
+        - taxonomy
+  node_grants:
+    label: 'Node access information'
+    property_path: search_api_node_grants
+    type: string
+    indexed_locked: true
+    type_locked: true
+    hidden: true
+  status:
+    label: Published
+    datasource_id: 'entity:node'
+    property_path: status
+    type: boolean
+    indexed_locked: true
+    type_locked: true
+    dependencies:
+      module:
+        - node
+  title:
+    label: Título
+    datasource_id: 'entity:node'
+    property_path: title
+    type: text
+    dependencies:
+      module:
+        - node
+  uid:
+    label: 'Escrito por'
+    datasource_id: 'entity:node'
+    property_path: uid
+    type: integer
+    indexed_locked: true
+    type_locked: true
+    dependencies:
+      module:
+        - node
+  weight:
+    label: 'Membership » Taxonomy term » Peso'
+    datasource_id: 'entity:node'
+    property_path: 'field_membership:entity:weight'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_membership
+      module:
+        - taxonomy
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: false
+      selected:
+        - lawyer
+    languages:
+      default: false
+      selected:
+        - en
+        - es
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  content_access:
+    weights:
+      preprocess_query: -30
+  entity_status: {  }
+  html_filter:
+    weights:
+      preprocess_index: -15
+      preprocess_query: -15
+    all_fields: false
+    fields:
+      - body
+      - field_experiencia
+      - langcode
+      - name
+      - name_1
+      - title
+    title: true
+    alt: true
+    tags:
+      b: 2
+      em: 1
+      h1: 5
+      h2: 3
+      h3: 2
+      strong: 2
+      u: 1
+  ignorecase:
+    weights:
+      preprocess_index: -20
+      preprocess_query: -20
+    all_fields: false
+    fields:
+      - body
+      - field_experiencia
+      - langcode
+      - name
+      - name_1
+      - title
+  language_with_fallback: {  }
+  rendered_item: {  }
+  tokenizer:
+    weights:
+      preprocess_index: -6
+      preprocess_query: -6
+    all_fields: false
+    fields:
+      - body
+      - field_experiencia
+      - name
+      - name_1
+      - title
+    spaces: ''
+    overlap_cjk: 1
+    minimum_word_size: '3'
+  transliteration:
+    weights:
+      preprocess_index: -20
+      preprocess_query: -20
+    all_fields: false
+    fields:
+      - body
+      - field_experiencia
+      - langcode
+      - name
+      - name_1
+      - title
+  type_boost:
+    weights:
+      preprocess_index: 0
+    boosts:
+      'entity:node':
+        datasource_boost: 1.0
+        bundle_boosts:
+          lawyer: 0.0
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  cron_limit: 50
+  index_directly: true
+  track_changes_in_references: true
+server: database_server_general

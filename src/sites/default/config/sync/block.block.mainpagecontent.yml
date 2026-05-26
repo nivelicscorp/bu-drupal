@@ -1,0 +1,20 @@
+uuid: ae909ab9-408a-4807-b960-b3154a4e3272
+langcode: es
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - brigard
+id: mainpagecontent
+theme: brigard
+region: content
+weight: -6
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: visible
+  provider: system
+visibility: {  }

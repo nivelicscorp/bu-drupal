@@ -1,0 +1,31 @@
+elements: |
+  titulo:
+    '#text': "<h2 class=\"title-form\">Contact Form</h2>\r\n\r\n<p>Fields marked with an asterisk (*) are required</p>\r\n"
+  nombre:
+    '#required_error': 'Complete this field'
+    '#placeholder': 'Full name*'
+  correo_electronico:
+    '#placeholder': 'Email*'
+    '#required_error': 'Complete this field'
+  telefono_de_contacto:
+    '#required_error': 'Complete this field'
+    '#placeholder': 'Telephone contact*'
+  ciudad:
+    '#required_error': 'Complete this field'
+    '#placeholder': 'City*'
+  empresa:
+    '#required_error': 'Complete this field'
+    '#placeholder': 'Company*'
+  cargo:
+    '#required_error': 'Complete this field'
+    '#placeholder': 'Position*'
+  mensaje:
+    '#required_error': 'Complete this field'
+    '#placeholder': 'Message*'
+  si_doy_autorizacion_expresa_para_el_tratamiento_de_los_datos_aqu:
+    '#title': 'I do give express authorization for the treatment of the data set forth herein.'
+  actions:
+    '#submit__label': Submit
+settings:
+  confirmation_message: 'Your information has been received correctly.'
+title: 'Contact Us'

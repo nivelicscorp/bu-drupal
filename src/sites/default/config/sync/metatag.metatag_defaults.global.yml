@@ -1,0 +1,13 @@
+uuid: 965d2293-78ce-4654-80a9-0d3735671652
+langcode: es
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: sL588ui1E_8-2c_UupwyYxcqX2OVyMFp3HTLbbFqvPc
+id: global
+label: Global
+tags:
+  canonical_url: '[current-page:url]'
+  'hreflang_per_language:hreflang_en': 'https://bu.com.co/en'
+  'hreflang_per_language:hreflang_es': 'https://bu.com.co/es'
+  title: '[current-page:title] | [site:name]'

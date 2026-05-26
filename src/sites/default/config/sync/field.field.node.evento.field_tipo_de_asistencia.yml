@@ -1,0 +1,23 @@
+uuid: e1187d83-717f-4f88-8f33-2785982b5ae2
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tipo_de_asistencia
+    - node.type.evento
+  module:
+    - options
+id: node.evento.field_tipo_de_asistencia
+field_name: field_tipo_de_asistencia
+entity_type: node
+bundle: evento
+label: 'Tipo de asistencia'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: Presencial
+default_value_callback: ''
+settings: {  }
+field_type: list_string

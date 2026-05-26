@@ -1,0 +1,11 @@
+id: formulario_descarga
+label: 'Formulario descarga'
+ui_limit: ''
+type: block
+type_label: 'Block field'
+entities:
+  node: node
+properties:
+  block: 'entity_field:node:webform'
+  use_block_title: false
+  add_block_wrappers: false

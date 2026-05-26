@@ -1,0 +1,47 @@
+uuid: 063cb61e-b777-4bdb-9ceb-35babbb805bf
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.icono_item_menu
+    - field.field.block_content.icono_item_menu.field_descripcion
+    - field.field.block_content.icono_item_menu.field_enlace
+    - field.field.block_content.icono_item_menu.field_logos
+  module:
+    - ds
+    - image_class
+    - svg_image
+id: block_content.icono_item_menu.default
+targetEntityType: block_content
+bundle: icono_item_menu
+mode: default
+content:
+  field_logos:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: ''
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+      image_loading:
+        attribute: lazy
+    third_party_settings:
+      image_class:
+        class: u-logo
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 0
+    region: content
+hidden:
+  field_descripcion: true
+  field_enlace: true
+  langcode: true
+  search_api_excerpt: true

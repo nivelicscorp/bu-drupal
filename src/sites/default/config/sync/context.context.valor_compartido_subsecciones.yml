@@ -1,0 +1,48 @@
+uuid: 48606cd7-589c-4f34-9c1a-e6729f143580
+langcode: es
+status: true
+dependencies:
+  config:
+    - views.view.content_by_section
+  module:
+    - system
+    - views
+label: 'Valor Compartido - Subsecciones'
+name: valor_compartido_subsecciones
+group: theme
+description: ''
+requireAllConditions: false
+disabled: false
+conditions:
+  request_path:
+    id: request_path
+    negate: false
+    uuid: 607de1d6-485c-454d-b212-9be0afeeadf3
+    context_mapping: {  }
+    pages: "/taxonomy/term/1138\r\n/taxonomy/term/1139\r\n/taxonomy/term/1140\r\n/taxonomy/term/1141\r\n/taxonomy/term/1142"
+reactions:
+  blocks:
+    id: blocks
+    uuid: 43a9af75-1060-4a95-a69b-aa4935b1dbbc
+    blocks:
+      2d1dfa3a-ce90-424e-b56e-5008d85d6272:
+        uuid: 2d1dfa3a-ce90-424e-b56e-5008d85d6272
+        id: 'views_block:content_by_section-block_content_by_section'
+        label: 'CASOS DE ÉXITO'
+        provider: views
+        label_display: visible
+        region: content
+        weight: '0'
+        custom_id: views_block_content_by_section_block_content_by_section
+        theme: brigard
+        css_class: ''
+        unique: 0
+        context_id: valor_compartido_subsecciones
+        context_mapping:
+          field_section_target_id: '@custom_context_provider.taxonomy_term_context:taxonomy_term'
+        views_label: 'CASOS DE ÉXITO'
+        items_per_page: none
+        override: {  }
+    include_default_blocks: 1
+    saved: false
+weight: 0

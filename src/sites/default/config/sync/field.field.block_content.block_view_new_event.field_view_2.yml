@@ -1,0 +1,33 @@
+uuid: 60e68928-bfbb-4f9f-9580-7f0b40d0b7ea
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.block_view_new_event
+    - field.storage.block_content.field_view_2
+  module:
+    - viewsreference
+id: block_content.block_view_new_event.field_view_2
+field_name: field_view_2
+entity_type: block_content
+bundle: block_view_new_event
+label: 'view 2'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:view'
+  handler_settings:
+    target_bundles: null
+    auto_create: false
+  plugin_types:
+    block: block
+  preselect_views:
+    eventos: eventos
+    noticias: noticias
+  enabled_settings:
+    argument: argument
+    title: title
+field_type: viewsreference

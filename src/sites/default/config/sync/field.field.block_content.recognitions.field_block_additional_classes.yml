@@ -1,0 +1,19 @@
+uuid: 776285a5-db3d-4420-aaff-391743e2c9d6
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.recognitions
+    - field.storage.block_content.field_block_additional_classes
+id: block_content.recognitions.field_block_additional_classes
+field_name: field_block_additional_classes
+entity_type: block_content
+bundle: recognitions
+label: 'Clases adicionales'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

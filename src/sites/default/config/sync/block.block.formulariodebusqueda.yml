@@ -1,0 +1,21 @@
+uuid: 3ec9af4b-88a0-4052-a9b9-9a70387ef180
+langcode: es
+status: true
+dependencies:
+  module:
+    - search
+  theme:
+    - brigard
+id: formulariodebusqueda
+theme: brigard
+region: navigation_collapsible
+weight: -14
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: 'Formulario de búsqueda'
+  label_display: visible
+  provider: search
+  page_id: null
+visibility: {  }

@@ -1,0 +1,33 @@
+uuid: 303cab5e-06d7-4513-99a8-058beefbf05f
+langcode: es
+status: true
+dependencies:
+  config:
+    - node.type.noticia
+  module:
+    - language
+    - node
+id: newsflash_ingles
+label: 'Noticias ingles'
+type: 'canonical_entities:node'
+pattern: '/[node:title]'
+selection_criteria:
+  e5f70db9-07d4-42c4-97ca-9110158d8a07:
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: node
+    bundles:
+      noticia: noticia
+  3e5c55e9-d121-4c2e-88c5-0f43301dd75a:
+    id: language
+    negate: false
+    context_mapping:
+      language: 'node:langcode:language'
+    langcodes:
+      en: en
+selection_logic: and
+weight: -3
+relationships:
+  'node:langcode:language':
+    label: Language

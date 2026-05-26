@@ -1,0 +1,29 @@
+uuid: beec5c10-a897-4deb-a5a2-513aef795033
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+    - social_simple
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+  social_simple:
+    share: 1
+    title: ''
+    networks:
+      twitter: twitter
+      facebook: facebook
+      googleplus: googleplus
+      linkedin: linkedin
+    hashtags: '0'
+    forward_integration: null
+name: Informe
+type: informe
+description: null
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false

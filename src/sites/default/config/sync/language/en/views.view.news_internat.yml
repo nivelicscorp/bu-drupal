@@ -1,0 +1,8 @@
+display:
+  outstanding_block_2:
+    display_options:
+      footer:
+        area:
+          content:
+            value: "<p><a class=\"outstanding-items-bottom-text link-red\" href=\"/en/newsflash\">See more newsflash</a></p>\r\n"
+            format: full_html

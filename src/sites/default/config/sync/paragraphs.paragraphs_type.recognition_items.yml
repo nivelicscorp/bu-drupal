@@ -1,0 +1,9 @@
+uuid: af119e87-2e71-4947-bc27-68565a6ff2cb
+langcode: en
+status: true
+dependencies: {  }
+id: recognition_items
+label: 'Items Reconocimiento'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

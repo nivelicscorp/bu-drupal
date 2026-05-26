@@ -1,0 +1,22 @@
+uuid: 3a1c6beb-c8b5-4c6c-88d7-b7f40360304b
+langcode: es
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - brigard
+_core:
+  default_config_hash: 9EoWV2Lot6FVSr50t4hoKgiz1LIXYWNG-IIPYsWxBqo
+id: brigard_content
+theme: brigard
+region: content
+weight: -11
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Contenido principal de la página'
+  label_display: '0'
+  provider: system
+visibility: {  }

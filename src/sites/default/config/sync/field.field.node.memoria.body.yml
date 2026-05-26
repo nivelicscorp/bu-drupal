@@ -1,0 +1,23 @@
+uuid: a63c4f66-b55a-46f7-8a3b-face1c3e9fed
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.memoria
+  module:
+    - text
+id: node.memoria.body
+field_name: body
+entity_type: node
+bundle: memoria
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

@@ -1,0 +1,24 @@
+uuid: fed023fd-c791-4a05-a574-c8c0c878f42c
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_footer
+    - node.type.memoria
+  module:
+    - text
+id: node.memoria.field_footer
+field_name: field_footer
+entity_type: node
+bundle: memoria
+label: 'Footer Body'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: "<p>info@bu.com.co</p>\r\n"
+    format: basic_html
+default_value_callback: ''
+settings: {  }
+field_type: text_long

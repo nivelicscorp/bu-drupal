@@ -1,0 +1,18 @@
+uuid: bdaabb7b-afe7-4bc0-b634-45cf6490b208
+langcode: es
+status: true
+dependencies:
+  module:
+    - search_api_db
+id: database_server_general
+name: 'Database server general'
+description: 'find news event'
+backend: search_api_db
+backend_config:
+  database: 'default:default'
+  min_chars: 1
+  matching: words
+  autocomplete:
+    suggest_suffix: true
+    suggest_words: true
+  phrase: disabled

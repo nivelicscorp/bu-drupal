@@ -1,0 +1,22 @@
+uuid: cd5ff17d-b31e-4d6e-b227-a8a249a8d757
+langcode: es
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.agenda_del_evento
+id: paragraph.agenda_del_evento.status
+field_name: status
+entity_type: paragraph
+bundle: agenda_del_evento
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

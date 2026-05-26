@@ -1,0 +1,21 @@
+uuid: d6253f7a-8aba-4fcb-aafb-13f9957a1851
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_reconocimientos
+    - node.type.lawyer
+  module:
+    - text
+id: node.lawyer.field_reconocimientos
+field_name: field_reconocimientos
+entity_type: node
+bundle: lawyer
+label: Reconocimientos
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

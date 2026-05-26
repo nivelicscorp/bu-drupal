@@ -1,0 +1,19 @@
+uuid: 6eeffd17-5626-41bf-85aa-e24c1afaf4f1
+langcode: es
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - text
+id: paragraph.field_grafico_embebido
+field_name: field_grafico_embebido
+entity_type: paragraph
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

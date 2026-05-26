@@ -1,0 +1,19 @@
+uuid: a4ff451e-424c-49a3-80bc-3696c00c4390
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_title
+    - paragraphs.paragraphs_type.accordion_items
+id: paragraph.accordion_items.field_title
+field_name: field_title
+entity_type: paragraph
+bundle: accordion_items
+label: Titulo
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

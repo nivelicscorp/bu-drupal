@@ -1,0 +1,15 @@
+uuid: 0aed5a41-14d9-4b64-8930-bbdd1bda2845
+langcode: es
+status: true
+dependencies: {  }
+name: img_620_x_400
+label: 'img 620 x 400'
+effects:
+  4969a21d-2265-4d73-a408-11598ecc9102:
+    uuid: 4969a21d-2265-4d73-a408-11598ecc9102
+    id: image_scale
+    weight: 1
+    data:
+      width: 620
+      height: 400
+      upscale: false

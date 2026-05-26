@@ -1,0 +1,52 @@
+uuid: a36134a9-689c-4fe2-82e9-38458913c023
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.testimonial
+    - field.field.block_content.testimonial.field_block_additional_classes
+    - field.field.block_content.testimonial.field_testimonials
+  module:
+    - ds
+    - slick_paragraphs
+id: block_content.testimonial.default
+targetEntityType: block_content
+bundle: testimonial
+mode: default
+content:
+  field_testimonials:
+    type: slick_paragraphs_vanilla
+    label: above
+    settings:
+      optionset: default_with_dots
+      view_mode: default
+      cache: 0
+      current_view_mode: default
+      skin: ''
+      style: ''
+      overridables:
+        arrows: arrows
+        autoplay: autoplay
+        dots: dots
+        infinite: infinite
+        draggable: '0'
+        mouseWheel: '0'
+        randomize: '0'
+        variableWidth: '0'
+      override: true
+      skin_arrows: ''
+      skin_dots: ''
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 0
+    region: content
+hidden:
+  field_block_additional_classes: true
+  langcode: true

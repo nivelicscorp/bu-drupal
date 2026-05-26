@@ -1,0 +1,33 @@
+uuid: 6dc6ae8e-61b3-4094-8fe1-74167d5ca4cc
+langcode: es
+status: true
+dependencies:
+  config:
+    - node.type.podcast
+  module:
+    - language
+    - node
+id: podcast_esp
+label: 'Podcast esp'
+type: 'canonical_entities:node'
+pattern: '/podcast/[node:title]'
+selection_criteria:
+  9195aa01-4a67-4788-b009-c19b5dc0e40f:
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: node
+    bundles:
+      podcast: podcast
+  07400172-e826-4b23-9232-6f81b5c84e65:
+    id: language
+    negate: false
+    context_mapping:
+      language: 'node:langcode:language'
+    langcodes:
+      es: es
+selection_logic: and
+weight: 3
+relationships:
+  'node:langcode:language':
+    label: Language

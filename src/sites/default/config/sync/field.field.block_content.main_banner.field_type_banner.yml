@@ -1,0 +1,21 @@
+uuid: c9ae27a1-2812-49b7-bc65-31e3a52ecc0b
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.main_banner
+    - field.storage.block_content.field_type_banner
+  module:
+    - options
+id: block_content.main_banner.field_type_banner
+field_name: field_type_banner
+entity_type: block_content
+bundle: main_banner
+label: 'Type banner'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

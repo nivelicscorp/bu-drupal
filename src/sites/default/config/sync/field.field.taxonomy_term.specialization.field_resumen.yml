@@ -1,0 +1,19 @@
+uuid: bbbf1359-f5ed-43c2-8df7-14de323e3f1e
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_resumen
+    - taxonomy.vocabulary.specialization
+id: taxonomy_term.specialization.field_resumen
+field_name: field_resumen
+entity_type: taxonomy_term
+bundle: specialization
+label: Resúmen
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

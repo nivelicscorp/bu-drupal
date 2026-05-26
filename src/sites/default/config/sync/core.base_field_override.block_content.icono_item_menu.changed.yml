@@ -1,0 +1,18 @@
+uuid: b010535d-edf9-44bd-b5c1-7e34f9903dd2
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.icono_item_menu
+id: block_content.icono_item_menu.changed
+field_name: changed
+entity_type: block_content
+bundle: icono_item_menu
+label: Modificado
+description: 'La fecha en que el bloque personalizado fue editado por última vez.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

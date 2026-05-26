@@ -1,0 +1,263 @@
+uuid: 1d0d38bb-2ddb-4f8f-a19e-4db3b3c3c71f
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.node.section.body
+    - field.field.node.section.field_add_area
+    - field.field.node.section.field_add_text_box
+    - field.field.node.section.field_area
+    - field.field.node.section.field_banner_video
+    - field.field.node.section.field_caption_img
+    - field.field.node.section.field_content_information
+    - field.field.node.section.field_desktop_image
+    - field.field.node.section.field_industrias
+    - field.field.node.section.field_label
+    - field.field.node.section.field_link_text_box
+    - field.field.node.section.field_main_banner
+    - field.field.node.section.field_metatags
+    - field.field.node.section.field_mobil_image
+    - field.field.node.section.field_show_search
+    - field.field.node.section.field_subtitle
+    - field.field.node.section.field_text_box
+    - field.field.node.section.field_type_banner
+    - image.style.img_360_x_580
+    - node.type.section
+  module:
+    - ds
+    - entity_reference_revisions
+    - image_class
+    - link
+    - metatag
+    - options
+    - slick_paragraphs
+    - svg_image
+    - text
+    - user
+    - video_embed_field
+id: node.section.default
+targetEntityType: node
+bundle: section
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_add_area:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 13
+    region: content
+  field_add_text_box:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  field_area:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 14
+    region: content
+  field_banner_video:
+    type: video_embed_field_video
+    label: hidden
+    settings:
+      autoplay: true
+      responsive: true
+      width: 854
+      height: 480
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_caption_img:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 16
+    region: content
+  field_content_information:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 17
+    region: content
+  field_desktop_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: img_1282_x_640
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+      image_loading:
+        attribute: lazy
+    third_party_settings:
+      image_class:
+        class: ''
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 5
+    region: content
+  field_industrias:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 15
+    region: content
+  field_label:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_link_text_box:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  field_main_banner:
+    type: slick_paragraphs_vanilla
+    label: hidden
+    settings:
+      optionset: default_with_dots
+      view_mode: default
+      cache: 0
+      skin: boxed-carousel
+      style: ''
+      current_view_mode: default
+      overridables:
+        arrows: arrows
+        autoplay: autoplay
+        dots: dots
+        infinite: infinite
+        draggable: '0'
+        mouseWheel: '0'
+        randomize: '0'
+        variableWidth: '0'
+      override: false
+      skin_arrows: ''
+      skin_dots: ''
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 0
+    region: content
+  field_metatags:
+    type: metatag_empty_formatter
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 18
+    region: content
+  field_mobil_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: img_360_x_580
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+      image_loading:
+        attribute: lazy
+    third_party_settings:
+      image_class:
+        class: ''
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    weight: 6
+    region: content
+  field_show_search:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  field_subtitle:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 12
+    region: content
+  field_text_box:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_type_banner:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true
+  social_simple_buttons: true

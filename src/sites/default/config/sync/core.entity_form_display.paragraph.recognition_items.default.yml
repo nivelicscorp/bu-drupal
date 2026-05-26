@@ -1,0 +1,46 @@
+uuid: c2aa48e6-f135-4439-8da1-40ad4d2839e4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.recognition_items.field_link
+    - field.field.paragraph.recognition_items.field_recognition_image
+    - field.field.paragraph.recognition_items.field_recognition_title
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.recognition_items
+  module:
+    - link
+    - svg_image
+id: paragraph.recognition_items.default
+targetEntityType: paragraph
+bundle: recognition_items
+mode: default
+content:
+  field_link:
+    type: link_default
+    weight: 2
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_recognition_image:
+    type: image_image
+    weight: 0
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_recognition_title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true
+  uid: true

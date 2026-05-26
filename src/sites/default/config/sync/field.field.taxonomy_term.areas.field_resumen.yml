@@ -1,0 +1,19 @@
+uuid: 43e6e565-51af-4809-ac9e-6932c14223c3
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_resumen
+    - taxonomy.vocabulary.areas
+id: taxonomy_term.areas.field_resumen
+field_name: field_resumen
+entity_type: taxonomy_term
+bundle: areas
+label: Resúmen
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

@@ -1,0 +1,18 @@
+uuid: 24e6f5a4-ae63-4c38-87d3-899b238a99ef
+langcode: es
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.indicators
+id: paragraph.indicators.created
+field_name: created
+entity_type: paragraph
+bundle: indicators
+label: Fecha
+description: 'The time that the Paragraph was created.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

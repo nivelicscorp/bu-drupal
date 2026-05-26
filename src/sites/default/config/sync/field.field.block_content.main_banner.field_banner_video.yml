@@ -1,0 +1,27 @@
+uuid: f715ed6f-971f-4c6d-970f-4c5e12fef6a7
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.main_banner
+    - field.storage.block_content.field_banner_video
+  module:
+    - video_embed_field
+id: block_content.main_banner.field_banner_video
+field_name: field_banner_video
+entity_type: block_content
+bundle: main_banner
+label: 'Banner video'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_providers:
+    facebook: facebook
+    vimeo: vimeo
+    youtube: youtube
+    vine: vine
+    youtube_playlist: '0'
+field_type: video_embed_field

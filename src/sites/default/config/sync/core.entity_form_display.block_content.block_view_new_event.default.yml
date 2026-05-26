@@ -1,0 +1,63 @@
+uuid: e31b266d-5303-4750-82c5-fad0301a7b7a
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.block_view_new_event
+    - field.field.block_content.block_view_new_event.body
+    - field.field.block_content.block_view_new_event.field_view_1
+    - field.field.block_content.block_view_new_event.field_view_2
+  module:
+    - text
+    - viewsreference
+id: block_content.block_view_new_event.default
+targetEntityType: block_content
+bundle: block_view_new_event
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 26
+    region: content
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+  field_view_1:
+    type: viewsreference_autocomplete
+    weight: 27
+    region: content
+    settings:
+      match_operator: CONTAINS
+      size: '60'
+      placeholder: ''
+      match_limit: 10
+    third_party_settings: {  }
+  field_view_2:
+    type: viewsreference_autocomplete
+    weight: 28
+    region: content
+    settings:
+      match_operator: CONTAINS
+      size: '60'
+      placeholder: ''
+      match_limit: 10
+    third_party_settings: {  }
+  info:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+hidden: {  }

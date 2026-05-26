@@ -1,0 +1,27 @@
+uuid: c1ca2153-4041-4fef-b7da-75f8931909d4
+langcode: es
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_tipo_de_evento
+field_name: field_tipo_de_evento
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: '1'
+      label: Pago
+    -
+      value: '2'
+      label: Gratuito
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

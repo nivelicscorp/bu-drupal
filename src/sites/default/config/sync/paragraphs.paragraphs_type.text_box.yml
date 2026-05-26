@@ -1,0 +1,9 @@
+uuid: 3946f401-de64-403c-af73-0f3f0001eac1
+langcode: en
+status: true
+dependencies: {  }
+id: text_box
+label: 'Text box'
+icon_uuid: null
+description: 'Text box with fields:  title, description and link '
+behavior_plugins: {  }

@@ -1,0 +1,19 @@
+uuid: 73118a0d-06f4-4839-9c47-ebaa4743c6ae
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_title_x
+    - paragraphs.paragraphs_type.statistical_graphs
+id: paragraph.statistical_graphs.field_title_x
+field_name: field_title_x
+entity_type: paragraph
+bundle: statistical_graphs
+label: 'Horizontal title'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

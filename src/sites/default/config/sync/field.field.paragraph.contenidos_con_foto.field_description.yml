@@ -1,0 +1,21 @@
+uuid: 59d3f628-aae7-41c7-8d67-949701be1416
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_description
+    - paragraphs.paragraphs_type.contenidos_con_foto
+  module:
+    - text
+id: paragraph.contenidos_con_foto.field_description
+field_name: field_description
+entity_type: paragraph
+bundle: contenidos_con_foto
+label: Descripción
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

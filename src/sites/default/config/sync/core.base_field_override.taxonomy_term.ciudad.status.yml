@@ -1,0 +1,22 @@
+uuid: 28ceda5a-c6f2-4d38-9869-76867600ac1b
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.ciudad
+id: taxonomy_term.ciudad.status
+field_name: status
+entity_type: taxonomy_term
+bundle: ciudad
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

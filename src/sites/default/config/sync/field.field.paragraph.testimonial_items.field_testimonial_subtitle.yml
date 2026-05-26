@@ -1,0 +1,19 @@
+uuid: c336715a-57c2-40d1-a078-0b7f788359a7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_testimonial_subtitle
+    - paragraphs.paragraphs_type.testimonial_items
+id: paragraph.testimonial_items.field_testimonial_subtitle
+field_name: field_testimonial_subtitle
+entity_type: paragraph
+bundle: testimonial_items
+label: Subtítulo
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

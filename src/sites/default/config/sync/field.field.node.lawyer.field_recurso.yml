@@ -1,0 +1,28 @@
+uuid: 8ae3ed28-a6c4-490c-a7db-06c3cfbb5881
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_recurso
+    - node.type.lawyer
+    - node.type.recursos
+id: node.lawyer.field_recurso
+field_name: field_recurso
+entity_type: node
+bundle: lawyer
+label: Recurso
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      recursos: recursos
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

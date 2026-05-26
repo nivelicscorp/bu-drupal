@@ -1,0 +1,45 @@
+uuid: efe62782-d5ca-4214-9b6c-b106d52fd881
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_desktop_image
+    - node.type.section
+  module:
+    - content_translation
+    - image
+third_party_settings:
+  content_translation:
+    translation_sync:
+      file: file
+      alt: '0'
+      title: '0'
+id: node.section.field_desktop_image
+field_name: field_desktop_image
+entity_type: node
+bundle: section
+label: 'Desktop image'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png gif jpg jpeg svg'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: true
+  alt_field_required: true
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+field_type: image

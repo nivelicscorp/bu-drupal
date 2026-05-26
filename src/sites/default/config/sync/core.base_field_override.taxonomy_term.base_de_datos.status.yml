@@ -1,0 +1,22 @@
+uuid: b5391fd2-3dfd-4e67-91e4-5253e453f19f
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.base_de_datos
+id: taxonomy_term.base_de_datos.status
+field_name: status
+entity_type: taxonomy_term
+bundle: base_de_datos
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

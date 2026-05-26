@@ -1,0 +1,18 @@
+uuid: f9f6ccb0-169f-4b09-af1e-e7dc34f67351
+langcode: es
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.ciudad
+id: taxonomy_term.ciudad.changed
+field_name: changed
+entity_type: taxonomy_term
+bundle: ciudad
+label: Modificado
+description: 'La fecha en que el término fue creado por última vez.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

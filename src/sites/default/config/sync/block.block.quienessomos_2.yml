@@ -1,0 +1,33 @@
+uuid: 64105a13-db73-48b3-b650-0e878723182b
+langcode: es
+status: true
+dependencies:
+  config:
+    - system.menu.quienes-somos-pie-de-pagina
+  module:
+    - menu_block
+  theme:
+    - brigard
+id: quienessomos_2
+theme: brigard
+region: footer_top
+weight: -15
+provider: null
+plugin: 'menu_block:quienes-somos-pie-de-pagina'
+settings:
+  id: 'menu_block:quienes-somos-pie-de-pagina'
+  label: 'Quiénes somos'
+  label_display: '0'
+  provider: menu_block
+  follow: false
+  follow_parent: child
+  label_link: false
+  label_type: block
+  level: 1
+  depth: 0
+  expand_all_items: false
+  parent: 'quienes-somos-pie-de-pagina:'
+  render_parent: false
+  suggestion: quienes_somos_pie_de_pagina
+  hide_on_nonactive: false
+visibility: {  }

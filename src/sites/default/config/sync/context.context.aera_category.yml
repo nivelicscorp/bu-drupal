@@ -1,0 +1,116 @@
+uuid: 8d99fb6a-fd02-4ea9-800a-ce3918a4b7c5
+langcode: es
+status: true
+dependencies:
+  config:
+    - views.view.what_we_doing
+  content:
+    - 'block_content:sider_bar:fd417806-8d8c-46f4-9fc1-2c6ae14cd7a0'
+  module:
+    - block_content
+    - ctools
+    - language
+    - views
+label: 'Categorias Areas'
+name: aera_category
+group: theme
+description: ''
+requireAllConditions: true
+disabled: false
+conditions:
+  'entity_bundle:taxonomy_term':
+    id: 'entity_bundle:taxonomy_term'
+    negate: false
+    uuid: 8ee89cf7-c68d-424f-9587-d3ef0ced97f5
+    context_mapping:
+      taxonomy_term: '@custom_context_provider.taxonomy_term_context:taxonomy_term'
+    bundles:
+      areas: areas
+      indrustrias: indrustrias
+      nuevos_servicios: nuevos_servicios
+  language:
+    id: language
+    negate: false
+    uuid: 69c11896-dda6-4e30-8dfa-fddf15f7fe65
+    context_mapping:
+      language: '@language.current_language_context:language_interface'
+    langcodes: {  }
+reactions:
+  blocks:
+    id: blocks
+    uuid: 8b82952b-7db9-413f-a4a9-df2e8fb44618
+    blocks:
+      f16d18c0-e35e-4f1b-b6b8-a27d41048784:
+        uuid: f16d18c0-e35e-4f1b-b6b8-a27d41048784
+        id: 'views_block:what_we_doing-collapsibe_block_2'
+        label: ''
+        provider: views
+        label_display: '0'
+        region: sidebar_right
+        weight: '0'
+        custom_id: views_block_what_we_doing_collapsibe_block_2
+        theme: brigard
+        css_class: ''
+        unique: 0
+        context_id: aera_category
+        context_mapping: {  }
+        views_label: ''
+        items_per_page: none
+        override: {  }
+      932bf08d-6535-44d0-afcf-d72fcf6cc4f0:
+        uuid: 932bf08d-6535-44d0-afcf-d72fcf6cc4f0
+        id: 'views_block:what_we_doing-collapsibe_block_1'
+        label: ''
+        provider: views
+        label_display: '0'
+        region: sidebar_right
+        weight: '-1'
+        custom_id: views_block_what_we_doing_collapsibe_block_1
+        theme: brigard
+        css_class: ''
+        unique: 0
+        context_id: aera_category
+        context_mapping: {  }
+        views_label: ''
+        items_per_page: none
+        override: {  }
+      f1d6ca58-1f7c-44d0-bbd4-19814f94ff6f:
+        uuid: f1d6ca58-1f7c-44d0-bbd4-19814f94ff6f
+        id: 'views_block:what_we_doing-collapsibe_block_3'
+        label: ''
+        provider: views
+        label_display: '0'
+        region: sidebar_right
+        weight: '1'
+        custom_id: views_block_what_we_doing_collapsibe_block_3
+        theme: brigard
+        css_class: ''
+        unique: 0
+        context_id: aera_category
+        context_mapping: {  }
+        views_label: ''
+        items_per_page: none
+        override: {  }
+      d6358eca-e626-4212-9ef8-e51ff134b7c5:
+        uuid: d6358eca-e626-4212-9ef8-e51ff134b7c5
+        id: 'block_content:fd417806-8d8c-46f4-9fc1-2c6ae14cd7a0'
+        label: 'Bloque suscríbase'
+        provider: block_content
+        label_display: '0'
+        region: sidebar_right
+        weight: '2'
+        custom_id: block_content_fd417806_8d8c_46f4_9fc1_2c6ae14cd7a0
+        theme: brigard
+        css_class: 'block-contact-sidebar block-contact-sidebar-color--blue'
+        unique: 0
+        context_id: aera_category
+        context_mapping: {  }
+        status: true
+        info: ''
+        view_mode: full
+        third_party_settings:
+          block_class:
+            classes: ''
+    include_default_blocks: 1
+    saved: false
+weight: 0

@@ -1,0 +1,31 @@
+uuid: 7d60d10a-c280-498f-9b54-ff2842a1c7d2
+langcode: es
+status: true
+dependencies:
+  config:
+    - system.menu.valor-compartido
+  module:
+    - menu_block
+  theme:
+    - brigard
+id: valorcompartido
+theme: brigard
+region: footer_top
+weight: -14
+provider: null
+plugin: 'menu_block:valor-compartido'
+settings:
+  id: 'menu_block:valor-compartido'
+  label: 'Valor Compartido'
+  label_display: '0'
+  provider: menu_block
+  follow: false
+  follow_parent: child
+  label_link: false
+  label_type: block
+  level: 1
+  depth: 0
+  expand_all_items: false
+  parent: 'valor-compartido:'
+  suggestion: valor_compartido
+visibility: {  }

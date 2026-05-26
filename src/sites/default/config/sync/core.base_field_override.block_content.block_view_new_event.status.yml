@@ -1,0 +1,22 @@
+uuid: f11ab199-3be3-4ce7-ad84-7e858385f97a
+langcode: es
+status: true
+dependencies:
+  config:
+    - block_content.type.block_view_new_event
+id: block_content.block_view_new_event.status
+field_name: status
+entity_type: block_content
+bundle: block_view_new_event
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

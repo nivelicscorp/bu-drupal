@@ -1,0 +1,44 @@
+uuid: 82e6202b-42d5-4a0f-b3bd-b9e5e475b98b
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.recognitions
+    - field.field.block_content.recognitions.field_block_additional_classes
+    - field.field.block_content.recognitions.field_block_recognition_descrip
+    - field.field.block_content.recognitions.field_block_recognition_recognit
+    - field.field.block_content.recognitions.field_block_recognition_title
+  module:
+    - entity_reference_revisions
+id: block_content.recognitions.default
+targetEntityType: block_content
+bundle: recognitions
+mode: default
+content:
+  field_block_recognition_descrip:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_block_recognition_recognit:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_block_recognition_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_block_additional_classes: true
+  langcode: true

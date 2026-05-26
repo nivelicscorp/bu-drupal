@@ -1,0 +1,25 @@
+uuid: 2387e21c-0b4d-4524-a789-24b4a5f8592d
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.node.webform
+    - node.type.webform
+  module:
+    - webform
+_core:
+  default_config_hash: IYDvt9GwiPFhqabK4wieBb-5xvTG0CkOFeRDf5A3W1E
+id: node.webform.webform
+field_name: webform
+entity_type: node
+bundle: webform
+label: 'Formulario web'
+description: 'Select the webform that you would like to attach to this node.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:webform'
+  handler_settings: {  }
+field_type: webform

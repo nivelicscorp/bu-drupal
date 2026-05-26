@@ -11,10 +11,10 @@
     ],
     "require": {
         "composer/installers": "^1.9",
-        "drupal/core-composer-scaffold": "^10.4",
-        "drupal/core-recommended": "^10.4",
+        "drupal/core-composer-scaffold": "^11",
+        "drupal/core-recommended": "^11",
         "cweagans/composer-patches": "^1.7",
-        "drush/drush": "^12",
+        "drush/drush": "^13",
         "mobiledetect/mobiledetectlib": "^4.8",
         "drupal/addtocalendar": "^3.5",
         "drupal/admin_toolbar": "^3.5",
@@ -124,10 +124,7 @@
         "drupal/media_entity_generic": "^1.2",
         "drupal/modal_page": "^5.1",
         "drupal/sitemap": "^2.0",
-        "drupal/video_embed_field": "^3",
-        "drupal/we_megamenu": "^1.16",
-        "drupal/dropdown_language": "^4.0",
-        "drupal/date_range_formatter": "^4.0"
+        "drupal/video_embed_field": "^3"
     },
     "conflict": {
         "drupal/drupal": "*"

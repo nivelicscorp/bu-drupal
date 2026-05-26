@@ -1,0 +1,12 @@
+name: 'Date range formatter'
+type: module
+description: 'Formats date ranges.'
+package: Date/Time
+core_version_requirement: '^10 || ^11'
+dependencies:
+  - datetime_range
+
+# Information added by Drupal.org packaging script on 2023-12-21
+version: '4.0.2'
+project: 'date_range_formatter'
+datestamp: 1703156624

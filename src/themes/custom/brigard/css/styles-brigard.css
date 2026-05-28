@@ -20181,3 +20181,8 @@ aside .event-box .info-event .place::before {
     padding: 0;
   }
 }
+
+/* Hide node title on front page */
+.path-frontpage .section.full > h1 {
+  display: none;
+}

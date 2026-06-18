@@ -189,7 +189,7 @@
   opacity: 1;
   position: relative;
   text-transform: uppercase;
-  background-image: url(../../img/1990.png);
+  /* background-image: url(../../img/1990.png); */
 }
 /* line 94, ../sass/global/_extends.scss */
 .detalle-quienes .content a:before, .view-newsletter-internal .views-infinite-scroll-content-wrapper .row .views-field-field-specialization a:before, .link-red:before, .page-node-type-noticia .region-content .field--type-text-long a:before,

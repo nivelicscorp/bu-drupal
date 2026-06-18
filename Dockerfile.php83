@@ -40,6 +40,10 @@ COPY --chown=nobody:nobody docker/drupal/settings.php /opt/drupal/web/sites/defa
 RUN mkdir -p /opt/drupal/web/sites/default/files && \
     chmod -R 777 /opt/drupal/web/sites/default/files
 
+# Symlinks for paths that changed from contrib to custom
+RUN ln -sf /opt/drupal/web/modules/custom/we_megamenu /opt/drupal/web/modules/contrib/we_megamenu && \
+    ln -sf /opt/drupal/web/themes/custom/brigard/img /opt/drupal/web/themes/custom/img
+
 # Install dependencies
 RUN composer install --no-interaction --no-dev --prefer-dist --ignore-platform-reqs 2>/dev/null || true
 

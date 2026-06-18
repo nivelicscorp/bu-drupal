@@ -7314,6 +7314,9 @@ hr {
   margin: 0;
   padding: 0;
 }
+.path-frontpage .page-header {
+  display: none;
+}
 
 /* line 171, ../sass/design/_general.scss */
 .tooltip.in {

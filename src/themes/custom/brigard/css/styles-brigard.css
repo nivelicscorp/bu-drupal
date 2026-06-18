@@ -154,7 +154,7 @@
   display: block;
   position: relative;
   text-indent: -99999px;
-  background-image: url(../../img/1990.png);
+  /* background-image: url(../../img/1990.png); */
 }
 /* line 54, ../sass/global/_extends.scss */
 .wrap-main-banner .field--name-field-link a:hover, .view-newsletter-internal .views-infinite-scroll-content-wrapper .row .views-field-view-node a:hover, .btn-red-arrow:hover, footer .container .middle-footer .redes.contact .logo-castro a:hover, .wrap-main-banner .field--name-field-link a:focus, .view-newsletter-internal .views-infinite-scroll-content-wrapper .row .views-field-view-node a:focus, .btn-red-arrow:focus, footer .container .middle-footer .redes.contact .logo-castro a:focus {

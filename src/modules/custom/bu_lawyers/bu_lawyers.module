@@ -1,5 +1,16 @@
 <?php
 
+define('BU_COMPANY_ADDRESS', 'Calle 70 No. 4-60;Bogotá;;Colombia');
+define('BU_COMPANY_NAME', 'Brigard Urrutia');
+
+/**
+ * Converts a string to a meaningful file name.
+ */
+function _bu_convert_string_to_meaningful_file_name($string) {
+  $string = str_replace(' ', '-', mb_strtolower($string));
+  return preg_replace('/[^a-z0-9\-]/', '', $string);
+}
+
 /**
  * hook_form_alter().
  */

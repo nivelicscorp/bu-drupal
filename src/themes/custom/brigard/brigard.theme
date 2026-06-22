@@ -174,6 +174,28 @@ function brigard_preprocess_node(&$variables) {
       $variables['#attached']['drupalSettings']['searcher_modal']['graphs'][$p_g_id] = json_encode($data_chart);
     }
   }
+
+  // Fix: Ensure body field renders safely for evento nodes in teaser/listing views.
+  // Prevents TypeError in Unicode::validateUtf8() when body value passes through
+  // Xss::filter() as an array instead of string (Drupal 11 / PHP 8.3 issue).
+  if ($type_node == 'evento' && in_array($variables['view_mode'], ['teaser', 'token'])) {
+    $node = $variables['node'];
+    if ($node->hasField('body') && !$node->get('body')->isEmpty()) {
+      $body_item = $node->get('body')->first();
+      $value = $body_item->value ?? '';
+      $summary = $body_item->summary ?? '';
+      $text = !empty($summary) ? $summary : $value;
+      if (!is_string($text)) {
+        $text = '';
+      }
+      $variables['body_safe'] = mb_substr(strip_tags($text), 0, 200);
+    }
+    else {
+      $variables['body_safe'] = '';
+    }
+    // Remove the body from render array to avoid text_trimmed formatter error.
+    unset($variables['content']['body']);
+  }
 }
 
 function brigard_preprocess_paragraph(&$variables) {

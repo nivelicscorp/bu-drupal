@@ -96,7 +96,7 @@
       <p class="subtitle">Eventos</p>
       <div class="date-event">{{ content.field_fecha_del_evento }}</div>
       <h2 class="title"><a href="{{ url }}">{{ label }}</a></h2>
-      <p class="lead">{{ content.body|render|striptags() }}</p>
+      <p class="lead">{{ body_safe }}</p>
       <div class="time">{{ content.field_hora_del_vento }}</div>
       <div class="asistance">{{ content.field_tipo_de_asistencia }}</div>
       {% if content.field_lugar_del_evento|length > 3 %}

@@ -1,0 +1,11 @@
+--- a/src/ReCaptcha/RequestMethod/Drupal8Post.php
++++ b/src/ReCaptcha/RequestMethod/Drupal8Post.php
+@@ -36,7 +36,7 @@
+    * @return string
+    *   Body of the reCAPTCHA response.
+    */
+-  public function submit(RequestParameters $params) {
++  public function submit(RequestParameters $params): string {
+ 
+     $options = [
+       'headers' => [

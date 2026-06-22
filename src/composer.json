@@ -196,6 +196,9 @@
             },
             "drupal/advagg": {
                 "3375725#17": "https://www.drupal.org/files/issues/2024-01-16/deprecated-function-creation-of-dynamic-property-3375725-17.patch"
+            },
+            "drupal/recaptcha": {
+                "Add return type for PHP 8.3 compatibility": "patches/recaptcha-return-type.patch"
             }
         }
     },

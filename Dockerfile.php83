@@ -47,6 +47,9 @@ RUN ln -sf /opt/drupal/web/modules/custom/we_megamenu /opt/drupal/web/modules/co
 # Install dependencies
 RUN composer install --no-interaction --no-dev --prefer-dist --ignore-platform-reqs 2>/dev/null || true
 
+# Fix recaptcha return type for PHP 8.3 compatibility
+RUN sed -i 's/public function submit(RequestParameters $params) {/public function submit(RequestParameters $params): string {/' /opt/drupal/web/modules/contrib/recaptcha/src/ReCaptcha/RequestMethod/Drupal8Post.php
+
 # Date
 RUN date > build-date.txt
 
